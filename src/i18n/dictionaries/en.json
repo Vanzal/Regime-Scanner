@@ -1,0 +1,224 @@
+{
+  "app": {
+    "name": "Regime Radar",
+    "tagline": "Which cyber-incident reporting regimes apply to your company?"
+  },
+  "landing": {
+    "title": "Which reporting duties apply to your company?",
+    "intro": "Germany, Austria and Switzerland have introduced new cyber-incident reporting regimes (NIS2UmsuCG, NISG 2024, ISG). We automatically assess which regimes apply to you, which thresholds are relevant, and where your public-facing security gaps are – in under three minutes, no login required.",
+    "cta": "Start the free scan",
+    "no_login": "No login required",
+    "three_regimes": "Three regimes, three independent answers",
+    "disclaimer_short": "Automated public-footprint assessment – not legal advice."
+  },
+  "intake": {
+    "title": "Eight questions – then we scan",
+    "subtitle": "Your answers are the basis of the legal assessment and are used only for your report.",
+    "q1_label": "Company name (including legal form)",
+    "q1_placeholder": "e.g. Beispielwerk GmbH",
+    "q2_label": "Your domain",
+    "q2_placeholder": "e.g. beispielwerk.de",
+    "q3_label": "Country of headquarters",
+    "q4_label": "Employees",
+    "q5_label": "Annual revenue & balance sheet total",
+    "q5_revenue_label": "Annual revenue",
+    "q5_balance_label": "Balance sheet total",
+    "q6_label": "Sector",
+    "q6_hint": "Pick the sector that applies. Special categories (e.g. official critical-infrastructure designation) are at the end of the list.",
+    "q7_label": "Locations & subsidiaries",
+    "q7_hint": "Multiple selection allowed – an empty selection means “no known subsidiaries”.",
+    "q8_label": "Do you have EU customers that impose contractual security requirements on you?",
+    "q8_hint": "Relevant for possible indirect duties (e.g. Switzerland).",
+    "supply_chain_label": "We are part of a supply chain whose failure would affect critical infrastructure or public clients",
+    "critical_label": "We are officially designated as critical infrastructure / a critical facility",
+    "trust_service_label": "We are a qualified trust service provider (eIDAS)",
+    "email_label": "E-mail for your report",
+    "email_hint": "The report link will be sent to this address. You can access the report without login via your personal link.",
+    "consent_label": "I agree that Regime Radar may occasionally inform me about updates to reporting duties (cancellable anytime).",
+    "submit": "Start scan",
+    "submitting": "Starting scan …",
+    "errors": {
+      "required": "Please fill in",
+      "domain": "Please provide a valid domain (e.g. company.de)",
+      "email": "Please provide a valid e-mail address",
+      "consent": "This consent is required for delivery"
+    },
+    "bands": {
+      "employees": {
+        "lt_50": "Under 50",
+        "50_249": "50 to 249",
+        "250_plus": "250 or more",
+        "unknown": "No statement"
+      },
+      "revenue": {
+        "lt_10m": "Under €10m",
+        "10_50m": "€10m to €50m",
+        "gt_50m": "Over €50m",
+        "unknown": "No statement"
+      },
+      "balance": {
+        "lt_10m": "Under €10m",
+        "10_43m": "€10m to €43m",
+        "gt_43m": "Over €43m",
+        "unknown": "No statement"
+      },
+      "eu_customers": {
+        "yes": "Yes",
+        "no": "No",
+        "unknown": "I don't know"
+      }
+    },
+    "countries": {
+      "de": "Germany",
+      "at": "Austria",
+      "ch": "Switzerland",
+      "fr": "France",
+      "it": "Italy",
+      "nl": "Netherlands",
+      "pl": "Poland",
+      "cz": "Czechia",
+      "other": "Other country"
+    },
+    "sectors": {
+      "gruppe_kritisch": "Critical sectors (Annex I)",
+      "gruppe_weitere": "Further sectors (Annex II & special categories)",
+      "gruppe_sonstige": "Other",
+      "energie": "Energy",
+      "verkehr": "Transport",
+      "banken": "Banking",
+      "finanzmarktinfrastruktur": "Financial market infrastructures",
+      "gesundheit": "Health",
+      "trinkwasser": "Drinking water",
+      "abwasser": "Waste water",
+      "digital_infrastruktur": "Digital infrastructure (data centres, cloud, general DNS services)",
+      "weltraum": "Space",
+      "post": "Postal and courier services",
+      "abfallwirtschaft": "Waste management",
+      "chemie": "Chemicals (manufacturing/distribution)",
+      "lebensmittel": "Food (manufacturing/distribution)",
+      "verarbeitendes_gewerbe": "Manufacturing (machinery, electronics, vehicles …)",
+      "digitale_dienste": "Digital services (online marketplaces, search engines, social networks)",
+      "it_dienst": "IT/network services (B2B)",
+      "forschung": "Research",
+      "oeffentliche_verwaltung": "Public administration",
+      "telekommunikation": "Telecommunications",
+      "vertrauensdiensteanbieter": "Trust service provider (eIDAS)",
+      "dns_diensteanbieter": "DNS service provider (exclusive)",
+      "tld_registry": "Domain registry (top-level domain)",
+      "sonstige": "Other / none of the above"
+    }
+  },
+  "scan": {
+    "running_title": "Scan in progress",
+    "running_text": "We are checking publicly available sources of your domain (DNS, TLS, HTTP headers, published legal pages). We honour robots.txt, send only a handful of requests, and never authenticate anywhere.",
+    "finished_title": "Scan complete",
+    "finished_text": "Your report is ready.",
+    "to_report": "Open report",
+    "failed_title": "Scan failed",
+    "failed_text": "The scan could not be completed. Please try again.",
+    "retry": "Try again",
+    "status_queued": "Queued",
+    "status_running": "Running",
+    "status_done": "Done",
+    "status_failed": "Failed",
+    "email_note": "The link to this report has been sent to your e-mail address."
+  },
+  "report": {
+    "title": "Regime assessment for",
+    "not_found": "No report found",
+    "not_found_text": "No published report exists for this link. Please check the link in your e-mail or contact us.",
+    "pending": "Report under review",
+    "pending_text": "Your scan is complete; the report is being finally reviewed and released. This normally happens within one business day.",
+    "print": "Print as PDF",
+    "download_pdf": "Download PDF",
+    "section_verdicts": "1 · Which regimes apply?",
+    "section_clock": "2 · Your reporting clocks",
+    "section_gaps": "3 · Your gap list",
+    "section_trace": "4 · Reasoning (threshold trace)",
+    "section_limits": "5 · Limits & notes",
+    "verdict": {
+      "applicable": "APPLICABLE",
+      "not_applicable": "NOT APPLICABLE",
+      "unclear": "UNCLEAR",
+      "confidence": "Confidence",
+      "manually_reviewed": "Manually reviewed",
+      "override_note": "Assessment reviewed and adjusted by a specialist."
+    },
+    "clock": {
+      "hours": "{hours} hours",
+      "days": "{days} days",
+      "month": "1 month",
+      "within": "within",
+      "authority": "Reporting authority",
+      "channel": "Channel",
+      "intro": "After a significant cyber incident, the following deadlines apply to you:",
+      "none_applicable": "No reporting duty was determined for any regime. The deadlines of applicable regimes will appear here once an assessment exists."
+    },
+    "gaps": {
+      "empty": "No structural issues were found in the public footprint. This does not replace a comprehensive security assessment.",
+      "what": "Finding",
+      "why": "Why the law cares",
+      "fix": "Recommendation",
+      "check": "Check",
+      "severity": {
+        "info": "Info",
+        "low": "Low",
+        "med": "Medium",
+        "high": "High"
+      }
+    },
+    "trace": {
+      "open": "Open reasoning",
+      "column_check": "Step",
+      "column_result": "Result",
+      "column_detail": "Detail",
+      "status": {
+        "pass": "passed",
+        "fail": "not passed",
+        "undetermined": "open",
+        "skipped": "skipped",
+        "fired": "triggered"
+      },
+      "missing": "Open inputs blocking a decisive assessment:"
+    },
+    "limits": {
+      "rules_version": "Legal standing (rules version)",
+      "effective_from": "In force since",
+      "scan_time": "Scan timestamp",
+      "mode_fixture": "Demo mode (fixture data, no live requests)",
+      "mode_live": "Live scan of the public footprint",
+      "body": "This report was generated automatically: an automated evaluation of publicly available sources (DNS, TLS, HTTP headers, published web pages) combined with your answers. It is a first orientation and **not legal advice**. A full compliance assessment requires internal system information that we cannot see. Legal standing and confidence are shown per regime; uncertain legal situations are honestly reported as “unclear”.",
+      "source_of_law": "Sources of law"
+    },
+    "disclaimer_footer": "Automated public assessment · not legal advice · legal standing shown in report"
+  },
+  "regimes": {
+    "de": {
+      "code": "DE",
+      "name": "Germany",
+      "law_short": "NIS2UmsuCG / BSIG"
+    },
+    "at": {
+      "code": "AT",
+      "name": "Austria",
+      "law_short": "NISG 2024"
+    },
+    "ch": {
+      "code": "CH",
+      "name": "Switzerland",
+      "law_short": "ISG / 24h duty"
+    }
+  },
+  "controls": {
+    "email_auth": "E-mail authentication",
+    "crypto_tls": "Encryption/TLS",
+    "web_hardening": "Web hardening",
+    "vuln_disclosure": "Vulnerability contact",
+    "asset_mgmt": "Asset management",
+    "access_control": "Access control",
+    "patch_mgmt": "Patch management",
+    "third_party": "Supply chain/third parties",
+    "transparency": "Transparency",
+    "incident_response": "Incident response"
+  }
+}

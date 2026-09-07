@@ -1,0 +1,17 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Standalone-Funktionen außerhalb des Next-Runtimes brauchen eigene Dateien.
+[functions."render-pdf"]
+  included_files = ["src/i18n/dictionaries/**"]
+  timeout = 26
+
+[functions."scan-runner.background"]
+  included_files = ["rules/**", "src/i18n/dictionaries/**"]

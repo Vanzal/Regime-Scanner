@@ -1,0 +1,122 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# DE – NIS2UmsuCG (NIS-2-Umsetzungs- und Cybersicherheitsstärkungsgesetz)
+# Umgesetzt im Wesentlichen durch das neue BSI-Gesetz (BSIG).
+#
+# ALLE Werte aus Primärquellen (BGBl./BSI) – nie aus Zusammenfassungen.
+# Inkrafttreten: 6. Dezember 2025 (BGBl. 2025 Teil I Nr. 301, verkündet 05.12.2025).
+# Korrekturen = neue Version (v2) + rules_versions-Eintrag, nie In-place-Edit.
+# ─────────────────────────────────────────────────────────────────────────────
+regime: de
+version: v1
+version_label: DE-NIS2UmsuCG v1.0.0
+law_name: "NIS-2-Umsetzungs- und Cybersicherheitsstärkungsgesetz (NIS2UmsuCG, Umsetzung im BSIG)"
+effective_from: 2025-12-06
+applicability_country: de
+source_urls:
+  - https://www.recht.bund.de/bgbl/1/2025/301/regelungstext.pdf
+  - https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/NIS-2/NIS-2-node.html
+
+# Bedingungsstruktur: Klasse = ODER über Bedingungen; Bedingung = UND über Merkmale.
+# Mitarbeitende: „mindestens" (≥) · Geldwerte: „über" (>) – Schwellenwerte nach
+# § 28 BSIG i. V. m. EU-Empfehlung 2003/361/EG (verbundene/partnerunternehmen zählen).
+entity_classes:
+  # § 28 Abs. 1 – Betreiber kritischer Anlagen (größenunabhängig)
+  - id: besonders_kritis_betreiber
+    label: "Betreiber kritischer Anlagen (§ 28 Abs. 1 BSIG)"
+    conditions:
+      - requires_critical_designation: true
+    note: "Amtliche Einstufung als kritische Anlage/CRITIS-Betreiber ist größenunabhängig meldepflicht-relevant."
+
+  # § 28 Abs. 1 – qualifizierte Vertrauensdiensteanbieter
+  - id: besonders_qualifizierte_vdan
+    label: "Qualifizierte Vertrauensdiensteanbieter (§ 28 Abs. 1 BSIG)"
+    sectors: [vertrauensdiensteanbieter]
+    conditions:
+      - requires_qualified_trust_service: true
+
+  # § 28 Abs. 1 – TLD-Registries und DNS-Diensteanbieter
+  - id: besonders_tld_dns
+    label: "Top-Level-Domain-Registry bzw. DNS-Diensteanbieter (§ 28 Abs. 1 BSIG)"
+    sectors: [tld_registry, dns_diensteanbieter]
+
+  # § 28 Abs. 1 – Telekommunikationsanbieter (eigene Schwellenwerte)
+  - id: besonders_telekommunikation
+    label: "Telekommunikationsanbieter (§ 28 Abs. 1 BSIG)"
+    sectors: [telekommunikation]
+    conditions:
+      - employees_min: 50
+      - revenue_eur_min: 10000000
+        balance_eur_min: 10000000
+
+  # § 28 Abs. 1 – sonstige Einrichtungen der Anlage 1 (Nr. 6 umfasst auch
+  # Managed Services Provider / Managed Security Services Provider)
+  - id: besonders_sonstige_anlage1
+    label: "Besonders wichtige Einrichtung, Anlage 1 (§ 28 Abs. 1 BSIG)"
+    sectors: [energie, verkehr, banken, finanzmarktinfrastruktur, gesundheit, trinkwasser, abwasser, digital_infrastruktur, it_dienst, weltraum]
+    conditions:
+      - employees_min: 250
+      - revenue_eur_min: 50000000
+        balance_eur_min: 43000000
+
+  # § 28 Abs. 2 Nr. 1 – sonstige Vertrauensdiensteanbieter (größenunabhängig)
+  - id: wichtig_vdan
+    label: "Vertrauensdiensteanbieter (§ 28 Abs. 2 BSIG)"
+    sectors: [vertrauensdiensteanbieter]
+
+  # § 28 Abs. 2 Nr. 2 – Restfall zu § 28 Abs. 1 Nr. 3
+  - id: wichtig_telekommunikation
+    label: "Telekommunikationsanbieter (§ 28 Abs. 2 BSIG)"
+    sectors: [telekommunikation]
+    note: "Trifft, wenn die Voraussetzungen des § 28 Abs. 1 Nr. 3 nicht erfüllt sind (<50 MA und Umsatz oder Bilanzsumme ≤ 10 Mio €)."
+
+  # § 28 Abs. 2 – sonstige Einrichtungen der Anlagen 1 und 2
+  - id: wichtig_sonstige_anlage1_2
+    label: "Wichtige Einrichtung, Anlage 1/2 (§ 28 Abs. 2 BSIG)"
+    sectors: [energie, verkehr, banken, finanzmarktinfrastruktur, gesundheit, trinkwasser, abwasser, digital_infrastruktur, weltraum, post, abfallwirtschaft, chemie, lebensmittel, verarbeitendes_gewerbe, digitale_dienste, it_dienst, forschung]
+    conditions:
+      - employees_min: 50
+      - revenue_eur_min: 10000000
+        balance_eur_min: 10000000
+
+below_threshold:
+  outcome: not_applicable
+  note: "Schwellenwerte nach § 28 BSIG werden nach den vorliegenden Angaben nicht erreicht – keine besondere/wichtige Einrichtung. Beachten Sie die laufende Selbstverpflichtung zur Prüfung: Größenwachstum oder Sektorsprung kann die Einordnung ändern."
+
+reporting_clock:
+  # § 32 BSIG – Meldepflichten bei erheblichen Cybersicherheitsvorfällen
+  stages:
+    - key: erstmeldung
+      hours: 24
+      label: "Erstmeldung (innerhalb von 24 Stunden nach Kenntnisnahme)"
+    - key: folgemeldung
+      hours: 72
+      label: "Folgemeldung – erste Bewertung (innerhalb von 72 Stunden)"
+    - key: abschlussmeldung
+      hours: 720
+      label: "Abschlussmeldung (spätestens einen Monat nach der Folgemeldung)"
+  authority:
+    name: "Gemeinsame Meldestelle von BSI und BBK"
+    portal_url: "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/NIS-2/NIS-2-node.html"
+    format: "Meldung über die gemeinsame Meldestelle (BSI/BBK), Einrichtung des Meldewegs ausstehend"
+
+# Generische Control-Ids → juristische Zitierung (warum das Gesetz sich dafür interessiert)
+control_areas:
+  email_auth: "§ 30 BSIG i. V. m. Art. 21 Abs. 2 NIS-2 (sichere Kommunikation, E-Mail-Authentifizierung)"
+  crypto_tls: "§ 30 BSIG i. V. m. Art. 21 Abs. 2 NIS-2 (Kryptografie/Verschlüsselung, Transportverschlüsselung)"
+  web_hardening: "§ 30 BSIG i. V. m. Art. 21 Abs. 2 NIS-2 (Cybersicherheits-Risikomanagement, Absicherung öffentlich erreichbarer Systeme)"
+  vuln_disclosure: "§ 30 BSIG i. V. m. Art. 21 Abs. 2 NIS-2 (Umgang mit Schwachstellen, verantwortungsvolle Offenlegung)"
+  asset_mgmt: "§ 30 BSIG i. V. m. Art. 21 Abs. 2 NIS-2 (Bestands- und Angriffsflächenverwaltung)"
+  access_control: "§ 30 BSIG i. V. m. Art. 21 Abs. 2 NIS-2 (Zugangskontrolle, sichere Verwaltungswege)"
+  patch_mgmt: "§ 30 BSIG i. V. m. Art. 21 Abs. 2 NIS-2 (Update- und Patch-Management, veraltete Systeme)"
+  third_party: "§ 30 BSIG i. V. m. Art. 21 Abs. 2 NIS-2 (Sicherheit in der Lieferkette, Dienstanbieter)"
+  transparency: "§ 30 BSIG i. V. m. Art. 21 Abs. 2 NIS-2 (Transparenz, Impressum/Verantwortlichkeiten)"
+  incident_response: "§ 30 BSIG i. V. m. Art. 21 Abs. 2 NIS-2 (Vorfallreaktion, Meldeprozesse)"
+
+penalties_note_md: |
+  Bußgelder (§ 65 BSIG n. F.): für besonders wichtige Einrichtungen bis zu **10 Mio €**,
+  für wichtige Einrichtungen bis zu **7 Mio €** – Kernverstöße betreffen u. a.
+  Risikomanagementmaßnahmen (§ 30) sowie Erstmeldung, Meldung und Abschlussmeldung (§ 32).
+  Der Umsatz-Maßstab greift nur bei Einrichtungen mit einem Gesamtumsatz von mehr als
+  500 Mio €: dort bis zu **2 %** (besonders wichtig) bzw. **1,4 %** (wichtig).
+  Zusätzlich drohen Aufsichtsmaßnahmen bis zur Anordnung konkreter Maßnahmen und
+  vorübergehender Tätigkeitsverbote (§§ 61, 62); Verwaltungszwang bis 100 000 € (§ 63).

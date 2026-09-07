@@ -1,0 +1,224 @@
+{
+  "app": {
+    "name": "Regime Radar",
+    "tagline": "Welche Cyber-Meldepflichten gelten für Ihr Unternehmen?"
+  },
+  "landing": {
+    "title": "Welche Meldepflichten treffen Ihr Unternehmen?",
+    "intro": "Deutschland, Österreich und die Schweiz haben neue Cybersicherheits-Meldepflichten eingeführt (NIS2UmsuCG, NISG 2024, ISG). Wir prüfen automatisch, welche Regimes für Sie gelten, welche Schwellenwerte einschlägig sind und wo Ihre öffentlich sichtbaren Sicherheitslücken liegen – in unter drei Minuten, ohne Anmeldung.",
+    "cta": "Kostenlosen Scan starten",
+    "no_login": "Keine Anmeldung erforderlich",
+    "three_regimes": "Drei Regimes, drei unabhängige Antworten",
+    "disclaimer_short": "Automatisierte Prüfung des öffentlichen Fußabdrucks – keine Rechtsberatung."
+  },
+  "intake": {
+    "title": "Acht Fragen – dann scannen wir",
+    "subtitle": "Alle Angaben sind die Grundlage der rechtlichen Einordnung. Sie werden nur für Ihren Bericht verwendet.",
+    "q1_label": "Firmenname (Rechtsform einschließen)",
+    "q1_placeholder": "z. B. Beispielwerk GmbH",
+    "q2_label": "Ihre Domain",
+    "q2_placeholder": "z. B. beispielwerk.de",
+    "q3_label": "Land des Hauptsitzes",
+    "q4_label": "Mitarbeitende",
+    "q5_label": "Jahresumsatz & Jahresbilanzsumme",
+    "q5_revenue_label": "Jahresumsatz",
+    "q5_balance_label": "Jahresbilanzsumme",
+    "q6_label": "Branche",
+    "q6_hint": "Wählen Sie die zutreffende Branche. Besondere Kategorien (z. B. amtliche Einstufung als kritische Infrastruktur) finden Sie am Ende der Liste.",
+    "q7_label": "Standorte & Tochtergesellschaften",
+    "q7_hint": "Mehrfachauswahl möglich – leere Auswahl bedeutet „keine bekannten Tochtergesellschaften“.",
+    "q8_label": "Haben Sie EU-Kunden, die vertraglich Sicherheitsanforderungen an Sie stellen?",
+    "q8_hint": "Relevant für mögliche indirekte Pflichten (z. B. Schweiz).",
+    "supply_chain_label": "Wir sind Teil einer Lieferkette, deren Ausfall kritische Infrastruktur oder öffentliche Auftraggeber beträfe",
+    "critical_label": "Wir sind als kritische Infrastruktur / kritische Anlage amtlich eingestuft",
+    "trust_service_label": "Wir sind ein qualifizierter Vertrauensdiensteanbieter (eIDAS)",
+    "email_label": "E-Mail für Ihren Bericht",
+    "email_hint": "Der Berichts-Link wird an diese Adresse gesendet. Sie können den Bericht ohne Anmeldung über den persönlichen Link abrufen.",
+    "consent_label": "Ich bin einverstanden, dass mich Regime Radar gelegentlich über Aktualisierungen der Meldepflichten informiert (jederzeit kündbar).",
+    "submit": "Scan starten",
+    "submitting": "Scan wird gestartet …",
+    "errors": {
+      "required": "Bitte ausfüllen",
+      "domain": "Bitte eine gültige Domain angeben (z. B. firma.de)",
+      "email": "Bitte eine gültige E-Mail-Adresse angeben",
+      "consent": "Diese Einwilligung ist für die Zustellung erforderlich"
+    },
+    "bands": {
+      "employees": {
+        "lt_50": "Unter 50",
+        "50_249": "50 bis 249",
+        "250_plus": "250 oder mehr",
+        "unknown": "Keine Angabe"
+      },
+      "revenue": {
+        "lt_10m": "Unter 10 Mio €",
+        "10_50m": "10 bis 50 Mio €",
+        "gt_50m": "Über 50 Mio €",
+        "unknown": "Keine Angabe"
+      },
+      "balance": {
+        "lt_10m": "Unter 10 Mio €",
+        "10_43m": "10 bis 43 Mio €",
+        "gt_43m": "Über 43 Mio €",
+        "unknown": "Keine Angabe"
+      },
+      "eu_customers": {
+        "yes": "Ja",
+        "no": "Nein",
+        "unknown": "Weiß ich nicht"
+      }
+    },
+    "countries": {
+      "de": "Deutschland",
+      "at": "Österreich",
+      "ch": "Schweiz",
+      "fr": "Frankreich",
+      "it": "Italien",
+      "nl": "Niederlande",
+      "pl": "Polen",
+      "cz": "Tschechien",
+      "other": "Anderes Land"
+    },
+    "sectors": {
+      "gruppe_kritisch": "Kritische Sektoren (Anlage 1)",
+      "gruppe_weitere": "Weitere Sektoren (Anlage 2 & besondere Kategorien)",
+      "gruppe_sonstige": "Sonstiges",
+      "energie": "Energie",
+      "verkehr": "Verkehr",
+      "banken": "Bankwesen",
+      "finanzmarktinfrastruktur": "Finanzmarktinfrastrukturen",
+      "gesundheit": "Gesundheitswesen",
+      "trinkwasser": "Trinkwasser",
+      "abwasser": "Abwasser",
+      "digital_infrastruktur": "Digitale Infrastruktur (Rechenzentren, Cloud, DNS-Dienste allgemein)",
+      "weltraum": "Weltraum",
+      "post": "Post- und Kurierdienste",
+      "abfallwirtschaft": "Abfallwirtschaft",
+      "chemie": "Chemie (Herstellung/-handel)",
+      "lebensmittel": "Lebensmittel (Herstellung/-handel)",
+      "verarbeitendes_gewerbe": "Verarbeitendes Gewerbe (Maschinenbau, Elektro, Fahrzeuge …)",
+      "digitale_dienste": "Digitale Dienste (Online-Marktplätze, Suchmaschinen, Soziale Netzwerke)",
+      "it_dienst": "IT-/Netzwerkdienstleistungen (B2B)",
+      "forschung": "Forschung",
+      "oeffentliche_verwaltung": "Öffentliche Verwaltung",
+      "telekommunikation": "Telekommunikation",
+      "vertrauensdiensteanbieter": "Vertrauensdiensteanbieter (eIDAS)",
+      "dns_diensteanbieter": "DNS-Diensteanbieter (exklusiv)",
+      "tld_registry": "Domain-Registry (Top-Level-Domain)",
+      "sonstige": "Sonstige / keine der genannten"
+    }
+  },
+  "scan": {
+    "running_title": "Scan läuft",
+    "running_text": "Wir prüfen öffentlich zugängliche Quellen Ihrer Domain (DNS, TLS, HTTP-Header, veröffentlichte Rechtsseiten). Wir folgen dabei robots.txt, senden nur wenige Abfragen und authentifizieren uns nirgends.",
+    "finished_title": "Scan abgeschlossen",
+    "finished_text": "Ihr Bericht ist bereit.",
+    "to_report": "Bericht öffnen",
+    "failed_title": "Scan fehlgeschlagen",
+    "failed_text": "Der Scan konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut.",
+    "retry": "Erneut versuchen",
+    "status_queued": "In Warteschlange",
+    "status_running": "Läuft",
+    "status_done": "Fertig",
+    "status_failed": "Fehlgeschlagen",
+    "email_note": "Der Link zu diesem Bericht wurde an Ihre E-Mail-Adresse gesendet."
+  },
+  "report": {
+    "title": "Regime-Prüfung für",
+    "not_found": "Kein Bericht gefunden",
+    "not_found_text": "Für diesen Link existiert kein veröffentlichter Bericht. Prüfen Sie den Link aus Ihrer E-Mail oder kontaktieren Sie uns.",
+    "pending": "Bericht in Prüfung",
+    "pending_text": "Ihr Scan ist abgeschlossen; der Bericht wird gerade abschließend geprüft und freigegeben. Dies ist normalerweise innerhalb eines Werktags der Fall.",
+    "print": "Als PDF drucken",
+    "download_pdf": "PDF herunterladen",
+    "section_verdicts": "1 · Für welche Regimes gelten Meldepflichten?",
+    "section_clock": "2 · Ihre Meldeuhren",
+    "section_gaps": "3 · Ihre Lückenliste",
+    "section_trace": "4 · Herleitung (Threshold Trace)",
+    "section_limits": "5 · Grenzen & Hinweise",
+    "verdict": {
+      "applicable": "ANWENDBAR",
+      "not_applicable": "NICHT ANWENDBAR",
+      "unclear": "UNKLAR",
+      "confidence": "Konfidenz",
+      "manually_reviewed": "Manuell geprüft",
+      "override_note": "Einordnung durch eine Fachperson überprüft und angepasst."
+    },
+    "clock": {
+      "hours": "{hours} Stunden",
+      "days": "{days} Tage",
+      "month": "1 Monat",
+      "within": "innerhalb",
+      "authority": "Meldestelle",
+      "channel": "Kanal",
+      "intro": "Nach einem erheblichen Cybersicherheitsvorfall gelten für Sie folgende Fristen:",
+      "none_applicable": "Für kein Regime wurde eine Meldepflicht festgestellt. Die Fristen der anwendbaren Regimes erscheinen hier, sobald eine Einordnung vorliegt."
+    },
+    "gaps": {
+      "empty": "Im öffentlichen Fußabdruck wurden keine strukturellen Auffälligkeiten gefunden. Dies ersetzt keine umfassende Sicherheitsprüfung.",
+      "what": "Befund",
+      "why": "Warum das Gesetz das betrifft",
+      "fix": "Empfehlung",
+      "check": "Prüfung",
+      "severity": {
+        "info": "Hinweis",
+        "low": "Gering",
+        "med": "Mittel",
+        "high": "Hoch"
+      }
+    },
+    "trace": {
+      "open": "Herleitung aufklappen",
+      "column_check": "Prüfschritt",
+      "column_result": "Ergebnis",
+      "column_detail": "Detail",
+      "status": {
+        "pass": "erfüllt",
+        "fail": "nicht erfüllt",
+        "undetermined": "offen",
+        "skipped": "übersprungen",
+        "fired": "spricht an"
+      },
+      "missing": "Offene Angaben, die die Einordnung blockieren:"
+    },
+    "limits": {
+      "rules_version": "Rechtsstand (Regeln-Version)",
+      "effective_from": "In Kraft seit",
+      "scan_time": "Scan-Zeitpunkt",
+      "mode_fixture": "Demo-Modus (Fixture-Daten, keine Live-Abfragen)",
+      "mode_live": "Live-Scan des öffentlichen Fußabdrucks",
+      "body": "Dieser Bericht wurde maschinell erstellt: automatisierte Auswertung öffentlich zugänglicher Quellen (DNS, TLS, HTTP-Header, veröffentlichte Webseiten) kombiniert mit Ihren Angaben. Er ist eine erste Orientierung und **keine Rechtsberatung**. Die vollständige Konformitätsprüfung erfordert interne Systeminformationen, die wir nicht einsehen können. Rechtsstand und Konfidenz sind je Regime ausgewiesen; auf unsicheren Rechtslagen geben wir dies ehrlich als „unklar“ wieder.",
+      "source_of_law": "Rechtsquellen"
+    },
+    "disclaimer_footer": "Automatisierte öffentliche Einschätzung · keine Rechtsberatung · Rechtsstand im Bericht ausgewiesen"
+  },
+  "regimes": {
+    "de": {
+      "code": "DE",
+      "name": "Deutschland",
+      "law_short": "NIS2UmsuCG / BSIG"
+    },
+    "at": {
+      "code": "AT",
+      "name": "Österreich",
+      "law_short": "NISG 2024"
+    },
+    "ch": {
+      "code": "CH",
+      "name": "Schweiz",
+      "law_short": "ISG / 24h-Meldepflicht"
+    }
+  },
+  "controls": {
+    "email_auth": "E-Mail-Authentifizierung",
+    "crypto_tls": "Verschlüsselung/TLS",
+    "web_hardening": "Web-Härung",
+    "vuln_disclosure": "Schwachstellenkontakt",
+    "asset_mgmt": "Bestandsverwaltung",
+    "access_control": "Zugangskontrolle",
+    "patch_mgmt": "Patch-Management",
+    "third_party": "Lieferkette/Drittanbieter",
+    "transparency": "Transparenz",
+    "incident_response": "Vorfallreaktion"
+  }
+}
