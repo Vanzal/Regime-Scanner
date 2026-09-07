@@ -47,6 +47,8 @@ export const IntakeSchema = z.object({
   supply_chain_critical: z.boolean().default(false),
   // Q8
   eu_customers_security_clauses: YesNoUnknown,
+  // Optional: ISO-27001-Status (für den LLM-Scope-Check; im Formular noch nicht erhoben)
+  iso27001_certified: YesNoUnknown.optional(),
   // E-Mail-Gate
   email: z.string().trim().toLowerCase().email({ message: 'invalid_email' }),
   consent_marketing: z.boolean().refine((v) => v === true, { message: 'consent_required' }),
