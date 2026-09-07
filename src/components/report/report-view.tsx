@@ -31,10 +31,13 @@ function Section({
 export function ReportView({
   data,
   dict,
+  token,
   showChrome = true,
 }: {
   data: ReportData
   dict: Dictionary
+  /** Berichts-Token (für den PDF-Funktionsaufruf) */
+  token?: string
   /** Web-Extras (PDF-Button); ?print=1 blendet sie aus. */
   showChrome?: boolean
 }) {
@@ -80,10 +83,18 @@ export function ReportView({
       </footer>
 
       {showChrome && (
-        <div className="no-print mt-6 text-center">
+        <div className="no-print mt-6 flex flex-wrap items-center justify-center gap-3">
+          {process.env.SITE_URL && token && (
+            <a
+              href={`/.netlify/functions/render-pdf?token=${token}`}
+              className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
+            >
+              {t(dict, 'report.download_pdf')}
+            </a>
+          )}
           <a
             href={`?print=1`}
-            className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700"
+            className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
           >
             {t(dict, 'report.print')}
           </a>

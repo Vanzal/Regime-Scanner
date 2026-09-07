@@ -121,7 +121,8 @@
     "status_running": "Running",
     "status_done": "Done",
     "status_failed": "Failed",
-    "email_note": "The link to this report has been sent to your e-mail address."
+    "email_note": "The link to this report has been sent to your email address.",
+    "pending_text_short": "The scan is finished – opening the report …"
   },
   "report": {
     "title": "Regime assessment for",

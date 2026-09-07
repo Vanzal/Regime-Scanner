@@ -121,7 +121,8 @@
     "status_running": "Läuft",
     "status_done": "Fertig",
     "status_failed": "Fehlgeschlagen",
-    "email_note": "Der Link zu diesem Bericht wurde an Ihre E-Mail-Adresse gesendet."
+    "email_note": "Der Link zu diesem Bericht wurde an Ihre E-Mail-Adresse gesendet.",
+    "pending_text_short": "Der Scan ist fertig – der Bericht wird geöffnet …"
   },
   "report": {
     "title": "Regime-Prüfung für",

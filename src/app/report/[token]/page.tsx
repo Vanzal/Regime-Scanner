@@ -22,7 +22,7 @@ export default async function ReportPage({
 
   const data = await loadReport(token)
   if (data) {
-    return <ReportView data={data} dict={dict} showChrome={print !== '1'} />
+    return <ReportView data={data} dict={dict} token={token} showChrome={print !== '1'} />
   }
 
   // Token bekannt, Bericht noch nicht freigegeben (Pilotmodus)?
