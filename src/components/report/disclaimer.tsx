@@ -1,5 +1,6 @@
 import type { Dictionary } from '@/i18n'
 import { t } from '@/i18n'
+import { renderInlineMd } from './md'
 import type { ReportData } from '@/lib/report/data'
 
 function fmtDateTime(iso: string | null | undefined): string {
@@ -8,12 +9,20 @@ function fmtDateTime(iso: string | null | undefined): string {
   return `${d.toLocaleDateString('de-DE')}, ${d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })} Uhr`
 }
 
+function fmtDate(dateStr: string | null | undefined): string {
+  if (!dateStr) return '—'
+  // YYYY-MM-DD → deutsches Datumsformat ohne Zeitzonen-Verschiebung
+  const m = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})/)
+  if (!m) return dateStr
+  return `${m[3]}.${m[2]}.${m[1]}`
+}
+
 /** 5 · Grenzen & Hinweise – Rechtsstand, Scan-Zeitpunkt, Quellen. */
 export function Disclaimer({ data, dict }: { data: ReportData; dict: Dictionary }) {
   const versions = [...new Map(data.assessments.map((a) => [a.rules_version, a])).entries()]
   return (
     <div className="space-y-4 rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-700">
-      <p className="leading-relaxed">{dict.report.limits.body}</p>
+      <p className="leading-relaxed">{renderInlineMd(dict.report.limits.body)}</p>
       <dl className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
         <div>
           <dt className="font-semibold text-slate-900">{t(dict, 'report.limits.scan_time')}</dt>
@@ -37,7 +46,7 @@ export function Disclaimer({ data, dict }: { data: ReportData; dict: Dictionary 
               return (
                 <li key={version}>
                   <span className="font-mono">{version}</span> · {t(dict, 'report.limits.effective_from')}{' '}
-                  {a.effective_from ?? '—'}
+                  {fmtDate(a.effective_from)}
                   {sources.length > 0 && (
                     <>
                       {' · '}

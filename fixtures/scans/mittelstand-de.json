@@ -1,0 +1,87 @@
+{
+  "slug": "mittelstand-de",
+  "company": {
+    "legal_name": "Beispielwerk Maschinenbau GmbH",
+    "domain": "beispielwerk.de",
+    "country_hq": "de",
+    "sector_nace": "C28"
+  },
+  "intake": {
+    "legal_name": "Beispielwerk Maschinenbau GmbH",
+    "domain": "beispielwerk.de",
+    "country_hq": "de",
+    "employees_band": "50_249",
+    "revenue_band": "10_50m",
+    "balance_band": "10_43m",
+    "sector": "verarbeitendes_gewerbe",
+    "designated_critical": false,
+    "qualified_trust_service": false,
+    "subsidiary_countries": [],
+    "supply_chain_critical": false,
+    "eu_customers_security_clauses": "no",
+    "email": "ciso@beispielwerk.de",
+    "consent_marketing": true
+  },
+  "findings": [
+    {
+      "check_id": "dns_spf_dmarc_dkim",
+      "severity": "high",
+      "title": "DMARC fehlt vollständig",
+      "detail": "Die Domain beispielwerk.de veröffentlicht keinen DMARC-Eintrag (_dmarc). E-Mails im Namen Ihrer Domain können ohne Prüfung gefälscht (Spoofing/Phishing) werden – ein klassischer Einstiegspunkt für Vorfälle, die meldepflichtig werden können.",
+      "fix": "DMARC-TXT-Record unter _dmarc.beispielwerk.de anlegen, z. B. „v=DMARC1; p=quarantine; rua=mailto:dmarc@beispielwerk.de“ – schrittweise von p=none über p=quarantine zu p=reject.",
+      "control_refs": ["email_auth"],
+      "evidence_json": { "dmarc_record": null, "spf_record": "v=spf1 include:spf.protection.outlook.com -all" },
+      "source_url": "https://dns.google/resolve?name=_dmarc.beispielwerk.de&type=TXT"
+    },
+    {
+      "check_id": "dns_spf_dmarc_dkim",
+      "severity": "low",
+      "title": "Kein DKIM-Signaturhinweis auffindbar",
+      "detail": "Für gängige Selektoren wurde kein DKIM-Eintrag gefunden. Ohne DKIM bleibt die E-Mail-Authentifizierung lückenhaft, auch wenn SPF korrekt gesetzt ist.",
+      "fix": "DKIM-Signierung im Mailsystem aktivieren (Selektor z. B. „default“ oder „selector1“) und öffentlichen Schlüssel als TXT-Record veröffentlichen.",
+      "control_refs": ["email_auth"],
+      "evidence_json": { "selectors_checked": ["default", "selector1", "selector2", "google", "k1", "mail"] },
+      "source_url": "https://dns.google/resolve?name=default._domainkey.beispielwerk.de&type=TXT"
+    },
+    {
+      "check_id": "security_headers",
+      "severity": "med",
+      "title": "HSTS (Strict-Transport-Security) fehlt",
+      "detail": "Der primäre Host erzwingt kein HTTPS für Folgebesuche. Downgrade-Angriffe auf Klartext-Verbindungen bleiben möglich.",
+      "fix": "Header „Strict-Transport-Security: max-age=31536000; includeSubDomains“ setzen, Einführung mit kleiner max-age testen.",
+      "control_refs": ["web_hardening", "crypto_tls"],
+      "evidence_json": { "hsts": null, "x_frame_options": "SAMEORIGIN", "referrer_policy": null, "csp": null },
+      "source_url": "https://beispielwerk.de"
+    },
+    {
+      "check_id": "tls_config",
+      "severity": "med",
+      "title": "TLS-Zertifikat läuft in 21 Tagen ab",
+      "detail": "Das Serverzertifikat ist gültig, aber die Restlaufzeit liegt unter 30 Tagen. Ein abgelaufenes Zertifikat unterbricht verschlüsselte Kommunikation und Meldeprozesse.",
+      "fix": "Zertifikat erneuern und automatische Verlängerung (z. B. ACME/Let's Encrypt mit Renewal-Monitoring) einrichten.",
+      "control_refs": ["crypto_tls"],
+      "evidence_json": { "days_until_expiry": 21, "issuer": "Let's Encrypt", "protocol": "TLSv1.3" },
+      "source_url": "https://beispielwerk.de:443"
+    },
+    {
+      "check_id": "security_txt",
+      "severity": "low",
+      "title": "Kein security.txt (RFC 9116)",
+      "detail": "Es existiert kein /.well-known/security.txt. Dritte können Sicherheitsmeldungen nicht an eine definierte Kontaktstelle richten – und Nachweise für „verantwortungsvolle Offenlegung“ fehlen.",
+      "fix": "/.well-known/security.txt mit Contact- und Expires-Feld veröffentlichen (RFC 9116).",
+      "control_refs": ["vuln_disclosure"],
+      "evidence_json": { "checked_paths": ["https://beispielwerk.de/.well-known/security.txt", "https://beispielwerk.de/security.txt"] },
+      "source_url": "https://beispielwerk.de/.well-known/security.txt"
+    },
+    {
+      "check_id": "tech_footprint",
+      "severity": "med",
+      "title": "Veraltete WordPress-Hauptversion im öffentlichen Fußabdruck",
+      "detail": "Meta-Generator und Asset-Pfade weisen auf WordPress 5.x hin (Hauptversion ohne Support). Keine CVE-Aussage – nur ein Indikator für lückenhaftes Patch-Management.",
+      "fix": "Auf aktuelle Hauptversion anheben; automatisierte Minor-Updates aktivieren; Versionshinweise aus öffentlichen Metadaten entfernen.",
+      "control_refs": ["patch_mgmt", "asset_mgmt"],
+      "evidence_json": { "cms_hint": "WordPress 5.8", "generator_meta": "WordPress 5.8.2" },
+      "source_url": "https://beispielwerk.de"
+    }
+  ]
+}

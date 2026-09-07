@@ -1,0 +1,41 @@
+# Fiktives Regime – beweist die Invariante: „Neues Regime = eine Regeldatei +
+# ein Locale-Block, keine Änderung an der Engine“. Liegt bewusst NICHT in rules/,
+# damit es nie in Produktion lädt.
+regime: xx
+version: v1
+version_label: XX-Test v1.0.0
+law_name: "Testgesetz für fiktives Regime"
+effective_from: 2026-01-01
+applicability_country: xx
+source_urls:
+  - https://example.com/test-law
+entity_classes:
+  - id: test_gross
+    label: "Große Testeinrichtung"
+    sectors: [verarbeitendes_gewerbe]
+    conditions:
+      - employees_min: 100
+  - id: test_klein
+    label: "Kleine Testeinrichtung"
+    sectors: [verarbeitendes_gewerbe, banken]
+    conditions:
+      - employees_min: 10
+below_threshold:
+  outcome: not_applicable
+  note: "Testnotiz unterhalb der Schwellenwerte."
+reporting_clock:
+  stages:
+    - key: sofortmeldung
+      hours: 12
+      label: "Sofortmeldung (innerhalb von 12 Stunden)"
+    - key: abschlussmeldung
+      hours: 48
+      label: "Abschlussmeldung (innerhalb von 48 Stunden)"
+  authority:
+    name: "Testmeldebehörde"
+    portal_url: "https://example.com/melden"
+    format: "Testportal"
+control_areas:
+  email_auth: "§ 1 Testgesetz (E-Mail-Authentifizierung)"
+  crypto_tls: "§ 2 Testgesetz (Verschlüsselung)"
+penalties_note_md: "Test-Bußgeldrahmen: bis zu 1 Mio €."

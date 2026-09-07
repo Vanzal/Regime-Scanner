@@ -1,0 +1,77 @@
+{
+  "slug": "service-at",
+  "company": {
+    "legal_name": "Nova Data Services GmbH",
+    "domain": "novadataservices.at",
+    "country_hq": "at",
+    "sector_nace": "J62"
+  },
+  "intake": {
+    "legal_name": "Nova Data Services GmbH",
+    "domain": "novadataservices.at",
+    "country_hq": "at",
+    "employees_band": "50_249",
+    "revenue_band": "10_50m",
+    "balance_band": "10_43m",
+    "sector": "it_dienst",
+    "designated_critical": false,
+    "qualified_trust_service": false,
+    "subsidiary_countries": [],
+    "supply_chain_critical": false,
+    "eu_customers_security_clauses": "yes",
+    "email": "security@novadataservices.at",
+    "consent_marketing": true
+  },
+  "findings": [
+    {
+      "check_id": "dns_spf_dmarc_dkim",
+      "severity": "med",
+      "title": "DMARC nur im Monitoring-Modus (p=none)",
+      "detail": "Es existiert ein DMARC-Eintrag, aber die Richtlinie ist p=none: Fälschungen werden zwar berichtet, nicht aber unterbunden. Für einen IT-Dienstleister mit EU-Kundenverträgen ist das ein substantieller Kontrollmangel.",
+      "fix": "DMARC schrittweise verschärfen: p=quarantine mit pct=25 starten, dann auf p=reject heben; Reports auswerten (rua).",
+      "control_refs": ["email_auth"],
+      "evidence_json": { "dmarc_record": "v=DMARC1; p=none; rua=mailto:dmarc@novadataservices.at" },
+      "source_url": "https://dns.google/resolve?name=_dmarc.novadataservices.at&type=TXT"
+    },
+    {
+      "check_id": "security_headers",
+      "severity": "low",
+      "title": "Content-Security-Policy fehlt",
+      "detail": "Ohne CSP bleibt die Seite anfällig für eingeschleuste Skripte (XSS), insbesondere über Dritt-Widgets.",
+      "fix": "CSP in Report-Only einführen, dann enforce: „default-src 'self'; script-src 'self' …“.",
+      "control_refs": ["web_hardening"],
+      "evidence_json": { "csp": null, "hsts": "max-age=31536000" },
+      "source_url": "https://novadataservices.at"
+    },
+    {
+      "check_id": "security_txt",
+      "severity": "low",
+      "title": "Kein security.txt (RFC 9116)",
+      "detail": "Sicherheitsforscher finden keinen definierten Meldekanal; Schwachstellenhinweise laufen ungefiltert in allgemeine Supportkanäle.",
+      "fix": "/.well-known/security.txt mit Contact- und Encryption-Feld veröffentlichen.",
+      "control_refs": ["vuln_disclosure", "incident_response"],
+      "evidence_json": { "present": false },
+      "source_url": "https://novadataservices.at/.well-known/security.txt"
+    },
+    {
+      "check_id": "subprocessor_hints",
+      "severity": "info",
+      "title": "Dritt-Hosts in der Startseite: Google Fonts & HubSpot",
+      "detail": "Die Startseite lädt Ressourcen von fonts.googleapis.com und js.hs-scripts.com. Ein erster Lieferketten-Hinweis: Diese Dienste verarbeiten Zugriffsmetadaten und gehören in das Verzeichnis verarbeiteter Dienste.",
+      "fix": "Drittanbieter inventarisieren (AVV/Verträge prüfen), Google Fonts selbst hosten, Consent-Management prüfen.",
+      "control_refs": ["third_party"],
+      "evidence_json": { "third_party_hosts": ["fonts.googleapis.com", "fonts.gstatic.com", "js.hs-scripts.com"] },
+      "source_url": "https://novadataservices.at"
+    },
+    {
+      "check_id": "tls_config",
+      "severity": "info",
+      "title": "TLS-Konfiguration ohne Auffälligkeit",
+      "detail": "Aktuelles Protokoll (TLS 1.3), Zertifikat mit ausreichender Restlaufzeit, keine schwachen Ciphern beobachtet.",
+      "fix": "Keine Aktion erforderlich; Monitoring der Restlaufzeit beibehalten.",
+      "control_refs": ["crypto_tls"],
+      "evidence_json": { "protocol": "TLSv1.3", "days_until_expiry": 74 },
+      "source_url": "https://novadataservices.at:443"
+    }
+  ]
+}

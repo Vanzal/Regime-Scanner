@@ -144,7 +144,7 @@ function buildVerdict(
   missing: string[],
 ): RegimeVerdict {
   const deadlines: DeadlineInfo = {
-    stages: file.reporting_clock.stages.map((s) => ({ key: s.key, hours: s.hours })),
+    stages: file.reporting_clock.stages.map((s) => ({ key: s.key, hours: s.hours, label: s.label })),
     authority: file.reporting_clock.authority,
   }
   const trace: ThresholdTrace = { entries, missing_inputs: [...new Set(missing)] }
@@ -209,11 +209,22 @@ export function evaluateRegime(file: RulesFile, facts: VerdictFacts): RegimeVerd
   }
   entries.push({ kind: 'sector', label: `Branche: ${facts.sector}`, status: 'pass' })
 
-  // 3) Entitätsklassen in YAML-Reihenfolge (Priorität) auswerten
+  // 3) Entitätsklassen in YAML-Reihenfolge (Priorität) auswerten.
+  //    Pass einer Klasse gilt nur als verbindlich, wenn keine
+  //    höher-priorisierte Klasse offen bleibt (die könnte das Urteil ändern).
   let anyUndetermined = false
   for (const cls of file.entity_classes) {
     const status = evalClass(cls, facts, entries)
     if (status === 'pass') {
+      if (anyUndetermined) {
+        const undetermined = collectMissing(entries)
+        missing.push(...undetermined)
+        return buildVerdict(
+          file, facts, 'unclear', 0.5,
+          `Eine Einordnung ist möglich, aber eine höher priorisierte Kategorie bleibt offen (${undetermined.join(', ') || 'Angaben fehlen'}). Beispiel: Ohne bekannten eIDAS-Qualifikationsstatus eines Vertrauensdiensteanbieters ist nicht entscheidbar, ob die besonders wichtige oder die wichtige Variante greift. Bitte ergänzen.`,
+          entries, missing,
+        )
+      }
       const applicable: Applicable = cls.outcome === 'unclear' ? 'unclear' : 'applicable'
       const confidence = cls.outcome === 'unclear' ? 0.6 : 0.9
       const reason = `${reasonEstablished(file, facts)} Einordnung: **${cls.label}** – die Voraussetzungen sind nach den vorliegenden Angaben erfüllt.${cls.note ? ` Hinweis: ${cls.note}` : ''}`

@@ -50,6 +50,8 @@ export interface ThresholdTrace {
 export interface ClockStage {
   key: string
   hours: number
+  /** Gesetzesnahe Beschriftung aus der Regeldatei */
+  label?: string
 }
 
 export interface DeadlineInfo {

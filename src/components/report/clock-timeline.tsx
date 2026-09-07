@@ -4,13 +4,13 @@ import type { ReportAssessment } from '@/lib/report/data'
 import type { ClockStage } from '@/lib/rules/types'
 import { regimeLabel } from './verdict-strip'
 
-/** „24 h / 72 h / 1 Monat“ – menschenlesbare Fristen-Form. */
+/** „24 Stunden / 72 Stunden / 14 Tage / 1 Monat“ – wie im Gesetzestext formuliert. */
 export function formatStageHours(dict: Dictionary, hours: number): string {
-  if (hours >= 672 && hours % 24 === 0 && hours / 24 >= 28 && hours / 24 < 32) {
+  if (hours % 24 === 0 && hours / 24 >= 28 && hours / 24 < 32) {
     return t(dict, 'report.clock.month')
   }
-  if (hours >= 24) {
-    const days = Math.round(hours / 24)
+  if (hours % 24 === 0 && hours >= 168) {
+    const days = hours / 24
     return t(dict, 'report.clock.days', { days })
   }
   return t(dict, 'report.clock.hours', { hours })

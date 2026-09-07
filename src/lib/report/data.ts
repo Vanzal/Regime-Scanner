@@ -9,6 +9,8 @@ export interface ReportAssessment extends AssessmentRow {
   effectiveReasoning: string
   /** generic ControlId → juristische Zitierung dieses Regimes */
   controlCites: Record<string, string>
+  /** Rechtsstand-Datum aus der Regeldatei (nicht in der DB gespeichert) */
+  effective_from: string | null
 }
 
 export interface ReportFinding extends FindingRow {
@@ -43,10 +45,12 @@ export async function loadReport(token: string): Promise<ReportData | null> {
 
   let controlCitesByRegime: Record<string, Record<string, string>> = {}
   let rulesSources: Record<string, string[]> = {}
+  let effectiveFromByRegime: Record<string, string> = {}
   try {
     for (const file of loadRules()) {
       controlCitesByRegime[file.regime] = file.control_areas
       rulesSources[file.regime] = file.source_urls
+      effectiveFromByRegime[file.regime] = file.effective_from
     }
   } catch {
     // Regeldateien fehlen/ungültig – Bericht rendert ohne Zitierungen weiter.
@@ -60,6 +64,7 @@ export async function loadReport(token: string): Promise<ReportData | null> {
       effectiveApplicable: a.override_applicable ?? a.applicable,
       effectiveReasoning: a.override_reasoning_md ?? a.reasoning_md,
       controlCites: controlCitesByRegime[a.regime] ?? {},
+      effective_from: effectiveFromByRegime[a.regime] ?? null,
     }))
 
   const applicableRegimes = assessments.filter((a) => a.effectiveApplicable !== 'not_applicable')

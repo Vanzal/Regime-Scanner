@@ -1,5 +1,6 @@
 import type { Dictionary } from '@/i18n'
 import { t } from '@/i18n'
+import { renderInlineMd } from './md'
 import type { ReportAssessment } from '@/lib/report/data'
 import type { Applicable } from '@/lib/rules/types'
 
@@ -47,7 +48,7 @@ export function VerdictStrip({ assessments, dict }: { assessments: ReportAssessm
             <p className="text-xs font-medium text-slate-500">
               {label.name} · {label.lawShort}
             </p>
-            <p className="text-sm leading-snug text-slate-800">{a.effectiveReasoning.split('\n')[0]}</p>
+            <p className="text-sm leading-snug text-slate-800">{renderInlineMd(a.effectiveReasoning.split('\n')[0])}</p>
             <div className="mt-auto flex items-center justify-between pt-2 text-xs text-slate-500">
               <span>
                 {t(dict, 'report.verdict.confidence')}: {Math.round(a.confidence * 100)} %

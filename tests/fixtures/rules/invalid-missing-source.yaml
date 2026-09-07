@@ -1,0 +1,22 @@
+regime: de
+version: v1
+version_label: INVALID v1
+law_name: "Ungültige Testdatei"
+effective_from: 2025-12-06
+applicability_country: de
+source_urls: []
+entity_classes:
+  - id: a
+    label: "A"
+    sectors: [energie]
+    conditions:
+      - employees_min: 250
+reporting_clock:
+  stages:
+    - key: erstmeldung
+      hours: 24
+  authority:
+    name: "X"
+    portal_url: "https://example.com"
+control_areas:
+  email_auth: "§ 1"

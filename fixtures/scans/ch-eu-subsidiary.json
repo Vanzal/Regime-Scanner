@@ -1,0 +1,77 @@
+{
+  "slug": "ch-eu-subsidiary",
+  "company": {
+    "legal_name": "Helvetia Präzision Cloud AG",
+    "domain": "helvetia-praezision.ch",
+    "country_hq": "ch",
+    "sector_nace": "J63"
+  },
+  "intake": {
+    "legal_name": "Helvetia Präzision Cloud AG",
+    "domain": "helvetia-praezision.ch",
+    "country_hq": "ch",
+    "employees_band": "250_plus",
+    "revenue_band": "gt_50m",
+    "balance_band": "gt_43m",
+    "sector": "digital_infrastruktur",
+    "designated_critical": false,
+    "qualified_trust_service": false,
+    "subsidiary_countries": ["de"],
+    "supply_chain_critical": true,
+    "eu_customers_security_clauses": "yes",
+    "email": "info@helvetia-praezision.ch",
+    "consent_marketing": true
+  },
+  "findings": [
+    {
+      "check_id": "tls_config",
+      "severity": "high",
+      "title": "Veraltete TLS-Versionen (1.0/1.1) werden akzeptiert",
+      "detail": "Der Server verhandelt noch TLS 1.0/1.1. Diese Protokolle gelten als gebrochen; ihre Duldung widerspricht dem Stand der Technik und dem kryptografischen Mindestniveau, das Melde-regimes erwarten.",
+      "fix": "Serverkonfiguration auf TLS 1.2 minimum (empfohlen 1.3) begrenzen; schwache Cipher-Suiten deaktivieren.",
+      "control_refs": ["crypto_tls"],
+      "evidence_json": { "accepted_protocols": ["TLSv1", "TLSv1.1", "TLSv1.2"], "weak_ciphers": ["DES-CBC3-SHA"] },
+      "source_url": "https://helvetia-praezision.ch:443"
+    },
+    {
+      "check_id": "exposed_login_surfaces",
+      "severity": "med",
+      "title": "Verwaltungszugang öffentlich verlinkt (/wp-login.php, /admin)",
+      "detail": "Die Startseite verlinkt direkt auf /admin; /wp-login.php antwortet öffentlich erreichbar. Exponierte Anmeldeflächen sind Angriffsziel Nummer eins (Credential Stuffing). Keine Authentifizierungsversuche wurden unternommen.",
+      "fix": "Verwaltungswege hinter VPN/SSO legen, Login-Rate-Limit + 2FA erzwingen, Direktlinks aus der Startseite entfernen.",
+      "control_refs": ["access_control"],
+      "evidence_json": { "paths": ["/admin", "/wp-login.php"], "auth_attempts": 0 },
+      "source_url": "https://helvetia-praezision.ch"
+    },
+    {
+      "check_id": "security_headers",
+      "severity": "med",
+      "title": "Weder HSTS noch X-Frame-Options",
+      "detail": "Der Host erzwingt kein HTTPS und erlaubt Framing von Drittseiten (Clickjacking).",
+      "fix": "HSTS setzen, X-Frame-Options: DENY bzw. CSP frame-ancestors ergänzen.",
+      "control_refs": ["web_hardening", "crypto_tls"],
+      "evidence_json": { "hsts": null, "x_frame_options": null, "csp": null },
+      "source_url": "https://helvetia-praezision.ch"
+    },
+    {
+      "check_id": "legal_pages",
+      "severity": "low",
+      "title": "Impressum unvollständig (keine Gruppenangabe)",
+      "detail": "Das Impressum nennt keine Beteiligung an der deutschen Tochtergesellschaft. Für die Einordnung grenzüberschreitender Meldepflichten (DE/AT/CH) und für Transparenzanforderungen relevant.",
+      "fix": "Impressum um verbundene Unternehmen ergänzen; Verantwortlichkeiten je Standort benennen.",
+      "control_refs": ["transparency"],
+      "evidence_json": { "impressum_found": true, "entities_found": ["Helvetia Präzision Cloud AG"], "subsidiaries_found": [] },
+      "source_url": "https://helvetia-praezision.ch/impressum"
+    },
+    {
+      "check_id": "dns_spf_dmarc_dkim",
+      "severity": "info",
+      "title": "E-Mail-Authentifizierung weitgehend eingerichtet",
+      "detail": "SPF („-all“) und DMARC (p=reject) vorhanden; DKIM-Signierung sichtbar. Guter Zustand.",
+      "fix": "Keine Aktion erforderlich; DMARC-Reports monatlich auswerten.",
+      "control_refs": ["email_auth"],
+      "evidence_json": { "spf_record": "v=spf1 ip4:203.0.113.0/24 -all", "dmarc_record": "v=DMARC1; p=reject; rua=mailto:dmarc@helvetia-praezision.ch" },
+      "source_url": "https://dns.google/resolve?name=_dmarc.helvetia-praezision.ch&type=TXT"
+    }
+  ]
+}
