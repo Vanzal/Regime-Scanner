@@ -7,6 +7,12 @@ import { buildFactsFromIntake } from './facts'
 import { findFixtureByDomain } from './fixtures'
 import { getStore } from '@/lib/store'
 import type { FindingInput, Scan } from '@/lib/store/types'
+import { Politeness } from '@/lib/collect/politeness'
+import { createDnsCollector } from '@/lib/collect/dns'
+import { createTlsCollector } from '@/lib/collect/tls'
+import { selectDriver } from '@/lib/collect/driver'
+import { orderedChecks } from '@/lib/checks'
+import type { FindingDraft, ScanContext } from '@/lib/checks/types'
 
 export const AUTO_RELEASE = process.env.AUTO_RELEASE !== 'false'
 
@@ -58,9 +64,41 @@ export async function runScan(scanId: string): Promise<void> {
         driverUsed = 'fixture:intake-only'
       }
     } else {
-      // Live-Pfad: Check-Registry kommt mit Schritt 3; der Lead-Flow funktioniert
-      // trotzdem (Fakten aus dem Intake, Lückenliste leer).
-      driverUsed = 'live'
+      // Live-Pfad: Höflichkeits-Gate + Treiber, legal_pages zuerst (Fakten),
+      // dann die übrigen Checks; ein gescheiterter Check wird ein info-Finding.
+      const t0Live = Date.now()
+      const politeness = new Politeness()
+      const ctx: ScanContext = {
+        company,
+        scan,
+        intake,
+        facts,
+        politeness,
+        dns: createDnsCollector(),
+        tls: createTlsCollector(),
+        driver: selectDriver(),
+        log: (msg) => console.log(`[scan ${scanId}] ${msg}`),
+      }
+      for (const check of orderedChecks()) {
+        try {
+          findings.push(...(await check.run(ctx)))
+        } catch (err) {
+          ctx.log(`Check ${check.id} fehlgeschlagen: ${err instanceof Error ? err.message : String(err)}`)
+          findings.push({
+            check_id: check.id,
+            severity: 'info',
+            title: 'Prüfung nicht möglich',
+            detail: 'Diese Einzelprüfung ist technisch fehlgeschlagen und wurde übersprungen. Das ist keine Aussage über Ihre Sicherheit.',
+            control_refs: [],
+            evidence_json: { reason: 'check_error' },
+            source_url: null,
+          })
+        }
+      }
+      driverUsed = `live:${politeness.stats.requests}req`
+      ctx.log(
+        `Höflichkeits-Statistik: ${JSON.stringify(politeness.stats)} (Dauer ${(Date.now() - t0Live) / 1000}s)`,
+      )
     }
 
     const rules = loadRules()

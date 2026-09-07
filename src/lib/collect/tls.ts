@@ -56,7 +56,7 @@ export function createTlsCollector(timeoutMs = 10_000): TlsCollector {
                 protocol: socket.getProtocol() ?? undefined,
                 cipher: socket.getCipher()?.name,
                 authorized: socket.authorized,
-                issuer: typeof cert.issuer === 'object' ? (cert.issuer.O ?? cert.issuer.CN ?? undefined) : undefined,
+                issuer: typeof cert.issuer === 'object' ? String(cert.issuer.O ?? cert.issuer.CN ?? '') || undefined : undefined,
                 valid_to: typeof cert.valid_to === 'string' ? cert.valid_to : undefined,
                 days_until_expiry: cert.valid_to ? daysUntil(cert.valid_to) : undefined,
               }
