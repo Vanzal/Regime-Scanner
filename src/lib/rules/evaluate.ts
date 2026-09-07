@@ -178,10 +178,12 @@ export function evaluateRegime(file: RulesFile, facts: VerdictFacts): RegimeVerd
   const entries: TraceEntry[] = []
   const missing: string[] = []
 
-  // 1) Örtliche Anwendbarkeit (Niederlassungs-Prinzip)
+  // 1) Örtliche Anwendbarkeit (Niederlassungs-Prinzip). Töchter-Erweiterung nur,
+  //    wenn das Regime sie deklariert (establishment_via_subsidiary).
   const established =
     facts.countryHq === file.applicability_country ||
-    facts.subsidiaries.some((s) => s.country === file.applicability_country)
+    (file.establishment_via_subsidiary === true &&
+      facts.subsidiaries.some((s) => s.country === file.applicability_country))
   entries.push({
     kind: 'establishment',
     label: `Niederlassung im Anwendungsgebiet (${file.applicability_country.toUpperCase()})`,
@@ -248,8 +250,10 @@ export function evaluateRegime(file: RulesFile, facts: VerdictFacts): RegimeVerd
     outcome: 'unclear' as const,
     note: 'Schwellenwerte nicht erreicht; manuelle Prüfung empfohlen.',
   }
+  // Konfidenz 0.8: Alle vorliegenden Angaben sind entscheidbar – die Offenheit
+  // ist juristisch (Einstufung/NISV/Listenposition), nicht fehlende Daten.
   const verdict = buildVerdict(
-    file, facts, below.outcome, below.outcome === 'not_applicable' ? 0.8 : 0.5,
+    file, facts, below.outcome, 0.8,
     `Die Branche ist grundsätzlich einschlägig, aber die Schwellenwerte werden nach den vorliegenden Angaben nicht erreicht. ${below.note}`,
     entries, missing,
   )
@@ -263,12 +267,15 @@ export function evaluateRegime(file: RulesFile, facts: VerdictFacts): RegimeVerd
  */
 function applyIndirectExposure(file: RulesFile, facts: VerdictFacts, verdict: RegimeVerdict): RegimeVerdict {
   const indirect = file.indirect_exposure
-  if (!indirect || verdict.applicable !== 'not_applicable') return verdict
+  // Anwendbare Urteile brauchen keine Indirekt-Betrachtung; ohne deklarierte
+  // Faktoren gibt es nichts zu prüfen. Ausgewertet wird für nicht anwendbar
+  // UND für etablierte-unklare Urteile (Faktoren können die Offenheit schärfen).
+  if (!indirect || verdict.applicable === 'applicable') return verdict
 
   const entries = [...verdict.thresholdTrace.entries]
   const missing = [...verdict.thresholdTrace.missing_inputs]
-  let fired: string[] = []
-  let undetermined: string[] = []
+  const fired: string[] = []
+  const undetermined: string[] = []
 
   for (const factor of indirect.factors) {
     let status: Status
@@ -314,15 +321,18 @@ function applyIndirectExposure(file: RulesFile, facts: VerdictFacts, verdict: Re
       ...verdict,
       applicable: 'unclear',
       confidence: 0.4,
-      reasoningMd: `Die direkte Meldepflicht nach dem ${file.law_name} greift nach vorliegenden Angaben nicht. ${indirect.label} ${[...fired, ...undetermined].join('; ')} begründen/erfordern jedoch eine Einzelfallprüfung – die Einordnung bleibt daher bewusst „unklar“${undetermined.length ? ' (Angaben ergänzen)' : ''}.`,
+      reasoningMd: `Die direkte Pflichtstellung nach dem ${file.law_name} ist nach den vorliegenden Angaben nicht abschließend feststellbar. ${indirect.label} ${[...fired, ...undetermined].join('; ')} begründen/erfordern jedoch eine Einzelfallprüfung – die Einordnung bleibt daher bewusst „unklar“${undetermined.length ? ' (Angaben ergänzen)' : ''}.`,
       thresholdTrace: { entries, missing_inputs: [...new Set(missing)] },
     }
   }
-  return {
+  if (verdict.applicable === 'not_applicable') return {
     ...verdict,
     reasoningMd: `${verdict.reasoningMd} ${indirect.label} Direkte wie indirekte Betroffenheit wurden geprüft; nach vorliegenden Angaben besteht keine Meldepflicht.`,
     thresholdTrace: { entries, missing_inputs: [...new Set(missing)] },
   }
+  // Unklares Urteil ohne ausgelöste Faktoren bleibt unverändert – kein Text,
+  // der eine entwarnende Aussage suggeriert.
+  return verdict
 }
 
 /** Alle Regime-Fassungen unabhängig voneinander auswerten – niemals zusammenfassen. */

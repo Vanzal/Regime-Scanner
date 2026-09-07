@@ -12,6 +12,11 @@ version_label: DE-NIS2UmsuCG v1.0.0
 law_name: "NIS-2-Umsetzungs- und Cybersicherheitsstärkungsgesetz (NIS2UmsuCG, Umsetzung im BSIG)"
 effective_from: 2025-12-06
 applicability_country: de
+# Niederlassungs-Prinzip mit Töchter-Erweiterung: Der Inlandsbezug besteht auch,
+# wenn die Organisation ihren Hauptsitz im Ausland hat, aber eine im Inland
+# gelegene Tochtergesellschaft betreibt (Grenzfall: ausländischer Hauptsitz +
+# DE-Tochter). AT/CH deklarieren dieses Flag bewusst nicht.
+establishment_via_subsidiary: true
 source_urls:
   - https://www.recht.bund.de/bgbl/1/2025/301/regelungstext.pdf
   - https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/NIS-2/NIS-2-node.html

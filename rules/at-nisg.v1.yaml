@@ -1,0 +1,108 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# AT – NISG 2024 (Netz- und Informationssicherheitsgesetz, BGBl. I Nr. 94/2025
+# konsolidiert; ursprünglich erlassen als BGBl. I Nr. 97/2024).
+#
+# ALLE Werte aus Primärquellen (RIS – Rechtsinformationssystem des Bundes,
+# nis.gv.at) – nie aus Zusammenfassungen. Das Briefing nannte fälschlich
+# „NISG 2026" – das Gesetz trägt offiziell „NISG 2024".
+# Korrekturen = neue Version (v2) + rules_versions-Eintrag, nie In-place-Edit.
+# ─────────────────────────────────────────────────────────────────────────────
+regime: at
+version: v1
+version_label: AT-NISG v1.0.0
+law_name: "Netz- und Informationssicherheitsgesetz (NISG 2024)"
+effective_from: 2024-11-01
+applicability_country: at
+source_urls:
+  - https://www.ris.bka.gv.at/GeltendeFassung/Bundesnormen/NOR40273895/NISG2024.html
+  - https://www.ris.bka.gv.at/Datenblatt/Bundesnormen/BGBLA_2025_I_94
+  - https://www.nis.gv.at/
+
+# Bedingungsstruktur wie in allen Regeldateien: Klasse = ODER über Bedingungen;
+# Bedingung = UND über Merkmale. Größenkriterien nach EU-Empfehlung 2003/361/EG
+# (gemessen via NISV): „wesentliche" Einrichtungen sind für die meisten
+# Anhang-I-Sektoren größenunabhängig, „wichtige" Einrichtungen sind mittlere/
+# große Unternehmen (≥ 50 MA ODER > 10 Mio € Umsatz UND Bilanz).
+entity_classes:
+  # § 24 Abs. 1 – qualifizierte Vertrauensdiensteanbieter (größenunabhängig)
+  - id: wesentlich_qualifizierte_vdan
+    label: "Qualifizierte Vertrauensdiensteanbieter (§ 24 NISG)"
+    sectors: [vertrauensdiensteanbieter]
+    conditions:
+      - requires_qualified_trust_service: true
+    note: "Größenunabhängig wesentliche Einrichtung nach § 24 Abs. 1 NISG."
+
+  # § 24 Abs. 1 – TLD-Registries und DNS-Diensteanbieter (größenunabhängig)
+  - id: wesentlich_tld_dns
+    label: "Top-Level-Domain-Registry bzw. DNS-Diensteanbieter (§ 24 NISG)"
+    sectors: [tld_registry, dns_diensteanbieter]
+    note: "Größenunabhängig wesentliche Einrichtung nach § 24 NISG."
+
+  # § 24 Abs. 1 – Bundes-Verwaltung (größenunabhängig)
+  - id: wesentlich_verwaltung
+    label: "Öffentliche Verwaltung des Bundes (§ 24 NISG)"
+    sectors: [oeffentliche_verwaltung]
+    note: "Bundesverwaltung ist größenunabhängig wesentliche Einrichtung; Landes-/Gemeindeverwaltung nur bei ministerieller Einstufung (§ 26) – hier bewusst offen gelassen."
+
+  # § 24 Abs. 1 – kritische Infrastrukturen/entitäteneinstufung (Anhang I RL 2022/2557)
+  - id: wesentlich_anhang1
+    label: "Wesentliche Einrichtung, Anhang-I-Sektor (§ 24 NISG)"
+    sectors: [energie, verkehr, banken, finanzmarktinfrastruktur, gesundheit, trinkwasser, abwasser, digital_infrastruktur, weltraum, oeffentliche_verwaltung]
+    note: "Anhang-I-Sektoren sind größenunabhängig wesentliche Einrichtungen; Einstufungen nach § 26 (ministerieller Bescheid) kommen hinzu und werden hier nicht raten – siehe „unklar“-Logik der Engine."
+
+  # § 24 Abs. 2 – wichtige Einrichtungen: mittlere/große Unternehmen in Anhang-I- und
+  # Anhang-II-Sektoren (gemessen nach NISV; hier konservativ mit den EU-Kriterien)
+  - id: wichtig_mittel_gross
+    label: "Wichtige Einrichtung, mittleres/großes Unternehmen (§ 24 NISG)"
+    sectors: [energie, verkehr, banken, finanzmarktinfrastruktur, gesundheit, trinkwasser, abwasser, digital_infrastruktur, weltraum, post, abfallwirtschaft, chemie, lebensmittel, verarbeitendes_gewerbe, digitale_dienste, it_dienst, forschung, oeffentliche_verwaltung, telekommunikation]
+    conditions:
+      - employees_min: 50
+      - revenue_eur_min: 10000000
+        balance_eur_min: 10000000
+    note: "Mittlere/große Unternehmen (≥ 50 MA ODER Umsatz UND Bilanzsumme > 10 Mio €) in Anhang-I-/II-Sektoren sind wichtige Einrichtungen; die abschließende Messung erfolgt über die NISV."
+
+  # Telekommunikation ist im NISG als Anhang-I/II-Sektor über die allgemeinen
+  # Größenkriterien erfasst – eigener Restfall wie in DE entfällt; kleinere
+  # Telekomanbieter ohne Größenkriterien bleiben „wichtig", sofern Sektor
+  # zutrifft und Größe ≥ Schwellenwerte (siehe Klasse oben).
+
+below_threshold:
+  outcome: unclear
+  note: "Sektor liegt im Anwendungsbereich, die Größen-/Einstufungskriterien sind nach den vorliegenden Angaben aber offen. Eine ministerielle Einstufung (§ 26 NISG) oder die NISV-Messung kann die Einordnung ändern – daher ehrlich „unklar“ statt geraten."
+
+reporting_clock:
+  # § 34 NISG – Meldepflichten: Frühwarnung → Meldung → Abschlussbericht
+  stages:
+    - key: erstmeldung
+      hours: 24
+      label: "Frühwarnung (spätestens 24 Stunden nach Kenntnisnahme)"
+    - key: folgemeldung
+      hours: 72
+      label: "Meldung (spätestens 72 Stunden nach Kenntnisnahme)"
+    - key: abschlussmeldung
+      hours: 720
+      label: "Abschlussbericht (spätestens einen Monat nach der Meldung)"
+  authority:
+    name: "NIS-Meldestellen des Bundes (CERT.at/energy-CERT.at/govCERT.at je nach Sektor)"
+    portal_url: "https://www.nis.gv.at/nis-meldungen.html"
+    format: "Pflichtmeldung über die sektorzuständige NIS-Plattform (nis.cert.at, nis.energy-cert.at für Energie, nis.govcert.gv.at für Verwaltung, meldeportal.a-healthcert.at für Gesundheit)"
+
+# Generische Control-Ids → juristische Zitierung im NISG
+control_areas:
+  email_auth: "§ 20 NISG i. V. m. Art. 21 Abs. 2 NIS-2-Richtlinie (Risikomanagement: sichere Kommunikation, E-Mail-Authentifizierung)"
+  crypto_tls: "§ 20 NISG i. V. m. Art. 21 Abs. 2 NIS-2-Richtlinie (Kryptografie/Verschlüsselung)"
+  web_hardening: "§ 20 NISG i. V. m. Art. 21 Abs. 2 NIS-2-Richtlinie (Absicherung öffentlich erreichbarer Systeme)"
+  vuln_disclosure: "§ 20 NISG i. V. m. Art. 21 Abs. 2 NIS-2-Richtlinie (Umgang mit Schwachstellen, verantwortungsvolle Offenlegung)"
+  asset_mgmt: "§ 20 NISG i. V. m. Art. 21 Abs. 2 NIS-2-Richtlinie (Bestands- und Angriffsflächenverwaltung)"
+  access_control: "§ 20 NISG i. V. m. Art. 21 Abs. 2 NIS-2-Richtlinie (Zugangskontrolle, Identitätsmanagement)"
+  patch_mgmt: "§ 20 NISG i. V. m. Art. 21 Abs. 2 NIS-2-Richtlinie (Update- und Patch-Management)"
+  third_party: "§ 20 NISG i. V. m. Art. 21 Abs. 2 NIS-2-Richtlinie (Sicherheit in der Lieferkette)"
+  transparency: "§ 20 NISG i. V. m. Art. 21 Abs. 2 NIS-2-Richtlinie (Transparenz, Verantwortlichkeiten)"
+  incident_response: "§ 34 NISG (Meldeprozesse), § 20 NISG (Vorfallreaktion)"
+
+penalties_note_md: |
+  Strafen (NISG): gegen wesentliche Einrichtungen bis zu **100 000 €**,
+  gegen wichtige Einrichtungen bis zu **50 000 €** für Kernverstöße
+  (u. a. Risikomanagement nach § 20, Meldepflichten nach § 34).
+  Zusätzlich fallen Verwaltungsstrafen für verspätete/unvollständige
+  Meldungen an; die Vollstreckung obliegt der NIS-Behörde.

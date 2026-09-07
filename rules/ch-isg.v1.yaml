@@ -1,0 +1,125 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# CH – ISG (Informationssicherheitsgesetz, SR 128, Art. 74a–74f) mit CSV
+# (Cybersicherheitsverordnung, 7. März 2025).
+#
+# ALLE Werte aus Primärquellen (Fedlex, BACS/NCSC) – nie aus Zusammenfassungen.
+# Meldepflicht in Kraft seit 1. April 2025 (Bundesratsbeschluss; CSV gleichzeitig).
+# Die Meldebehörde ist das BACS (Bundesamt für Cybersicherheit) – das frühere
+# NCSC wurde per 1.1.2024 ins BACS überführt.
+# Korrekturen = neue Version (v2) + rules_versions-Eintrag, nie In-place-Edit.
+# ─────────────────────────────────────────────────────────────────────────────
+regime: ch
+version: v1
+version_label: CH-ISG v1.0.0
+law_name: "Informationssicherheitsgesetz (ISG, SR 128) – Meldepflicht für kritische Infrastrukturen"
+effective_from: 2025-04-01
+applicability_country: ch
+source_urls:
+  - https://www.fedlex.admin.ch/eli/cc/2022/232/de
+  - https://www.bacs.admin.ch/de/meldepflicht
+  - https://www.ncsc.admin.ch/ncsc/de/home/meldepflicht/meldepflicht-info.html
+
+# Struktur wie in allen Regeldateien. Besonderheit CH: Die Meldepflicht nach
+# Art. 74b ISG richtet sich nach Branchenlisten (Energie, Trinkwasser, öffentlicher
+# Verkehr, Kantons-/Gemeindeverwaltungen, Hochschulen, Spitalliste, Cloud/Rechen-
+# zentren) – die Zuordnung eines Betriebs zur „kritischen Infrastruktur“ hängt von
+# der Marktstellung/kritischen Rolle ab, nicht von EU-Größenkriterien. Unsichere
+# Zuordnungen bleiben bewusst „unklar“ (siehe below_threshold) statt raten.
+entity_classes:
+  # Art. 74b ISG – energiesektor (Strom, Gas, Fernwärme)
+  - id: meldepflichtig_energie
+    label: "Betreiberin/Betreiber einer kritischen Energie-Infrastruktur (Art. 74b ISG)"
+    sectors: [energie]
+    note: "Meldepflichtig sind Betreiber kritischer Infrastrukturen im Energiesektor (Strom, Gas, Wärme); Abgrenzung über Marktstellung – bei Zweifeln Individualverfügung nach Art. 74a Abs. 2 ISG."
+
+  # Art. 74b ISG – Trinkwasser
+  - id: meldepflichtig_trinkwasser
+    label: "Trinkwasserversorgerin/Trinkwasserversorger (Art. 74b ISG)"
+    sectors: [trinkwasser]
+    note: "Trinkwasserversorgung ist ausdrücklich meldepflichtig (Art. 74b ISG); Abwasser betrifft die Meldepflicht nur über betriebliche Zusammenschlüsse – hier offen gelassen."
+
+  # Art. 74b ISG – öffentlicher Verkehr
+  - id: meldepflichtig_verkehr
+    label: "Öffentliche Verkehrsbetreiberin/öffentlicher Verkehrsbetreiber (Art. 74b ISG)"
+    sectors: [verkehr]
+    note: "Bahn, Bus, Schifffahrt und Luftverkehr im öffentlichen Verkehr sind ausdrücklich meldepflichtig (Art. 74b ISG)."
+
+  # Art. 74b ISG – Kantons- und Gemeindeverwaltungen
+  - id: meldepflichtig_verwaltung
+    label: "Kantons- oder Gemeindeverwaltung (Art. 74b ISG)"
+    sectors: [oeffentliche_verwaltung]
+    note: "Verwaltungen von Kantonen und Gemeinden sind ausdrücklich meldepflichtig (Art. 74b ISG); Bundesverwaltung folgt separaten Regeln."
+
+  # Art. 74b ISG – digitale Infrastruktur: Cloud-/Rechenzentren von zentraler Bedeutung
+  - id: meldepflichtig_cloud_rechenzentren
+    label: "Cloud-/Rechenzentrum von zentraler Bedeutung (Art. 74b ISG)"
+    sectors: [digital_infrastruktur]
+    note: "Rechenzentren/Cloud-Dienste von zentraler Bedeutung sind meldepflichtig (Art. 74b ISG i. V. m. CSV); die Abgrenzung (zentrale Bedeutung) bleibt einzelfallabhängig."
+
+  # Art. 74b ISG – Gesundheit: Spitäler auf der Spitalliste (Art. 39 KVG)
+  - id: meldepflichtig_spital
+    label: "Spital auf der kantonalen Spitalliste (Art. 74b ISG)"
+    sectors: [gesundheit]
+    note: "Meldepflichtig sind Spitäler auf der Spitalliste nach Art. 39 KVG; andere Gesundheitsbetriebe nur bei ministerieller Ausweitung."
+
+  # Bildung/Forschung: öffentliche Hochschulen sind meldepflichtig
+  - id: meldepflichtig_hochschule
+    label: "Öffentliche Hochschule (Art. 74b ISG)"
+    sectors: [forschung]
+    note: "Öffentliche Hochschulen sind ausdrücklich meldepflichtig (Art. 74b ISG); private Forschungseinrichtungen nur bei kritischer Rolle."
+
+below_threshold:
+  outcome: unclear
+  note: "Der Sektor liegt nahe am Anwendungsbereich von Art. 74b ISG, aber die Zuordnung zur kritischen Infrastruktur (Marktstellung/kritische Rolle) ist nach den vorliegenden Angaben offen. Art. 74a Abs. 2 ISG erlaubt eine verbindliche Auskunft per BACS-Verfügung – bis dahin ehrlich „unklar“ statt geraten."
+
+reporting_clock:
+  # Art. 74e ISG i. V. m. CSV – Erstmeldung 24 h, Nachreichung 14 Tage
+  stages:
+    - key: erstmeldung
+      hours: 24
+      label: "Erstmeldung (spätestens 24 Stunden nach Entdeckung des Cyberangriffs)"
+    - key: abschlussmeldung
+      hours: 336
+      label: "Nachreichung der Details (innerhalb von 14 Tagen)"
+  authority:
+    name: "BACS – Bundesamt für Cybersicherheit (ehem. NCSC)"
+    portal_url: "https://report.cyber.security.hub/"
+    format: "Erstmeldung über das Cyber Security Hub (report.cyber.security.hub); alternativ Meldeformular der BACS-Website ohne Konto"
+
+# Generische Control-Ids → juristische Zitierung im ISG/CSV
+control_areas:
+  email_auth: "Art. 74c ISG i. V. m. CSV (angemessene organisatorische/technische Maßnahmen; Absicherung kritischer Kommunikationswege)"
+  crypto_tls: "Art. 74c ISG i. V. m. CSV (Verschlüsselung, sichere Systeme)"
+  web_hardening: "Art. 74c ISG i. V. m. CSV (Systemabsicherung, minimal nötige Angriffsfläche)"
+  vuln_disclosure: "Art. 74c/74e ISG (Schwachstellenmanagement, Meldeweg dokumentiert)"
+  asset_mgmt: "Art. 74c ISG i. V. m. CSV (Bestandsübersicht kritischer Systeme)"
+  access_control: "Art. 74c ISG i. V. m. CSV (Zugangskontrolle, Authentisierung)"
+  patch_mgmt: "Art. 74c ISG i. V. m. CSV (Systemwartung, Patchmanagement)"
+  third_party: "Art. 74c ISG i. V. m. CSV (Drittanbieter-/Lieferantenmanagement)"
+  transparency: "Art. 74c ISG i. V. m. CSV (Dokumentation, Verantwortlichkeiten)"
+  incident_response: "Art. 74e ISG (Meldeprozess, Erstmeldung 24 h)"
+
+# Besonderheit CH: direkte Meldepflicht greift nur bei Betreibern kritischer
+# Infrastrukturen IN der Schweiz. Indirekte Betroffenheit (EU-Tochter mit
+# eigener NIS-Pflicht, EU-Kunden mit vertraglichen Anforderungen, kritische
+# Lieferkettenposition) begründet KEINE eigene Meldepflicht nach ISG, macht
+# die Lage aber einzelfallabhängig – daher Faktoren, die auf „unklar“ führen.
+indirect_exposure:
+  label: "Indirekte Betroffenheit über EU-Beziehungen:"
+  factors:
+    - id: eu_subsidiary
+      label: "Tochtergesellschaft in der EU (untersteht dort NIS-2-Pflichten)"
+      note: "Die EU-Tochter kann unter NIS2-UmsuCG/NISG fallen; Konzernmeldeprozesse strahlen auf die Schweiz zurück, ohne eine ISG-Pflicht zu begründen."
+    - id: eu_customers_contract
+      label: "EU-Kunden mit vertraglichen Sicherheitsanforderungen"
+      note: "Vertragliche Anforderungen (z. B. Vorfällenmeldepflichten) können faktisch höher liegen als die ISG-Pflicht."
+    - id: supply_chain_critical
+      label: "Kritische Position in einer Lieferkette mit EU-kritischer Infrastruktur"
+      note: "Ausfallwirkungen auf EU-kritische Infrastrukturen können Vertrags- und Aufsichtsfolgen in der EU auslösen."
+
+penalties_note_md: |
+  Sanktionen: Wer die Meldepflicht nach Art. 74e ISG verletzt, handelt
+  ordnungswidrig und kann mit einer **Busse bis 100 000 CHF** bestraft werden
+  (Art. 74f ISG). Die Busse trifft die verantwortlichen Personen der Organisation,
+  nicht die Organisation selbst; die Meldepflicht besteht unabhängig davon,
+  ob es zu Schäden gekommen ist.

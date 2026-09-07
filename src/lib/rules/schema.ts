@@ -40,6 +40,8 @@ export const RulesFileSchema = z.object({
   source_urls: z.array(z.string().url()).nonempty(),
   /** Land, in dem das Gesetz greift (Niederlassungs-Prinzip) */
   applicability_country: z.string().regex(/^[a-z]{2}$/),
+  /** true = eine Tochtergesellschaft im Anwendungsland genügt für den örtlichen Anwendungsbereich (regimeabhängig) */
+  establishment_via_subsidiary: z.boolean().optional(),
   entity_classes: z.array(EntityClassSchema).nonempty(),
   below_threshold: z
     .object({
