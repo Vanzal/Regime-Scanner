@@ -1,10 +1,22 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Fraunces, Plus_Jakarta_Sans } from 'next/font/google'
 import { cookies } from 'next/headers'
 import { localeFromCookie } from '@/i18n'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'], display: 'swap' })
+const display = Fraunces({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-display-face',
+  weight: ['500', '600', '700'],
+})
+
+const sans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sans-face',
+  weight: ['400', '500', '600', '700'],
+})
 
 export const metadata: Metadata = {
   title: 'NexusScope – Cyber-reporting & compliance orientation for the DACH region',
@@ -17,8 +29,18 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const locale = localeFromCookie(cookieStore.get('lang')?.value)
 
   return (
-    <html lang={locale}>
-      <body className={`${inter.className} min-h-screen antialiased`}>{children}</body>
+    <html lang={locale} className={`${display.variable} ${sans.variable}`}>
+      <body
+        className="min-h-screen antialiased"
+        style={{
+          fontFamily: 'var(--font-sans-face), var(--font-sans)',
+          // display face available via CSS var for .font-display
+          ['--font-display' as string]: 'var(--font-display-face), Georgia, serif',
+          ['--font-sans' as string]: 'var(--font-sans-face), "Helvetica Neue", Arial, sans-serif',
+        }}
+      >
+        {children}
+      </body>
     </html>
   )
 }
