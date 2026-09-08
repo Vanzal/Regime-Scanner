@@ -1,4 +1,4 @@
--- 0001 · Tabellen für Regime Radar (MVP)
+-- 0001 · Tabellen für NexusScope (MVP)
 -- Ausgeführt z. B. über Supabase SQL-Editor oder `supabase db push`.
 
 create table if not exists companies (

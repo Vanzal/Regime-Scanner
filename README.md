@@ -1,4 +1,4 @@
-# Regime Radar
+# NexusScope
 
 Lead-Gen-MVP für den DACH-Raum: Ein Unternehmen beantwortet 8 Fragen, wir scannen **nur
 öffentliche Quellen** (DNS, TLS, HTTP-Header, veröffentlichte Webseiten – robots.txt-konform,

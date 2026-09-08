@@ -35,7 +35,7 @@ export default async (req: Request) => {
         status: 200,
         headers: {
           'content-type': 'application/pdf',
-          'content-disposition': `inline; filename="regime-radar-bericht.pdf"`,
+          'content-disposition': `inline; filename="nexusscope-bericht.pdf"`,
           'cache-control': 'no-store',
         },
       })

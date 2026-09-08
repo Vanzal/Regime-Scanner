@@ -1,8 +1,8 @@
 {
-  "name": "regime-radar",
+  "name": "nexusscope",
   "version": "0.1.0",
   "private": true,
-  "description": "Regime Radar – DACH Cyber-Reporting Scan MVP: ermittelt, welche Melde-regimes (DE NIS2UmsuCG, AT NISG, CH ISG) für ein Unternehmen gelten.",
+  "description": "NexusScope – DACH Cyber-Reporting Scan MVP: ermittelt, welche Melde-regimes (DE NIS2UmsuCG, AT NISG, CH ISG) für ein Unternehmen gelten.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
