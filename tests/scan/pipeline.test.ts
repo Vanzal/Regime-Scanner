@@ -14,6 +14,8 @@ const state: { s1?: string; s2?: string } = {}
 beforeAll(async () => {
   process.env.LOCAL_DB_PATH = path.join(os.tmpdir(), `regime-radar-pipeline-${Date.now()}.json`)
   delete process.env.AUTO_RELEASE // Standard: sofort freigeben
+  delete process.env.ANTHROPIC_API_KEY // Scope-Check läuft im Test nie gegen die echte API
+  delete process.env.SCOPE_CHECK_ENABLED
   resetStore()
   const store = getStore()
 
@@ -65,6 +67,8 @@ describe('Scan-Pipeline (Fixture-Modus)', () => {
     expect(scan?.status).toBe('done')
     expect(scan?.driver_used).toBe('fixture:intake-only')
     expect(scan?.review_status).toBe('released')
+    // Ohne API-Key: Scope-Check übersprungen, Feld null (kein Abschnitt im Bericht)
+    expect(scan?.scope_check_json ?? null).toBeNull()
     expect(await store.getFindingsByScan(scan!.id)).toHaveLength(0)
     const assessments = await store.getAssessmentsByScan(scan!.id)
     expect(assessments).toHaveLength(loadRules().length)

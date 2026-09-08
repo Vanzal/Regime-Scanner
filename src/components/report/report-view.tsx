@@ -5,6 +5,7 @@ import type { ReportData } from '@/lib/report/data'
 import { ClockTimeline } from './clock-timeline'
 import { Disclaimer } from './disclaimer'
 import { GapList } from './gap-list'
+import { ScopeCheckBlock } from './scope-check-block'
 import { ThresholdTraceBlock } from './threshold-trace'
 import { VerdictStrip } from './verdict-strip'
 
@@ -61,6 +62,12 @@ export function ReportView({
       <Section id="verdicts" title={t(dict, 'report.section_verdicts')}>
         <VerdictStrip assessments={data.assessments} dict={dict} />
       </Section>
+
+      {data.scopeCheck && (
+        <Section id="scope" title={t(dict, 'report.section_scope')}>
+          <ScopeCheckBlock result={data.scopeCheck} dict={dict} />
+        </Section>
+      )}
 
       <Section id="clock" title={t(dict, 'report.section_clock')}>
         <ClockTimeline assessments={data.assessments} dict={dict} />

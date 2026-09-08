@@ -39,6 +39,8 @@ optional und wird automatisch genutzt, sobald beide Env-Variablen gesetzt sind.
 | `SCAN_RUNNER_SECRET` | Header-Geheimnis für den Hintergrund-Scan-Runner |
 | `RESEND_API_KEY` | optional: Berichts-Link per E-Mail (sonst Anzeige on-screen) |
 | `BROWSER_DRIVER_ENABLED` | standardmäßig aus – Scan bleibt passiv/leichtgewichtig |
+| `ANTHROPIC_API_KEY` | optional: aktiviert den KI-Scope-Check (Bericht-Abschnitt 2); ohne Key läuft der Scan ohne den Abschnitt |
+| `SCOPE_CHECK_ENABLED` | `false` = KI-Scope-Check aus, auch mit Key (Modell: `claude-sonnet-4-6`, überschreibbar via `SCOPE_CHECK_MODEL`) |
 
 ## Supabase einrichten (optional, für Produktion)
 

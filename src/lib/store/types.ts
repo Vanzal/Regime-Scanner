@@ -27,6 +27,8 @@ export interface Scan {
   released_at?: string | null
   intake_json: Record<string, unknown>
   facts_json: Record<string, unknown>
+  /** LLM-Scope-Check (validiertes JSON aus src/lib/scope-check) – null = nicht gelaufen/gescheitert */
+  scope_check_json?: Record<string, unknown> | null
   error?: string | null
   created_at: string
 }
@@ -85,6 +87,16 @@ export interface RulesVersionRow {
   notes?: string | null
 }
 
+/** Wartelisten-Eintrag der Marketing-Site (NexusScope MVP). */
+export interface WaitlistEntry {
+  id: string
+  email: string
+  company_size: string
+  country: string
+  pain_note: string | null
+  created_at: string
+}
+
 export interface ReportBundle {
   company: Company
   scan: Scan
@@ -121,4 +133,6 @@ export interface Store {
   releaseScan(scan_id: string): Promise<void>
   upsertRulesVersion(row: Omit<RulesVersionRow, 'id'>, id?: string): Promise<void>
   listRulesVersions(): Promise<RulesVersionRow[]>
+  /** Idempotent: gleiche E-Mail → duplicate=true, Eintrag bleibt unverändert. */
+  joinWaitlist(input: { email: string; company_size: string; country: string; pain_note?: string | null }): Promise<{ entry: WaitlistEntry; duplicate: boolean }>
 }

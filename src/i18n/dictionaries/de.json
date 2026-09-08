@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Regime Radar",
+    "name": "NexusScope",
     "tagline": "Welche Cyber-Meldepflichten gelten für Ihr Unternehmen?"
   },
   "landing": {
@@ -34,7 +34,7 @@
     "trust_service_label": "Wir sind ein qualifizierter Vertrauensdiensteanbieter (eIDAS)",
     "email_label": "E-Mail für Ihren Bericht",
     "email_hint": "Der Berichts-Link wird an diese Adresse gesendet. Sie können den Bericht ohne Anmeldung über den persönlichen Link abrufen.",
-    "consent_label": "Ich bin einverstanden, dass mich Regime Radar gelegentlich über Aktualisierungen der Meldepflichten informiert (jederzeit kündbar).",
+    "consent_label": "Ich bin einverstanden, dass mich NexusScope gelegentlich über Aktualisierungen der Meldepflichten informiert (jederzeit kündbar).",
     "submit": "Scan starten",
     "submitting": "Scan wird gestartet …",
     "errors": {
@@ -133,10 +133,11 @@
     "print": "Als PDF drucken",
     "download_pdf": "PDF herunterladen",
     "section_verdicts": "1 · Für welche Regimes gelten Meldepflichten?",
-    "section_clock": "2 · Ihre Meldeuhren",
-    "section_gaps": "3 · Ihre Lückenliste",
-    "section_trace": "4 · Herleitung (Threshold Trace)",
-    "section_limits": "5 · Grenzen & Hinweise",
+    "section_scope": "2 · KI-Richtungsabschätzung & typische Lücken",
+    "section_clock": "3 · Ihre Meldeuhren",
+    "section_gaps": "4 · Ihre Lückenliste",
+    "section_trace": "5 · Herleitung (Threshold Trace)",
+    "section_limits": "6 · Grenzen & Hinweise",
     "verdict": {
       "applicable": "ANWENDBAR",
       "not_applicable": "NICHT ANWENDBAR",
@@ -144,6 +145,17 @@
       "confidence": "Konfidenz",
       "manually_reviewed": "Manuell geprüft",
       "override_note": "Einordnung durch eine Fachperson überprüft und angepasst."
+    },
+    "scope": {
+      "ai_note": "Die folgende Einschätzung wurde von einer KI auf Grundlage Ihrer Angaben generiert. Sie ergänzt die regelbasierte Prüfung in Abschnitt 1, ersetzt sie aber nicht – die rechtsbasierte Herleitung mit Rechtsstand und Konfidenz bleibt maßgeblich.",
+      "gaps": "Typische Lücken dieser Unternehmensgröße/-branche",
+      "next_steps": "Empfohlene nächste Schritte",
+      "disclaimer_label": "Hinweis",
+      "status": {
+        "likely": "WAHRSCHEINLICH ANWENDBAR",
+        "possible": "MÖGLICH",
+        "unlikely": "EHER NICHT ANWENDBAR"
+      }
     },
     "clock": {
       "hours": "{hours} Stunden",
@@ -221,5 +233,206 @@
     "third_party": "Lieferkette/Drittanbieter",
     "transparency": "Transparenz",
     "incident_response": "Vorfallreaktion"
+  },
+  "site": {
+    "nav": {
+      "how": "So funktioniert es",
+      "preview": "Musterbericht",
+      "features": "Leistungen",
+      "faq": "FAQ"
+    },
+    "hero": {
+      "badge": "Für Deutschland, Österreich & die Schweiz",
+      "title": "Ein Vorfall. Drei Melderegimes. Keine Rätselraten.",
+      "subtitle": "NexusScope sagt Ihnen in klarer Sprache, welche Cyber-Meldepflichten in Deutschland, Österreich und der Schweiz für Ihr Unternehmen gelten – und welche Fristen im Ernstfall laufen.",
+      "cta": "Auf die Warteliste",
+      "note": "Kostenlos in der Early-Access-Phase · Keine Anmeldung"
+    },
+    "problem": {
+      "title": "Die Meldepflichten im DACH-Raum wachsen – ungleich",
+      "body": "Deutschlands NIS2UmsuCG, Österreichs NISG 2024 und die Schweizs ISG haben jeweils eigene Schwellenwerte, Branchenlisten und Meldefristen. Ein einziger Vorfall kann in verschiedenen Länder verschiedene Pflichten auslösen – oder gar keine. Die meisten Unternehmen erfahren das erst nach dem Vorfall, wenn die 24-Stunden-Frist bereits läuft.",
+      "points": [
+        "Drei Regimes, drei Schwellenwerte, drei Fristen",
+        "Schwellenwerte mischen Beschäftigte, Umsatz und Branchenlisten",
+        "Fristen beginnen nach 24 Stunden – bevor Sie Antworten haben"
+      ]
+    },
+    "how": {
+      "title": "So funktioniert es",
+      "steps": [
+        {
+          "title": "Sagen Sie uns, wer Sie sind",
+          "body": "Ihre Domain und ein kurzer Fragebogen – Branche, Größe, Standorte, EU-Kunden. Etwa zwei Minuten."
+        },
+        {
+          "title": "Wir analysieren",
+          "body": "NexusScope spiegelt Ihr Profil gegen alle drei Regimes und prüft Ihren öffentlichen Fußabdruck (DNS, TLS, Web-Header) auf sichtbare Lücken."
+        },
+        {
+          "title": "Sie erhalten einen Bericht",
+          "body": "Status je Regime, Meldefristen, eine priorisierte Lückenliste und die Begründung hinter jedem Ergebnis – in klarer Sprache."
+        }
+      ]
+    },
+    "preview": {
+      "title": "So sieht der Bericht aus",
+      "subtitle": "Auszug aus einem NexusScope-Bericht (Beispieldaten).",
+      "tab_regimes": "Regime-Status",
+      "tab_gaps": "Lücken & Empfehlungen",
+      "tab_deadlines": "Meldefristen",
+      "col_regime": "Regime",
+      "col_status": "Status",
+      "col_reason": "Warum",
+      "regime_de": "Deutschland — NIS2UmsuCG/BSIG",
+      "regime_de_reason": "Über 250 Beschäftigte und über 50 Mio € Umsatz – Sie liegen über den Schwellenwerten für wesentliche Einrichtungen.",
+      "regime_at": "Österreich — NISG 2024",
+      "regime_at_reason": "Schwellenwerte erfüllt; die Brancheneinordnung ist noch zu bestätigen.",
+      "regime_ch": "Schweiz — ISG",
+      "regime_ch_reason": "Keine Schweizer Niederlassung und keine gelistete kritische Branche.",
+      "status_in": "IN",
+      "status_unclear": "UNKLAR",
+      "status_out": "OUT",
+      "gaps_intro": "Priorisierte Befunde aus dem öffentlichen Fußabdruck:",
+      "gap1": "Kein SPF-Eintrag für die Hauptdomain – E-Mail-Spoofing ist trivial möglich.",
+      "gap2": "Veraltete TLS-Konfiguration am Mail-Gateway.",
+      "gap3": "Kein publizierter Kontakt für Schwachstellenmeldungen.",
+      "deadlines_intro": "Fristen nach einem erheblichen Vorfall (Beispiel: Deutschland anwendbar):",
+      "deadline1": "24 Stunden – Frühwarnung an das BSI",
+      "deadline2": "72 Stunden – Vorfallbericht an das BSI",
+      "deadline3": "1 Monat – Abschlussbericht an das BSI",
+      "disclaimer": "Dies ist keine Rechtsberatung.",
+      "as_of": "Fristenstand: September 2026."
+    },
+    "features": {
+      "title": "Das erhalten Sie",
+      "cards": [
+        {
+          "title": "Angriffsflächen-Analyse",
+          "body": "Passive Prüfung von DNS, TLS, E-Mail-Authentifizierung und Web-Härung – nur öffentliche Quellen."
+        },
+        {
+          "title": "Multi-Regime-Einordnung",
+          "body": "DE NIS2UmsuCG, AT NISG 2024, CH ISG – unabhängig geprüft, in einem Bericht."
+        },
+        {
+          "title": "Fristen-Übersicht",
+          "body": "Die 24-h-/72-h-/1-Monats-Uhren je anwendbarem Regime, mit Meldestelle und Kanal."
+        },
+        {
+          "title": "Berichte in klarer Sprache",
+          "body": "Kein Juristendeutsch. Jedes Ergebnis zeigt Herleitung und Schwellenwerte."
+        },
+        {
+          "title": "PDF-Export",
+          "body": "Ein-Klick-Druck/PDF-Export für Geschäftsführung, Wirtschaftsprüfung und Beiräte."
+        },
+        {
+          "title": "Datenhaltung in CH/EU",
+          "body": "Hosting und Datenverarbeitung so gestaltet, dass Ihre Daten in der Schweiz und der EU bleiben."
+        }
+      ]
+    },
+    "trust": {
+      "title": "Für den DACH-Raum gebaut",
+      "body": "NexusScope wird in und für Deutschland, Österreich und die Schweiz entwickelt. Ihre Daten bleiben in der Schweiz und der EU, wir scannen nur öffentliche Quellen, respektieren robots.txt und melden uns nie in Ihren Systemen an.",
+      "points": [
+        "Daten bleiben in CH/EU",
+        "Nur öffentliche Quellen – passiv und höflich gescannt",
+        "Keine Rechtsberatung – klare, ehrliche Unsicherheit"
+      ]
+    },
+    "waitlist": {
+      "title": "Auf die Warteliste",
+      "subtitle": "Seien Sie zuerst dabei, wenn NexusScope in den Early Access geht. Wir melden uns, sobald Ihr Unternehmen den ersten Scan starten kann.",
+      "email_label": "Geschäftliche E-Mail",
+      "size_label": "Unternehmensgröße",
+      "size": {
+        "lt_50": "Unter 50",
+        "50_249": "50 bis 249",
+        "250_plus": "250 oder mehr",
+        "unknown": "Keine Angabe"
+      },
+      "country_label": "Land",
+      "country": {
+        "de": "Deutschland",
+        "at": "Österreich",
+        "ch": "Schweiz",
+        "other": "Anderes Land"
+      },
+      "pain_label": "Was ist aktuell Ihr größtes Compliance-Ärgernis? (optional)",
+      "pain_placeholder": "z. B. Niemand weiß, welche unserer Gesellschaften in den Scope fallen …",
+      "submit": "Warteliste beitreten",
+      "submitting": "Beitritt läuft …",
+      "success": "Sie stehen auf der Liste. Wir melden uns.",
+      "duplicate": "Diese E-Mail steht bereits auf der Warteliste.",
+      "errors": {
+        "required": "Bitte ausfüllen",
+        "email": "Bitte eine gültige E-Mail-Adresse angeben",
+        "country": "Bitte ein Land wählen"
+      },
+      "privacy_note": "Ihre E-Mail verwenden wir nur, um Sie über den Early Access zu informieren. Kein Marketing ohne Einwilligung. Details in der Datenschutzerklärung."
+    },
+    "faq": {
+      "title": "Häufige Fragen",
+      "items": [
+        {
+          "q": "Gilt NIS2 / NISG / ISG für mein Unternehmen?",
+          "a": "Das hängt von Branche, Größe und Struktur ab – die Schwellenwerte unterscheiden sich zwischen Deutschland, Österreich und der Schweiz. NexusScope spiegelt Ihr Profil gegen jedes Regime und sagt Ihnen, wo Sie stehen – inklusive dem, was unklar bleibt."
+        },
+        {
+          "q": "Ist das eine Rechtsberatung?",
+          "a": "Nein. NexusScope ist eine automatisierte Orientierung aus öffentlichen Quellen und Ihren Angaben. Herleitung und Konfidenz sind ausgewiesen, Unsicherheit wird klar markiert. Für verbindliche Entscheidungen ziehen Sie Rechtsberater:innen bei."
+        },
+        {
+          "q": "Was passiert mit meinen Daten?",
+          "a": "Ihre Daten werden in der Schweiz und der EU gespeichert, nur für Ihren Bericht und die Early-Access-Benachrichtigung verwendet. Wir scannen nur öffentliche Quellen, respektieren robots.txt und greifen nie auf geschützte Systeme zu."
+        },
+        {
+          "q": "Wann ist NexusScope verfügbar?",
+          "a": "Wir nehmen die Warteliste jetzt für den Early Access auf. Treten Sie bei, und wir melden uns, sobald Ihr Unternehmen den ersten Scan starten kann."
+        }
+      ]
+    },
+    "footer": {
+      "tagline": "Cyber-Reporting & Compliance-Orientierung für den DACH-Raum.",
+      "impressum": "Impressum",
+      "datenschutz": "Datenschutz",
+      "contact_label": "Kontakt:",
+      "contact_email": "hello@nexusscope.example",
+      "legal_note": "Automatisierte Orientierung – keine Rechtsberatung.",
+      "lang_label": "Sprache"
+    },
+    "cookie": {
+      "text": "Wir verwenden nur einen funktionalen Cookie, der Ihre Sprachwahl speichert. Kein Tracking, keine Drittanbieter-Cookies.",
+      "accept": "Verstanden"
+    },
+    "legal": {
+      "impressum_title": "Impressum",
+      "impressum_intro": "Angaben nach § 5 DDG (Platzhalter).",
+      "operator": "Betreiber",
+      "representative": "Vertreten durch",
+      "contact": "Kontakt",
+      "datenschutz_title": "Datenschutzerklärung",
+      "datenschutz_intro": "So geht NexusScope mit personenbezogenen Daten um (Zusammenfassung).",
+      "privacy_sections": [
+        {
+          "h": "Was wir speichern",
+          "b": "Wartelisten-Einträge (E-Mail, Unternehmensgröße, Land, optionale Notiz), Scan-Eingaben und erstellte Berichte."
+        },
+        {
+          "h": "Warum",
+          "b": "Zur Erstellung Ihres Berichts und zur Benachrichtigung über den Early Access. Kein Profiling, keine Werbung ohne Einwilligung."
+        },
+        {
+          "h": "Wo",
+          "b": "Hosting und Datenhaltung in der Schweiz und der EU."
+        },
+        {
+          "h": "Ihre Rechte",
+          "b": "Auskunft, Berichtigung und Löschung jederzeit über die Kontakt-E-Mail."
+        }
+      ],
+      "placeholder": "[Vor dem Livegang auszufüllen.]"
+    }
   }
 }

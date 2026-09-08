@@ -12,6 +12,7 @@ import type {
   RulesVersionRow,
   Scan,
   Store,
+  WaitlistEntry,
 } from './types'
 
 interface FileDb {
@@ -21,6 +22,7 @@ interface FileDb {
   assessments: AssessmentRow[]
   leads: Lead[]
   rules_versions: RulesVersionRow[]
+  waitlist: WaitlistEntry[]
 }
 
 const EMPTY_DB: FileDb = {
@@ -30,6 +32,7 @@ const EMPTY_DB: FileDb = {
   assessments: [],
   leads: [],
   rules_versions: [],
+  waitlist: [],
 }
 
 function resolveDbPath(): string {
@@ -242,6 +245,24 @@ export function createFileStore(): Store {
     async listRulesVersions() {
       const db = readDb()
       return db.rules_versions
+    },
+
+    async joinWaitlist(input) {
+      const db = readDb()
+      const normalizedEmail = input.email.trim().toLowerCase()
+      const existing = db.waitlist.find((w) => w.email === normalizedEmail)
+      if (existing) return { entry: existing, duplicate: true }
+      const entry: WaitlistEntry = {
+        id: randomUUID(),
+        email: normalizedEmail,
+        company_size: input.company_size,
+        country: input.country,
+        pain_note: input.pain_note?.trim() || null,
+        created_at: now(),
+      }
+      db.waitlist.push(entry)
+      writeDb(db)
+      return { entry, duplicate: false }
     },
   }
 }

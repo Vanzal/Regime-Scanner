@@ -23,7 +23,7 @@ export async function sendReportEmail(email: string, reportUrl: string, companyN
   const text = [
     `Guten Tag,`,
     ``,
-    `Ihr Regime-Radar-Bericht für ${companyName} ist fertig:`,
+    `Ihr NexusScope-Bericht für ${companyName} ist fertig:`,
     reportUrl,
     ``,
     `Der Bericht nennt, welche Cyber-Meldepflichten für Ihr Unternehmen gelten`,
@@ -32,7 +32,7 @@ export async function sendReportEmail(email: string, reportUrl: string, companyN
     ``,
     `Hinweis: automatisierte erste Orientierung aus öffentlichen Quellen – keine Rechtsberatung.`,
     ``,
-    `Ihr Regime-Radar-Team`,
+    `Ihr NexusScope-Team`,
   ].join('\n')
 
   try {
@@ -40,7 +40,7 @@ export async function sendReportEmail(email: string, reportUrl: string, companyN
       method: 'POST',
       headers: { authorization: `Bearer ${apiKey}`, 'content-type': 'application/json' },
       body: JSON.stringify({
-        from: process.env.RESEND_FROM ?? 'Regime Radar <berichte@regime-radar.de>',
+        from: process.env.RESEND_FROM ?? 'NexusScope <berichte@nexusscope.example>',
         to: [email],
         subject: 'Ihr Bericht: Welche Meldepflichten gelten für Sie?',
         text,

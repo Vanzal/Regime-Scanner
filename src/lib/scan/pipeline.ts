@@ -6,6 +6,7 @@ import type { VerdictFacts } from '@/lib/rules/types'
 import { buildFactsFromIntake } from './facts'
 import { findFixtureByDomain } from './fixtures'
 import { getStore } from '@/lib/store'
+import { runScopeCheck } from '@/lib/scope-check/run'
 import type { FindingInput, Scan } from '@/lib/store/types'
 import { Politeness } from '@/lib/collect/politeness'
 import { createDnsCollector } from '@/lib/collect/dns'
@@ -104,6 +105,20 @@ export async function runScan(scanId: string): Promise<void> {
     const rules = loadRules()
     const verdicts = evaluateAll(rules, facts)
 
+    // LLM-Scope-Check (Richtungsabschätzung für den Bericht) – best-effort:
+    // Ohne API-Key oder bei Fehler läuft der Scan ohne den Abschnitt weiter.
+    let scopeCheckJson: Record<string, unknown> | null = null
+    if (process.env.SCOPE_CHECK_ENABLED !== 'false' && process.env.ANTHROPIC_API_KEY) {
+      try {
+        const scopeCheck = await runScopeCheck(intake)
+        scopeCheckJson = scopeCheck as unknown as Record<string, unknown>
+      } catch (err) {
+        console.log(
+          `[scan ${scanId}] Scope-Check übersprungen: ${err instanceof Error ? err.message : String(err)}`,
+        )
+      }
+    }
+
     await store.insertFindings(scanId, findings)
     await store.replaceAssessments(
       scanId,
@@ -122,6 +137,7 @@ export async function runScan(scanId: string): Promise<void> {
       finished_at: new Date().toISOString(),
       driver_used: driverUsed,
       facts_json: facts as unknown as Record<string, unknown>,
+      scope_check_json: scopeCheckJson,
     })
     if (AUTO_RELEASE) await store.releaseScan(scanId)
   } catch (err) {

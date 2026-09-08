@@ -20,7 +20,7 @@ export interface PoliteResponse {
 export type PoliteFetch = (url: string, init: RequestInit) => Promise<Response>
 
 export const USER_AGENT =
-  'RegimeRadarBot/0.1 (+https://regime-radar.example/ueber; berichte@regime-radar.example)'
+  'NexusScopeBot/0.1 (+https://nexusscope.example/ueber; berichte@nexusscope.example)'
 
 interface PolitenessOptions {
   budget?: number

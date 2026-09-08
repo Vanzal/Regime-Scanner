@@ -11,6 +11,7 @@ import type {
   RulesVersionRow,
   Scan,
   Store,
+  WaitlistEntry,
 } from './types'
 
 function getClient(): SupabaseClient {
@@ -204,6 +205,28 @@ export function createSupabaseStore(): Store {
       const { data, error } = await sb.from('rules_versions').select('*')
       if (error) throw error
       return (data ?? []) as RulesVersionRow[]
+    },
+
+    async joinWaitlist(input) {
+      const normalizedEmail = input.email.trim().toLowerCase()
+      const { data: existing } = await sb
+        .from('waitlist')
+        .select('*')
+        .eq('email', normalizedEmail)
+        .maybeSingle()
+      if (existing) return { entry: existing as WaitlistEntry, duplicate: true }
+      const { data, error } = await sb
+        .from('waitlist')
+        .insert({
+          email: normalizedEmail,
+          company_size: input.company_size,
+          country: input.country,
+          pain_note: input.pain_note?.trim() || null,
+        })
+        .select()
+        .single()
+      if (error) throw error
+      return { entry: data as WaitlistEntry, duplicate: false }
     },
   }
 }

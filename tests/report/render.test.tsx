@@ -105,6 +105,45 @@ describe('Bericht-Rendering (feste Abschnittsreihenfolge)', () => {
     expect(html).toContain('Erstmeldung')
   })
 
+  it('Scope-Check-Abschnitt: nur mit gültigem scope_check_json, zwischen Urteilen und Uhren', async () => {
+    const store = getStore()
+    const bundle = await store.getReportByToken(TOKEN)
+    expect(bundle).not.toBeNull()
+    const scanId = (await store.getLatestScanByCompany(bundle!.company.id))!.id
+    const dict = getDict('de')
+
+    // Ohne Scope-Check: Abschnitt entfällt komplett
+    await store.updateScan(scanId, { scope_check_json: null })
+    const without = renderToString(<ReportView data={(await loadReport(TOKEN))!} dict={dict} showChrome={false} />)
+    expect(without).not.toContain('data-testid="scope-check-block"')
+
+    // Mit gültigem Scope-Check: Abschnitt in fester Position (nach Abschnitt 1)
+    await store.updateScan(scanId, {
+      scope_check_json: {
+        regimes: [
+          { name: 'Germany', status: 'possible', reasoning: 'KI-Restbedingung' },
+          { name: 'Austria', status: 'unlikely', reasoning: 'KI-Restbedingung' },
+          { name: 'Switzerland', status: 'likely', reasoning: 'KI-Restbedingung' },
+        ],
+        summary: 'Richtungsabschätzung.',
+        key_gaps: ['g1', 'g2', 'g3', 'g4'],
+        next_steps: ['n1', 'n2', 'n3'],
+        disclaimer: 'Richtungsscan, keine Rechtsberatung.',
+      } as Record<string, unknown>,
+    })
+    const withScope = renderToString(<ReportView data={(await loadReport(TOKEN))!} dict={dict} showChrome={false} />)
+    const positions = ['section-verdicts', 'section-scope', 'section-clock'].map((id) =>
+      withScope.indexOf(`data-testid="${id}"`),
+    )
+    positions.forEach((p, i) => expect(p, `Abschnitt ${i} fehlt`).toBeGreaterThan(-1))
+    expect([...positions].sort((a, b) => a - b)).toEqual(positions)
+    expect(withScope).toContain('WAHRSCHEINLICH ANWENDBAR')
+    expect(withScope).toContain('Richtungsscan, keine Rechtsberatung.')
+
+    // Aufräumen: andere Tests sehen den Grundzustand ohne KI-Abschnitt
+    await store.updateScan(scanId, { scope_check_json: null })
+  })
+
   it('unbekannter Token → kein Bericht', async () => {
     const none = await loadReport('00000000-0000-4000-8000-000000000000')
     expect(none).toBeNull()

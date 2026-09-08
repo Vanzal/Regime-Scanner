@@ -1,6 +1,7 @@
 import { loadRules } from '@/lib/rules/loader'
 import type { Applicable } from '@/lib/rules/types'
 import { getStore } from '@/lib/store'
+import { ScopeCheckResponseSchema, type ScopeCheckResult } from '@/lib/scope-check/schema'
 import type { AssessmentRow, Company, FindingRow, Scan } from '@/lib/store/types'
 
 export interface ReportAssessment extends AssessmentRow {
@@ -24,6 +25,8 @@ export interface ReportData {
   findings: ReportFinding[]
   assessments: ReportAssessment[]
   rulesSources: Record<string, string[]>
+  /** Validierter LLM-Scope-Check – null wenn nicht gelaufen oder Schema-Verstoß */
+  scopeCheck: ScopeCheckResult | null
 }
 
 const SEVERITY_RANK: Record<string, number> = { high: 0, med: 1, low: 2, info: 3 }
@@ -95,7 +98,19 @@ export async function loadReport(token: string): Promise<ReportData | null> {
     findings,
     assessments,
     rulesSources,
+    scopeCheck: parseScopeCheck(bundle.scan.scope_check_json),
   }
+}
+
+/**
+ * Scope-Check-JSON erst beim Rendern gegen das Schema validieren – ein in der
+ * DB liegender Alter-STAND (altes Prompt, anderes Schema) fliegt nicht hart,
+ * sondern der Abschnitt fällt einfach weg.
+ */
+export function parseScopeCheck(raw: Record<string, unknown> | null | undefined): ScopeCheckResult | null {
+  if (!raw) return null
+  const parsed = ScopeCheckResponseSchema.safeParse(raw)
+  return parsed.success ? parsed.data : null
 }
 
 /** Für die „noch in Prüfung“-Ansicht: Lead existiert, Bericht noch nicht freigegeben. */

@@ -4,7 +4,8 @@ import en from './dictionaries/en.json'
 export type Locale = 'de' | 'en'
 
 export const LOCALES: Locale[] = ['de', 'en']
-export const DEFAULT_LOCALE: Locale = 'de'
+/** Marketing-Site startet englischsprachig (NexusScope Spec); Cookie überschreibt. */
+export const DEFAULT_LOCALE: Locale = 'en'
 
 export type Dictionary = typeof de
 
@@ -28,5 +29,5 @@ export function t(dict: Dictionary, key: string, vars?: Record<string, string | 
 }
 
 export function localeFromCookie(cookieValue: string | undefined): Locale {
-  return cookieValue === 'en' ? 'en' : 'de'
+  return cookieValue === 'de' ? 'de' : 'en'
 }
