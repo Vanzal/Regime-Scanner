@@ -205,6 +205,97 @@
     },
     "disclaimer_footer": "Automated public assessment · not legal advice · legal standing shown in report"
   },
+  "incident": {
+    "title": "Incident Copilot",
+    "subtitle": "Short intake after a cyber incident – triage of reporting duties for DE, AT and CH with deadlines and a draft first notification.",
+    "badge": "Separate from the free scan",
+    "submit": "Run triage",
+    "submitting": "Running triage …",
+    "disclaimer_short": "Automated triage based on your answers and the published reporting clocks – not legal advice.",
+    "fields": {
+      "description": "Short description of what happened",
+      "description_placeholder": "e.g. Ransomware encryption of file servers; customer portal unavailable",
+      "discovered_at": "Date/time of discovery",
+      "systems": "Systems/services affected",
+      "systems_placeholder": "e.g. ERP, e-mail, customer portal",
+      "personal_data": "Is personal data involved?",
+      "availability": "Service availability",
+      "affected_persons": "Estimated number of affected persons",
+      "country_hq": "Country of main establishment"
+    },
+    "yes_no_unknown": {
+      "yes": "Yes",
+      "no": "No",
+      "unknown": "Unknown"
+    },
+    "availability": {
+      "available": "Still available",
+      "degraded": "Degraded",
+      "offline": "Offline"
+    },
+    "persons": {
+      "none": "None",
+      "1_99": "1–99",
+      "100_999": "100–999",
+      "1000_plus": "1,000+",
+      "unknown": "Unknown"
+    },
+    "countries": {
+      "de": "Germany",
+      "at": "Austria",
+      "ch": "Switzerland"
+    },
+    "errors": {
+      "required": "Please fill in",
+      "datetime": "Please provide a valid date and time"
+    },
+    "result": {
+      "title": "Incident triage",
+      "created": "Created",
+      "section_lights": "1 · Traffic-light status per regime",
+      "section_deadlines": "2 · Deadlines & authorities",
+      "section_draft": "3 · Draft first notification",
+      "section_checklist": "4 · Required information checklist",
+      "section_limits": "5 · Limits & notes",
+      "copy_draft": "Copy draft",
+      "copied": "Copied",
+      "download_pdf": "Download PDF",
+      "print": "Print as PDF",
+      "authority": "Authority",
+      "due_at": "Due",
+      "relative": "Relative",
+      "none_relevant": "No regime was flagged as relevant based on the country of main establishment alone. Check subsidiaries and sector via the free scan if needed.",
+      "required": "Required",
+      "optional": "Optional",
+      "traffic": {
+        "red": "Action likely required",
+        "amber": "Needs clarification",
+        "green": "Not directly applicable"
+      },
+      "verdict": {
+        "applicable": "APPLICABLE",
+        "not_applicable": "NOT APPLICABLE",
+        "unclear": "UNCLEAR"
+      },
+      "limits_body": "This triage was generated automatically from your incident intake and the versioned YAML rules (NIS2UmsuCG, NISG, ISG). Absolute deadlines are calculated from the stated time of discovery. Without sector and size data the home regime often remains **unclear** – that is intentional. This is a first orientation and **not legal advice**. When in doubt, contact counsel and the competent authority immediately.",
+      "disclaimer_footer": "Automated incident triage · not legal advice · save this link – access is token-based"
+    },
+    "checklist": {
+      "what": "Factual description of the incident (what happened)",
+      "when": "Exact time of discovery / when you became aware",
+      "systems": "Affected systems, services and locations",
+      "availability": "Current availability / operational impact",
+      "contact": "Named contact person with phone and e-mail",
+      "mitigation": "Immediate containment and remediation steps taken",
+      "impact": "Known or suspected impact on customers / third parties",
+      "gdpr_categories": "Categories of personal data affected (GDPR)",
+      "gdpr_persons": "Approximate number of data subjects",
+      "gdpr_dpa": "Notification to the competent data protection authority (Art. 33 GDPR, 72 hours)",
+      "gdpr_subjects": "Communication to data subjects if high risk (Art. 34 GDPR)",
+      "authority_portal": "Submit via {authority} ({regime})",
+      "follow_up": "Prepare follow-up / final report within the statutory clocks"
+    }
+  },
   "regimes": {
     "de": {
       "code": "DE",

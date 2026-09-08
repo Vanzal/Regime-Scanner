@@ -205,6 +205,97 @@
     },
     "disclaimer_footer": "Automatisierte öffentliche Einschätzung · keine Rechtsberatung · Rechtsstand im Bericht ausgewiesen"
   },
+  "incident": {
+    "title": "Incident Copilot",
+    "subtitle": "Kurzes Intake nach einem Cyber-Vorfall – Triage der Meldepflichten für DE, AT und CH mit Fristen und Entwurf einer Erstmeldung.",
+    "badge": "Getrennt vom kostenlosen Scan",
+    "submit": "Triage starten",
+    "submitting": "Triage läuft …",
+    "disclaimer_short": "Automatisierte Triage anhand Ihrer Angaben und der veröffentlichten Meldeuhren – keine Rechtsberatung.",
+    "fields": {
+      "description": "Kurze Beschreibung des Vorfalls",
+      "description_placeholder": "z. B. Ransomware-Verschlüsselung der Fileserver; Kundenportal nicht erreichbar",
+      "discovered_at": "Datum/Uhrzeit der Kenntnisnahme",
+      "systems": "Betroffene Systeme/Dienste",
+      "systems_placeholder": "z. B. ERP, E-Mail, Kundenportal",
+      "personal_data": "Sind personenbezogene Daten betroffen?",
+      "availability": "Verfügbarkeit der Dienste",
+      "affected_persons": "Geschätzte Anzahl betroffener Personen",
+      "country_hq": "Land der Hauptniederlassung"
+    },
+    "yes_no_unknown": {
+      "yes": "Ja",
+      "no": "Nein",
+      "unknown": "Unbekannt"
+    },
+    "availability": {
+      "available": "Weiterhin verfügbar",
+      "degraded": "Eingeschränkt",
+      "offline": "Nicht verfügbar"
+    },
+    "persons": {
+      "none": "Keine",
+      "1_99": "1–99",
+      "100_999": "100–999",
+      "1000_plus": "1.000+",
+      "unknown": "Unbekannt"
+    },
+    "countries": {
+      "de": "Deutschland",
+      "at": "Österreich",
+      "ch": "Schweiz"
+    },
+    "errors": {
+      "required": "Bitte ausfüllen",
+      "datetime": "Bitte Datum und Uhrzeit gültig angeben"
+    },
+    "result": {
+      "title": "Vorfall-Triage",
+      "created": "Erstellt",
+      "section_lights": "1 · Ampelstatus je Regime",
+      "section_deadlines": "2 · Fristen & Meldestellen",
+      "section_draft": "3 · Entwurf der Erstmeldung",
+      "section_checklist": "4 · Checkliste benötigter Angaben",
+      "section_limits": "5 · Grenzen & Hinweise",
+      "copy_draft": "Entwurf kopieren",
+      "copied": "Kopiert",
+      "download_pdf": "PDF herunterladen",
+      "print": "Als PDF drucken",
+      "authority": "Meldestelle",
+      "due_at": "Fällig",
+      "relative": "Relativ",
+      "none_relevant": "Anhand der Hauptniederlassung allein wurde kein Regime als relevant markiert. Prüfen Sie ggf. Tochtergesellschaften und Branche über den kostenlosen Scan.",
+      "required": "Erforderlich",
+      "optional": "Optional",
+      "traffic": {
+        "red": "Handlungsbedarf wahrscheinlich",
+        "amber": "Klärungsbedarf",
+        "green": "Nicht direkt anwendbar"
+      },
+      "verdict": {
+        "applicable": "ANWENDBAR",
+        "not_applicable": "NICHT ANWENDBAR",
+        "unclear": "UNKLAR"
+      },
+      "limits_body": "Diese Triage wurde maschinell aus Ihrem Vorfall-Intake und den versionierten YAML-Regeln (NIS2UmsuCG, NISG, ISG) erzeugt. Absolute Fristen rechnen sich aus dem angegebenen Zeitpunkt der Kenntnisnahme. Ohne Branchen- und Größenangaben bleibt das Heimat-Regime oft **unklar** – das ist beabsichtigt. Dies ist eine erste Orientierung und **keine Rechtsberatung**. Im Zweifel unverzüglich Rechtsrat und die zuständige Meldestelle einbeziehen.",
+      "disclaimer_footer": "Automatisierte Vorfall-Triage · keine Rechtsberatung · Link speichern – Zugang ist tokenbasiert"
+    },
+    "checklist": {
+      "what": "Sachverhaltsbeschreibung (was ist passiert)",
+      "when": "Genaue Kenntnisnahme / Zeitpunkt der Entdeckung",
+      "systems": "Betroffene Systeme, Dienste und Standorte",
+      "availability": "Aktuelle Verfügbarkeit / Betriebsauswirkung",
+      "contact": "Benannte Ansprechperson mit Telefon und E-Mail",
+      "mitigation": "Sofortmaßnahmen zur Eindämmung und Behebung",
+      "impact": "Bekannte oder vermutete Auswirkungen auf Kunden / Dritte",
+      "gdpr_categories": "Kategorien betroffener personenbezogener Daten (DSGVO)",
+      "gdpr_persons": "Ungefähre Anzahl betroffener Personen",
+      "gdpr_dpa": "Meldung an die zuständige Datenschutzaufsicht (Art. 33 DSGVO, 72 Stunden)",
+      "gdpr_subjects": "Information der Betroffenen bei hohem Risiko (Art. 34 DSGVO)",
+      "authority_portal": "Meldung über {authority} ({regime})",
+      "follow_up": "Folge-/Abschlussmeldung innerhalb der gesetzlichen Fristen vorbereiten"
+    }
+  },
   "regimes": {
     "de": {
       "code": "DE",

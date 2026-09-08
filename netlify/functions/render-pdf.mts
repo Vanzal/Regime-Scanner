@@ -13,8 +13,12 @@ export default async (req: Request) => {
     return new Response('Ungültiger Token', { status: 400 })
   }
 
+  const kind = url.searchParams.get('kind') === 'incident' ? 'incident' : 'report'
   const base = process.env.SITE_URL ?? url.origin
-  const target = `${base}/report/${token}?print=1`
+  const target =
+    kind === 'incident'
+      ? `${base}/incident/${token}?print=1`
+      : `${base}/report/${token}?print=1`
 
   try {
     const chromium = (await import('@sparticuz/chromium')).default
@@ -35,7 +39,9 @@ export default async (req: Request) => {
         status: 200,
         headers: {
           'content-type': 'application/pdf',
-          'content-disposition': `inline; filename="nexusscope-bericht.pdf"`,
+          'content-disposition': `inline; filename="${
+            kind === 'incident' ? 'nexusscope-incident-triage.pdf' : 'nexusscope-bericht.pdf'
+          }"`,
           'cache-control': 'no-store',
         },
       })
