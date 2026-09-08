@@ -74,7 +74,7 @@ describe('Scan-Pipeline (Fixture-Modus)', () => {
     expect(assessments).toHaveLength(loadRules().length)
     // Pro Regime genau ein Urteil mit korrekter Versionsmarke (Reihenfolge egal)
     expect(assessments.map((a) => a.regime).sort()).toEqual(['at', 'ch', 'de'])
-    expect(assessments.find((a) => a.regime === 'de')?.rules_version).toBe('DE-NIS2UmsuCG v1.0.0')
+    expect(assessments.find((a) => a.regime === 'de')?.rules_version).toBe('DE-NIS2UmsuCG v1.1.0')
     // Der Lead kann den fertigen Bericht abrufen (Release erzwungen)
     const bundle = await store.getReportByToken(TOKEN_NO_FIXTURE)
     expect(bundle?.scan.id).toBe(state.s1)

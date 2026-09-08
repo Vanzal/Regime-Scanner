@@ -9,7 +9,8 @@
 # ─────────────────────────────────────────────────────────────────────────────
 regime: at
 version: v1
-version_label: AT-NISG v1.0.0
+version_label: AT-NISG v1.1.0
+engine_schema: 2
 law_name: "Netz- und Informationssicherheitsgesetz (NISG 2024)"
 effective_from: 2024-11-01
 applicability_country: at
@@ -86,6 +87,51 @@ reporting_clock:
     name: "NIS-Meldestellen des Bundes (CERT.at/energy-CERT.at/govCERT.at je nach Sektor)"
     portal_url: "https://www.nis.gv.at/nis-meldungen.html"
     format: "Pflichtmeldung über die sektorzuständige NIS-Plattform (nis.cert.at, nis.energy-cert.at für Energie, nis.govcert.gv.at für Verwaltung, meldeportal.a-healthcert.at für Gesundheit)"
+
+# Incident Copilot: Signifikanz-Trigger (§ 34 NISG)
+incident_policy:
+  significance_note_md: |
+    Nach § 34 NISG sind erhebliche Sicherheitsvorfälle zu melden (Frühwarnung,
+    Meldung, Abschlussbericht). Erheblichkeit richtet sich nach Auswirkung auf
+    Dienste und Schäden. Die Trigger unten spiegeln Intake-Signale – keine
+    abschließende Legaldefinition.
+  triggers:
+    - id: service_disruption
+      label: "Erhebliche Beeinträchtigung der Dienstverfügbarkeit"
+      citation: "§ 34 NISG"
+      severity_hint: high
+      clock_stage: erstmeldung
+      signals: [availability_loss, service_impact]
+      when:
+        kind: availability_in
+        values: [degraded, offline]
+    - id: personal_data_involved
+      label: "Personenbezogene Daten betroffen"
+      citation: "§ 34 NISG (i. V. m. DSGVO)"
+      severity_hint: high
+      clock_stage: erstmeldung
+      signals: [personal_data, privacy]
+      when:
+        kind: personal_data_in
+        values: [yes]
+    - id: personal_data_unknown
+      label: "Personenbezug noch ungeklärt"
+      citation: "§ 34 NISG"
+      severity_hint: med
+      clock_stage: erstmeldung
+      signals: [personal_data, uncertainty]
+      when:
+        kind: personal_data_in
+        values: [unknown]
+    - id: large_affected_population
+      label: "Viele betroffene Personen (≥ 100)"
+      citation: "§ 34 NISG (Schadensausmaß)"
+      severity_hint: high
+      clock_stage: erstmeldung
+      signals: [scale, affected_persons]
+      when:
+        kind: affected_persons_in
+        values: [100_999, 1000_plus]
 
 # Generische Control-Ids → juristische Zitierung im NISG
 control_areas:

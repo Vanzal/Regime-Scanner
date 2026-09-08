@@ -192,7 +192,10 @@
         "skipped": "skipped",
         "fired": "triggered"
       },
-      "missing": "Open inputs blocking a decisive assessment:"
+      "missing": "Open inputs blocking a decisive assessment:",
+      "summary": "Path",
+      "unclear_code": "Unclear reason",
+      "matched_class": "Matched class"
     },
     "limits": {
       "rules_version": "Legal standing (rules version)",
@@ -277,7 +280,9 @@
         "not_applicable": "NOT APPLICABLE",
         "unclear": "UNCLEAR"
       },
-      "limits_body": "This triage was generated automatically from your incident intake and the versioned YAML rules (NIS2UmsuCG, NISG, ISG). Absolute deadlines are calculated from the stated time of discovery. Without sector and size data the home regime often remains **unclear** – that is intentional. This is a first orientation and **not legal advice**. When in doubt, contact counsel and the competent authority immediately.",
+      "unclear_code": "Unclear reason",
+      "trigger_fired": "Trigger",
+      "limits_body": "This triage was generated automatically from your incident intake and the versioned YAML rules (NIS2UmsuCG, NISG, ISG). Absolute deadlines are calculated from the stated time of discovery. Without sector and size data the home regime often remains **unclear** – that is intentional. Significance triggers (availability, personal data, scale) come from each rules file. This is a first orientation and **not legal advice**. When in doubt, contact counsel and the competent authority immediately.",
       "disclaimer_footer": "Automated incident triage · not legal advice · save this link – access is token-based"
     },
     "checklist": {

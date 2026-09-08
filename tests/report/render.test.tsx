@@ -94,7 +94,7 @@ describe('Bericht-Rendering (feste Abschnittsreihenfolge)', () => {
     expect(html).toContain('data-testid="verdict-card-de"')
 
     // Regeln-Version sichtbar (Auditierbarkeit)
-    expect(html).toContain('DE-NIS2UmsuCG v1.0.0')
+    expect(html).toContain('DE-NIS2UmsuCG v1.1.0')
 
     // Lückenliste mit Befunden + „Warum das Gesetz das betrifft“
     expect(html).toContain('data-testid="gap-item"')

@@ -57,13 +57,15 @@ npm run seed       # dieselben Fixtures in Supabase
 ## Regeln-Dateien (die Haftungsfläche)
 
 `rules/*.yaml` enthalten **ausschließlich** die juristischen Fakten – Schwellenwerte, Fristen,
-Meldestellen, Zitierungen – jeweils mit `source_urls` auf Primärquellen (BGBl, RIS, Fedlex,
-BSI/BACS). Die Engine (`src/lib/rules/evaluate.ts`) kennt keine Regime-Konstanten: ein neues
-Regime = eine YAML + ein Locale-Block (`regimes.<code>`), null Codeänderung – bewiesen durch
-`tests/fixtures/rules/xx-test.v1.yaml`.
+Meldestellen, Zitierungen, Signifikanz-Trigger (`incident_policy`) – jeweils mit `source_urls`
+auf Primärquellen (BGBl, RIS, Fedlex, BSI/BACS). Die Engine (`src/lib/rules/`) kennt keine
+Regime-Konstanten: ein neues Regime = eine YAML + ein Locale-Block (`regimes.<code>`), null
+Codeänderung – bewiesen durch `tests/fixtures/rules/xx-test.v1.yaml`.
 
 Bei Korrekturen: **nie in-place editieren** – neue Version `v2`, neuer Eintrag in
-`rules_versions`; jeder Bericht trägt seine `version_label`.
+`rules_versions`; `loadRules()` wählt automatisch die neueste Fassung je Regime. Jeder Bericht
+trägt `version_label`, `engine_schema` und einen nachvollziehbaren Threshold-Trace
+(`summary`, `unclear_code`, `matched_class_id`, strukturierte `missing`).
 
 ## Checks & Höflichkeit
 

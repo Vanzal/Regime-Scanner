@@ -1,4 +1,11 @@
-import type { Applicable, ClockStage, DeadlineInfo, RegimeVerdict } from '@/lib/rules/types'
+import type {
+  Applicable,
+  ClockStage,
+  DeadlineInfo,
+  IncidentTriggerInfo,
+  RegimeVerdict,
+  UnclearCode,
+} from '@/lib/rules/types'
 import type { Locale } from '@/i18n'
 import type { IncidentIntake } from './schema'
 
@@ -13,6 +20,13 @@ export interface AbsoluteDeadline {
   due_at: string
 }
 
+export interface FiredTrigger {
+  id: string
+  label: string
+  citation: string
+  detail?: string
+}
+
 export interface RegimeTriage {
   regime: string
   lawName: string
@@ -22,11 +36,18 @@ export interface RegimeTriage {
   reasoningMd: string
   rulesVersionLabel: string
   effectiveFrom: string
+  /** Machine-readable unclear reason from the rules engine */
+  unclearCode?: UnclearCode
   /** Relative Meldeuhr aus YAML */
   deadlines: DeadlineInfo
   /** Absolute Fristen ab discovered_at – nur bei relevantem Regime */
   absoluteDeadlines: AbsoluteDeadline[]
   authority: DeadlineInfo['authority']
+  significanceNoteMd?: string
+  /** Triggers that fired against the incident intake signals */
+  firedTriggers: FiredTrigger[]
+  /** Full catalogue from YAML (explainable) */
+  incidentTriggers: IncidentTriggerInfo[]
 }
 
 export interface DraftNotification {

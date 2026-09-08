@@ -56,7 +56,7 @@ describe('AT-Engine (NISG 2024, § 24/§ 34)', () => {
     const v = evaluateRegime(at, facts())
     expect(v.deadlines.stages.map((s) => s.hours)).toEqual([24, 72, 720])
     expect(v.deadlines.stages[0]?.label).toContain('Frühwarnung')
-    expect(v.rulesVersionLabel).toBe('AT-NISG v1.0.0')
+    expect(v.rulesVersionLabel).toBe('AT-NISG v1.1.0')
     expect(v.deadlines.authority.portal_url).toContain('nis.gv.at')
   })
 
@@ -151,7 +151,7 @@ describe('Drei Regimes – unabhängige Urteile im Verbund', () => {
   it('alle drei Urteile tragen Regeln-Version und Melden-Fristen', () => {
     const verdicts = evaluateAll(rules, facts())
     for (const v of verdicts) {
-      expect(v.rulesVersionLabel).toMatch(/v1\.0\.0/)
+      expect(v.rulesVersionLabel).toMatch(/v1\.1\.0/)
       expect(v.deadlines.stages.length).toBeGreaterThanOrEqual(2)
       expect(v.deadlines.authority.name.length).toBeGreaterThan(3)
     }

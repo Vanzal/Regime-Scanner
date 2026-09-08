@@ -192,7 +192,10 @@
         "skipped": "übersprungen",
         "fired": "spricht an"
       },
-      "missing": "Offene Angaben, die die Einordnung blockieren:"
+      "missing": "Offene Angaben, die die Einordnung blockieren:",
+      "summary": "Pfad",
+      "unclear_code": "Offenheitsgrund",
+      "matched_class": "Getroffene Klasse"
     },
     "limits": {
       "rules_version": "Rechtsstand (Regeln-Version)",
@@ -277,7 +280,9 @@
         "not_applicable": "NICHT ANWENDBAR",
         "unclear": "UNKLAR"
       },
-      "limits_body": "Diese Triage wurde maschinell aus Ihrem Vorfall-Intake und den versionierten YAML-Regeln (NIS2UmsuCG, NISG, ISG) erzeugt. Absolute Fristen rechnen sich aus dem angegebenen Zeitpunkt der Kenntnisnahme. Ohne Branchen- und Größenangaben bleibt das Heimat-Regime oft **unklar** – das ist beabsichtigt. Dies ist eine erste Orientierung und **keine Rechtsberatung**. Im Zweifel unverzüglich Rechtsrat und die zuständige Meldestelle einbeziehen.",
+      "unclear_code": "Offenheitsgrund",
+      "trigger_fired": "Trigger",
+      "limits_body": "Diese Triage wurde maschinell aus Ihrem Vorfall-Intake und den versionierten YAML-Regeln (NIS2UmsuCG, NISG, ISG) erzeugt. Absolute Fristen rechnen sich aus dem angegebenen Zeitpunkt der Kenntnisnahme. Ohne Branchen- und Größenangaben bleibt das Heimat-Regime oft **unklar** – das ist beabsichtigt. Signifikanz-Trigger (Verfügbarkeit, Personenbezug, Ausmaß) stammen aus der jeweiligen Regeldatei. Dies ist eine erste Orientierung und **keine Rechtsberatung**. Im Zweifel unverzüglich Rechtsrat und die zuständige Meldestelle einbeziehen.",
       "disclaimer_footer": "Automatisierte Vorfall-Triage · keine Rechtsberatung · Link speichern – Zugang ist tokenbasiert"
     },
     "checklist": {

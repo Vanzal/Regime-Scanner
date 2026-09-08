@@ -13,6 +13,8 @@ describe('Regeldateien (Schema)', () => {
       expect(f.source_urls.length).toBeGreaterThan(0)
       expect(f.entity_classes.length).toBeGreaterThan(0)
       expect(f.reporting_clock.stages.length).toBeGreaterThan(0)
+      expect(f.incident_policy?.triggers.length).toBeGreaterThan(0)
+      expect(f.engine_schema).toBeGreaterThanOrEqual(2)
     }
   })
 

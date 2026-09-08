@@ -10,7 +10,8 @@
 # ─────────────────────────────────────────────────────────────────────────────
 regime: ch
 version: v1
-version_label: CH-ISG v1.0.0
+version_label: CH-ISG v1.1.0
+engine_schema: 2
 law_name: "Informationssicherheitsgesetz (ISG, SR 128) – Meldepflicht für kritische Infrastrukturen"
 effective_from: 2025-04-01
 applicability_country: ch
@@ -86,6 +87,51 @@ reporting_clock:
     portal_url: "https://report.cyber.security.hub/"
     format: "Erstmeldung über das Cyber Security Hub (report.cyber.security.hub); alternativ Meldeformular der BACS-Website ohne Konto"
 
+# Incident Copilot: Meldepflicht bei Cyberangriff (Art. 74e ISG)
+incident_policy:
+  significance_note_md: |
+    Nach Art. 74e ISG i. V. m. CSV ist ein Cyberangriff auf kritische Infrastruktur
+    binnen 24 Stunden zu melden. Die Trigger unten spiegeln Intake-Signale
+    (Verfügbarkeit, Personenbezug, Ausmaß) – die abschließende Beurteilung bleibt
+    einzelfallabhängig.
+  triggers:
+    - id: service_disruption
+      label: "Beeinträchtigung der Dienstverfügbarkeit durch Cyberangriff"
+      citation: "Art. 74e ISG"
+      severity_hint: high
+      clock_stage: erstmeldung
+      signals: [availability_loss, cyber_attack]
+      when:
+        kind: availability_in
+        values: [degraded, offline]
+    - id: personal_data_involved
+      label: "Personenbezogene Daten betroffen"
+      citation: "Art. 74e ISG (i. V. m. DSG/DSGVO-Parallelen)"
+      severity_hint: high
+      clock_stage: erstmeldung
+      signals: [personal_data, privacy]
+      when:
+        kind: personal_data_in
+        values: [yes]
+    - id: personal_data_unknown
+      label: "Personenbezug noch ungeklärt"
+      citation: "Art. 74e ISG"
+      severity_hint: med
+      clock_stage: erstmeldung
+      signals: [personal_data, uncertainty]
+      when:
+        kind: personal_data_in
+        values: [unknown]
+    - id: large_affected_population
+      label: "Viele betroffene Personen (≥ 100)"
+      citation: "Art. 74e ISG"
+      severity_hint: high
+      clock_stage: erstmeldung
+      signals: [scale, affected_persons]
+      when:
+        kind: affected_persons_in
+        values: [100_999, 1000_plus]
+
 # Generische Control-Ids → juristische Zitierung im ISG/CSV
 control_areas:
   email_auth: "Art. 74c ISG i. V. m. CSV (angemessene organisatorische/technische Maßnahmen; Absicherung kritischer Kommunikationswege)"
@@ -110,12 +156,23 @@ indirect_exposure:
     - id: eu_subsidiary
       label: "Tochtergesellschaft in der EU (untersteht dort NIS-2-Pflichten)"
       note: "Die EU-Tochter kann unter NIS2-UmsuCG/NISG fallen; Konzernmeldeprozesse strahlen auf die Schweiz zurück, ohne eine ISG-Pflicht zu begründen."
+      when:
+        kind: subsidiary_in
+        region: eu
     - id: eu_customers_contract
       label: "EU-Kunden mit vertraglichen Sicherheitsanforderungen"
       note: "Vertragliche Anforderungen (z. B. Vorfällenmeldepflichten) können faktisch höher liegen als die ISG-Pflicht."
+      when:
+        kind: fact_equals
+        fact: euCustomersWithSecurityClauses
+        equals: yes
+        undetermined_when: [unknown]
     - id: supply_chain_critical
       label: "Kritische Position in einer Lieferkette mit EU-kritischer Infrastruktur"
       note: "Ausfallwirkungen auf EU-kritische Infrastrukturen können Vertrags- und Aufsichtsfolgen in der EU auslösen."
+      when:
+        kind: fact_truthy
+        fact: supplyChainCritical
 
 penalties_note_md: |
   Sanktionen: Wer die Meldepflicht nach Art. 74e ISG verletzt, handelt
