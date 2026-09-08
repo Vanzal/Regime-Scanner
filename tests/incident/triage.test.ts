@@ -38,8 +38,10 @@ describe('Incident triage (Rules Engine)', () => {
     expect(at.applicable).toBe('not_applicable')
     expect(at.trafficLight).toBe('green')
     expect(at.absoluteDeadlines).toEqual([])
+    expect(at.firedTriggers).toEqual([])
 
     expect(ch.applicable).toBe('not_applicable')
+    expect(ch.firedTriggers).toEqual([])
     expect(result.overallTrafficLight).toBe('amber')
   })
 

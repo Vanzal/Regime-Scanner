@@ -30,14 +30,17 @@ export function runIncidentTriage(
   const regimes: RegimeTriage[] = verdicts.map((v) => {
     const light = trafficLightFor(v.applicable)
     const relevant = v.applicable !== 'not_applicable'
-    const firedTriggers = v.thresholdTrace.entries
-      .filter((e) => e.kind === 'trigger' && e.status === 'fired')
-      .map((e) => ({
-        id: (e.code ?? '').replace(/^trigger\./, '') || e.label,
-        label: e.label,
-        citation: e.detail?.split(' · ')[0] ?? '',
-        detail: e.detail,
-      }))
+    const firedTriggers =
+      relevant
+        ? v.thresholdTrace.entries
+            .filter((e) => e.kind === 'trigger' && e.status === 'fired')
+            .map((e) => ({
+              id: (e.code ?? '').replace(/^trigger\./, '') || e.label,
+              label: e.label,
+              citation: e.detail?.split(' · ')[0] ?? '',
+              detail: e.detail,
+            }))
+        : []
     return {
       regime: v.regime,
       lawName: v.lawName,
@@ -53,9 +56,9 @@ export function runIncidentTriage(
         ? absoluteDeadlinesFrom(v.deadlines.stages, intake.discovered_at)
         : [],
       authority: v.deadlines.authority,
-      significanceNoteMd: v.significanceNoteMd,
+      significanceNoteMd: relevant ? v.significanceNoteMd : undefined,
       firedTriggers,
-      incidentTriggers: v.incidentTriggers,
+      incidentTriggers: relevant ? v.incidentTriggers : [],
     }
   })
 
