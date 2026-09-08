@@ -9,7 +9,7 @@ const COUNTRY_KEYS = ['de', 'at', 'ch', 'other'] as const
 
 const labelCls = 'block text-sm font-semibold text-slate-200'
 const inputCls =
-  'mt-1 w-full rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2.5 text-sm text-slate-100 outline-none placeholder:text-slate-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20'
+  'mt-1.5 w-full rounded-lg border border-slate-700/80 bg-[#070b14] px-3.5 py-2.5 text-sm text-slate-100 outline-none placeholder:text-slate-500 transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20'
 
 export function WaitlistForm({ dict }: { dict: Dictionary }) {
   const [state, formAction, pending] = useActionState<WaitlistState, FormData>(joinWaitlist, { ok: false })
@@ -27,9 +27,12 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
       <div
         role="status"
         data-testid="waitlist-success"
-        className="rounded-xl border border-cyan-400/30 bg-cyan-400/10 px-6 py-8 text-center"
+        className="rounded-xl border border-cyan-400/30 bg-cyan-400/10 px-6 py-10 text-center"
       >
-        <p className="text-lg font-semibold text-cyan-300">{w.success}</p>
+        <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-300" aria-hidden="true">
+          ✓
+        </div>
+        <p className="font-display text-xl font-semibold text-cyan-200">{w.success}</p>
         {state.duplicate && <p className="mt-2 text-sm text-slate-300">{w.duplicate}</p>}
       </div>
     )
@@ -81,12 +84,12 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-lg bg-cyan-400 px-6 py-3 text-sm font-bold text-slate-950 transition hover:bg-cyan-300 disabled:opacity-60 sm:w-auto"
+        className="w-full rounded-lg bg-cyan-400 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-[0_10px_30px_-12px_rgba(34,211,238,0.55)] transition hover:bg-cyan-300 disabled:opacity-60 sm:w-auto"
       >
         {pending ? w.submitting : w.submit}
       </button>
 
-      <p className="text-xs leading-relaxed text-slate-400">{w.privacy_note}</p>
+      <p className="text-xs leading-relaxed text-slate-500">{w.privacy_note}</p>
     </form>
   )
 }

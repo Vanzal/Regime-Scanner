@@ -339,14 +339,14 @@
     },
     "hero": {
       "badge": "Für Deutschland, Österreich & die Schweiz",
-      "title": "Ein Vorfall. Drei Melderegimes. Keine Rätselraten.",
-      "subtitle": "NexusScope sagt Ihnen in klarer Sprache, welche Cyber-Meldepflichten in Deutschland, Österreich und der Schweiz für Ihr Unternehmen gelten – und welche Fristen im Ernstfall laufen.",
+      "title": "Ein Vorfall. Drei Melderegimes. Wissen Sie, welche gelten – bevor die Frist läuft.",
+      "subtitle": "NexusScope spiegelt Ihr Unternehmen gegen NIS2UmsuCG, NISG 2024 und das Schweizer ISG – und zeigt Fristen sowie sichtbare Lücken in einem klaren Bericht.",
       "cta": "Auf die Warteliste",
-      "note": "Kostenlos in der Early-Access-Phase · Keine Anmeldung"
+      "note": "Early Access · Kostenlos · Keine Anmeldung"
     },
     "problem": {
       "title": "Die Meldepflichten im DACH-Raum wachsen – ungleich",
-      "body": "Deutschlands NIS2UmsuCG, Österreichs NISG 2024 und die Schweizs ISG haben jeweils eigene Schwellenwerte, Branchenlisten und Meldefristen. Ein einziger Vorfall kann in verschiedenen Länder verschiedene Pflichten auslösen – oder gar keine. Die meisten Unternehmen erfahren das erst nach dem Vorfall, wenn die 24-Stunden-Frist bereits läuft.",
+      "body": "Deutschlands NIS2UmsuCG, Österreichs NISG 2024 und das Schweizer ISG setzen jeweils eigene Schwellenwerte, Branchenlisten und Fristen. Ein Vorfall kann unterschiedliche Pflichten auslösen – oder gar keine. Die meisten Teams erfahren das erst danach, wenn die 24-Stunden-Frist bereits läuft.",
       "points": [
         "Drei Regimes, drei Schwellenwerte, drei Fristen",
         "Schwellenwerte mischen Beschäftigte, Umsatz und Branchenlisten",
@@ -439,7 +439,7 @@
     },
     "waitlist": {
       "title": "Auf die Warteliste",
-      "subtitle": "Seien Sie zuerst dabei, wenn NexusScope in den Early Access geht. Wir melden uns, sobald Ihr Unternehmen den ersten Scan starten kann.",
+      "subtitle": "Sichern Sie sich Early Access, wenn NexusScope startet. Hinterlassen Sie Ihre geschäftliche E-Mail – wir melden uns, sobald Ihr Unternehmen den ersten Scan starten kann.",
       "email_label": "Geschäftliche E-Mail",
       "size_label": "Unternehmensgröße",
       "size": {

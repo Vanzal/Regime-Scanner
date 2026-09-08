@@ -1,14 +1,100 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --ns-bg: #070b14;
+  --ns-bg-elevated: #0c1220;
+  --ns-bg-panel: #111827;
+  --ns-fg: #e2e8f0;
+  --ns-fg-muted: #94a3b8;
+  --ns-fg-dim: #64748b;
+  --ns-accent: #22d3ee;
+  --ns-accent-soft: rgba(34, 211, 238, 0.12);
+  --ns-border: rgba(148, 163, 184, 0.14);
+  --ns-glow: rgba(34, 211, 238, 0.18);
+  --background: var(--ns-bg);
+  --foreground: var(--ns-fg);
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-sans: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-sans);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+@keyframes ns-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ns-glow-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes ns-line-in {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.ns-fade-up {
+  animation: ns-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ns-fade-up-delay-1 {
+  animation-delay: 0.12s;
+}
+
+.ns-fade-up-delay-2 {
+  animation-delay: 0.24s;
+}
+
+.ns-fade-up-delay-3 {
+  animation-delay: 0.36s;
+}
+
+.ns-glow-breathe {
+  animation: ns-glow-breathe 7s ease-in-out infinite;
+}
+
+.ns-accent-line {
+  transform-origin: left center;
+  animation: ns-line-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ns-fade-up,
+  .ns-fade-up-delay-1,
+  .ns-fade-up-delay-2,
+  .ns-fade-up-delay-3,
+  .ns-glow-breathe,
+  .ns-accent-line {
+    animation: none;
+  }
 }
 
 /* PDF-/Druck-Pfad: gleiche Route, keine Web-Chrome-Elemente. */

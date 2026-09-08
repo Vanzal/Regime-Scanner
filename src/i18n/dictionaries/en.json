@@ -339,14 +339,14 @@
     },
     "hero": {
       "badge": "Built for Germany, Austria & Switzerland",
-      "title": "One incident. Three reporting regimes. No guesswork.",
-      "subtitle": "NexusScope tells you in plain language which cyber-incident reporting duties apply to your company across Germany, Austria and Switzerland — and which deadlines start ticking when an incident hits.",
+      "title": "One incident. Three reporting regimes. Know which ones apply — before the clock starts.",
+      "subtitle": "NexusScope maps your company against NIS2UmsuCG, NISG 2024 and the Swiss ISG, then shows deadlines and visible gaps in one clear report.",
       "cta": "Join the waitlist",
-      "note": "Free during early access · No login required"
+      "note": "Early access · Free · No login"
     },
     "problem": {
       "title": "DACH reporting rules are expanding — unevenly",
-      "body": "Germany's NIS2UmsuCG, Austria's NISG 2024 and Switzerland's ISG each define their own thresholds, sectors and reporting clocks. A single incident can trigger different duties in different countries — or none at all. Most companies find out only after the incident, when the 24-hour clock is already running.",
+      "body": "Germany's NIS2UmsuCG, Austria's NISG 2024 and Switzerland's ISG each set their own thresholds, sectors and clocks. One incident can trigger different duties — or none. Most teams discover that only after the incident, when the 24-hour window is already open.",
       "points": [
         "Three regimes, three thresholds, three timelines",
         "Thresholds mix headcount, revenue and sector lists",
@@ -439,7 +439,7 @@
     },
     "waitlist": {
       "title": "Join the waitlist",
-      "subtitle": "Be first in line when NexusScope opens for early access. We will let you know as soon as your company can run its first scan.",
+      "subtitle": "Get early access when NexusScope opens. Leave your work e-mail — we will notify you as soon as your company can run its first scan.",
       "email_label": "Work e-mail",
       "size_label": "Company size",
       "size": {
