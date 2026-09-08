@@ -15,7 +15,7 @@ export type {
   IncidentRecord,
 } from './types'
 export { trafficLightFor, overallTrafficLight, absoluteDeadlinesFrom } from './types'
-export { buildFactsFromIncident } from './facts'
+export { buildFactsFromIncident, buildSignalsFromIncident } from './facts'
 export { buildDraftNotification } from './draft'
 export { buildChecklist } from './checklist'
 export { runIncidentTriage } from './triage'

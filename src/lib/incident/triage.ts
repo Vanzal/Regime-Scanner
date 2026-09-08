@@ -1,9 +1,9 @@
 import type { Locale } from '@/i18n'
 import { loadRules } from '@/lib/rules/loader'
-import { evaluateAll } from '@/lib/rules/evaluate'
+import { evaluateAllWithIncidentSignals } from '@/lib/rules/evaluate'
 import { buildChecklist } from './checklist'
 import { buildDraftNotification } from './draft'
-import { buildFactsFromIncident } from './facts'
+import { buildFactsFromIncident, buildSignalsFromIncident } from './facts'
 import type { IncidentIntake } from './schema'
 import {
   absoluteDeadlinesFrom,
@@ -16,6 +16,7 @@ import {
 /**
  * Incident-Triage: Rules Engine unverändert wiederverwenden.
  * Ampel + absolute Fristen + Entwurfstext + Checkliste drumherum.
+ * Signifikanz-Trigger kommen aus YAML `incident_policy` (versioniert).
  */
 export function runIncidentTriage(
   intake: IncidentIntake,
@@ -23,11 +24,20 @@ export function runIncidentTriage(
 ): IncidentTriageResult {
   const rules = loadRules()
   const facts = buildFactsFromIncident(intake)
-  const verdicts = evaluateAll(rules, facts)
+  const signals = buildSignalsFromIncident(intake)
+  const verdicts = evaluateAllWithIncidentSignals(rules, facts, signals)
 
   const regimes: RegimeTriage[] = verdicts.map((v) => {
     const light = trafficLightFor(v.applicable)
     const relevant = v.applicable !== 'not_applicable'
+    const firedTriggers = v.thresholdTrace.entries
+      .filter((e) => e.kind === 'trigger' && e.status === 'fired')
+      .map((e) => ({
+        id: (e.code ?? '').replace(/^trigger\./, '') || e.label,
+        label: e.label,
+        citation: e.detail?.split(' · ')[0] ?? '',
+        detail: e.detail,
+      }))
     return {
       regime: v.regime,
       lawName: v.lawName,
@@ -37,11 +47,15 @@ export function runIncidentTriage(
       reasoningMd: v.reasoningMd,
       rulesVersionLabel: v.rulesVersionLabel,
       effectiveFrom: v.effectiveFrom,
+      unclearCode: v.unclearCode,
       deadlines: v.deadlines,
       absoluteDeadlines: relevant
         ? absoluteDeadlinesFrom(v.deadlines.stages, intake.discovered_at)
         : [],
       authority: v.deadlines.authority,
+      significanceNoteMd: v.significanceNoteMd,
+      firedTriggers,
+      incidentTriggers: v.incidentTriggers,
     }
   })
 

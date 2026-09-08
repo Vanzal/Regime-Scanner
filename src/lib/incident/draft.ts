@@ -130,9 +130,13 @@ export function draftFromVerdicts(
       reasoningMd: v.reasoningMd,
       rulesVersionLabel: v.rulesVersionLabel,
       effectiveFrom: v.effectiveFrom,
+      unclearCode: v.unclearCode,
       deadlines: v.deadlines,
       absoluteDeadlines: [],
       authority: v.deadlines.authority,
+      significanceNoteMd: v.significanceNoteMd,
+      firedTriggers: [],
+      incidentTriggers: v.incidentTriggers,
     }))
   return buildDraftNotification(intake, relevant, locale)
 }

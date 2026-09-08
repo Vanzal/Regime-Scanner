@@ -8,7 +8,8 @@
 # ─────────────────────────────────────────────────────────────────────────────
 regime: de
 version: v1
-version_label: DE-NIS2UmsuCG v1.0.0
+version_label: DE-NIS2UmsuCG v1.1.0
+engine_schema: 2
 law_name: "NIS-2-Umsetzungs- und Cybersicherheitsstärkungsgesetz (NIS2UmsuCG, Umsetzung im BSIG)"
 effective_from: 2025-12-06
 applicability_country: de
@@ -103,6 +104,57 @@ reporting_clock:
     name: "Gemeinsame Meldestelle von BSI und BBK"
     portal_url: "https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/NIS-2/NIS-2-node.html"
     format: "Meldung über die gemeinsame Meldestelle (BSI/BBK), Einrichtung des Meldewegs ausstehend"
+
+# Incident Copilot: Erheblichkeits-/Signifikanz-Trigger (§ 32 BSIG).
+# Die Engine matcht diese gegen IncidentSignals; keine Regime-Konstanten im Code.
+incident_policy:
+  significance_note_md: |
+    Nach § 32 BSIG ist ein erheblicher Sicherheitsvorfall zu melden, der die
+    Erbringung der Dienste erheblich beeinträchtigt oder beeinträchtigen kann
+    bzw. zu erheblichen materiellen/immateriellen Schäden führt. Die folgenden
+    Trigger sind Orientierungshilfen aus dem Incident-Intake – keine abschließende
+    Legaldefinition.
+  triggers:
+    - id: service_disruption
+      label: "Erhebliche Beeinträchtigung der Dienstverfügbarkeit"
+      citation: "§ 32 Abs. 1 BSIG"
+      severity_hint: high
+      clock_stage: erstmeldung
+      signals: [availability_loss, service_impact]
+      when:
+        kind: availability_in
+        values: [degraded, offline]
+      note: "Eingeschränkte oder ausgefallene Dienste sind ein klassisches Erheblichkeitssignal."
+    - id: personal_data_involved
+      label: "Personenbezogene Daten betroffen"
+      citation: "§ 32 BSIG (i. V. m. parallelen DSGVO-Meldepflichten)"
+      severity_hint: high
+      clock_stage: erstmeldung
+      signals: [personal_data, privacy]
+      when:
+        kind: personal_data_in
+        values: [yes]
+      note: "Parallel kann Art. 33 DSGVO greifen – Copilot weist darauf in der Checkliste hin."
+    - id: personal_data_unknown
+      label: "Personenbezug noch ungeklärt"
+      citation: "§ 32 BSIG"
+      severity_hint: med
+      clock_stage: erstmeldung
+      signals: [personal_data, uncertainty]
+      when:
+        kind: personal_data_in
+        values: [unknown]
+      note: "Unklarer Personenbezug hält die Erstmeldung vorsorglich offen."
+    - id: large_affected_population
+      label: "Viele betroffene Personen (≥ 100)"
+      citation: "§ 32 BSIG (Schadensausmaß)"
+      severity_hint: high
+      clock_stage: erstmeldung
+      signals: [scale, affected_persons]
+      when:
+        kind: affected_persons_in
+        values: [100_999, 1000_plus]
+      note: "Hohe Betroffenenzahl spricht für Erheblichkeit des Schadensausmaßes."
 
 # Generische Control-Ids → juristische Zitierung (warum das Gesetz sich dafür interessiert)
 control_areas:

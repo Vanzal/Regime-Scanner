@@ -25,6 +25,29 @@ export function ThresholdTraceBlock({ assessments, dict }: { assessments: Report
               </span>
             </summary>
             <div className="border-t border-slate-100 p-5 pt-4">
+              {trace.summary && (
+                <p className="mb-3 font-mono text-[11px] text-slate-500" data-testid={`trace-summary-${a.regime}`}>
+                  <span className="font-sans font-semibold text-slate-600">{t(dict, 'report.trace.summary')}:</span>{' '}
+                  {trace.summary}
+                </p>
+              )}
+              {(trace.unclear_code || trace.matched_class_id) && (
+                <p className="mb-3 text-[11px] text-slate-600">
+                  {trace.unclear_code && (
+                    <>
+                      <span className="font-semibold">{t(dict, 'report.trace.unclear_code')}:</span>{' '}
+                      <span className="font-mono text-amber-800">{trace.unclear_code}</span>
+                    </>
+                  )}
+                  {trace.unclear_code && trace.matched_class_id ? ' · ' : null}
+                  {trace.matched_class_id && (
+                    <>
+                      <span className="font-semibold">{t(dict, 'report.trace.matched_class')}:</span>{' '}
+                      <span className="font-mono">{trace.matched_class_id}</span>
+                    </>
+                  )}
+                </p>
+              )}
               <table className="w-full text-left text-xs">
                 <thead>
                   <tr className="text-slate-500">
@@ -36,7 +59,12 @@ export function ThresholdTraceBlock({ assessments, dict }: { assessments: Report
                 <tbody className="divide-y divide-slate-100">
                   {trace.entries.map((e, i) => (
                     <tr key={i}>
-                      <td className="py-1.5 pr-2 text-slate-800">{e.label}</td>
+                      <td className="py-1.5 pr-2 text-slate-800">
+                        {e.label}
+                        {e.code ? (
+                          <span className="mt-0.5 block font-mono text-[10px] text-slate-400">{e.code}</span>
+                        ) : null}
+                      </td>
                       <td className="py-1.5 pr-2">
                         <span
                           className={

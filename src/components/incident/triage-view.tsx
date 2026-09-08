@@ -91,9 +91,25 @@ export function IncidentTriageView({
                 <p className="text-xs font-semibold text-slate-600">
                   {dict.incident.result.traffic[r.trafficLight]}
                 </p>
+                {r.unclearCode && (
+                  <p className="font-mono text-[11px] text-amber-800" data-testid={`unclear-${r.regime}`}>
+                    {dict.incident.result.unclear_code}: {r.unclearCode}
+                  </p>
+                )}
                 <p className="text-sm leading-snug text-slate-800">
                   {renderInlineMd(r.reasoningMd.split('\n')[0])}
                 </p>
+                {r.firedTriggers.length > 0 && (
+                  <ul className="space-y-1 border-t border-slate-100 pt-2" data-testid={`triggers-${r.regime}`}>
+                    {r.firedTriggers.map((t) => (
+                      <li key={t.id} className="text-[11px] text-slate-700">
+                        <span className="font-semibold text-rose-800">{dict.incident.result.trigger_fired}</span>{' '}
+                        {t.label}
+                        {t.citation ? <span className="text-slate-500"> · {t.citation}</span> : null}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             )
           })}

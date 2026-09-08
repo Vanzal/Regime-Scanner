@@ -27,9 +27,13 @@ describe('Incident triage (Rules Engine)', () => {
     const ch = result.regimes.find((r) => r.regime === 'ch')!
 
     expect(de.applicable).toBe('unclear')
+    expect(de.unclearCode).toBe('missing_sector')
     expect(de.trafficLight).toBe('amber')
     expect(de.absoluteDeadlines.length).toBeGreaterThan(0)
     expect(de.authority.name.length).toBeGreaterThan(0)
+    expect(de.firedTriggers.some((t) => t.id === 'service_disruption')).toBe(true)
+    expect(de.firedTriggers.some((t) => t.id === 'personal_data_unknown')).toBe(true)
+    expect(de.incidentTriggers.length).toBeGreaterThan(0)
 
     expect(at.applicable).toBe('not_applicable')
     expect(at.trafficLight).toBe('green')

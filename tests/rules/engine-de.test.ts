@@ -48,6 +48,7 @@ describe('DE-Engine (§ 28 BSIG-Schwellenwerte)', () => {
     const v = evaluateRegime(de, facts({ employees: undefined, balanceEur: undefined }))
     expect(v.applicable).toBe('unclear')
     expect(v.confidence).toBe(0.5)
+    expect(v.unclearCode).toBe('missing_size_inputs')
     expect(v.thresholdTrace.missing_inputs.join(' ')).toMatch(/Mitarbeitende|Jahresbilanzsumme/)
   })
 
@@ -81,6 +82,7 @@ describe('DE-Engine (§ 28 BSIG-Schwellenwerte)', () => {
   it('Vertrauensdiensteanbieter ohne eIDAS-Status → unklar (höhere Kategorie offen)', () => {
     const v = evaluateRegime(de, facts({ sector: 'vertrauensdiensteanbieter', qualifiedTrustService: undefined }))
     expect(v.applicable).toBe('unclear')
+    expect(v.unclearCode).toBe('higher_class_undetermined')
     expect(v.reasoningMd).toContain('Qualifikationsstatus')
   })
 
@@ -106,7 +108,7 @@ describe('DE-Engine (§ 28 BSIG-Schwellenwerte)', () => {
 
   it('jedes Urteil trägt Regeln-Version und Deadlines', () => {
     const v = evaluateRegime(de, facts())
-    expect(v.rulesVersionLabel).toBe('DE-NIS2UmsuCG v1.0.0')
+    expect(v.rulesVersionLabel).toBe('DE-NIS2UmsuCG v1.1.0')
     expect(v.deadlines.stages.map((s) => s.hours)).toEqual([24, 72, 720])
     expect(v.deadlines.authority.name).toContain('Meldestelle')
   })

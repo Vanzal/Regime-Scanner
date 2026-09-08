@@ -29,7 +29,7 @@ describe('Neues Regime ohne Engine-Änderung (xx-Test-Fixture)', () => {
 
   it('die Fixture validiert gegen das unveränderte Schema', () => {
     expect(xx.regime).toBe('xx')
-    expect(xx.version_label).toBe('XX-Test v1.0.0')
+    expect(xx.version_label).toBe('XX-Test v1.1.0')
   })
 
   it('die Engine wertet das neue Regime vollständig aus', () => {
@@ -38,8 +38,10 @@ describe('Neues Regime ohne Engine-Änderung (xx-Test-Fixture)', () => {
     expect(v.lawName).toContain('Testgesetz')
     expect(v.deadlines.stages).toHaveLength(2)
     expect(v.deadlines.authority.name).toBe('Testmeldebehörde')
-    expect(v.rulesVersionLabel).toBe('XX-Test v1.0.0')
+    expect(v.rulesVersionLabel).toBe('XX-Test v1.1.0')
     expect(v.thresholdTrace.entries.length).toBeGreaterThan(0)
+    expect(v.engineSchema).toBe(2)
+    expect(v.incidentTriggers.some((t) => t.id === 'service_disruption')).toBe(true)
   })
 
   it('evaluateAll mischt bestehende und neue Regime-Fassungen unabhängig', () => {
