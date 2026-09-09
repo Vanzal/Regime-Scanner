@@ -338,19 +338,20 @@
       "faq": "FAQ"
     },
     "hero": {
-      "badge": "Built for Germany, Austria & Switzerland",
+      "badge": "NexusScope · Built for Germany, Austria & Switzerland",
       "title": "One incident. Three reporting regimes. Know which ones apply — before the clock starts.",
-      "subtitle": "NexusScope maps your company against NIS2UmsuCG, NISG 2024 and the Swiss ISG, then shows deadlines and visible gaps in one clear report.",
+      "subtitle": "Map your company against NIS2UmsuCG, NISG 2024 and the Swiss ISG. See deadlines and visible gaps in one clear report.",
       "cta": "Join the waitlist",
       "note": "Early access · Free · No login"
     },
     "problem": {
       "title": "DACH reporting rules are expanding — unevenly",
-      "body": "Germany's NIS2UmsuCG, Austria's NISG 2024 and Switzerland's ISG each set their own thresholds, sectors and clocks. One incident can trigger different duties — or none. Most teams discover that only after the incident, when the 24-hour window is already open.",
+      "lead": "Germany's NIS2UmsuCG, Austria's NISG 2024 and Switzerland's ISG each set their own thresholds, sectors and clocks. One incident can trigger different duties — or none.",
+      "emphasis": "Most companies only discover which rules apply after the 24-hour reporting window has already started.",
       "points": [
         "Three regimes, three thresholds, three timelines",
         "Thresholds mix headcount, revenue and sector lists",
-        "Deadlines start at 24 hours — before you have answers"
+        "Orientation after an incident is too late — the clock has already started"
       ]
     },
     "how": {
@@ -372,10 +373,24 @@
     },
     "preview": {
       "title": "What the report looks like",
-      "subtitle": "Excerpt from a NexusScope report (sample data).",
-      "tab_regimes": "Regime status",
-      "tab_gaps": "Gaps & recommendations",
-      "tab_deadlines": "Notification deadlines",
+      "subtitle": "Every NexusScope report centres on three outputs: Regime Status, Gaps, and Deadlines.",
+      "outputs": [
+        {
+          "label": "Regime Status",
+          "hint": "IN / OUT / UNCLEAR for DE, AT and CH — independently assessed."
+        },
+        {
+          "label": "Gaps",
+          "hint": "Prioritised findings from your public footprint, with clear next steps."
+        },
+        {
+          "label": "Deadlines",
+          "hint": "The 24 h / 72 h / 30 d clocks for each applicable regime."
+        }
+      ],
+      "tab_regimes": "Regime Status",
+      "tab_gaps": "Gaps",
+      "tab_deadlines": "Deadlines",
       "col_regime": "Regime",
       "col_status": "Status",
       "col_reason": "Why",
@@ -403,38 +418,39 @@
       "title": "What you get",
       "cards": [
         {
-          "title": "Attack-surface analysis",
-          "body": "Passive checks of DNS, TLS, e-mail authentication and web hardening — public sources only."
+          "title": "Know which regimes apply",
+          "body": "Independent IN / OUT / UNCLEAR verdicts for DE, AT and CH — in one place."
         },
         {
-          "title": "Multi-regime mapping",
-          "body": "DE NIS2UmsuCG, AT NISG 2024, CH ISG — assessed independently, in one report."
+          "title": "See the clocks that matter",
+          "body": "24 h / 72 h / 30 d deadlines with the authority and channel for each applicable regime."
         },
         {
-          "title": "Deadline tracker",
-          "body": "The 24 h / 72 h / 1-month clocks per applicable regime, with the authority and the channel."
+          "title": "Close visible gaps first",
+          "body": "Prioritised findings from passive DNS, TLS and web checks — public sources only."
         },
         {
-          "title": "Plain-language reporting",
-          "body": "No legalese. Every conclusion shows its reasoning and thresholds."
+          "title": "Show your reasoning",
+          "body": "Every conclusion cites thresholds and sources — ready for management and counsel."
         },
         {
-          "title": "Exportable PDF",
-          "body": "One-click print/PDF export for management, auditors and boards."
+          "title": "Share a clean PDF",
+          "body": "One-click print/PDF export for boards, auditors and legal reviews."
         },
         {
-          "title": "CH/EU data residency",
-          "body": "Hosting and data handling designed to keep your data in Switzerland and the EU."
+          "title": "Keep data in CH/EU",
+          "body": "Hosting and handling designed so your data stays in Switzerland and the EU."
         }
       ]
     },
     "trust": {
-      "title": "Built for the DACH region",
-      "body": "NexusScope is developed in and for Germany, Austria and Switzerland. Your data stays in Switzerland and the EU, we scan only public sources, honour robots.txt and never log into your systems.",
+      "eyebrow": "Trust",
+      "title": "Built for DACH companies",
+      "body": "Orientation for Germany, Austria and Switzerland. Your data stays in Switzerland and the EU. Public sources only — informational, not legal advice.",
       "points": [
-        "Data stays in CH/EU",
-        "Public sources only — passive, polite scanning",
-        "Not legal advice — clear, honest uncertainty"
+        "Built for DACH companies",
+        "Data stays in Switzerland / EU",
+        "Informational only — not legal advice"
       ]
     },
     "waitlist": {
