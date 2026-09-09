@@ -7,9 +7,7 @@ import type { Dictionary } from '@/i18n'
 const SIZE_KEYS = ['lt_50', '50_249', '250_plus', 'unknown'] as const
 const COUNTRY_KEYS = ['de', 'at', 'ch', 'other'] as const
 
-const labelCls = 'block text-sm font-semibold text-slate-200'
-const inputCls =
-  'mt-1.5 w-full rounded-lg border border-slate-700/80 bg-[#070b14] px-3.5 py-2.5 text-sm text-slate-100 outline-none placeholder:text-slate-500 transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20'
+const labelCls = 'block text-sm font-semibold text-[var(--ns-fg)]'
 
 export function WaitlistForm({ dict }: { dict: Dictionary }) {
   const [state, formAction, pending] = useActionState<WaitlistState, FormData>(joinWaitlist, { ok: false })
@@ -27,13 +25,12 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
       <div
         role="status"
         data-testid="waitlist-success"
-        className="rounded-xl border border-cyan-400/30 bg-cyan-400/10 px-6 py-10 text-center"
+        className="border border-[var(--ns-border-strong)] bg-[var(--ns-bg)] px-6 py-10"
       >
-        <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-300" aria-hidden="true">
-          ✓
-        </div>
-        <p className="font-display text-xl font-semibold text-cyan-200">{w.success}</p>
-        {state.duplicate && <p className="mt-2 text-sm text-slate-300">{w.duplicate}</p>}
+        <p className="font-display text-xl tracking-tight text-[var(--ns-fg)]">{w.success}</p>
+        {state.duplicate && (
+          <p className="font-reading mt-2 text-sm text-[var(--ns-fg-muted)]">{w.duplicate}</p>
+        )}
       </div>
     )
   }
@@ -48,16 +45,18 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
           type="email"
           required
           autoComplete="email"
-          className={inputCls}
+          className="ns-input"
           aria-invalid={Boolean(errFor('email'))}
         />
-        {errFor('email') && <p className="mt-1 text-xs font-medium text-rose-400">{errFor('email')}</p>}
+        {errFor('email') && (
+          <p className="mt-1 text-xs font-medium text-[var(--ns-danger)]">{errFor('email')}</p>
+        )}
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label className={labelCls} htmlFor="wl_size">{w.size_label}</label>
-          <select id="wl_size" name="company_size" required defaultValue="" className={inputCls}>
+          <select id="wl_size" name="company_size" required defaultValue="" className="ns-input">
             <option value="" disabled>–</option>
             {SIZE_KEYS.map((s) => (
               <option key={s} value={s}>{w.size[s]}</option>
@@ -66,30 +65,35 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
         </div>
         <div>
           <label className={labelCls} htmlFor="wl_country">{w.country_label}</label>
-          <select id="wl_country" name="country" required defaultValue="" className={inputCls}>
+          <select id="wl_country" name="country" required defaultValue="" className="ns-input">
             <option value="" disabled>–</option>
             {COUNTRY_KEYS.map((c) => (
               <option key={c} value={c}>{w.country[c]}</option>
             ))}
           </select>
-          {errFor('country') && <p className="mt-1 text-xs font-medium text-rose-400">{errFor('country')}</p>}
+          {errFor('country') && (
+            <p className="mt-1 text-xs font-medium text-[var(--ns-danger)]">{errFor('country')}</p>
+          )}
         </div>
       </div>
 
       <div>
         <label className={labelCls} htmlFor="wl_pain">{w.pain_label}</label>
-        <textarea id="wl_pain" name="pain_note" rows={3} maxLength={500} placeholder={w.pain_placeholder} className={inputCls} />
+        <textarea
+          id="wl_pain"
+          name="pain_note"
+          rows={3}
+          maxLength={500}
+          placeholder={w.pain_placeholder}
+          className="ns-input min-h-[5.5rem]"
+        />
       </div>
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="w-full rounded-lg bg-cyan-400 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-[0_10px_30px_-12px_rgba(34,211,238,0.55)] transition hover:bg-cyan-300 disabled:opacity-60 sm:w-auto"
-      >
+      <button type="submit" disabled={pending} className="ns-btn-primary w-full sm:w-auto">
         {pending ? w.submitting : w.submit}
       </button>
 
-      <p className="text-xs leading-relaxed text-slate-500">{w.privacy_note}</p>
+      <p className="font-reading text-xs leading-relaxed text-[var(--ns-fg-dim)]">{w.privacy_note}</p>
     </form>
   )
 }

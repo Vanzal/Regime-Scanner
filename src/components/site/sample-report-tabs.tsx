@@ -6,15 +6,15 @@ import type { Dictionary } from '@/i18n'
 type TabId = 'regimes' | 'gaps' | 'deadlines'
 
 const STATUS_TONE: Record<'in' | 'unclear' | 'out', string> = {
-  in: 'bg-emerald-500/15 text-emerald-300 ring-emerald-400/35',
-  unclear: 'bg-amber-500/15 text-amber-300 ring-amber-400/35',
-  out: 'bg-slate-500/15 text-slate-400 ring-slate-500/35',
+  in: 'border-[var(--ns-success)] text-[var(--ns-success)]',
+  unclear: 'border-[var(--ns-warning)] text-[var(--ns-warning)] border-dashed',
+  out: 'border-[var(--ns-border-strong)] text-[var(--ns-fg-dim)]',
 }
 
 const SEV_TONE: Record<string, string> = {
-  high: 'bg-rose-500/15 text-rose-300 ring-rose-400/35',
-  med: 'bg-amber-500/15 text-amber-300 ring-amber-400/35',
-  info: 'bg-slate-500/15 text-slate-400 ring-slate-500/35',
+  high: 'border-[var(--ns-danger)] text-[var(--ns-danger)]',
+  med: 'border-[var(--ns-warning)] text-[var(--ns-warning)]',
+  info: 'border-[var(--ns-border-strong)] text-[var(--ns-fg-dim)]',
 }
 
 export function SampleReportTabs({ dict }: { dict: Dictionary }) {
@@ -28,25 +28,25 @@ export function SampleReportTabs({ dict }: { dict: Dictionary }) {
   ]
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-700/70 bg-[#0c1220] shadow-[0_24px_80px_-32px_rgba(34,211,238,0.25)]">
-      <div className="flex items-center gap-2 border-b border-slate-700/70 bg-[#0a101c] px-4 py-3">
-        <span className="h-2.5 w-2.5 rounded-full bg-slate-600" aria-hidden="true" />
-        <span className="h-2.5 w-2.5 rounded-full bg-slate-600" aria-hidden="true" />
-        <span className="h-2.5 w-2.5 rounded-full bg-slate-600" aria-hidden="true" />
-        <span className="ml-3 truncate font-mono text-[11px] text-slate-500">nexusscope · sample-report</span>
+    <div className="border-2 border-[var(--ns-fg)] bg-[var(--ns-bg-elevated)]">
+      <div className="flex items-center justify-between gap-3 border-b border-[var(--ns-border-strong)] bg-[var(--ns-bg-panel)] px-4 py-3 sm:px-5">
+        <span className="font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
+          nexusscope · sample-report
+        </span>
+        <span className="font-instrument text-[11px] text-[var(--ns-fg-dim)]">SYNTHETIC</span>
       </div>
 
-      <div role="tablist" aria-label={p.title} className="flex flex-wrap border-b border-slate-700/70">
+      <div role="tablist" aria-label={p.title} className="flex flex-wrap border-b border-[var(--ns-border-strong)]">
         {tabs.map((tb) => (
           <button
             key={tb.id}
             role="tab"
             aria-selected={tab === tb.id}
             onClick={() => setTab(tb.id)}
-            className={`px-5 py-3.5 text-sm font-semibold transition ${
+            className={`min-h-11 px-5 py-3 text-sm font-semibold transition-colors ${
               tab === tb.id
-                ? 'border-b-2 border-cyan-400 text-cyan-300'
-                : 'border-b-2 border-transparent text-slate-400 hover:text-slate-200'
+                ? 'bg-[var(--ns-fg)] text-[var(--ns-bg)]'
+                : 'text-[var(--ns-fg-muted)] hover:text-[var(--ns-fg)]'
             }`}
           >
             {tb.label}
@@ -54,9 +54,9 @@ export function SampleReportTabs({ dict }: { dict: Dictionary }) {
         ))}
       </div>
 
-      <div className="p-6 sm:p-8" data-testid="sample-report-panel">
+      <div className="p-5 sm:p-8" data-testid="sample-report-panel">
         {tab === 'regimes' && (
-          <div className="space-y-4">
+          <div className="space-y-0">
             {(
               [
                 { key: 'de', name: p.regime_de, status: 'in', reason: p.regime_de_reason },
@@ -64,14 +64,20 @@ export function SampleReportTabs({ dict }: { dict: Dictionary }) {
                 { key: 'ch', name: p.regime_ch, status: 'out', reason: p.regime_ch_reason },
               ] as const
             ).map((r) => (
-              <div key={r.key} data-testid={`sample-regime-${r.key}`} className="border-b border-slate-800 py-4 last:border-0 last:pb-0 first:pt-0">
+              <div
+                key={r.key}
+                data-testid={`sample-regime-${r.key}`}
+                className="border-b border-[var(--ns-border)] py-5 last:border-0 last:pb-0 first:pt-0"
+              >
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <span className="font-semibold text-slate-100">{r.name}</span>
-                  <span className={`rounded-md px-2.5 py-1 text-xs font-bold tracking-wide ring-1 ${STATUS_TONE[r.status]}`}>
+                  <span className="font-semibold tracking-tight">{r.name}</span>
+                  <span
+                    className={`border px-2.5 py-1 font-instrument text-[11px] font-bold uppercase tracking-[0.12em] ${STATUS_TONE[r.status]}`}
+                  >
                     {r.status === 'in' ? p.status_in : r.status === 'unclear' ? p.status_unclear : p.status_out}
                   </span>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-slate-400">{r.reason}</p>
+                <p className="font-reading mt-2 text-sm leading-relaxed text-[var(--ns-fg-muted)]">{r.reason}</p>
               </div>
             ))}
           </div>
@@ -79,7 +85,7 @@ export function SampleReportTabs({ dict }: { dict: Dictionary }) {
 
         {tab === 'gaps' && (
           <div className="space-y-5">
-            <p className="text-sm text-slate-400">{p.gaps_intro}</p>
+            <p className="font-reading text-sm text-[var(--ns-fg-muted)]">{p.gaps_intro}</p>
             {(
               [
                 { sev: 'high', text: p.gap1 },
@@ -88,31 +94,33 @@ export function SampleReportTabs({ dict }: { dict: Dictionary }) {
               ] as const
             ).map((g, i) => (
               <div key={i} data-testid={`sample-gap-${i}`} className="flex items-start gap-4">
-                <span className={`mt-0.5 shrink-0 rounded-md px-2.5 py-1 text-xs font-bold uppercase tracking-wide ring-1 ${SEV_TONE[g.sev]}`}>
+                <span
+                  className={`mt-0.5 shrink-0 border px-2.5 py-1 font-instrument text-[11px] font-bold uppercase tracking-[0.12em] ${SEV_TONE[g.sev]}`}
+                >
                   {dict.report.gaps.severity[g.sev]}
                 </span>
-                <p className="text-sm leading-relaxed text-slate-200">{g.text}</p>
+                <p className="font-reading text-sm leading-relaxed">{g.text}</p>
               </div>
             ))}
           </div>
         )}
 
         {tab === 'deadlines' && (
-          <div className="space-y-5">
-            <p className="text-sm text-slate-400">{p.deadlines_intro}</p>
+          <div className="space-y-4">
+            <p className="font-reading text-sm text-[var(--ns-fg-muted)]">{p.deadlines_intro}</p>
             {([p.deadline1, p.deadline2, p.deadline3] as const).map((d, i) => (
               <div key={i} data-testid={`sample-deadline-${i}`} className="flex items-center gap-4">
-                <span className="w-[4.5rem] shrink-0 rounded-md bg-cyan-400/10 px-2.5 py-2 text-center font-mono text-sm font-bold text-cyan-300 ring-1 ring-cyan-400/25">
+                <span className="ns-clock flex h-14 w-[4.75rem] shrink-0 items-center justify-center font-display text-lg">
                   {['24 h', '72 h', '30 d'][i]}
                 </span>
-                <p className="text-sm font-medium text-slate-200">{d}</p>
+                <p className="text-sm font-medium leading-snug">{d}</p>
               </div>
             ))}
           </div>
         )}
       </div>
 
-      <div className="border-t border-slate-700/70 px-6 py-3 text-xs text-slate-500 sm:px-8">
+      <div className="border-t border-[var(--ns-border-strong)] px-5 py-3 font-reading text-xs text-[var(--ns-fg-dim)] sm:px-8">
         {p.disclaimer} {p.as_of}
       </div>
     </div>

@@ -25,3 +25,10 @@ npm-debug.log*
 
 # netlify
 .netlify/
+
+# local agent tooling
+.cursor/skills/
+.impeccable/review/
+.impeccable/build/
+.impeccable/mocks/
+.impeccable/config.local.json

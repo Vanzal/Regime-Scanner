@@ -11,24 +11,24 @@ export default async function ImpressumPage() {
   const l = dict.site.legal
 
   return (
-    <div className="min-h-screen bg-[var(--ns-bg)] text-slate-200">
+    <div className="min-h-screen bg-[var(--ns-bg)] text-[var(--ns-fg)]">
       <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-        <h1 className="font-display text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">{l.impressum_title}</h1>
-        <p className="mt-3 text-sm text-slate-400">{l.impressum_intro}</p>
+        <h1 className="font-display text-3xl tracking-tight sm:text-4xl">{l.impressum_title}</h1>
+        <p className="font-reading mt-3 text-sm text-[var(--ns-fg-muted)]">{l.impressum_intro}</p>
 
         <dl className="mt-10 space-y-6 text-sm leading-relaxed">
           <div>
-            <dt className="font-semibold text-slate-300">{l.operator}</dt>
-            <dd className="mt-1 text-slate-400">{l.placeholder}</dd>
+            <dt className="font-semibold">{l.operator}</dt>
+            <dd className="font-reading mt-1 text-[var(--ns-fg-muted)]">{l.placeholder}</dd>
           </div>
           <div>
-            <dt className="font-semibold text-slate-300">{l.representative}</dt>
-            <dd className="mt-1 text-slate-400">{l.placeholder}</dd>
+            <dt className="font-semibold">{l.representative}</dt>
+            <dd className="font-reading mt-1 text-[var(--ns-fg-muted)]">{l.placeholder}</dd>
           </div>
           <div>
-            <dt className="font-semibold text-slate-300">{l.contact}</dt>
-            <dd className="mt-1 text-slate-400">
-              <a href={`mailto:${dict.site.footer.contact_email}`} className="text-cyan-300 hover:underline">
+            <dt className="font-semibold">{l.contact}</dt>
+            <dd className="mt-1 text-[var(--ns-fg-muted)]">
+              <a href={`mailto:${dict.site.footer.contact_email}`} className="underline decoration-[var(--ns-border-strong)] underline-offset-4 hover:text-[var(--ns-fg)]">
                 {dict.site.footer.contact_email}
               </a>
             </dd>

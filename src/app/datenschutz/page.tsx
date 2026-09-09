@@ -11,19 +11,19 @@ export default async function DatenschutzPage() {
   const l = dict.site.legal
 
   return (
-    <div className="min-h-screen bg-[var(--ns-bg)] text-slate-200">
+    <div className="min-h-screen bg-[var(--ns-bg)] text-[var(--ns-fg)]">
       <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-        <h1 className="font-display text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">{l.datenschutz_title}</h1>
-        <p className="mt-3 text-sm text-slate-400">{l.datenschutz_intro}</p>
+        <h1 className="font-display text-3xl tracking-tight sm:text-4xl">{l.datenschutz_title}</h1>
+        <p className="font-reading mt-3 text-sm text-[var(--ns-fg-muted)]">{l.datenschutz_intro}</p>
 
         <div className="mt-10 space-y-6 text-sm leading-relaxed">
           {l.privacy_sections.map((section, i) => (
             <section key={i} data-testid={`privacy-section-${i + 1}`}>
-              <h2 className="font-semibold text-slate-300">{section.h}</h2>
-              <p className="mt-1 text-slate-400">{section.b}</p>
+              <h2 className="font-semibold">{section.h}</h2>
+              <p className="font-reading mt-1 text-[var(--ns-fg-muted)]">{section.b}</p>
             </section>
           ))}
-          <p className="text-slate-500">{l.placeholder}</p>
+          <p className="font-reading text-[var(--ns-fg-dim)]">{l.placeholder}</p>
         </div>
       </main>
       <SiteFooter dict={dict} locale={locale} />

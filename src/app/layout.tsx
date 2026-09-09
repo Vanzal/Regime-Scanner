@@ -1,21 +1,28 @@
 import type { Metadata } from 'next'
-import { Fraunces, Plus_Jakarta_Sans } from 'next/font/google'
+import { Archivo, Archivo_Black, Literata } from 'next/font/google'
 import { cookies } from 'next/headers'
 import { localeFromCookie } from '@/i18n'
 import './globals.css'
 
-const display = Fraunces({
+const display = Archivo_Black({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-display-face',
-  weight: ['500', '600', '700'],
+  weight: '400',
 })
 
-const sans = Plus_Jakarta_Sans({
+const sans = Archivo({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans-face',
   weight: ['400', '500', '600', '700'],
+})
+
+const reading = Literata({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-reading-face',
+  weight: ['400', '500', '600'],
 })
 
 export const metadata: Metadata = {
@@ -29,14 +36,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const locale = localeFromCookie(cookieStore.get('lang')?.value)
 
   return (
-    <html lang={locale} className={`${display.variable} ${sans.variable}`}>
+    <html lang={locale} className={`${display.variable} ${sans.variable} ${reading.variable}`}>
       <body
         className="min-h-screen antialiased"
         style={{
           fontFamily: 'var(--font-sans-face), var(--font-sans)',
-          // display face available via CSS var for .font-display
-          ['--font-display' as string]: 'var(--font-display-face), Georgia, serif',
+          ['--font-display' as string]: 'var(--font-display-face), "Arial Black", sans-serif',
           ['--font-sans' as string]: 'var(--font-sans-face), "Helvetica Neue", Arial, sans-serif',
+          ['--font-reading' as string]: 'var(--font-reading-face), Georgia, serif',
         }}
       >
         {children}
