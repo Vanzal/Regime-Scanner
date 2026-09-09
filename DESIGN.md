@@ -29,7 +29,7 @@ Scale roughly major third (~1.25) from 14px body.
 | `--ns-bg-elevated` | `oklch(0.99 0.004 95)` | Raised panels |
 | `--ns-bg-panel` | `oklch(0.94 0.01 95)` | Alternating bands |
 | `--ns-fg` / `--ns-bg-ink` | `oklch(0.22 0.035 255)` | Ink |
-| `--ns-accent` | `oklch(0.42 0.145 25)` | Primary CTA only (deep premium red) |
+| `--ns-accent` | `oklch(0.38 0.12 25)` | Primary CTA only (deep premium red) |
 | Semantic | success / warning / danger | Status stamps with border (not fill pills) |
 
 ## Components
