@@ -34,15 +34,11 @@ export function CookieBanner({ dict }: { dict: Dictionary }) {
       role="region"
       aria-label={dict.site.cookie.accept}
       data-testid="cookie-banner"
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-700/80 bg-slate-950/95 backdrop-blur"
+      className="fixed inset-x-0 bottom-0 z-50 border-t-2 border-[var(--ns-fg)] bg-[var(--ns-bg-elevated)]"
     >
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-        <p className="text-xs leading-relaxed text-slate-400">{dict.site.cookie.text}</p>
-        <button
-          type="button"
-          onClick={accept}
-          className="shrink-0 rounded-lg bg-cyan-400 px-4 py-2 text-xs font-bold text-slate-950 transition hover:bg-cyan-300"
-        >
+        <p className="font-reading text-xs leading-relaxed text-[var(--ns-fg-muted)]">{dict.site.cookie.text}</p>
+        <button type="button" onClick={accept} className="ns-btn-primary !min-h-0 shrink-0 px-4 py-2 text-xs">
           {dict.site.cookie.accept}
         </button>
       </div>

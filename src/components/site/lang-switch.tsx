@@ -25,11 +25,11 @@ export function LangSwitch({
 
   const active =
     variant === 'light'
-      ? 'bg-slate-900 text-white'
+      ? 'bg-[var(--ns-fg)] text-[var(--ns-bg)]'
       : 'bg-slate-700/80 text-cyan-300'
   const idle =
     variant === 'light'
-      ? 'text-slate-500 hover:text-slate-800'
+      ? 'text-[var(--ns-fg-dim)] hover:text-[var(--ns-fg)]'
       : 'text-slate-500 hover:text-slate-300'
 
   return (
@@ -41,7 +41,7 @@ export function LangSwitch({
           onClick={() => setLocale(l)}
           disabled={pending}
           aria-pressed={locale === l}
-          className={`rounded-md px-2 py-1 text-xs font-bold uppercase tracking-wide transition ${
+          className={`min-h-8 rounded-[var(--ns-radius)] px-2.5 py-1 font-instrument text-xs font-bold uppercase tracking-[0.12em] transition ${
             locale === l ? active : idle
           }`}
         >
