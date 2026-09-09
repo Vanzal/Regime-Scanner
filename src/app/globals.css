@@ -9,8 +9,9 @@
   --ns-fg: oklch(0.22 0.035 255);
   --ns-fg-muted: oklch(0.42 0.025 255);
   --ns-fg-dim: oklch(0.55 0.02 255);
-  --ns-accent: oklch(0.52 0.195 28);
-  --ns-accent-hover: oklch(0.46 0.19 28);
+  /* Deeper premium signal red — calm, not bright vermilion */
+  --ns-accent: oklch(0.38 0.12 25);
+  --ns-accent-hover: oklch(0.32 0.11 25);
   --ns-accent-fg: oklch(0.99 0.01 95);
   --ns-border: oklch(0.22 0.035 255 / 0.18);
   --ns-border-strong: oklch(0.22 0.035 255 / 0.55);

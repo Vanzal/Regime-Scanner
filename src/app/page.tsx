@@ -7,12 +7,12 @@ import { SiteFooter } from '@/components/site/site-footer'
 
 export const dynamic = 'force-dynamic'
 
-const SECTION = 'mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24'
+const SECTION = 'mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20'
 const H2 = 'font-display text-2xl tracking-tight text-[var(--ns-fg)] sm:text-3xl'
 
-function BrandMark({ className = '', hero = false }: { className?: string; hero?: boolean }) {
+function BrandMark({ className = '' }: { className?: string }) {
   return (
-    <span className={`tracking-tight text-[var(--ns-fg)] ${hero ? 'font-display' : 'font-display text-sm sm:text-base'} ${className}`}>
+    <span className={`font-display text-sm tracking-tight text-[var(--ns-fg)] sm:text-base ${className}`}>
       NexusScope
     </span>
   )
@@ -28,7 +28,7 @@ function DeadlineInstruments() {
   return (
     <aside
       aria-label="Reporting clocks"
-      className="ns-reveal ns-reveal-d2 grid grid-cols-3 gap-2 sm:gap-3 lg:w-[22rem]"
+      className="ns-reveal ns-reveal-d2 grid grid-cols-3 gap-2 sm:gap-3 lg:w-[20rem]"
     >
       {clocks.map((c, i) => (
         <div
@@ -37,7 +37,7 @@ function DeadlineInstruments() {
           style={{ animationDelay: `${0.2 + i * 0.1}s` }}
         >
           <span className="font-instrument text-[10px] uppercase tracking-[0.14em] opacity-70">{c.caption}</span>
-          <span className="mt-6 font-display text-2xl leading-none sm:text-3xl">{c.label}</span>
+          <span className="mt-5 font-display text-xl leading-none sm:text-2xl">{c.label}</span>
         </div>
       ))}
     </aside>
@@ -49,10 +49,10 @@ function WaitlistSection({ dict, id }: { dict: Dictionary; id: string }) {
     <section id={id} className="border-t border-[var(--ns-border-strong)] bg-[var(--ns-bg-panel)]">
       <div className={`${SECTION} max-w-3xl`}>
         <h2 className={H2}>{dict.site.waitlist.title}</h2>
-        <p className="font-reading mt-4 max-w-prose text-base leading-relaxed text-[var(--ns-fg-muted)]">
+        <p className="font-reading mt-3 max-w-prose text-base leading-relaxed text-[var(--ns-fg-muted)]">
           {dict.site.waitlist.subtitle}
         </p>
-        <div className="mt-10 border border-[var(--ns-border-strong)] bg-[var(--ns-bg-elevated)] p-5 sm:p-8" data-testid="waitlist-form">
+        <div className="mt-8 border border-[var(--ns-border-strong)] bg-[var(--ns-bg-elevated)] p-5 sm:p-8" data-testid="waitlist-form">
           <WaitlistForm dict={dict} />
         </div>
       </div>
@@ -83,16 +83,18 @@ export default async function LandingPage() {
           </a>
         </nav>
 
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 pb-16 pt-12 sm:px-6 sm:pb-20 sm:pt-16 lg:grid-cols-[minmax(0,1.2fr)_auto] lg:items-end lg:gap-16">
-          <div>
-            <BrandMark hero className="ns-reveal text-5xl sm:text-6xl md:text-7xl lg:text-[5.25rem]" />
-            <h1 className="ns-reveal ns-reveal-d1 mt-8 max-w-xl font-display text-xl leading-snug tracking-tight sm:text-2xl md:text-[1.75rem] md:leading-snug">
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 pb-14 pt-10 sm:px-6 sm:pb-16 sm:pt-14 lg:grid-cols-[minmax(0,1.25fr)_auto] lg:items-end lg:gap-14">
+          <div className="max-w-2xl">
+            <p className="ns-reveal font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
+              {s.hero.badge}
+            </p>
+            <h1 className="ns-reveal ns-reveal-d1 mt-5 font-display text-[1.85rem] leading-[1.15] tracking-tight sm:text-4xl md:text-[2.75rem] md:leading-[1.12]">
               {s.hero.title}
             </h1>
-            <p className="font-reading ns-reveal ns-reveal-d2 mt-5 max-w-prose text-base leading-relaxed text-[var(--ns-fg-muted)] sm:text-lg">
+            <p className="font-reading ns-reveal ns-reveal-d2 mt-6 max-w-prose text-base leading-relaxed text-[var(--ns-fg-muted)] sm:text-lg">
               {s.hero.subtitle}
             </p>
-            <div className="ns-reveal ns-reveal-d3 mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+            <div className="ns-reveal ns-reveal-d3 mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
               <a href="#waitlist" className="ns-btn-primary">
                 {s.hero.cta}
               </a>
@@ -106,19 +108,22 @@ export default async function LandingPage() {
       {/* ── 2 · Problem ─────────────────────────────────────────────────── */}
       <section className="border-b border-[var(--ns-border)]">
         <div className={SECTION}>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-14">
             <h2 className={H2}>{s.problem.title}</h2>
             <div>
               <p className="font-reading text-base leading-relaxed text-[var(--ns-fg-muted)] sm:text-lg">
-                {s.problem.body}
+                {s.problem.lead}
               </p>
-              <ul className="mt-10 space-y-0 border-t border-[var(--ns-border-strong)]">
+              <p className="mt-5 border-l-2 border-[var(--ns-accent)] pl-4 text-sm font-semibold leading-snug tracking-tight sm:text-base">
+                {s.problem.emphasis}
+              </p>
+              <ul className="mt-8 space-y-0 border-t border-[var(--ns-border-strong)]">
                 {s.problem.points.map((point, i) => (
                   <li
                     key={i}
-                    className="border-b border-[var(--ns-border)] py-4 text-sm font-medium leading-relaxed sm:text-base"
+                    className="border-b border-[var(--ns-border)] py-3.5 text-sm leading-relaxed text-[var(--ns-fg-muted)] sm:text-base"
                   >
-                    {point}
+                    <span className="font-medium text-[var(--ns-fg)]">{point}</span>
                   </li>
                 ))}
               </ul>
@@ -131,11 +136,11 @@ export default async function LandingPage() {
       <section id="how" className="border-b border-[var(--ns-border)] bg-[var(--ns-bg-elevated)]">
         <div className={SECTION}>
           <h2 className={H2}>{s.how.title}</h2>
-          <ol className="mt-12 space-y-0 border-t-2 border-[var(--ns-fg)]">
+          <ol className="mt-10 space-y-0 border-t-2 border-[var(--ns-fg)]">
             {s.how.steps.map((step, i) => (
               <li
                 key={i}
-                className="grid gap-4 border-b border-[var(--ns-border)] py-8 md:grid-cols-[5rem_minmax(0,1fr)] md:gap-10"
+                className="grid gap-3 border-b border-[var(--ns-border)] py-7 md:grid-cols-[5rem_minmax(0,1fr)] md:gap-10"
                 data-testid={`how-step-${i + 1}`}
               >
                 <span className="font-instrument text-sm font-semibold text-[var(--ns-fg-dim)]">
@@ -158,9 +163,24 @@ export default async function LandingPage() {
         <div className={SECTION}>
           <div className="max-w-2xl">
             <h2 className={H2}>{s.preview.title}</h2>
-            <p className="font-reading mt-4 text-base text-[var(--ns-fg-muted)] sm:text-lg">{s.preview.subtitle}</p>
+            <p className="font-reading mt-3 text-base text-[var(--ns-fg-muted)] sm:text-lg">{s.preview.subtitle}</p>
           </div>
-          <div className="mt-12">
+          <ul className="mt-8 grid gap-px border border-[var(--ns-border-strong)] bg-[var(--ns-border)] sm:grid-cols-3">
+            {s.preview.outputs.map((output, i) => (
+              <li
+                key={i}
+                className="bg-[var(--ns-bg-elevated)] px-4 py-4 sm:px-5"
+                data-testid={`preview-output-${i + 1}`}
+              >
+                <p className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
+                  {String(i + 1).padStart(2, '0')}
+                </p>
+                <p className="mt-2 text-sm font-semibold tracking-tight sm:text-base">{output.label}</p>
+                <p className="font-reading mt-1.5 text-sm leading-relaxed text-[var(--ns-fg-muted)]">{output.hint}</p>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8">
             <SampleReportTabs dict={dict} />
           </div>
         </div>
@@ -170,14 +190,14 @@ export default async function LandingPage() {
       <section id="features" className="border-b border-[var(--ns-border)] bg-[var(--ns-bg-panel)]">
         <div className={SECTION}>
           <h2 className={H2}>{s.features.title}</h2>
-          <div className="mt-12 columns-1 gap-x-12 sm:columns-2 lg:columns-3">
+          <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
             {s.features.cards.map((card, i) => (
               <div
                 key={i}
-                className="mb-10 break-inside-avoid border-t border-[var(--ns-border-strong)] pt-4"
+                className="border-t border-[var(--ns-border-strong)] pt-4"
                 data-testid={`feature-${i + 1}`}
               >
-                <h3 className="text-base font-semibold tracking-tight sm:text-lg">{card.title}</h3>
+                <h3 className="text-base font-semibold tracking-tight">{card.title}</h3>
                 <p className="font-reading mt-2 text-sm leading-relaxed text-[var(--ns-fg-muted)]">{card.body}</p>
               </div>
             ))}
@@ -186,22 +206,29 @@ export default async function LandingPage() {
       </section>
 
       {/* ── 6 · Trust ───────────────────────────────────────────────────── */}
-      <section className="border-b border-[var(--ns-border)]">
+      <section className="border-b border-[var(--ns-border)]" aria-labelledby="trust-heading">
         <div className={SECTION}>
-          <h2 className={H2}>{s.trust.title}</h2>
-          <p className="font-reading mt-5 max-w-prose text-base leading-relaxed text-[var(--ns-fg-muted)] sm:text-lg">
-            {s.trust.body}
-          </p>
-          <ul className="mt-10 grid gap-0 border-t-2 border-[var(--ns-fg)] sm:grid-cols-2">
-            {s.trust.points.map((point, i) => (
-              <li
-                key={i}
-                className="border-b border-[var(--ns-border)] py-4 pr-6 text-sm font-medium leading-relaxed sm:text-base"
-              >
-                {point}
-              </li>
-            ))}
-          </ul>
+          <div className="max-w-3xl border border-[var(--ns-border-strong)] bg-[var(--ns-bg-elevated)] p-6 sm:p-8">
+            <p className="font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
+              {s.trust.eyebrow}
+            </p>
+            <h2 id="trust-heading" className="mt-3 font-display text-xl tracking-tight sm:text-2xl">
+              {s.trust.title}
+            </h2>
+            <p className="font-reading mt-3 text-sm leading-relaxed text-[var(--ns-fg-muted)] sm:text-base">
+              {s.trust.body}
+            </p>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-3">
+              {s.trust.points.map((point, i) => (
+                <li
+                  key={i}
+                  className="border-t border-[var(--ns-border)] pt-3 text-sm font-medium leading-snug"
+                >
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -212,7 +239,7 @@ export default async function LandingPage() {
       <section id="faq" className="border-b border-[var(--ns-border)]">
         <div className={`${SECTION} max-w-3xl`}>
           <h2 className={H2}>{s.faq.title}</h2>
-          <div className="mt-10 border-t-2 border-[var(--ns-fg)]" data-testid="faq-list">
+          <div className="mt-8 border-t-2 border-[var(--ns-fg)]" data-testid="faq-list">
             {s.faq.items.map((item, i) => (
               <details
                 key={i}

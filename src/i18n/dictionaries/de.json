@@ -338,19 +338,20 @@
       "faq": "FAQ"
     },
     "hero": {
-      "badge": "Für Deutschland, Österreich & die Schweiz",
+      "badge": "NexusScope · Für Deutschland, Österreich & die Schweiz",
       "title": "Ein Vorfall. Drei Melderegimes. Wissen Sie, welche gelten – bevor die Frist läuft.",
-      "subtitle": "NexusScope spiegelt Ihr Unternehmen gegen NIS2UmsuCG, NISG 2024 und das Schweizer ISG – und zeigt Fristen sowie sichtbare Lücken in einem klaren Bericht.",
+      "subtitle": "Spiegeln Sie Ihr Unternehmen gegen NIS2UmsuCG, NISG 2024 und das Schweizer ISG. Sehen Sie Fristen und sichtbare Lücken in einem klaren Bericht.",
       "cta": "Auf die Warteliste",
       "note": "Early Access · Kostenlos · Keine Anmeldung"
     },
     "problem": {
       "title": "Die Meldepflichten im DACH-Raum wachsen – ungleich",
-      "body": "Deutschlands NIS2UmsuCG, Österreichs NISG 2024 und das Schweizer ISG setzen jeweils eigene Schwellenwerte, Branchenlisten und Fristen. Ein Vorfall kann unterschiedliche Pflichten auslösen – oder gar keine. Die meisten Teams erfahren das erst danach, wenn die 24-Stunden-Frist bereits läuft.",
+      "lead": "Deutschlands NIS2UmsuCG, Österreichs NISG 2024 und das Schweizer ISG setzen jeweils eigene Schwellenwerte, Branchenlisten und Fristen. Ein Vorfall kann unterschiedliche Pflichten auslösen – oder gar keine.",
+      "emphasis": "Die meisten Unternehmen erfahren erst nach dem Vorfall, welche Regeln gelten – wenn die 24-Stunden-Frist bereits läuft.",
       "points": [
         "Drei Regimes, drei Schwellenwerte, drei Fristen",
         "Schwellenwerte mischen Beschäftigte, Umsatz und Branchenlisten",
-        "Fristen beginnen nach 24 Stunden – bevor Sie Antworten haben"
+        "Orientierung nach dem Vorfall kommt zu spät – die Frist läuft bereits"
       ]
     },
     "how": {
@@ -372,10 +373,24 @@
     },
     "preview": {
       "title": "So sieht der Bericht aus",
-      "subtitle": "Auszug aus einem NexusScope-Bericht (Beispieldaten).",
+      "subtitle": "Jeder NexusScope-Bericht konzentriert sich auf drei Ausgaben: Regime-Status, Lücken und Fristen.",
+      "outputs": [
+        {
+          "label": "Regime-Status",
+          "hint": "IN / OUT / UNKLAR für DE, AT und CH – unabhängig bewertet."
+        },
+        {
+          "label": "Lücken",
+          "hint": "Priorisierte Befunde aus dem öffentlichen Fußabdruck, mit klaren nächsten Schritten."
+        },
+        {
+          "label": "Fristen",
+          "hint": "Die 24-h-/72-h-/30-d-Uhren für jedes anwendbare Regime."
+        }
+      ],
       "tab_regimes": "Regime-Status",
-      "tab_gaps": "Lücken & Empfehlungen",
-      "tab_deadlines": "Meldefristen",
+      "tab_gaps": "Lücken",
+      "tab_deadlines": "Fristen",
       "col_regime": "Regime",
       "col_status": "Status",
       "col_reason": "Warum",
@@ -403,38 +418,39 @@
       "title": "Das erhalten Sie",
       "cards": [
         {
-          "title": "Angriffsflächen-Analyse",
-          "body": "Passive Prüfung von DNS, TLS, E-Mail-Authentifizierung und Web-Härung – nur öffentliche Quellen."
+          "title": "Wissen, welche Regimes gelten",
+          "body": "Unabhängige IN-/OUT-/UNKLAR-Urteile für DE, AT und CH – an einem Ort."
         },
         {
-          "title": "Multi-Regime-Einordnung",
-          "body": "DE NIS2UmsuCG, AT NISG 2024, CH ISG – unabhängig geprüft, in einem Bericht."
+          "title": "Die relevanten Fristen sehen",
+          "body": "24-h-/72-h-/30-d-Fristen mit Meldestelle und Kanal für jedes anwendbare Regime."
         },
         {
-          "title": "Fristen-Übersicht",
-          "body": "Die 24-h-/72-h-/1-Monats-Uhren je anwendbarem Regime, mit Meldestelle und Kanal."
+          "title": "Sichtbare Lücken zuerst schließen",
+          "body": "Priorisierte Befunde aus passiven DNS-, TLS- und Web-Prüfungen – nur öffentliche Quellen."
         },
         {
-          "title": "Berichte in klarer Sprache",
-          "body": "Kein Juristendeutsch. Jedes Ergebnis zeigt Herleitung und Schwellenwerte."
+          "title": "Herleitung nachvollziehbar machen",
+          "body": "Jedes Ergebnis zeigt Schwellenwerte und Quellen – bereit für Geschäftsführung und Beratung."
         },
         {
-          "title": "PDF-Export",
-          "body": "Ein-Klick-Druck/PDF-Export für Geschäftsführung, Wirtschaftsprüfung und Beiräte."
+          "title": "Sauberes PDF teilen",
+          "body": "Ein-Klick-Druck/PDF-Export für Beiräte, Wirtschaftsprüfung und Rechtsprüfung."
         },
         {
-          "title": "Datenhaltung in CH/EU",
-          "body": "Hosting und Datenverarbeitung so gestaltet, dass Ihre Daten in der Schweiz und der EU bleiben."
+          "title": "Daten in CH/EU halten",
+          "body": "Hosting und Verarbeitung so gestaltet, dass Ihre Daten in der Schweiz und der EU bleiben."
         }
       ]
     },
     "trust": {
-      "title": "Für den DACH-Raum gebaut",
-      "body": "NexusScope wird in und für Deutschland, Österreich und die Schweiz entwickelt. Ihre Daten bleiben in der Schweiz und der EU, wir scannen nur öffentliche Quellen, respektieren robots.txt und melden uns nie in Ihren Systemen an.",
+      "eyebrow": "Vertrauen",
+      "title": "Für DACH-Unternehmen gebaut",
+      "body": "Orientierung für Deutschland, Österreich und die Schweiz. Ihre Daten bleiben in der Schweiz und der EU. Nur öffentliche Quellen – informativ, keine Rechtsberatung.",
       "points": [
-        "Daten bleiben in CH/EU",
-        "Nur öffentliche Quellen – passiv und höflich gescannt",
-        "Keine Rechtsberatung – klare, ehrliche Unsicherheit"
+        "Für DACH-Unternehmen gebaut",
+        "Daten bleiben in der Schweiz / EU",
+        "Nur Information – keine Rechtsberatung"
       ]
     },
     "waitlist": {

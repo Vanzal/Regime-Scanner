@@ -4,7 +4,7 @@
 
 ## World
 
-Refined brutalist compliance dossier. Cool stone paper sheet, deep blue ink, one vermilion signal accent. Hard rules and sharp corners (≤2px). Hierarchy by weight, measure, and ruled lists — not cards, glass, or glow.
+Refined brutalist compliance dossier. Cool stone paper sheet, deep blue ink, one deep premium red signal accent. Hard rules and sharp corners (≤2px). Hierarchy by weight, measure, and ruled lists — not cards, glass, or glow.
 
 ## Mode
 
@@ -29,12 +29,12 @@ Scale roughly major third (~1.25) from 14px body.
 | `--ns-bg-elevated` | `oklch(0.99 0.004 95)` | Raised panels |
 | `--ns-bg-panel` | `oklch(0.94 0.01 95)` | Alternating bands |
 | `--ns-fg` / `--ns-bg-ink` | `oklch(0.22 0.035 255)` | Ink |
-| `--ns-accent` | `oklch(0.52 0.195 28)` | Primary CTA only |
+| `--ns-accent` | `oklch(0.38 0.12 25)` | Primary CTA only (deep premium red) |
 | Semantic | success / warning / danger | Status stamps with border (not fill pills) |
 
 ## Components
 
-- Primary button: vermilion fill, 2px radius, no glow shadow
+- Primary button: deep premium red fill, 2px radius, no glow shadow
 - Inputs: strong ink border, accent focus ring
 - Sample report: ink frame, inverted selected tab, dashed border for UNCLEAR
 - Clocks: lit ink cells vs dashed ghost cell

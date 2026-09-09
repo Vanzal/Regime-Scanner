@@ -21,10 +21,10 @@ export function SampleReportTabs({ dict }: { dict: Dictionary }) {
   const [tab, setTab] = useState<TabId>('regimes')
   const p = dict.site.preview
 
-  const tabs: Array<{ id: TabId; label: string }> = [
-    { id: 'regimes', label: p.tab_regimes },
-    { id: 'gaps', label: p.tab_gaps },
-    { id: 'deadlines', label: p.tab_deadlines },
+  const tabs: Array<{ id: TabId; label: string; hint: string }> = [
+    { id: 'regimes', label: p.tab_regimes, hint: p.outputs[0].hint },
+    { id: 'gaps', label: p.tab_gaps, hint: p.outputs[1].hint },
+    { id: 'deadlines', label: p.tab_deadlines, hint: p.outputs[2].hint },
   ]
 
   return (
@@ -36,20 +36,27 @@ export function SampleReportTabs({ dict }: { dict: Dictionary }) {
         <span className="font-instrument text-[11px] text-[var(--ns-fg-dim)]">SYNTHETIC</span>
       </div>
 
-      <div role="tablist" aria-label={p.title} className="flex flex-wrap border-b border-[var(--ns-border-strong)]">
+      <div role="tablist" aria-label={p.title} className="grid border-b border-[var(--ns-border-strong)] sm:grid-cols-3">
         {tabs.map((tb) => (
           <button
             key={tb.id}
             role="tab"
             aria-selected={tab === tb.id}
             onClick={() => setTab(tb.id)}
-            className={`min-h-11 px-5 py-3 text-sm font-semibold transition-colors ${
+            className={`min-h-11 border-b border-[var(--ns-border)] px-4 py-3 text-left transition-colors last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0 ${
               tab === tb.id
                 ? 'bg-[var(--ns-fg)] text-[var(--ns-bg)]'
                 : 'text-[var(--ns-fg-muted)] hover:text-[var(--ns-fg)]'
             }`}
           >
-            {tb.label}
+            <span className="block text-sm font-semibold">{tb.label}</span>
+            <span
+              className={`mt-1 hidden text-xs leading-snug sm:block ${
+                tab === tb.id ? 'text-[var(--ns-bg)]/75' : 'text-[var(--ns-fg-dim)]'
+              }`}
+            >
+              {tb.hint}
+            </span>
           </button>
         ))}
       </div>
@@ -57,6 +64,9 @@ export function SampleReportTabs({ dict }: { dict: Dictionary }) {
       <div className="p-5 sm:p-8" data-testid="sample-report-panel">
         {tab === 'regimes' && (
           <div className="space-y-0">
+            <p className="font-instrument mb-5 text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
+              {p.tab_regimes}
+            </p>
             {(
               [
                 { key: 'de', name: p.regime_de, status: 'in', reason: p.regime_de_reason },
@@ -85,6 +95,9 @@ export function SampleReportTabs({ dict }: { dict: Dictionary }) {
 
         {tab === 'gaps' && (
           <div className="space-y-5">
+            <p className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
+              {p.tab_gaps}
+            </p>
             <p className="font-reading text-sm text-[var(--ns-fg-muted)]">{p.gaps_intro}</p>
             {(
               [
@@ -107,6 +120,9 @@ export function SampleReportTabs({ dict }: { dict: Dictionary }) {
 
         {tab === 'deadlines' && (
           <div className="space-y-4">
+            <p className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
+              {p.tab_deadlines}
+            </p>
             <p className="font-reading text-sm text-[var(--ns-fg-muted)]">{p.deadlines_intro}</p>
             {([p.deadline1, p.deadline2, p.deadline3] as const).map((d, i) => (
               <div key={i} data-testid={`sample-deadline-${i}`} className="flex items-center gap-4">
