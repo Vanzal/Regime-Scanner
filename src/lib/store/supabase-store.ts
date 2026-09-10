@@ -13,6 +13,7 @@ import type {
   Store,
   WaitlistEntry,
 } from './types'
+import type { SubscriptionRecord } from '@/lib/billing/types'
 
 function getClient(): SupabaseClient {
   const url = process.env.SUPABASE_URL
@@ -227,6 +228,53 @@ export function createSupabaseStore(): Store {
         .single()
       if (error) throw error
       return { entry: data as WaitlistEntry, duplicate: false }
+    },
+
+    async upsertSubscription(input) {
+      const email = input.email.trim().toLowerCase()
+      const payload = {
+        email,
+        stripe_customer_id: input.stripe_customer_id,
+        stripe_subscription_id: input.stripe_subscription_id,
+        stripe_price_id: input.stripe_price_id ?? null,
+        status: input.status,
+        current_period_end: input.current_period_end ?? null,
+        cancel_at_period_end: input.cancel_at_period_end ?? false,
+        updated_at: new Date().toISOString(),
+      }
+      const { data, error } = await sb
+        .from('subscriptions')
+        .upsert(payload, { onConflict: 'stripe_subscription_id' })
+        .select()
+        .single()
+      if (error) throw error
+      return data as SubscriptionRecord
+    },
+
+    async getSubscriptionByEmail(email) {
+      const normalized = email.trim().toLowerCase()
+      const { data, error } = await sb
+        .from('subscriptions')
+        .select('*')
+        .eq('email', normalized)
+        .order('updated_at', { ascending: false })
+      if (error) throw error
+      const rows = (data ?? []) as SubscriptionRecord[]
+      return (
+        rows.find((s) => ['active', 'trialing', 'past_due'].includes(s.status)) ??
+        rows[0] ??
+        null
+      )
+    },
+
+    async getSubscriptionByStripeId(stripeSubscriptionId) {
+      const { data, error } = await sb
+        .from('subscriptions')
+        .select('*')
+        .eq('stripe_subscription_id', stripeSubscriptionId)
+        .maybeSingle()
+      if (error) throw error
+      return (data as SubscriptionRecord | null) ?? null
     },
   }
 }

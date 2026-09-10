@@ -7,6 +7,7 @@ export interface WaitlistState {
   ok: boolean
   done?: boolean
   duplicate?: boolean
+  email?: string
   errors?: Record<string, string>
 }
 
@@ -41,5 +42,5 @@ export async function joinWaitlist(_prev: WaitlistState, fd: FormData): Promise<
     pain_note: parsed.data.pain_note || null,
   })
 
-  return { ok: true, done: true, duplicate, errors: {} }
+  return { ok: true, done: true, duplicate, email: entry.email, errors: {} }
 }

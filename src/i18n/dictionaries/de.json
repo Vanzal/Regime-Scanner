@@ -484,6 +484,27 @@
       },
       "privacy_note": "Ihre E-Mail verwenden wir nur, um Sie über den Early Access zu informieren. Kein Marketing ohne Einwilligung. Details in der Datenschutzerklärung."
     },
+    "subscribe": {
+      "title": "Oder Early Access abonnieren",
+      "subtitle": "Überspringen Sie die Warteschlange mit einem monatlichen Early-Access-Abo. Betrag und Konditionen bestätigen Sie im Stripe Checkout.",
+      "email_label": "Geschäftliche E-Mail",
+      "submit": "Mit Stripe abonnieren",
+      "submitting": "Checkout wird geöffnet …",
+      "note": "Abwicklung über Stripe. Jederzeit im Kundenportal kündbar. Stripe Tax kann greifen, sobald Steuerregistrierungen für Ihre Märkte aktiv sind.",
+      "errors": {
+        "email": "Bitte eine gültige E-Mail-Adresse angeben",
+        "stripe_unavailable": "Abrechnung ist in dieser Umgebung noch nicht konfiguriert.",
+        "checkout_failed": "Checkout konnte nicht gestartet werden. Bitte erneut versuchen.",
+        "no_subscription": "Kein Abo für diese E-Mail gefunden.",
+        "portal_failed": "Kundenportal konnte nicht geöffnet werden."
+      },
+      "success_eyebrow": "Abrechnung",
+      "success_title": "Abo gestartet",
+      "success_body": "Danke. Ihr Early-Access-Abo wird bestätigt. Wir melden uns per E-Mail, sobald Ihr Scan-Slot frei ist.",
+      "success_note": "Verlängerungen und Kündigungen laufen über Stripe. Unter Abrechnung verwalten können Sie Zahlungsdaten ändern.",
+      "back_waitlist": "Zur Warteliste",
+      "manage_billing": "Abrechnung verwalten"
+    },
     "faq": {
       "title": "Häufige Fragen",
       "items": [
