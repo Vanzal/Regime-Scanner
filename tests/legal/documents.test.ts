@@ -59,9 +59,12 @@ describe('legal markdown publishing prep', () => {
     expect(published).not.toContain('Secret ops item')
   })
 
-  it('rewrites nexusscopes.com links to site-relative paths', () => {
-    const md = 'See the [DPA](https://nexusscopes.com/legal/dpa) and [https://nexusscopes.com/privacy].'
-    expect(rewriteSiteUrls(md)).toBe('See the [DPA](/legal/dpa) and [/privacy](/privacy).')
+  it('rewrites nexusscopes.com paths to site-relative links and leaves the bare site URL', () => {
+    const md =
+      'See the [DPA](https://nexusscopes.com/legal/dpa), [https://nexusscopes.com/privacy], and [https://nexusscopes.com].'
+    expect(rewriteSiteUrls(md)).toBe(
+      'See the [DPA](/legal/dpa), [/privacy](/privacy), and [https://nexusscopes.com].',
+    )
   })
 })
 
@@ -121,6 +124,8 @@ describe('published legal documents', () => {
       '| A | B |',
       '|---|---|',
       '| 1 | 2 |',
+      '',
+      '# Annex I — Details',
     ].join('\n')
     const blocks = parseMarkdown(md)
     expect(blocks[0]).toMatchObject({ type: 'heading', level: 1 })
@@ -129,5 +134,14 @@ describe('published legal documents', () => {
       type: 'table',
       headers: [[{ type: 'text', value: 'A' }], [{ type: 'text', value: 'B' }]],
     })
+    expect(blocks[3]).toMatchObject({ type: 'heading', level: 2 })
+  })
+
+  it('keeps version and last-updated lines as separate paragraphs', () => {
+    const blocks = parseMarkdown(
+      ['**Version 1.0 — Effective [DD Month YYYY]**', '**Last updated: [DD Month YYYY]**'].join('\n'),
+    )
+    expect(blocks).toHaveLength(2)
+    expect(blocks.every((b) => b.type === 'paragraph')).toBe(true)
   })
 })

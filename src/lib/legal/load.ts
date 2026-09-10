@@ -30,10 +30,9 @@ export function stripOperatorNotes(markdown: string): string {
 
 /** In-document links to nexusscopes.com become site-relative so they work locally. */
 export function rewriteSiteUrls(markdown: string): string {
-  let md = markdown.replace(/https:\/\/(?:www\.)?nexusscopes\.com(\/[^\s)"'\]]*)/g, '$1')
-  md = md.replace(/https:\/\/(?:www\.)?nexusscopes\.com(?=[\s)\]"'|]|$)/g, '/')
+  let md = markdown.replace(/https:\/\/(?:www\.)?nexusscopes\.com(\/[^\s)"'\]]+)/g, '$1')
   // `[ /privacy ]` placeholders (not already markdown links) become clickable.
-  md = md.replace(/\[(\/[-a-z0-9/]*)\](?!\()/gi, '[$1]($1)')
+  md = md.replace(/\[(\/[-a-z0-9/]+)\](?!\()/gi, '[$1]($1)')
   return md
 }
 

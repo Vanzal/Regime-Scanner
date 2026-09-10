@@ -165,23 +165,26 @@ function parseLines(lines: string[]): BlockNode[] {
       }
     }
 
-    const para: string[] = []
-    while (i < lines.length) {
-      const t = (lines[i] ?? '').trim()
-      if (!t) break
-      if (/^---+$/.test(t)) break
-      if (/^#{1,6}\s+/.test(t)) break
-      if (t.startsWith('>')) break
-      if (t.startsWith('|')) break
-      if (/^[-*]\s+/.test(t) || /^\d+\.\s+/.test(t)) break
-      para.push(t)
-      i++
-    }
-    const text = para.join(' ').replace(/\s+/g, ' ').trim()
-    if (text) blocks.push({ type: 'paragraph', children: parseInline(text) })
+    // These drafts author one block per source line; do not join adjacent lines
+    // (version + last-updated would otherwise collapse into one paragraph).
+    blocks.push({ type: 'paragraph', children: parseInline(trimmed) })
+    i++
   }
 
-  return blocks
+  return demoteExtraH1(blocks)
+}
+
+/** One document title as h1; later `# Annex …` headings become h2. */
+function demoteExtraH1(blocks: BlockNode[]): BlockNode[] {
+  let seenH1 = false
+  return blocks.map((block) => {
+    if (block.type !== 'heading' || block.level !== 1) return block
+    if (!seenH1) {
+      seenH1 = true
+      return block
+    }
+    return { ...block, level: 2 }
+  })
 }
 
 function parseTable(lines: string[]): BlockNode | null {
