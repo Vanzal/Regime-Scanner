@@ -1,5 +1,43 @@
+import Link from 'next/link'
 import { LangSwitch } from './lang-switch'
+import { footerLegalLinks, type LegalDocId } from '@/lib/legal/catalog'
 import type { Dictionary, Locale } from '@/i18n'
+
+const legalLinkClass = 'text-[var(--ns-fg-muted)] transition hover:text-[var(--ns-fg)]'
+
+/** Legal links consumed from `footerLegalLinks()` so a later footer redesign can reuse them. */
+export function FooterLegalNav({ dict, locale }: { dict: Dictionary; locale: Locale }) {
+  const f = dict.site.footer
+  const labels: Record<LegalDocId, string> = {
+    privacy: f.datenschutz,
+    terms: f.terms,
+    dpa: f.dpa,
+  }
+  const legalLinks = footerLegalLinks(locale)
+  return (
+    <nav className="flex flex-col gap-2.5 text-sm" aria-label={dict.site.legal.docs_nav}>
+      <Link href="/impressum" className={legalLinkClass}>
+        {f.impressum}
+      </Link>
+      {legalLinks.map((item) => (
+        <Link
+          key={item.id}
+          href={item.href}
+          data-testid={`footer-legal-${item.id}`}
+          className={legalLinkClass}
+        >
+          {labels[item.id]}
+        </Link>
+      ))}
+      <p className="mt-3 text-[var(--ns-fg-dim)]">
+        {f.contact_label}{' '}
+        <a href={`mailto:${f.contact_email}`} className={legalLinkClass}>
+          {f.contact_email}
+        </a>
+      </p>
+    </nav>
+  )
+}
 
 export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const f = dict.site.footer
@@ -12,23 +50,7 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
             <p className="font-reading mt-3 max-w-xs text-sm leading-relaxed text-[var(--ns-fg-muted)]">{f.tagline}</p>
           </div>
 
-          <nav className="flex flex-col gap-2.5 text-sm" aria-label="Legal">
-            <a href="/impressum" className="text-[var(--ns-fg-muted)] transition hover:text-[var(--ns-fg)]">
-              {f.impressum}
-            </a>
-            <a href="/datenschutz" className="text-[var(--ns-fg-muted)] transition hover:text-[var(--ns-fg)]">
-              {f.datenschutz}
-            </a>
-            <p className="mt-3 text-[var(--ns-fg-dim)]">
-              {f.contact_label}{' '}
-              <a
-                href={`mailto:${f.contact_email}`}
-                className="text-[var(--ns-fg-muted)] transition hover:text-[var(--ns-fg)]"
-              >
-                {f.contact_email}
-              </a>
-            </p>
-          </nav>
+          <FooterLegalNav dict={dict} locale={locale} />
 
           <div>
             <p className="mb-2 font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">

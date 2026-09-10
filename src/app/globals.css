@@ -194,6 +194,134 @@ body {
   }
 }
 
+/* Legal documents — reading measure, ruled tables, dossier headings */
+.legal-doc {
+  font-family: var(--font-reading);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ns-fg-muted);
+}
+
+.legal-doc h1 {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ns-fg);
+}
+
+.legal-doc h2 {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ns-fg);
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ns-border);
+}
+
+.legal-doc h3 {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ns-fg);
+  margin-top: 1.75rem;
+}
+
+.legal-doc p {
+  margin-top: 0.85rem;
+}
+
+.legal-doc a {
+  color: var(--ns-fg);
+  text-decoration: underline;
+  text-decoration-color: var(--ns-border-strong);
+  text-underline-offset: 4px;
+}
+
+.legal-doc a:hover {
+  text-decoration-color: var(--ns-fg);
+}
+
+.legal-doc strong {
+  color: var(--ns-fg);
+  font-weight: 600;
+}
+
+.legal-doc em {
+  font-style: italic;
+}
+
+.legal-doc hr {
+  border: 0;
+  border-top: 1px solid var(--ns-border-strong);
+  margin: 2rem 0;
+}
+
+.legal-doc ul,
+.legal-doc ol {
+  margin: 0.85rem 0 0.25rem;
+  padding-left: 1.25rem;
+}
+
+.legal-doc li {
+  margin: 0.4rem 0;
+}
+
+.legal-doc li > p {
+  margin-top: 0;
+}
+
+.legal-doc blockquote {
+  margin: 1.25rem 0 0;
+  border-left: 2px solid var(--ns-accent);
+  padding-left: 1rem;
+  color: var(--ns-fg);
+}
+
+.legal-doc blockquote p {
+  margin-top: 0.5rem;
+}
+
+.legal-table-wrap {
+  margin-top: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--ns-border-strong);
+}
+
+.legal-doc table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.legal-doc th,
+.legal-doc td {
+  border-bottom: 1px solid var(--ns-border);
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.legal-doc th {
+  background: var(--ns-bg-panel);
+  color: var(--ns-fg);
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+
+.legal-doc tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .legal-doc h1 {
+    font-size: 2.25rem;
+  }
+}
+
 /* PDF-/Druck-Pfad: gleiche Route, keine Web-Chrome-Elemente. */
 @media print {
   body {

@@ -1,8 +1,10 @@
 'use client'
 
 import { useActionState } from 'react'
+import Link from 'next/link'
 import { joinWaitlist, type WaitlistState } from '@/app/actions/waitlist'
 import { SubscribeCta } from '@/components/site/subscribe-cta'
+import { LEGAL_DOCUMENTS } from '@/lib/legal/catalog'
 import type { Dictionary } from '@/i18n'
 
 const SIZE_KEYS = ['lt_50', '50_249', '250_plus', 'unknown'] as const
@@ -95,7 +97,16 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
         {pending ? w.submitting : w.submit}
       </button>
 
-      <p className="font-reading text-xs leading-relaxed text-[var(--ns-fg-dim)]">{w.privacy_note}</p>
+      <p className="font-reading text-xs leading-relaxed text-[var(--ns-fg-dim)]">
+        {w.privacy_note}{' '}
+        <Link
+          href={LEGAL_DOCUMENTS.privacy.href}
+          className="underline decoration-[var(--ns-border-strong)] underline-offset-4 hover:text-[var(--ns-fg)]"
+        >
+          {w.privacy_link}
+        </Link>
+        .
+      </p>
     </form>
   )
 }

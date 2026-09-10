@@ -482,7 +482,8 @@
         "email": "Please provide a valid e-mail address",
         "country": "Please choose a country"
       },
-      "privacy_note": "We use your e-mail only to notify you about early access. No marketing without consent. Details in the privacy notice."
+      "privacy_note": "We use your e-mail only to notify you about early access. No marketing without consent.",
+      "privacy_link": "Privacy Policy"
     },
     "subscribe": {
       "title": "Or subscribe for Early Access",
@@ -530,6 +531,8 @@
       "tagline": "Cyber-reporting & compliance orientation for the DACH region.",
       "impressum": "Imprint",
       "datenschutz": "Privacy",
+      "terms": "Terms",
+      "dpa": "DPA",
       "contact_label": "Contact:",
       "contact_email": "hello@nexusscope.example",
       "legal_note": "Automated orientation — not legal advice.",
@@ -540,6 +543,8 @@
       "accept": "Got it"
     },
     "legal": {
+      "docs_nav": "Legal",
+      "language_note": "These documents are published in English.",
       "impressum_title": "Imprint",
       "impressum_intro": "Information according to § 5 DDG (placeholder).",
       "operator": "Operator",

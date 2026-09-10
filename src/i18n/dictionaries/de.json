@@ -482,7 +482,8 @@
         "email": "Bitte eine gültige E-Mail-Adresse angeben",
         "country": "Bitte ein Land wählen"
       },
-      "privacy_note": "Ihre E-Mail verwenden wir nur, um Sie über den Early Access zu informieren. Kein Marketing ohne Einwilligung. Details in der Datenschutzerklärung."
+      "privacy_note": "Ihre E-Mail verwenden wir nur, um Sie über den Early Access zu informieren. Kein Marketing ohne Einwilligung.",
+      "privacy_link": "Datenschutzerklärung"
     },
     "subscribe": {
       "title": "Oder Early Access abonnieren",
@@ -530,6 +531,8 @@
       "tagline": "Cyber-Reporting & Compliance-Orientierung für den DACH-Raum.",
       "impressum": "Impressum",
       "datenschutz": "Datenschutz",
+      "terms": "AGB",
+      "dpa": "AVV",
       "contact_label": "Kontakt:",
       "contact_email": "hello@nexusscope.example",
       "legal_note": "Automatisierte Orientierung – keine Rechtsberatung.",
@@ -540,6 +543,8 @@
       "accept": "Verstanden"
     },
     "legal": {
+      "docs_nav": "Rechtliches",
+      "language_note": "Diese Dokumente sind auf Englisch veröffentlicht.",
       "impressum_title": "Impressum",
       "impressum_intro": "Angaben nach § 5 DDG (Platzhalter).",
       "operator": "Betreiber",
