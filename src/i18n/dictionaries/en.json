@@ -527,13 +527,32 @@
       ]
     },
     "footer": {
-      "tagline": "Cyber-reporting & compliance orientation for the DACH region.",
-      "impressum": "Imprint",
-      "datenschutz": "Privacy",
-      "contact_label": "Contact:",
+      "company_name": "NexusScope",
+      "legal_form": "[Legal form — e.g. GmbH / AG]",
+      "address_lines": [
+        "[Street and number]",
+        "[PLZ] [City]",
+        "Switzerland"
+      ],
+      "email_label": "Email",
       "contact_email": "hello@nexusscope.example",
-      "legal_note": "Automated orientation — not legal advice.",
-      "lang_label": "Language"
+      "phone_label": "Phone",
+      "phone": "[+41 XX XXX XX XX]",
+      "uid_label": "UID / VAT",
+      "uid": "[CHE-XXX.XXX.XXX]",
+      "copyright": "© 2026 NexusScope. All rights reserved.",
+      "legal_heading": "Legal",
+      "impressum": "Imprint",
+      "datenschutz": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy",
+      "cookie_settings": "Cookie Settings",
+      "lang_label": "Language",
+      "disclaimer": "NexusScope provides informational orientation only and does not constitute legal advice.",
+      "data_location": "Data is processed in Switzerland / EU.",
+      "tagline": "Cyber-reporting & compliance orientation for the DACH region.",
+      "contact_label": "Contact:",
+      "legal_note": "Automated orientation — not legal advice."
     },
     "cookie": {
       "text": "We use only a functional cookie to remember your language preference. No tracking, no third-party cookies.",
@@ -541,12 +560,16 @@
     },
     "legal": {
       "impressum_title": "Imprint",
-      "impressum_intro": "Information according to § 5 DDG (placeholder).",
+      "impressum_intro": "Information according to Swiss / EU / German imprint rules (placeholder).",
       "operator": "Operator",
       "representative": "Represented by",
       "contact": "Contact",
-      "datenschutz_title": "Privacy notice",
+      "datenschutz_title": "Privacy Policy",
       "datenschutz_intro": "How NexusScope handles personal data (summary).",
+      "terms_title": "Terms of Service",
+      "terms_intro": "Terms of Service for NexusScope. Final text will be provided before go-live.",
+      "cookies_title": "Cookie Policy",
+      "cookies_intro": "Which cookies NexusScope uses and how you can manage them.",
       "privacy_sections": [
         {
           "h": "What we store",
@@ -565,7 +588,18 @@
           "b": "Access, rectification and erasure at any time via the contact e-mail."
         }
       ],
-      "placeholder": "[To be completed before go-live.]"
+      "cookie_sections": [
+        {
+          "h": "Functional cookies",
+          "b": "We store a language preference cookie (`lang`) and a local acknowledgement of this notice. No tracking or advertising cookies."
+        },
+        {
+          "h": "Managing cookies",
+          "b": "You can clear site data in your browser at any time. Revisit this page or use Cookie Settings in the footer to review this notice again."
+        }
+      ],
+      "placeholder": "[To be completed before go-live.]",
+      "tos_placeholder": "[Final Terms of Service text will be provided later.]"
     }
   }
 }

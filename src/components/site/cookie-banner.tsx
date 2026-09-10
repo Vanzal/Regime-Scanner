@@ -16,6 +16,10 @@ export function CookieBanner({ dict }: { dict: Dictionary }) {
     } catch {
       // Speicherzugriff verweigert: Banner einfach nicht zeigen.
     }
+
+    const reopen = () => setVisible(true)
+    window.addEventListener('nexus:cookie-settings', reopen)
+    return () => window.removeEventListener('nexus:cookie-settings', reopen)
   }, [])
 
   if (!visible) return null
