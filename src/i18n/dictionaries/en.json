@@ -484,6 +484,27 @@
       },
       "privacy_note": "We use your e-mail only to notify you about early access. No marketing without consent. Details in the privacy notice."
     },
+    "subscribe": {
+      "title": "Or subscribe for Early Access",
+      "subtitle": "Skip the queue with a monthly Early Access subscription. Amount and terms are confirmed on Stripe Checkout.",
+      "email_label": "Work e-mail",
+      "submit": "Subscribe with Stripe",
+      "submitting": "Opening Checkout …",
+      "note": "Hosted by Stripe. Cancel anytime in the customer portal. Stripe Tax may apply once registrations are active for your markets.",
+      "errors": {
+        "email": "Please provide a valid e-mail address",
+        "stripe_unavailable": "Billing is not configured in this environment yet.",
+        "checkout_failed": "Checkout could not be started. Please try again.",
+        "no_subscription": "No subscription found for this e-mail.",
+        "portal_failed": "Billing portal could not be opened."
+      },
+      "success_eyebrow": "Billing",
+      "success_title": "Subscription started",
+      "success_body": "Thank you. Your Early Access subscription is being confirmed. We will e-mail you when your scan slot opens.",
+      "success_note": "Renewals and cancellations are handled by Stripe. Use Manage billing to update payment details.",
+      "back_waitlist": "Back to waitlist",
+      "manage_billing": "Manage billing"
+    },
     "faq": {
       "title": "Frequently asked questions",
       "items": [

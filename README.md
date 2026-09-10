@@ -41,8 +41,22 @@ optional und wird automatisch genutzt, sobald beide Env-Variablen gesetzt sind.
 | `BROWSER_DRIVER_ENABLED` | standardmäßig aus – Scan bleibt passiv/leichtgewichtig |
 | `ANTHROPIC_API_KEY` | optional: aktiviert den KI-Scope-Check (Bericht-Abschnitt 2); ohne Key läuft der Scan ohne den Abschnitt |
 | `SCOPE_CHECK_ENABLED` | `false` = KI-Scope-Check aus, auch mit Key (Modell: `claude-sonnet-4-6`, überschreibbar via `SCOPE_CHECK_MODEL`) |
+| `STRIPE_SECRET_KEY` / `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe (Vercel Marketplace Sandbox) – Early-Access-Abo |
+| `STRIPE_PRICE_ID` | optional feste Price-ID; sonst Lookup-Key + `STRIPE_UNIT_AMOUNT_CENTS` |
+| `STRIPE_WEBHOOK_SECRET` | Signing-Secret für `POST /api/stripe/webhook` |
 
-## Supabase einrichten (optional, für Produktion)
+## Stripe Early-Access-Abo
+
+Nach dem Wartelisten-Beitritt erscheint die Option **Early Access abonnieren** (Stripe Checkout, `mode: subscription`). Webhook unter `/api/stripe/webhook` schreibt in `subscriptions` (Migration `0006`). Kundenportal über die Success-Seite.
+
+Bootstrap (einmalig, Production/Preview mit Stripe-Keys):
+
+```bash
+curl -X POST "$SITE_URL/api/stripe/setup" -H "x-admin-setup: $ADMIN_PASSWORD"
+# → priceId + ggf. webhook.secret → als STRIPE_WEBHOOK_SECRET / STRIPE_PRICE_ID setzen
+```
+
+`STRIPE_UNIT_AMOUNT_CENTS` nur setzen, wenn noch keine Price-ID existiert und der erste Checkout den Price anlegen soll. Betrag wird im Marketing nicht angezeigt – nur im Stripe Checkout.
 
 ```bash
 supabase db push   # wendet supabase/migrations/000{1,2,3}_*.sql an

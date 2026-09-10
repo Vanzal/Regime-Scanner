@@ -2,6 +2,7 @@
 
 import { useActionState } from 'react'
 import { joinWaitlist, type WaitlistState } from '@/app/actions/waitlist'
+import { SubscribeCta } from '@/components/site/subscribe-cta'
 import type { Dictionary } from '@/i18n'
 
 const SIZE_KEYS = ['lt_50', '50_249', '250_plus', 'unknown'] as const
@@ -31,6 +32,7 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
         {state.duplicate && (
           <p className="font-reading mt-2 text-sm text-[var(--ns-fg-muted)]">{w.duplicate}</p>
         )}
+        <SubscribeCta dict={dict} defaultEmail={state.email ?? ''} />
       </div>
     )
   }

@@ -1,4 +1,5 @@
 import type { Applicable, ThresholdTrace, DeadlineInfo } from '@/lib/rules/types'
+import type { SubscriptionRecord, UpsertSubscriptionInput } from '@/lib/billing/types'
 
 export interface Company {
   id: string
@@ -135,4 +136,7 @@ export interface Store {
   listRulesVersions(): Promise<RulesVersionRow[]>
   /** Idempotent: gleiche E-Mail → duplicate=true, Eintrag bleibt unverändert. */
   joinWaitlist(input: { email: string; company_size: string; country: string; pain_note?: string | null }): Promise<{ entry: WaitlistEntry; duplicate: boolean }>
+  upsertSubscription(input: UpsertSubscriptionInput): Promise<SubscriptionRecord>
+  getSubscriptionByEmail(email: string): Promise<SubscriptionRecord | null>
+  getSubscriptionByStripeId(stripeSubscriptionId: string): Promise<SubscriptionRecord | null>
 }

@@ -14,6 +14,7 @@ import type {
   Store,
   WaitlistEntry,
 } from './types'
+import type { SubscriptionRecord, UpsertSubscriptionInput } from '@/lib/billing/types'
 
 interface FileDb {
   companies: Company[]
@@ -23,6 +24,7 @@ interface FileDb {
   leads: Lead[]
   rules_versions: RulesVersionRow[]
   waitlist: WaitlistEntry[]
+  subscriptions: SubscriptionRecord[]
 }
 
 const EMPTY_DB: FileDb = {
@@ -33,6 +35,7 @@ const EMPTY_DB: FileDb = {
   leads: [],
   rules_versions: [],
   waitlist: [],
+  subscriptions: [],
 }
 
 function resolveDbPath(): string {
@@ -263,6 +266,61 @@ export function createFileStore(): Store {
       db.waitlist.push(entry)
       writeDb(db)
       return { entry, duplicate: false }
+    },
+
+    async upsertSubscription(input: UpsertSubscriptionInput) {
+      const db = readDb()
+      const email = input.email.trim().toLowerCase()
+      const stamp = now()
+      const existing = db.subscriptions.find(
+        (s) => s.stripe_subscription_id === input.stripe_subscription_id,
+      )
+      if (existing) {
+        existing.email = email
+        existing.stripe_customer_id = input.stripe_customer_id
+        existing.stripe_price_id = input.stripe_price_id ?? existing.stripe_price_id
+        existing.status = input.status
+        existing.current_period_end =
+          input.current_period_end === undefined
+            ? existing.current_period_end
+            : input.current_period_end
+        existing.cancel_at_period_end =
+          input.cancel_at_period_end ?? existing.cancel_at_period_end
+        existing.updated_at = stamp
+        writeDb(db)
+        return existing
+      }
+      const row: SubscriptionRecord = {
+        id: randomUUID(),
+        email,
+        stripe_customer_id: input.stripe_customer_id,
+        stripe_subscription_id: input.stripe_subscription_id,
+        stripe_price_id: input.stripe_price_id ?? null,
+        status: input.status,
+        current_period_end: input.current_period_end ?? null,
+        cancel_at_period_end: input.cancel_at_period_end ?? false,
+        created_at: stamp,
+        updated_at: stamp,
+      }
+      db.subscriptions.push(row)
+      writeDb(db)
+      return row
+    },
+
+    async getSubscriptionByEmail(email) {
+      const normalized = email.trim().toLowerCase()
+      const rows = readDb().subscriptions.filter((s) => s.email === normalized)
+      const active = rows.find((s) =>
+        ['active', 'trialing', 'past_due'].includes(s.status),
+      )
+      return active ?? rows.sort((a, b) => b.updated_at.localeCompare(a.updated_at))[0] ?? null
+    },
+
+    async getSubscriptionByStripeId(stripeSubscriptionId) {
+      return (
+        readDb().subscriptions.find((s) => s.stripe_subscription_id === stripeSubscriptionId) ??
+        null
+      )
     },
   }
 }

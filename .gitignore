@@ -32,3 +32,6 @@ npm-debug.log*
 .impeccable/build/
 .impeccable/mocks/
 .impeccable/config.local.json
+.vercel
+.env*
+!.env.example
