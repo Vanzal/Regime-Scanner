@@ -482,7 +482,8 @@
         "email": "Please provide a valid e-mail address",
         "country": "Please choose a country"
       },
-      "privacy_note": "We use your e-mail only to notify you about early access. No marketing without consent. Details in the privacy notice."
+      "privacy_note": "We use your e-mail only to notify you about early access. No marketing without consent.",
+      "privacy_link": "Privacy Policy"
     },
     "subscribe": {
       "title": "Or subscribe for Early Access",
@@ -545,6 +546,7 @@
       "impressum": "Imprint",
       "datenschutz": "Privacy Policy",
       "terms": "Terms of Service",
+      "dpa": "DPA",
       "cookies": "Cookie Policy",
       "cookie_settings": "Cookie Settings",
       "lang_label": "Language",
@@ -559,6 +561,8 @@
       "accept": "Got it"
     },
     "legal": {
+      "docs_nav": "Legal",
+      "language_note": "These documents are published in English.",
       "impressum_title": "Imprint",
       "impressum_intro": "Information according to Swiss / EU / German imprint rules (placeholder).",
       "operator": "Operator",
@@ -567,7 +571,7 @@
       "datenschutz_title": "Privacy Policy",
       "datenschutz_intro": "How NexusScope handles personal data (summary).",
       "terms_title": "Terms of Service",
-      "terms_intro": "Terms of Service for NexusScope. Final text will be provided before go-live.",
+      "terms_intro": "Terms of Service for NexusScope.",
       "cookies_title": "Cookie Policy",
       "cookies_intro": "Which cookies NexusScope uses and how you can manage them.",
       "privacy_sections": [
@@ -598,8 +602,7 @@
           "b": "You can clear site data in your browser at any time. Revisit this page or use Cookie Settings in the footer to review this notice again."
         }
       ],
-      "placeholder": "[To be completed before go-live.]",
-      "tos_placeholder": "[Final Terms of Service text will be provided later.]"
+      "placeholder": "[To be completed before go-live.]"
     }
   }
 }

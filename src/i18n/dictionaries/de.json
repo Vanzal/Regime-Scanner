@@ -482,7 +482,8 @@
         "email": "Bitte eine gültige E-Mail-Adresse angeben",
         "country": "Bitte ein Land wählen"
       },
-      "privacy_note": "Ihre E-Mail verwenden wir nur, um Sie über den Early Access zu informieren. Kein Marketing ohne Einwilligung. Details in der Datenschutzerklärung."
+      "privacy_note": "Ihre E-Mail verwenden wir nur, um Sie über den Early Access zu informieren. Kein Marketing ohne Einwilligung.",
+      "privacy_link": "Datenschutzerklärung"
     },
     "subscribe": {
       "title": "Oder Early Access abonnieren",
@@ -545,6 +546,7 @@
       "impressum": "Impressum",
       "datenschutz": "Datenschutz",
       "terms": "Nutzungsbedingungen",
+      "dpa": "AVV",
       "cookies": "Cookie-Richtlinie",
       "cookie_settings": "Cookie-Einstellungen",
       "lang_label": "Sprache",
@@ -559,6 +561,8 @@
       "accept": "Verstanden"
     },
     "legal": {
+      "docs_nav": "Rechtliches",
+      "language_note": "Diese Dokumente sind auf Englisch veröffentlicht.",
       "impressum_title": "Impressum",
       "impressum_intro": "Angaben nach schweizerischem / EU- / deutschem Impressumsrecht (Platzhalter).",
       "operator": "Betreiber",
@@ -567,7 +571,7 @@
       "datenschutz_title": "Datenschutzerklärung",
       "datenschutz_intro": "So geht NexusScope mit personenbezogenen Daten um (Zusammenfassung).",
       "terms_title": "Nutzungsbedingungen",
-      "terms_intro": "Nutzungsbedingungen für NexusScope. Finaler Text folgt vor dem Livegang.",
+      "terms_intro": "Nutzungsbedingungen für NexusScope.",
       "cookies_title": "Cookie-Richtlinie",
       "cookies_intro": "Welche Cookies NexusScope verwendet und wie Sie diese verwalten können.",
       "privacy_sections": [
@@ -598,8 +602,7 @@
           "b": "Sie können Website-Daten jederzeit im Browser löschen. Über diese Seite oder die Cookie-Einstellungen im Footer können Sie den Hinweis erneut einsehen."
         }
       ],
-      "placeholder": "[Vor dem Livegang auszufüllen.]",
-      "tos_placeholder": "[Finaler Text der Nutzungsbedingungen folgt später.]"
+      "placeholder": "[Vor dem Livegang auszufüllen.]"
     }
   }
 }

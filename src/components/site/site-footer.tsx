@@ -1,5 +1,7 @@
+import Link from 'next/link'
 import { LangSwitch } from './lang-switch'
 import { CookieSettingsLink } from './cookie-settings-link'
+import { footerLegalLinks, type LegalDocId } from '@/lib/legal/catalog'
 import type { Dictionary, Locale } from '@/i18n'
 
 const linkClass =
@@ -16,8 +18,66 @@ const quietLinkClass =
  * - Full Swiss postal address → footer.address_lines
  * - Email / phone → footer.contact_email / footer.phone
  * - UID / VAT (MwSt) number → footer.uid
- * - Final TOS copy → /terms + legal.tos_placeholder
+ *
+ * Legal document paths come from `footerLegalLinks()` (Privacy, Terms, DPA).
  */
+export function FooterLegalNav({
+  dict,
+  locale,
+  headingId,
+}: {
+  dict: Dictionary
+  locale: Locale
+  headingId?: string
+}) {
+  const f = dict.site.footer
+  const labels: Record<LegalDocId, string> = {
+    privacy: f.datenschutz,
+    terms: f.terms,
+    dpa: f.dpa,
+  }
+  const legalLinks = footerLegalLinks(locale)
+
+  return (
+    <nav aria-labelledby={headingId} aria-label={headingId ? undefined : dict.site.legal.docs_nav}>
+      {headingId ? (
+        <h2
+          id={headingId}
+          className="mb-3 font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]"
+        >
+          {f.legal_heading}
+        </h2>
+      ) : null}
+      <ul className="flex flex-col gap-2.5 text-sm">
+        <li>
+          <Link href="/impressum" className={linkClass}>
+            {f.impressum}
+          </Link>
+        </li>
+        {legalLinks.map((item) => (
+          <li key={item.id}>
+            <Link
+              href={item.href}
+              data-testid={`footer-legal-${item.id}`}
+              className={linkClass}
+            >
+              {labels[item.id]}
+            </Link>
+          </li>
+        ))}
+        <li>
+          <Link href="/cookies" className={linkClass}>
+            {f.cookies}
+          </Link>
+        </li>
+        <li>
+          <CookieSettingsLink label={f.cookie_settings} className={linkClass} />
+        </li>
+      </ul>
+    </nav>
+  )
+}
+
 export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const f = dict.site.footer
 
@@ -74,41 +134,8 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
             <p className="mt-5 font-reading text-xs leading-relaxed text-[var(--ns-fg-dim)]">{f.copyright}</p>
           </section>
 
-          {/* ── Middle: legal links ── */}
-          <nav aria-labelledby="footer-legal-heading">
-            <h2
-              id="footer-legal-heading"
-              className="mb-3 font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]"
-            >
-              {f.legal_heading}
-            </h2>
-            <ul className="flex flex-col gap-2.5 text-sm">
-              <li>
-                <a href="/impressum" className={linkClass}>
-                  {f.impressum}
-                </a>
-              </li>
-              <li>
-                <a href="/datenschutz" className={linkClass}>
-                  {f.datenschutz}
-                </a>
-              </li>
-              <li>
-                {/* Final TOS text will be provided later — route is ready */}
-                <a href="/terms" className={linkClass}>
-                  {f.terms}
-                </a>
-              </li>
-              <li>
-                <a href="/cookies" className={linkClass}>
-                  {f.cookies}
-                </a>
-              </li>
-              <li>
-                <CookieSettingsLink label={f.cookie_settings} className={linkClass} />
-              </li>
-            </ul>
-          </nav>
+          {/* ── Middle: legal links (catalog + cookie controls) ── */}
+          <FooterLegalNav dict={dict} locale={locale} headingId="footer-legal-heading" />
 
           {/* ── Right: language + disclaimer ── */}
           <section aria-labelledby="footer-lang-heading" className="sm:col-span-2 lg:col-span-1">

@@ -9,7 +9,7 @@ vi.mock('next/navigation', () => ({
 import { SiteFooter } from '@/components/site/site-footer'
 
 describe('SiteFooter', () => {
-  it('renders Swiss/EU imprint essentials and legal routes (EN)', () => {
+  it('renders Swiss/EU imprint essentials and legal catalog routes (EN)', () => {
     const dict = getDict('en')
     const html = renderToStaticMarkup(<SiteFooter dict={dict} locale="en" />)
 
@@ -22,9 +22,13 @@ describe('SiteFooter', () => {
     expect(html).toContain('does not constitute legal advice')
     expect(html).toContain('Data is processed in Switzerland / EU.')
     expect(html).toContain('href="/impressum"')
-    expect(html).toContain('href="/datenschutz"')
-    expect(html).toContain('href="/terms"')
+    expect(html).toContain('href="/privacy"')
+    expect(html).toContain('href="/legal/terms"')
+    expect(html).toContain('href="/legal/dpa"')
     expect(html).toContain('href="/cookies"')
+    expect(html).toContain('data-testid="footer-legal-privacy"')
+    expect(html).toContain('data-testid="footer-legal-terms"')
+    expect(html).toContain('data-testid="footer-legal-dpa"')
     expect(html).toContain('Cookie Settings')
   })
 
@@ -35,6 +39,7 @@ describe('SiteFooter', () => {
     expect(html).toContain('Impressum')
     expect(html).toContain('Datenschutz')
     expect(html).toContain('Nutzungsbedingungen')
+    expect(html).toContain('AVV')
     expect(html).toContain('Cookie-Richtlinie')
     expect(html).toContain('keine Rechtsberatung')
     expect(html).toContain('Schweiz / EU')
