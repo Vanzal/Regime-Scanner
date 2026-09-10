@@ -5,6 +5,7 @@ import { getStripe } from '@/lib/stripe'
 import { getStore } from '@/lib/store'
 import { openBillingPortalForm } from '@/app/actions/stripe'
 import { SiteFooter } from '@/components/site/site-footer'
+import { CookieBanner } from '@/components/site/cookie-banner'
 
 export const dynamic = 'force-dynamic'
 
@@ -81,6 +82,7 @@ export default async function BillingSuccessPage({
       </main>
 
       <SiteFooter dict={dict} locale={locale} />
+      <CookieBanner dict={dict} />
     </div>
   )
 }

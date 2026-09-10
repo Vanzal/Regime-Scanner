@@ -528,15 +528,33 @@
       ]
     },
     "footer": {
-      "tagline": "Cyber-Reporting & Compliance-Orientierung für den DACH-Raum.",
+      "company_name": "NexusScope",
+      "legal_form": "[Rechtsform — z. B. GmbH / AG]",
+      "address_lines": [
+        "[Strasse und Hausnummer]",
+        "[PLZ] [Ort]",
+        "Schweiz"
+      ],
+      "email_label": "E-Mail",
+      "contact_email": "hello@nexusscope.example",
+      "phone_label": "Telefon",
+      "phone": "[+41 XX XXX XX XX]",
+      "uid_label": "UID / MwSt",
+      "uid": "[CHE-XXX.XXX.XXX]",
+      "copyright": "© 2026 NexusScope. Alle Rechte vorbehalten.",
+      "legal_heading": "Rechtliches",
       "impressum": "Impressum",
       "datenschutz": "Datenschutz",
-      "terms": "AGB",
+      "terms": "Nutzungsbedingungen",
       "dpa": "AVV",
+      "cookies": "Cookie-Richtlinie",
+      "cookie_settings": "Cookie-Einstellungen",
+      "lang_label": "Sprache",
+      "disclaimer": "NexusScope bietet ausschliesslich informative Orientierung und stellt keine Rechtsberatung dar.",
+      "data_location": "Daten werden in der Schweiz / EU verarbeitet.",
+      "tagline": "Cyber-Reporting & Compliance-Orientierung für den DACH-Raum.",
       "contact_label": "Kontakt:",
-      "contact_email": "hello@nexusscope.example",
-      "legal_note": "Automatisierte Orientierung – keine Rechtsberatung.",
-      "lang_label": "Sprache"
+      "legal_note": "Automatisierte Orientierung – keine Rechtsberatung."
     },
     "cookie": {
       "text": "Wir verwenden nur einen funktionalen Cookie, der Ihre Sprachwahl speichert. Kein Tracking, keine Drittanbieter-Cookies.",
@@ -546,12 +564,16 @@
       "docs_nav": "Rechtliches",
       "language_note": "Diese Dokumente sind auf Englisch veröffentlicht.",
       "impressum_title": "Impressum",
-      "impressum_intro": "Angaben nach § 5 DDG (Platzhalter).",
+      "impressum_intro": "Angaben nach schweizerischem / EU- / deutschem Impressumsrecht (Platzhalter).",
       "operator": "Betreiber",
       "representative": "Vertreten durch",
       "contact": "Kontakt",
       "datenschutz_title": "Datenschutzerklärung",
       "datenschutz_intro": "So geht NexusScope mit personenbezogenen Daten um (Zusammenfassung).",
+      "terms_title": "Nutzungsbedingungen",
+      "terms_intro": "Nutzungsbedingungen für NexusScope.",
+      "cookies_title": "Cookie-Richtlinie",
+      "cookies_intro": "Welche Cookies NexusScope verwendet und wie Sie diese verwalten können.",
       "privacy_sections": [
         {
           "h": "Was wir speichern",
@@ -568,6 +590,16 @@
         {
           "h": "Ihre Rechte",
           "b": "Auskunft, Berichtigung und Löschung jederzeit über die Kontakt-E-Mail."
+        }
+      ],
+      "cookie_sections": [
+        {
+          "h": "Funktionale Cookies",
+          "b": "Wir speichern einen Sprachwahl-Cookie (`lang`) sowie eine lokale Bestätigung dieses Hinweises. Keine Tracking- oder Werbe-Cookies."
+        },
+        {
+          "h": "Cookies verwalten",
+          "b": "Sie können Website-Daten jederzeit im Browser löschen. Über diese Seite oder die Cookie-Einstellungen im Footer können Sie den Hinweis erneut einsehen."
         }
       ],
       "placeholder": "[Vor dem Livegang auszufüllen.]"

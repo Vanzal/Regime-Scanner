@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { getDict, localeFromCookie, type Locale } from '@/i18n'
 import { SiteFooter } from '@/components/site/site-footer'
+import { CookieBanner } from '@/components/site/cookie-banner'
 import {
   LEGAL_DOCUMENT_ORDER,
   LEGAL_DOCUMENTS,
@@ -70,6 +71,7 @@ export async function LegalDocumentPage({ id }: { id: LegalDocId }) {
       </main>
 
       <SiteFooter dict={dict} locale={locale} />
+      <CookieBanner dict={dict} />
     </div>
   )
 }
