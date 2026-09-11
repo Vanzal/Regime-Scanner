@@ -26,6 +26,7 @@ describe('SiteFooter', () => {
     expect(html).toContain('href="/legal/terms"')
     expect(html).toContain('href="/legal/dpa"')
     expect(html).toContain('href="/cookies"')
+    expect(html).toContain('href="/cookie-settings"')
     expect(html).toContain('data-testid="footer-legal-privacy"')
     expect(html).toContain('data-testid="footer-legal-terms"')
     expect(html).toContain('data-testid="footer-legal-dpa"')
