@@ -557,8 +557,36 @@
       "legal_note": "Automated orientation — not legal advice."
     },
     "cookie": {
-      "text": "We use only a functional cookie to remember your language preference. No tracking, no third-party cookies.",
-      "accept": "Got it"
+      "banner_label": "Cookie consent",
+      "text": "We use cookies and similar technologies. Strictly necessary cookies keep the site secure. Preferences, analytics, and marketing cookies are used only with your consent. You can accept all, reject all, or choose categories.",
+      "accept_all": "Accept all",
+      "reject_all": "Reject all",
+      "customize": "Cookie Settings",
+      "settings_title": "Cookie Settings",
+      "settings_intro": "Choose which cookie categories NexusScope may use. Strictly necessary cookies are always on. You can change this choice at any time.",
+      "settings_link": "Cookie Settings",
+      "policy_link": "Cookie Policy",
+      "always_on": "Always on",
+      "save": "Save choices",
+      "saved": "Your cookie preferences have been saved.",
+      "categories": {
+        "necessary": {
+          "label": "Strictly necessary",
+          "description": "Required for security, load balancing, CSRF protection, and storing this consent choice. These cannot be switched off."
+        },
+        "preferences": {
+          "label": "Preferences",
+          "description": "Remember language and interface settings so the site works the way you prefer."
+        },
+        "analytics": {
+          "label": "Analytics",
+          "description": "Help us understand aggregate usage so we can improve NexusScope. No advertising profiles."
+        },
+        "marketing": {
+          "label": "Marketing",
+          "description": "Measure campaign attribution when we run outreach. Not used unless you allow this category."
+        }
+      }
     },
     "legal": {
       "docs_nav": "Legal",
@@ -590,16 +618,6 @@
         {
           "h": "Your rights",
           "b": "Access, rectification and erasure at any time via the contact e-mail."
-        }
-      ],
-      "cookie_sections": [
-        {
-          "h": "Functional cookies",
-          "b": "We store a language preference cookie (`lang`) and a local acknowledgement of this notice. No tracking or advertising cookies."
-        },
-        {
-          "h": "Managing cookies",
-          "b": "You can clear site data in your browser at any time. Revisit this page or use Cookie Settings in the footer to review this notice again."
         }
       ],
       "placeholder": "[To be completed before go-live.]"

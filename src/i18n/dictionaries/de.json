@@ -557,8 +557,36 @@
       "legal_note": "Automatisierte Orientierung – keine Rechtsberatung."
     },
     "cookie": {
-      "text": "Wir verwenden nur einen funktionalen Cookie, der Ihre Sprachwahl speichert. Kein Tracking, keine Drittanbieter-Cookies.",
-      "accept": "Verstanden"
+      "banner_label": "Cookie-Einwilligung",
+      "text": "Wir verwenden Cookies und ähnliche Technologien. Unbedingt erforderliche Cookies halten die Website sicher. Präferenz-, Analyse- und Marketing-Cookies setzen wir nur mit Ihrer Einwilligung. Sie können alle akzeptieren, alle ablehnen oder Kategorien wählen.",
+      "accept_all": "Alle akzeptieren",
+      "reject_all": "Alle ablehnen",
+      "customize": "Cookie-Einstellungen",
+      "settings_title": "Cookie-Einstellungen",
+      "settings_intro": "Wählen Sie, welche Cookie-Kategorien NexusScope verwenden darf. Unbedingt erforderliche Cookies sind immer aktiv. Sie können Ihre Wahl jederzeit ändern.",
+      "settings_link": "Cookie-Einstellungen",
+      "policy_link": "Cookie-Richtlinie",
+      "always_on": "Immer aktiv",
+      "save": "Auswahl speichern",
+      "saved": "Ihre Cookie-Einstellungen wurden gespeichert.",
+      "categories": {
+        "necessary": {
+          "label": "Unbedingt erforderlich",
+          "description": "Erforderlich für Sicherheit, Lastverteilung, CSRF-Schutz und das Speichern dieser Einwilligung. Diese Kategorie lässt sich nicht deaktivieren."
+        },
+        "preferences": {
+          "label": "Präferenzen",
+          "description": "Speichern Sprache und Oberflächeneinstellungen, damit die Website wie gewünscht funktioniert."
+        },
+        "analytics": {
+          "label": "Analyse",
+          "description": "Helfen uns, die Nutzung in aggregierter Form zu verstehen und NexusScope zu verbessern. Keine Werbeprofile."
+        },
+        "marketing": {
+          "label": "Marketing",
+          "description": "Messen Kampagnen-Attribution, wenn wir Outreach betreiben. Nicht verwendet, solange Sie diese Kategorie nicht erlauben."
+        }
+      }
     },
     "legal": {
       "docs_nav": "Rechtliches",
@@ -590,16 +618,6 @@
         {
           "h": "Ihre Rechte",
           "b": "Auskunft, Berichtigung und Löschung jederzeit über die Kontakt-E-Mail."
-        }
-      ],
-      "cookie_sections": [
-        {
-          "h": "Funktionale Cookies",
-          "b": "Wir speichern einen Sprachwahl-Cookie (`lang`) sowie eine lokale Bestätigung dieses Hinweises. Keine Tracking- oder Werbe-Cookies."
-        },
-        {
-          "h": "Cookies verwalten",
-          "b": "Sie können Website-Daten jederzeit im Browser löschen. Über diese Seite oder die Cookie-Einstellungen im Footer können Sie den Hinweis erneut einsehen."
         }
       ],
       "placeholder": "[Vor dem Livegang auszufüllen.]"

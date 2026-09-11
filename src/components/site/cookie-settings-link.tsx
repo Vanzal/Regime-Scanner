@@ -1,9 +1,6 @@
-'use client'
+import Link from 'next/link'
 
-/**
- * Re-opens the functional cookie notice (CookieBanner) by clearing the
- * local acknowledgement flag and dispatching a custom event.
- */
+/** Footer / chrome link to the Cookie Settings page (`/cookie-settings`). */
 export function CookieSettingsLink({
   label,
   className = '',
@@ -11,18 +8,9 @@ export function CookieSettingsLink({
   label: string
   className?: string
 }) {
-  const openSettings = () => {
-    try {
-      localStorage.removeItem('nexuscookieok')
-    } catch {
-      // ignore storage failures
-    }
-    window.dispatchEvent(new CustomEvent('nexus:cookie-settings'))
-  }
-
   return (
-    <button type="button" onClick={openSettings} className={`cursor-pointer text-left ${className}`}>
+    <Link href="/cookie-settings" className={className} data-testid="cookie-settings-link">
       {label}
-    </button>
+    </Link>
   )
 }
