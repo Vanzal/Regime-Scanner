@@ -1,4 +1,5 @@
 import { after } from 'next/server'
+import { siteUrl } from '@/lib/site-url'
 
 /**
  * Scan-Auslösung, hosting-portabel:
@@ -13,8 +14,7 @@ export function triggerScan(scanId: string): void {
   const runnerUrl = process.env.SCAN_RUNNER_URL // überschreibbar (z. B. Vercel: /api/scan-run)
 
   if (isProd && secret) {
-    const base = process.env.SITE_URL ?? ''
-    const url = `${base}${runnerUrl ?? '/.netlify/functions/scan-runner.background'}`
+    const url = `${siteUrl()}${runnerUrl ?? '/.netlify/functions/scan-runner.background'}`
     void fetch(url, {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-scan-runner-secret': secret },
