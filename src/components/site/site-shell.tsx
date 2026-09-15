@@ -18,7 +18,7 @@ export function SiteShell({
   const skipLabel = locale === 'de' ? 'Zum Inhalt springen' : 'Skip to content'
 
   return (
-    <div className="min-h-screen bg-[var(--ns-bg)] text-[var(--ns-fg)]">
+    <div className="min-h-screen overflow-x-clip bg-[var(--ns-bg)] text-[var(--ns-fg)]">
       <a href="#main-content" className="ns-skip-link">
         {skipLabel}
       </a>

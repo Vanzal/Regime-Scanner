@@ -14,6 +14,9 @@ export interface SampleGap {
   title: string
   detail: string
   fix?: string
+  evidence?: Record<string, unknown>
+  sourceUrl?: string
+  checkId?: string
 }
 
 export interface SampleDeadline {
@@ -159,6 +162,9 @@ export function buildSampleReport(id: SampleProfileId): SampleReport {
         title: f.title,
         detail: f.detail,
         fix: f.fix,
+        evidence: f.evidence_json,
+        sourceUrl: f.source_url,
+        checkId: f.check_id,
       })),
     disclaimer: DISCLAIMER,
   }

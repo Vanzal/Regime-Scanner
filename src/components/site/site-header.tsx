@@ -26,15 +26,16 @@ export function SiteHeader({
   const navId = useId()
   const n = dict.site.nav
   const links: NavLink[] = [
-    { href: '/#features', label: n.features },
     { href: '/#how', label: n.how },
     { href: '/#preview', label: n.preview },
+    { href: '/#features', label: n.features },
     { href: '/pricing', label: n.pricing },
     { href: '/#faq', label: n.faq },
   ]
 
   const primaryHref = productReady ? '/intake' : '/#waitlist'
   const primaryLabel = productReady ? n.scan : n.waitlist
+  const primaryLabelShort = productReady ? n.scan : n.waitlist_short
 
   useEffect(() => {
     if (!open) return
@@ -59,7 +60,11 @@ export function SiteHeader({
         <BrandMark className="min-w-0 shrink" />
         <div className="hidden items-center gap-6 text-sm font-medium text-[var(--ns-fg-muted)] lg:flex">
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className="transition hover:text-[var(--ns-fg)]">
+            <Link
+              key={link.href}
+              href={link.href}
+              className="transition hover:text-[var(--ns-fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ns-accent)]"
+            >
               {link.label}
             </Link>
           ))}
@@ -71,14 +76,16 @@ export function SiteHeader({
           <ThemeToggle label={dict.site.theme.toggle} />
           <Link
             href={primaryHref}
-            className="ns-btn-primary max-lg:!hidden min-h-10 px-3 py-2 text-xs sm:text-sm"
+            className="ns-btn-primary !min-h-9 px-2.5 py-2 text-[11px] leading-tight sm:px-3 sm:text-sm"
+            aria-label={primaryLabel}
           >
-            {primaryLabel}
+            <span className="sm:hidden">{primaryLabelShort}</span>
+            <span className="hidden sm:inline">{primaryLabel}</span>
           </Link>
           <button
             ref={menuButtonRef}
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[var(--ns-border)] text-[var(--ns-fg)] lg:hidden"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--ns-radius)] border border-[var(--ns-border)] text-[var(--ns-fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ns-accent)] lg:hidden"
             aria-expanded={open}
             aria-controls={navId}
             aria-label={open ? n.close : n.menu}
@@ -99,7 +106,7 @@ export function SiteHeader({
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-md px-2 py-2.5 text-[var(--ns-fg-muted)] hover:bg-[var(--ns-ghost)] hover:text-[var(--ns-fg)]"
+                className="rounded-[var(--ns-radius)] px-2 py-2.5 text-[var(--ns-fg-muted)] hover:bg-[var(--ns-ghost)] hover:text-[var(--ns-fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ns-accent)]"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
@@ -107,19 +114,12 @@ export function SiteHeader({
             ))}
             <Link
               href="/contact"
-              className="rounded-md px-2 py-2.5 text-[var(--ns-fg-muted)] hover:bg-[var(--ns-ghost)] hover:text-[var(--ns-fg)]"
+              className="rounded-[var(--ns-radius)] px-2 py-2.5 text-[var(--ns-fg-muted)] hover:bg-[var(--ns-ghost)] hover:text-[var(--ns-fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ns-accent)]"
               onClick={() => setOpen(false)}
             >
               {n.contact}
             </Link>
-            <Link
-              href={primaryHref}
-              className="ns-btn-primary mt-2 w-full"
-              onClick={() => setOpen(false)}
-            >
-              {primaryLabel}
-            </Link>
-            <div className="pt-3">
+            <div className="px-2 pt-3">
               <LangSwitch locale={locale} label={dict.site.footer.lang_label} />
             </div>
           </div>

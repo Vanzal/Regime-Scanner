@@ -4,6 +4,7 @@ import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import type { Dictionary } from '@/i18n'
 import type { SampleProfileId, SampleReport } from '@/lib/sample-reports'
 import { SampleReportCard } from './sample-report-card'
+import { cn } from '@/lib/utils'
 
 export function SampleReportExplorer({
   reports,
@@ -33,7 +34,7 @@ export function SampleReportExplorer({
   if (!current) return null
 
   return (
-    <div>
+    <div className="min-w-0">
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <p className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
           {p.profiles_label}
@@ -42,7 +43,7 @@ export function SampleReportExplorer({
           ref={tablistRef}
           role="tablist"
           aria-label={p.profiles_label}
-          className="flex flex-wrap gap-2"
+          className="flex max-w-full gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {(Object.keys(labels) as SampleProfileId[]).map((key) => {
             const selected = id === key
@@ -75,11 +76,12 @@ export function SampleReportExplorer({
                     setId(keys[keys.length - 1]!)
                   }
                 }}
-                className={`min-h-11 rounded-md border px-3 py-2 text-left text-sm font-medium transition ${
+                className={cn(
+                  'min-h-11 shrink-0 rounded-[var(--ns-radius)] border px-3 py-2 text-left text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ns-accent)]',
                   selected
                     ? 'border-[var(--ns-accent)] bg-[color-mix(in_oklch,var(--ns-accent)_12%,transparent)] text-[var(--ns-fg)]'
-                    : 'border-[var(--ns-border)] text-[var(--ns-fg-muted)] hover:text-[var(--ns-fg)]'
-                }`}
+                    : 'border-[var(--ns-border)] text-[var(--ns-fg-muted)] hover:text-[var(--ns-fg)]',
+                )}
               >
                 {labels[key]}
               </button>
@@ -87,8 +89,8 @@ export function SampleReportExplorer({
           })}
         </div>
       </div>
-      <div id={panelId} role="tabpanel" aria-labelledby={`${panelId}-tab-${id}`}>
-        <SampleReportCard report={current} dict={dict} />
+      <div id={panelId} role="tabpanel" aria-labelledby={`${panelId}-tab-${id}`} className="min-w-0">
+        <SampleReportCard report={current} dict={dict} key={current.id} />
       </div>
     </div>
   )
