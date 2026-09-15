@@ -9,7 +9,7 @@ describe('sample reports (fixture mapping engine)', () => {
     for (const report of reports) {
       expect(report.synthetic).toBe(true)
       expect(report.regimes.map((r) => r.code)).toEqual(['DE', 'AT', 'CH'])
-      expect(report.disclaimer).toMatch(/not legal advice/i)
+      expect(report.disclaimer).toMatch(/regulatory readiness intelligence|not legal advice/i)
       expect(report.gaps.length).toBeGreaterThan(0)
     }
   })
@@ -23,7 +23,19 @@ describe('sample reports (fixture mapping engine)', () => {
     expect(at?.status).toBe('out')
     expect(ch?.status).toBe('out')
     expect(de?.reason.length).toBeGreaterThan(20)
+    expect(de?.confidence).toBeGreaterThan(0)
+    expect(de?.sourceUrls.length).toBeGreaterThan(0)
     expect(de?.deadlines.some((d) => d.hours === 24)).toBe(true)
+    expect(report.gaps[0]?.sourceUrl || report.gaps[0]?.evidence).toBeTruthy()
+  })
+
+  it('English marketing sample localises gap titles', () => {
+    const en = buildSampleReport('mittelstand-de', 'en')
+    const de = buildSampleReport('mittelstand-de', 'de')
+    expect(en.gaps.some((g) => /DMARC record missing/i.test(g.title))).toBe(true)
+    expect(de.gaps.some((g) => /DMARC fehlt/i.test(g.title))).toBe(true)
+    expect(en.regimes.find((r) => r.code === 'DE')?.reason).toMatch(/Germany/i)
+    expect(de.regimes.find((r) => r.code === 'DE')?.reason).toMatch(/Hauptsitz|NIS/)
   })
 
   it('Austrian IT provider is IN for Austria and OUT for Germany', () => {
@@ -49,5 +61,14 @@ describe('product flags', () => {
     expect(isPricingLive()).toBe(false)
     expect(isLiveScanEnabled()).toBe(false)
     expect(scanModeLabel()).toBe('fixture')
+  })
+
+  it('isPricingLive follows NEXT_PUBLIC_PRICING_LIVE', () => {
+    const prev = process.env.NEXT_PUBLIC_PRICING_LIVE
+    process.env.NEXT_PUBLIC_PRICING_LIVE = 'true'
+    expect(isPricingLive()).toBe(true)
+    if (prev === undefined) delete process.env.NEXT_PUBLIC_PRICING_LIVE
+    else process.env.NEXT_PUBLIC_PRICING_LIVE = prev
+    expect(isPricingLive()).toBe(false)
   })
 })

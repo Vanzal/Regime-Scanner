@@ -20,7 +20,7 @@ export interface PoliteResponse {
 export type PoliteFetch = (url: string, init: RequestInit) => Promise<Response>
 
 export const USER_AGENT =
-  'NexusScopeBot/0.1 (+https://nexusscope.example/ueber; berichte@nexusscope.example)'
+  'NexusScopeBot/0.1 (+https://nexusscopes.com; privacy@nexusscopes.com)'
 
 interface PolitenessOptions {
   budget?: number

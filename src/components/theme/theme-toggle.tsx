@@ -22,7 +22,7 @@ export function ThemeToggle({ label }: { label: string }) {
         applySiteTheme(next)
         setIsDark(next === 'dark')
       }}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[var(--ns-border)] text-[var(--ns-fg-muted)] transition hover:border-[var(--ns-border-strong)] hover:text-[var(--ns-fg)]"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[var(--ns-border)] text-[var(--ns-fg-muted)] transition hover:border-[var(--ns-border-strong)] hover:text-[var(--ns-fg)]"
     >
       {isDark ? <SunIcon className="h-4 w-4" /> : <MoonIcon className="h-4 w-4" />}
     </button>

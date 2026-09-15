@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { STRIPE_WEBHOOK_EVENTS } from '@/lib/billing/webhook'
 import {
   ensureSubscriptionPrice,
   getStripe,
@@ -35,21 +36,27 @@ export async function POST(req: Request): Promise<Response> {
       url: string
       secret?: string
       created: boolean
+      eventsUpdated?: boolean
     }
 
     if (found) {
-      webhook = { id: found.id, url: found.url, created: false }
+      const have = new Set(found.enabled_events)
+      const missing = STRIPE_WEBHOOK_EVENTS.filter((event) => !have.has(event))
+      if (missing.length > 0) {
+        await stripe.webhookEndpoints.update(found.id, {
+          enabled_events: [...STRIPE_WEBHOOK_EVENTS],
+        })
+      }
+      webhook = {
+        id: found.id,
+        url: found.url,
+        created: false,
+        eventsUpdated: missing.length > 0,
+      }
     } else {
       const created = await stripe.webhookEndpoints.create({
         url: endpointUrl,
-        enabled_events: [
-          'checkout.session.completed',
-          'customer.subscription.created',
-          'customer.subscription.updated',
-          'customer.subscription.deleted',
-          'invoice.paid',
-          'invoice.payment_failed',
-        ],
+        enabled_events: [...STRIPE_WEBHOOK_EVENTS],
         description: 'NexusScope Early Access subscriptions',
       })
       webhook = {
@@ -67,7 +74,9 @@ export async function POST(req: Request): Promise<Response> {
       webhook,
       hint: webhook.secret
         ? 'Store webhook.secret as STRIPE_WEBHOOK_SECRET in Vercel env, then redeploy.'
-        : 'Webhook already exists — set STRIPE_WEBHOOK_SECRET from the Stripe Dashboard if missing.',
+        : webhook.eventsUpdated
+          ? 'Existing webhook events were updated. STRIPE_WEBHOOK_SECRET is unchanged.'
+          : 'Webhook already exists — set STRIPE_WEBHOOK_SECRET from the Stripe Dashboard if missing.',
     })
   } catch (err) {
     console.error('[stripe] setup failed', err)

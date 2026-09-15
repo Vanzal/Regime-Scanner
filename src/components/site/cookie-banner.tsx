@@ -43,7 +43,7 @@ export function CookieBanner({ copy }: { copy: Dictionary['site']['cookie'] }) {
       role="region"
       aria-label={c.banner_label}
       data-testid="cookie-banner"
-      className="fixed inset-x-0 bottom-0 z-50 border-t-2 border-[var(--ns-fg)] bg-[var(--ns-bg-elevated)]"
+      className="fixed inset-x-0 bottom-0 z-50 max-h-[min(70vh,28rem)] overflow-y-auto border-t-2 border-[var(--ns-fg)] bg-[var(--ns-bg-elevated)]"
     >
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 sm:px-6">
         <p className="font-reading text-xs leading-relaxed text-[var(--ns-fg-muted)] sm:text-sm">{c.text}</p>
@@ -52,7 +52,7 @@ export function CookieBanner({ copy }: { copy: Dictionary['site']['cookie'] }) {
             type="button"
             data-testid="cookie-banner-reject"
             onClick={rejectAll}
-            className="inline-flex min-h-10 items-center justify-center border-2 border-[var(--ns-fg)] bg-[var(--ns-bg)] px-4 text-xs font-bold text-[var(--ns-fg)] transition hover:bg-[var(--ns-bg-elevated)]"
+            className="inline-flex min-h-11 items-center justify-center border-2 border-[var(--ns-fg)] bg-[var(--ns-bg)] px-4 text-xs font-bold text-[var(--ns-fg)] transition hover:bg-[var(--ns-bg-elevated)]"
           >
             {c.reject_all}
           </button>
@@ -60,14 +60,14 @@ export function CookieBanner({ copy }: { copy: Dictionary['site']['cookie'] }) {
             type="button"
             data-testid="cookie-banner-accept"
             onClick={acceptAll}
-            className="ns-btn-primary !min-h-10 px-4 text-xs"
+            className="ns-btn-primary !min-h-11 px-4 text-xs"
           >
             {c.accept_all}
           </button>
           <Link
             href="/cookie-settings"
             data-testid="cookie-banner-customize"
-            className="inline-flex min-h-10 items-center justify-center px-2 text-xs font-semibold text-[var(--ns-fg-muted)] underline decoration-[var(--ns-border)] underline-offset-4 transition hover:text-[var(--ns-fg)]"
+            className="inline-flex min-h-11 items-center justify-center px-2 text-xs font-semibold text-[var(--ns-fg-muted)] underline decoration-[var(--ns-border)] underline-offset-4 transition hover:text-[var(--ns-fg)]"
           >
             {c.customize}
           </Link>

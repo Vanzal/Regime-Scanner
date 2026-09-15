@@ -2,7 +2,7 @@
 
 import { useActionState } from 'react'
 import { submitIntake, type IntakeState } from '@/app/actions/intake'
-import { SECTOR_KEYS, COUNTRY_KEYS, EmployeesBand, RevenueBand, BalanceBand, YesNoUnknown } from '@/lib/intake/schema'
+import { COUNTRY_KEYS, EmployeesBand, RevenueBand, BalanceBand, YesNoUnknown } from '@/lib/intake/schema'
 import type { Dictionary } from '@/i18n'
 import { t } from '@/i18n'
 
@@ -28,10 +28,18 @@ const SUBSIDIARY_COUNTRIES = COUNTRY_KEYS.filter(
 
 function FieldError({ msg }: { msg?: string }) {
   if (!msg) return null
-  return <p className="mt-1 text-xs font-medium text-[var(--ns-danger)]">{msg}</p>
+  return (
+    <p className="mt-1 text-xs font-medium text-[var(--ns-danger)]" role="alert">
+      {msg}
+    </p>
+  )
 }
 
 const labelCls = 'block text-sm font-semibold text-[var(--ns-fg)]'
+const hintCls = 'mt-1 text-xs text-[var(--ns-fg-dim)]'
+const checkRowCls = 'flex items-start gap-2 text-sm text-[var(--ns-fg-muted)]'
+const chipCls =
+  'flex min-h-11 items-center gap-2 rounded-[var(--ns-radius)] border border-[var(--ns-border)] px-3 py-2 text-sm text-[var(--ns-fg-muted)]'
 const inputCls = 'ns-input'
 const checkCls = 'h-4 w-4 rounded border-[var(--ns-border-strong)] text-[var(--ns-accent)]'
 
@@ -105,25 +113,31 @@ export function IntakeForm({ dict }: { dict: Dictionary }) {
 
       {/* Q6 */}
       <div>
-        <label className={labelCls} htmlFor="sector">{idict.q6_label}</label>
-        <p className="mt-1 text-xs text-slate-500">{idict.q6_hint}</p>
+        <label className={labelCls} htmlFor="sector">
+          {idict.q6_label}
+        </label>
+        <p className={hintCls}>{idict.q6_hint}</p>
         <select id="sector" name="sector" required defaultValue="" className={inputCls}>
-          <option value="" disabled>–</option>
+          <option value="" disabled>
+            –
+          </option>
           {SECTOR_GROUPS.map((g) => (
             <optgroup key={g.group} label={idict.sectors[g.group]}>
               {g.keys.map((k) => (
-                <option key={k} value={k}>{idict.sectors[k as keyof typeof idict.sectors] ?? k}</option>
+                <option key={k} value={k}>
+                  {idict.sectors[k as keyof typeof idict.sectors] ?? k}
+                </option>
               ))}
             </optgroup>
           ))}
         </select>
         <FieldError msg={e('sector')} />
-        <div className="mt-3 space-y-2 rounded-lg bg-slate-50 p-3">
-          <label className="flex items-start gap-2 text-sm text-slate-700">
+        <div className="mt-3 space-y-2 rounded-[var(--ns-radius)] border border-[var(--ns-border)] bg-[var(--ns-bg-panel)] p-3">
+          <label className={checkRowCls}>
             <input type="checkbox" name="designated_critical" className={`${checkCls} mt-0.5`} />
             <span>{idict.critical_label}</span>
           </label>
-          <label className="flex items-start gap-2 text-sm text-slate-700">
+          <label className={checkRowCls}>
             <input type="checkbox" name="qualified_trust_service" className={`${checkCls} mt-0.5`} />
             <span>{idict.trust_service_label}</span>
           </label>
@@ -131,61 +145,74 @@ export function IntakeForm({ dict }: { dict: Dictionary }) {
       </div>
 
       {/* Q7 */}
-      <div>
-        <span className={labelCls}>{idict.q7_label}</span>
-        <p className="mt-1 text-xs text-slate-500">{idict.q7_hint}</p>
+      <fieldset>
+        <legend className={labelCls}>{idict.q7_label}</legend>
+        <p className={hintCls}>{idict.q7_hint}</p>
         <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
           {SUBSIDIARY_COUNTRIES.map((c) => (
-            <label key={c} className="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700">
+            <label key={c} className={chipCls}>
               <input type="checkbox" name="subsidiary_countries" value={c} className={checkCls} />
               <span>{idict.countries[c]}</span>
             </label>
           ))}
         </div>
         <div className="mt-3">
-          <label className="flex items-start gap-2 text-sm text-slate-700">
+          <label className={checkRowCls}>
             <input type="checkbox" name="supply_chain_critical" className={`${checkCls} mt-0.5`} />
             <span>{idict.supply_chain_label}</span>
           </label>
         </div>
-      </div>
+      </fieldset>
 
       {/* Q8 */}
-      <div>
-        <span className={labelCls}>{idict.q8_label}</span>
-        <p className="mt-1 text-xs text-slate-500">{idict.q8_hint}</p>
-        <div className="mt-2 flex gap-4">
+      <fieldset>
+        <legend className={labelCls}>{idict.q8_label}</legend>
+        <p className={hintCls}>{idict.q8_hint}</p>
+        <div className="mt-2 flex flex-wrap gap-4">
           {YesNoUnknown.options.map((v) => (
-            <label key={v} className="flex items-center gap-2 text-sm text-slate-700">
-              <input type="radio" name="eu_customers_security_clauses" value={v} required defaultChecked={v === 'unknown'} className={checkCls} />
+            <label key={v} className="flex min-h-11 items-center gap-2 text-sm text-[var(--ns-fg-muted)]">
+              <input
+                type="radio"
+                name="eu_customers_security_clauses"
+                value={v}
+                required
+                defaultChecked={v === 'unknown'}
+                className={checkCls}
+              />
               <span>{idict.bands.eu_customers[v]}</span>
             </label>
           ))}
         </div>
         <FieldError msg={e('eu_customers_security_clauses')} />
-      </div>
+      </fieldset>
 
       {/* E-Mail-Gate */}
-      <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-        <label className={labelCls} htmlFor="email">{idict.email_label}</label>
-        <input id="email" name="email" type="email" required placeholder="name@firma.de" className={inputCls} />
-        <p className="mt-1 text-xs text-slate-500">{idict.email_hint}</p>
+      <div className="ns-card p-4 sm:p-5">
+        <label className={labelCls} htmlFor="email">
+          {idict.email_label}
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          autoComplete="email"
+          placeholder="name@firma.de"
+          className={inputCls}
+        />
+        <p className={hintCls}>{idict.email_hint}</p>
         <FieldError msg={e('email')} />
-        <label className="mt-3 flex items-start gap-2 text-sm text-slate-700">
+        <label className={`mt-3 ${checkRowCls}`}>
           <input type="checkbox" name="consent_marketing" required className={`${checkCls} mt-0.5`} />
           <span>{idict.consent_label}</span>
         </label>
         <FieldError msg={e('consent_marketing')} />
       </div>
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="w-full rounded-lg bg-indigo-600 px-4 py-3 text-sm font-bold text-white hover:bg-indigo-700 disabled:opacity-60 sm:w-auto sm:px-8"
-      >
+      <button type="submit" disabled={pending} className="ns-btn-primary w-full sm:w-auto">
         {pending ? idict.submitting : idict.submit}
       </button>
-      <p className="text-xs text-slate-400">{dict.landing.disclaimer_short}</p>
+      <p className="text-xs text-[var(--ns-fg-dim)]">{dict.landing.disclaimer_short}</p>
     </form>
   )
 }

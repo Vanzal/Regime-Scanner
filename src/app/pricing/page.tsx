@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { getDict, localeFromCookie, type Locale } from '@/i18n'
 import { isPricingLive, isProductReady } from '@/lib/flags'
 import { SiteShell } from '@/components/site/site-shell'
+import { SubscribeCta } from '@/components/site/subscribe-cta'
 import { cn } from '@/lib/utils'
 
 export const dynamic = 'force-dynamic'
@@ -23,18 +24,21 @@ export default async function PricingPage() {
 
   return (
     <SiteShell dict={dict} locale={locale} productReady={productReady}>
-      <main className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <p className="font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
           {pricingLive ? dict.site.nav.pricing : p.coming_soon}
         </p>
         <h1 className="mt-3 max-w-2xl font-display text-3xl tracking-tight sm:text-4xl">{p.title}</h1>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--ns-fg-muted)]">{p.subtitle}</p>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-[var(--ns-fg-muted)]">
+          {pricingLive ? p.subtitle_live : p.subtitle}
+        </p>
 
         <div className="mt-12 grid gap-4 lg:grid-cols-3">
           {p.plans.map((plan) => {
             const featured = plan.id === 'pro'
             const href = plan.id === 'free' && productReady ? '/intake' : '/#waitlist'
             const cta = plan.id === 'free' && productReady ? p.scan_cta : p.waitlist_cta
+            const showCheckout = pricingLive && plan.id === 'pro'
             return (
               <article
                 key={plan.id}
@@ -55,9 +59,13 @@ export default async function PricingPage() {
                     </li>
                   ))}
                 </ul>
-                <Link href={href} className={featured ? 'ns-btn-primary mt-8 w-full' : 'ns-btn-secondary mt-8 w-full'}>
-                  {pricingLive && plan.id === 'pro' ? p.waitlist_cta : cta}
-                </Link>
+                {showCheckout ? (
+                  <SubscribeCta dict={dict} compact cancelPath="/pricing" emailFieldId="pricing_sub_email" />
+                ) : (
+                  <Link href={href} className={featured ? 'ns-btn-primary mt-8 w-full' : 'ns-btn-secondary mt-8 w-full'}>
+                    {cta}
+                  </Link>
+                )}
               </article>
             )
           })}
@@ -66,7 +74,7 @@ export default async function PricingPage() {
         <p className="mt-10 max-w-3xl text-sm leading-relaxed text-[var(--ns-fg-dim)]">
           {p.note} {p.footnote}
         </p>
-      </main>
+      </div>
     </SiteShell>
   )
 }

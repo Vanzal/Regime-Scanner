@@ -17,12 +17,14 @@ const STATUS_STYLE: Record<Scan['status'], string> = {
 export default async function AdminPage() {
   if (!adminConfigured()) {
     return (
-      <main className="mx-auto max-w-xl px-4 py-24 text-center">
-        <h1 className="text-xl font-bold text-slate-900">Admin nicht konfiguriert</h1>
-        <p className="mt-2 text-sm text-slate-600">
-          Setzen Sie <code className="rounded bg-slate-100 px-1">ADMIN_PASSWORD</code> in der Umgebung, um den Pilotmodus zu nutzen.
-        </p>
-      </main>
+      <div className="min-h-screen bg-[#f8fafc]">
+        <main className="mx-auto max-w-xl px-4 py-24 text-center">
+          <h1 className="text-xl font-bold text-slate-900">Admin nicht konfiguriert</h1>
+          <p className="mt-2 text-sm text-slate-600">
+            Setzen Sie <code className="rounded bg-slate-100 px-1">ADMIN_PASSWORD</code> in der Umgebung, um den Pilotmodus zu nutzen.
+          </p>
+        </main>
+      </div>
     )
   }
   if (!(await isAdmin())) redirect('/admin/login')
@@ -33,6 +35,7 @@ export default async function AdminPage() {
   const autoRelease = process.env.AUTO_RELEASE !== 'false'
 
   return (
+    <div className="min-h-screen bg-[#f8fafc] text-slate-900">
     <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
       <div className="flex items-baseline justify-between">
         <h1 className="text-xl font-bold text-slate-900">Admin · Scans</h1>
@@ -97,5 +100,6 @@ export default async function AdminPage() {
         </table>
       </div>
     </main>
+    </div>
   )
 }
