@@ -60,7 +60,7 @@ export default async function PricingPage() {
                   ))}
                 </ul>
                 {showCheckout ? (
-                  <SubscribeCta dict={dict} compact cancelPath="/pricing" emailFieldId="pricing_sub_email" />
+                  <SubscribeCta copy={dict.site.subscribe} compact cancelPath="/pricing" emailFieldId="pricing_sub_email" />
                 ) : (
                   <Link href={href} className={featured ? 'ns-btn-primary mt-8 w-full' : 'ns-btn-secondary mt-8 w-full'}>
                     {cta}

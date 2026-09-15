@@ -1,21 +1,29 @@
 'use client'
 
 import { useActionState, useId } from 'react'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { joinWaitlist, type WaitlistState } from '@/app/actions/waitlist'
-import { SubscribeCta } from '@/components/site/subscribe-cta'
 import { LEGAL_DOCUMENTS } from '@/lib/legal/catalog'
 import type { Dictionary } from '@/i18n'
 import { cn } from '@/lib/utils'
+
+const SubscribeCta = dynamic(() => import('./subscribe-cta').then((m) => m.SubscribeCta))
 
 const SIZE_KEYS = ['lt_50', '50_249', '250_plus', 'unknown'] as const
 const COUNTRY_KEYS = ['de', 'at', 'ch', 'other'] as const
 
 const labelCls = 'block text-sm font-semibold text-[var(--ns-fg)]'
 
-export function WaitlistForm({ dict }: { dict: Dictionary }) {
+export function WaitlistForm({
+  waitlist,
+  subscribe,
+}: {
+  waitlist: Dictionary['site']['waitlist']
+  subscribe: Dictionary['site']['subscribe']
+}) {
   const [state, formAction, pending] = useActionState<WaitlistState, FormData>(joinWaitlist, { ok: false })
-  const w = dict.site.waitlist
+  const w = waitlist
   const errors = state.errors ?? {}
   const formErrorId = useId()
   const emailErrId = useId()
@@ -47,7 +55,7 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
         {state.duplicate && (
           <p className="font-reading mt-2 text-sm text-[var(--ns-fg-muted)]">{w.duplicate}</p>
         )}
-        <SubscribeCta dict={dict} defaultEmail={state.email ?? ''} />
+        <SubscribeCta copy={subscribe} defaultEmail={state.email ?? ''} />
       </div>
     )
   }

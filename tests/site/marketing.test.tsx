@@ -10,10 +10,6 @@ vi.mock('next/navigation', () => ({
   useRouter: () => ({ refresh: vi.fn() }),
 }))
 
-vi.mock('next-themes', () => ({
-  useTheme: () => ({ resolvedTheme: 'dark', setTheme: vi.fn() }),
-}))
-
 describe('marketing chrome copy', () => {
   it('preserves the live NexusScope headline and waitlist CTA', () => {
     const en = getDict('en')

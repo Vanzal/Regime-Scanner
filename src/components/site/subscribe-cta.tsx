@@ -8,13 +8,13 @@ import {
 import type { Dictionary } from '@/i18n'
 
 export function SubscribeCta({
-  dict,
+  copy,
   defaultEmail = '',
   compact = false,
   cancelPath = '/#waitlist',
   emailFieldId = 'sub_email',
 }: {
-  dict: Dictionary
+  copy: Dictionary['site']['subscribe']
   defaultEmail?: string
   /** Card embed: skip the extra title block. */
   compact?: boolean
@@ -26,7 +26,7 @@ export function SubscribeCta({
     startSubscriptionCheckout,
     { ok: false },
   )
-  const s = dict.site.subscribe
+  const s = copy
   const err = state.errors?.email
     ? s.errors.email
     : state.errors?.form

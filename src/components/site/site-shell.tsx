@@ -1,6 +1,6 @@
 import type { Dictionary, Locale } from '@/i18n'
 import { isProductReady } from '@/lib/flags'
-import { CookieBanner } from './cookie-banner'
+import { DeferredCookieBanner } from './deferred-cookie-banner'
 import { SiteFooter } from './site-footer'
 import { SiteHeader } from './site-header'
 
@@ -27,7 +27,7 @@ export function SiteShell({
         {children}
       </main>
       <SiteFooter dict={dict} locale={locale} />
-      <CookieBanner dict={dict} />
+      <DeferredCookieBanner copy={dict.site.cookie} />
     </div>
   )
 }

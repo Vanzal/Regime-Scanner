@@ -3,10 +3,11 @@ import Link from 'next/link'
 import { ShieldCheck, Clock3, FileSearch, Scale, FileDown, Server } from 'lucide-react'
 import { getDict, localeFromCookie, type Dictionary, type Locale } from '@/i18n'
 import { isProductReady } from '@/lib/flags'
-import { buildAllSampleReports, buildSampleReport } from '@/lib/sample-reports'
+import { buildAllSampleReports, buildSampleReport, toSampleReportView } from '@/lib/sample-reports'
 import { WaitlistForm } from '@/components/site/waitlist-form'
 import { SampleReportExplorer } from '@/components/site/sample-report-explorer'
 import { HeroReportCard } from '@/components/site/hero-report-card'
+import { SampleReportCard, type SampleReportCardDict } from '@/components/site/sample-report-card'
 import { SiteShell } from '@/components/site/site-shell'
 
 export const dynamic = 'force-dynamic'
@@ -16,6 +17,20 @@ const H2 = 'font-display text-2xl tracking-tight text-[var(--ns-fg)] sm:text-3xl
 
 const FEATURE_ICONS = [Scale, Clock3, FileSearch, ShieldCheck, FileDown, Server]
 
+function sampleCardDict(dict: Dictionary): SampleReportCardDict {
+  return {
+    site: { preview: dict.site.preview },
+    report: {
+      gaps: { severity: dict.report.gaps.severity },
+      clock: { none_applicable: dict.report.clock.none_applicable },
+      confidence_bands: dict.report.confidence_bands,
+      why_label: dict.report.why_label,
+      unclear_hints: dict.report.unclear_hints,
+      evidence_label: dict.report.evidence_label,
+    },
+  }
+}
+
 function DeadlineInstruments({ dict }: { dict: Dictionary }) {
   const clocks = [
     { label: '24 h', caption: dict.site.hero.clock_early },
@@ -23,13 +38,9 @@ function DeadlineInstruments({ dict }: { dict: Dictionary }) {
     { label: '30 d', caption: dict.site.hero.clock_final },
   ]
   return (
-    <aside aria-label="Reporting clocks" className="ns-reveal ns-reveal-d2 grid grid-cols-3 gap-2 sm:gap-3">
-      {clocks.map((c, i) => (
-        <div
-          key={c.label}
-          className="ns-clock ns-clock-lit flex min-w-0 flex-col justify-between p-3 sm:p-4"
-          style={{ animationDelay: `${0.2 + i * 0.1}s` }}
-        >
+    <aside aria-label="Reporting clocks" className="grid grid-cols-3 gap-2 sm:gap-3">
+      {clocks.map((c) => (
+        <div key={c.label} className="ns-clock flex min-w-0 flex-col justify-between p-3 sm:p-4">
           <span className="font-instrument text-[10px] uppercase tracking-[0.14em] opacity-70">{c.caption}</span>
           <span className="mt-4 font-display text-lg leading-none sm:mt-5 sm:text-2xl">{c.label}</span>
         </div>
@@ -47,7 +58,7 @@ function WaitlistSection({ dict, id }: { dict: Dictionary; id: string }) {
           {dict.site.waitlist.subtitle}
         </p>
         <div className="ns-card mt-8 p-4 sm:p-8" data-testid="waitlist-form">
-          <WaitlistForm dict={dict} />
+          <WaitlistForm waitlist={dict.site.waitlist} subscribe={dict.site.subscribe} />
         </div>
       </div>
     </section>
@@ -60,8 +71,10 @@ export default async function LandingPage() {
   const dict = getDict(locale)
   const s = dict.site
   const productReady = isProductReady()
-  const sampleReports = buildAllSampleReports(locale)
-  const heroReport = buildSampleReport('mittelstand-de', locale)
+  const cardDict = sampleCardDict(dict)
+  const sampleReports = buildAllSampleReports(locale).map(toSampleReportView)
+  const heroReport = toSampleReportView(buildSampleReport('mittelstand-de', locale))
+  const defaultExplorerReport = sampleReports.find((r) => r.id === 'mittelstand-de') ?? sampleReports[0]
   const primaryHref = productReady ? '/intake' : '#waitlist'
   const primaryLabel = productReady ? s.hero.scan_cta : s.hero.cta
 
@@ -72,16 +85,16 @@ export default async function LandingPage() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,color-mix(in_oklch,var(--ns-accent)_12%,transparent),transparent_55%)]" />
         <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pb-14 pt-10 sm:gap-12 sm:px-6 sm:pb-20 sm:pt-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-14">
           <div className="min-w-0 max-w-2xl">
-            <p className="ns-reveal font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
+            <p className="font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
               {s.hero.badge}
             </p>
-            <h1 className="ns-reveal ns-reveal-d1 mt-4 font-display text-[1.65rem] leading-[1.15] tracking-tight sm:mt-5 sm:text-4xl md:text-[2.7rem] md:leading-[1.12]">
+            <h1 className="mt-4 font-display text-[1.65rem] leading-[1.15] tracking-tight sm:mt-5 sm:text-4xl md:text-[2.7rem] md:leading-[1.12]">
               {s.hero.title}
             </h1>
-            <p className="ns-reveal ns-reveal-d2 mt-5 max-w-prose text-base leading-relaxed text-[var(--ns-fg-muted)] sm:mt-6 sm:text-lg">
+            <p className="mt-5 max-w-prose text-base leading-relaxed text-[var(--ns-fg-muted)] sm:mt-6 sm:text-lg">
               {s.hero.subtitle}
             </p>
-            <div className="ns-reveal ns-reveal-d3 mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+            <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
               <Link href={primaryHref} className="ns-btn-primary w-full sm:w-auto">
                 {primaryLabel}
               </Link>
@@ -95,7 +108,7 @@ export default async function LandingPage() {
             </div>
           </div>
           <div className="min-w-0 lg:justify-self-stretch">
-            <HeroReportCard report={heroReport} dict={dict} />
+            <HeroReportCard report={heroReport} dict={cardDict} />
           </div>
         </div>
       </header>
@@ -145,7 +158,13 @@ export default async function LandingPage() {
             ))}
           </ul>
           <div className="mt-8 min-w-0">
-            <SampleReportExplorer reports={sampleReports} dict={dict} />
+            <SampleReportExplorer
+              reports={sampleReports}
+              dict={cardDict}
+              initialCard={
+                defaultExplorerReport ? <SampleReportCard report={defaultExplorerReport} dict={cardDict} /> : null
+              }
+            />
           </div>
         </div>
       </section>
@@ -230,12 +249,7 @@ export default async function LandingPage() {
                 data-testid={`faq-item-${i + 1}`}
               >
                 <summary className="cursor-pointer list-none text-sm font-semibold tracking-tight marker:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ns-accent)] sm:text-base">
-                  <span className="mr-3 inline-block w-4 font-instrument text-[var(--ns-accent)] group-open:hidden" aria-hidden>
-                    +
-                  </span>
-                  <span className="mr-3 hidden w-4 font-instrument text-[var(--ns-accent)] group-open:inline" aria-hidden>
-                    –
-                  </span>
+                  <span className="ns-faq-marker mr-3 inline-block w-4 font-instrument text-[var(--ns-accent)]" aria-hidden />
                   {item.q}
                 </summary>
                 <p className="mt-3 pl-7 text-sm leading-relaxed text-[var(--ns-fg-muted)]">{item.a}</p>

@@ -267,11 +267,23 @@ function localizeGap(
   }
 }
 
+export type SampleReportView = Omit<SampleReport, 'intake'>
+
+const reportMemo = new Map<string, SampleReport>()
+
 export function listSampleProfileIds(): SampleProfileId[] {
   return ['mittelstand-de', 'service-at', 'ch-eu-subsidiary']
 }
 
+export function toSampleReportView(report: SampleReport): SampleReportView {
+  const { intake: _intake, ...view } = report
+  return view
+}
+
 export function buildSampleReport(id: SampleProfileId, locale: 'en' | 'de' = 'en'): SampleReport {
+  const cacheKey = `${id}:${locale}`
+  const cached = reportMemo.get(cacheKey)
+  if (cached) return cached
   const fixtures = loadFixtures()
   const fixture = fixtures.find((f) => f.slug === id)
   if (!fixture) throw new Error(`Missing sample fixture: ${id}`)
@@ -282,7 +294,7 @@ export function buildSampleReport(id: SampleProfileId, locale: 'en' | 'de' = 'en
   const verdicts = evaluateAll(rules, facts)
   const meta = PROFILE_META[id]
 
-  return {
+  const report: SampleReport = {
     id,
     slug: fixture.slug,
     synthetic: true,
@@ -303,6 +315,8 @@ export function buildSampleReport(id: SampleProfileId, locale: 'en' | 'de' = 'en
       .map((f) => localizeGap(f, locale)),
     disclaimer: locale === 'de' ? DISCLAIMER_DE : DISCLAIMER_EN,
   }
+  reportMemo.set(cacheKey, report)
+  return report
 }
 
 export function buildAllSampleReports(locale: 'en' | 'de' = 'en'): SampleReport[] {

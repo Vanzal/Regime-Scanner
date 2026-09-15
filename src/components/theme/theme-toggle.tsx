@@ -1,18 +1,15 @@
 'use client'
 
-import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-import { Moon, Sun } from 'lucide-react'
+import { MoonIcon, SunIcon } from '@/components/site/icons'
+import { applySiteTheme, readStoredTheme } from '@/lib/theme'
 
 export function ThemeToggle({ label }: { label: string }) {
-  const { resolvedTheme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {
-    setMounted(true)
+    setIsDark(readStoredTheme() === 'dark')
   }, [])
-
-  const isDark = !mounted || resolvedTheme !== 'light'
 
   return (
     <button
@@ -20,10 +17,14 @@ export function ThemeToggle({ label }: { label: string }) {
       data-testid="theme-toggle"
       aria-label={label}
       title={label}
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      onClick={() => {
+        const next = isDark ? 'light' : 'dark'
+        applySiteTheme(next)
+        setIsDark(next === 'dark')
+      }}
       className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[var(--ns-border)] text-[var(--ns-fg-muted)] transition hover:border-[var(--ns-border-strong)] hover:text-[var(--ns-fg)]"
     >
-      {isDark ? <Sun className="h-4 w-4" aria-hidden /> : <Moon className="h-4 w-4" aria-hidden />}
+      {isDark ? <SunIcon className="h-4 w-4" /> : <MoonIcon className="h-4 w-4" />}
     </button>
   )
 }

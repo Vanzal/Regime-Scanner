@@ -1,17 +1,22 @@
 'use client'
 
-import { useEffect, useId, useMemo, useRef, useState } from 'react'
-import type { Dictionary } from '@/i18n'
-import type { SampleProfileId, SampleReport } from '@/lib/sample-reports'
-import { SampleReportCard } from './sample-report-card'
+import dynamic from 'next/dynamic'
+import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react'
+import type { SampleProfileId, SampleReportView } from '@/lib/sample-reports'
+import type { SampleReportCardDict } from './sample-report-card'
 import { cn } from '@/lib/utils'
+
+const SampleReportCard = dynamic(() => import('./sample-report-card').then((m) => m.SampleReportCard))
 
 export function SampleReportExplorer({
   reports,
   dict,
+  initialCard,
 }: {
-  reports: SampleReport[]
-  dict: Dictionary
+  reports: SampleReportView[]
+  dict: SampleReportCardDict
+  /** Server-rendered default profile — not hydrated until the visitor switches tabs. */
+  initialCard: ReactNode
 }) {
   const [id, setId] = useState<SampleProfileId>('mittelstand-de')
   const panelId = useId()
@@ -90,7 +95,9 @@ export function SampleReportExplorer({
         </div>
       </div>
       <div id={panelId} role="tabpanel" aria-labelledby={`${panelId}-tab-${id}`} className="min-w-0">
-        <SampleReportCard report={current} dict={dict} key={current.id} />
+        {id === 'mittelstand-de'
+          ? initialCard
+          : <SampleReportCard report={current} dict={dict} key={current.id} />}
       </div>
     </div>
   )

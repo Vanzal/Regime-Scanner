@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { IBM_Plex_Mono, Inter } from 'next/font/google'
-import { ThemeProvider } from '@/components/theme/theme-provider'
 import { HtmlLang } from '@/components/site/html-lang'
+import { THEME_BOOT_SCRIPT } from '@/lib/theme'
 import { siteMetadataBase } from '@/lib/site-url'
 import './globals.css'
 
@@ -10,14 +10,16 @@ const sans = Inter({
   display: 'swap',
   variable: '--font-sans-face',
   preload: true,
+  adjustFontFallback: true,
 })
 
 const mono = IBM_Plex_Mono({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-mono-face',
-  weight: ['400', '500', '600'],
-  preload: true,
+  weight: ['400', '600'],
+  preload: false,
+  adjustFontFallback: true,
 })
 
 const SITE_TITLE = 'NexusScope — DACH Regulatory Readiness Intelligence'
@@ -81,8 +83,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`dark ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        <meta
+          name="description"
+          content="Which cyber-incident reporting duties apply to your company? NexusScope maps your profile against the German, Austrian and Swiss regimes (NIS2UmsuCG, NISG 2024, ISG) – with reporting deadlines and a prioritised gap list."
+        />
+      </head>
       <body
-        className="min-h-screen antialiased"
+        className={`min-h-screen antialiased ${sans.className}`}
         style={{
           fontFamily: 'var(--font-sans-face), var(--font-sans)',
           ['--font-display' as string]: 'var(--font-sans-face), Inter, sans-serif',
@@ -91,8 +99,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           ['--font-instrument' as string]: 'var(--font-mono-face), "IBM Plex Mono", monospace',
         }}
       >
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
         <HtmlLang />
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
       </body>
     </html>
   )

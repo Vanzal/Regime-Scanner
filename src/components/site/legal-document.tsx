@@ -10,6 +10,7 @@ import {
 } from '@/lib/legal/catalog'
 import { loadLegalMarkdown } from '@/lib/legal/load'
 import { LegalMarkdown } from '@/lib/legal/render'
+import './legal.css'
 
 export function legalMetadata(id: LegalDocId): Metadata {
   const doc = LEGAL_DOCUMENTS[id]

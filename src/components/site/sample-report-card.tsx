@@ -1,8 +1,19 @@
-'use client'
-
-import type { SampleReport, SampleRegime, SampleStatus } from '@/lib/sample-reports'
+import type { SampleRegime, SampleReportView, SampleStatus } from '@/lib/sample-reports'
 import type { Dictionary } from '@/i18n'
 import { cn } from '@/lib/utils'
+
+/** Slice of i18n needed to render a sample card (avoids shipping the full dictionary to the client). */
+export type SampleReportCardDict = {
+  site: { preview: Dictionary['site']['preview'] }
+  report: {
+    gaps: { severity: Dictionary['report']['gaps']['severity'] }
+    clock: { none_applicable: string }
+    confidence_bands: Dictionary['report']['confidence_bands']
+    why_label: string
+    unclear_hints: Dictionary['report']['unclear_hints']
+    evidence_label: string
+  }
+}
 
 const STATUS_CLASS: Record<SampleStatus, string> = {
   in: 'ns-status-in',
@@ -10,13 +21,13 @@ const STATUS_CLASS: Record<SampleStatus, string> = {
   unclear: 'ns-status-unclear',
 }
 
-function statusLabel(dict: Dictionary, status: SampleStatus): string {
+function statusLabel(dict: SampleReportCardDict, status: SampleStatus): string {
   if (status === 'in') return dict.site.preview.status_in
   if (status === 'out') return dict.site.preview.status_out
   return dict.site.preview.status_unclear
 }
 
-function confidenceBand(dict: Dictionary, regime: SampleRegime): string {
+function confidenceBand(dict: SampleReportCardDict, regime: SampleRegime): string {
   const bands = dict.report.confidence_bands
   if (regime.status === 'out') return bands.confirmed
   if (regime.status === 'in') {
@@ -27,7 +38,7 @@ function confidenceBand(dict: Dictionary, regime: SampleRegime): string {
   return bands.needs_review
 }
 
-function nextAction(dict: Dictionary, regime: SampleRegime): string | null {
+function nextAction(dict: SampleReportCardDict, regime: SampleRegime): string | null {
   if (regime.status === 'in') {
     const first = regime.deadlines[0]
     return first ? `${first.label} · ${first.authority}` : null
@@ -59,16 +70,15 @@ function shortReason(text: string, compact: boolean): string {
 
 /**
  * Sample report card: Result → Reason → Evidence → Source → Confidence → Next step.
- * Inline read path (release polish); responsive/a11y shell from main engineering QA;
- * DEMO labelling and confidence bands from the credibility content PR.
+ * Server component — explorer loads a client copy only after the visitor switches tabs.
  */
 export function SampleReportCard({
   report,
   dict,
   compact = false,
 }: {
-  report: SampleReport
-  dict: Dictionary
+  report: SampleReportView
+  dict: SampleReportCardDict
   compact?: boolean
 }) {
   const p = dict.site.preview
