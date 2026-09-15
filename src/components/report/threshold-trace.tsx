@@ -14,82 +14,106 @@ export function ThresholdTraceBlock({ assessments, dict }: { assessments: Report
           <details
             key={a.regime}
             data-testid={`trace-${a.regime}`}
-            className="group rounded-xl border border-slate-200 bg-white shadow-sm"
+            className="group ns-card overflow-hidden"
           >
             <summary className="flex cursor-pointer list-none items-center justify-between gap-2 p-5">
-              <span className="text-sm font-semibold text-slate-900">
+              <span className="text-sm font-semibold text-[var(--ns-fg)]">
                 {label.code} · {label.lawShort}
               </span>
-              <span className="text-xs font-medium text-indigo-600 group-open:hidden">
+              <span className="text-xs font-medium text-[var(--ns-accent)] group-open:hidden">
                 {t(dict, 'report.trace.open')} ↓
               </span>
             </summary>
-            <div className="border-t border-slate-100 p-5 pt-4">
+            <div className="border-t border-[var(--ns-border)] p-5 pt-4">
               {trace.summary && (
-                <p className="mb-3 font-mono text-[11px] text-slate-500" data-testid={`trace-summary-${a.regime}`}>
-                  <span className="font-sans font-semibold text-slate-600">{t(dict, 'report.trace.summary')}:</span>{' '}
+                <p
+                  className="mb-3 font-mono text-[11px] text-[var(--ns-fg-dim)]"
+                  data-testid={`trace-summary-${a.regime}`}
+                >
+                  <span className="font-sans font-semibold text-[var(--ns-fg-muted)]">
+                    {t(dict, 'report.trace.summary')}:
+                  </span>{' '}
                   {trace.summary}
                 </p>
               )}
               {(trace.unclear_code || trace.matched_class_id) && (
-                <p className="mb-3 text-[11px] text-slate-600">
-                  {trace.unclear_code && (
-                    <>
-                      <span className="font-semibold">{t(dict, 'report.trace.unclear_code')}:</span>{' '}
-                      <span className="font-mono text-amber-800">{trace.unclear_code}</span>
-                    </>
-                  )}
-                  {trace.unclear_code && trace.matched_class_id ? ' · ' : null}
-                  {trace.matched_class_id && (
-                    <>
-                      <span className="font-semibold">{t(dict, 'report.trace.matched_class')}:</span>{' '}
-                      <span className="font-mono">{trace.matched_class_id}</span>
-                    </>
-                  )}
-                </p>
+                <div className="mb-3 space-y-1 text-[11px] text-[var(--ns-fg-muted)]">
+                  <p>
+                    {trace.unclear_code && (
+                      <>
+                        <span className="font-semibold">{t(dict, 'report.trace.unclear_code')}:</span>{' '}
+                        <span className="font-mono text-[var(--ns-warning)]">{trace.unclear_code}</span>
+                      </>
+                    )}
+                    {trace.unclear_code && trace.matched_class_id ? ' · ' : null}
+                    {trace.matched_class_id && (
+                      <>
+                        <span className="font-semibold">{t(dict, 'report.trace.matched_class')}:</span>{' '}
+                        <span className="font-mono">{trace.matched_class_id}</span>
+                      </>
+                    )}
+                  </p>
+                  {trace.unclear_code &&
+                  dict.report.unclear_hints?.[
+                    trace.unclear_code as keyof typeof dict.report.unclear_hints
+                  ] ? (
+                    <p className="rounded-[var(--ns-radius)] border border-[color-mix(in_oklch,var(--ns-warning)_40%,transparent)] bg-[color-mix(in_oklch,var(--ns-warning)_10%,transparent)] px-3 py-2 text-[var(--ns-warning)]">
+                      <span className="font-semibold">{t(dict, 'report.next_action_label')}:</span>{' '}
+                      {
+                        dict.report.unclear_hints[
+                          trace.unclear_code as keyof typeof dict.report.unclear_hints
+                        ]
+                      }
+                    </p>
+                  ) : null}
+                </div>
               )}
-              <table className="w-full text-left text-xs">
-                <thead>
-                  <tr className="text-slate-500">
-                    <th className="pb-2 pr-2 font-medium">{t(dict, 'report.trace.column_check')}</th>
-                    <th className="pb-2 pr-2 font-medium">{t(dict, 'report.trace.column_result')}</th>
-                    <th className="pb-2 font-medium">{t(dict, 'report.trace.column_detail')}</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {trace.entries.map((e, i) => (
-                    <tr key={i}>
-                      <td className="py-1.5 pr-2 text-slate-800">
-                        {e.label}
-                        {e.code ? (
-                          <span className="mt-0.5 block font-mono text-[10px] text-slate-400">{e.code}</span>
-                        ) : null}
-                      </td>
-                      <td className="py-1.5 pr-2">
-                        <span
-                          className={
-                            e.status === 'pass' || e.status === 'fired'
-                              ? 'font-semibold text-emerald-700'
-                              : e.status === 'fail' || e.status === 'skipped'
-                                ? 'text-slate-500'
-                                : 'font-semibold text-amber-700'
-                          }
-                        >
-                          {t(dict, `report.trace.status.${e.status}`)}
-                        </span>
-                      </td>
-                      <td className="py-1.5 text-slate-500">{e.detail ?? '—'}</td>
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[28rem] text-left text-xs">
+                  <thead>
+                    <tr className="text-[var(--ns-fg-dim)]">
+                      <th className="pb-2 pr-2 font-medium">{t(dict, 'report.trace.column_check')}</th>
+                      <th className="pb-2 pr-2 font-medium">{t(dict, 'report.trace.column_result')}</th>
+                      <th className="pb-2 font-medium">{t(dict, 'report.trace.column_detail')}</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-[var(--ns-border)]">
+                    {trace.entries.map((e, i) => (
+                      <tr key={i}>
+                        <td className="py-1.5 pr-2 text-[var(--ns-fg)]">
+                          {e.label}
+                          {e.code ? (
+                            <span className="mt-0.5 block font-mono text-[10px] text-[var(--ns-fg-dim)]">
+                              {e.code}
+                            </span>
+                          ) : null}
+                        </td>
+                        <td className="py-1.5 pr-2">
+                          <span
+                            className={
+                              e.status === 'pass' || e.status === 'fired'
+                                ? 'font-semibold text-[var(--ns-success)]'
+                                : e.status === 'fail' || e.status === 'skipped'
+                                  ? 'text-[var(--ns-fg-dim)]'
+                                  : 'font-semibold text-[var(--ns-warning)]'
+                            }
+                          >
+                            {t(dict, `report.trace.status.${e.status}`)}
+                          </span>
+                        </td>
+                        <td className="py-1.5 text-[var(--ns-fg-muted)]">{e.detail ?? '—'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
               {trace.missing_inputs.length > 0 && (
-                <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-900">
+                <p className="mt-3 rounded-[var(--ns-radius)] border border-[color-mix(in_oklch,var(--ns-warning)_40%,transparent)] bg-[color-mix(in_oklch,var(--ns-warning)_10%,transparent)] px-3 py-2 text-xs text-[var(--ns-warning)]">
                   <span className="font-semibold">{t(dict, 'report.trace.missing')}</span>{' '}
                   {trace.missing_inputs.join(', ')}
                 </p>
               )}
-              <p className="mt-3 text-[11px] text-slate-400">
+              <p className="mt-3 text-[11px] text-[var(--ns-fg-dim)]">
                 {t(dict, 'report.limits.rules_version')}: {a.rules_version}
               </p>
             </div>

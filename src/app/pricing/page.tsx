@@ -24,7 +24,7 @@ export default async function PricingPage() {
 
   return (
     <SiteShell dict={dict} locale={locale} productReady={productReady}>
-      <main className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <p className="font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
           {pricingLive ? dict.site.nav.pricing : p.coming_soon}
         </p>
@@ -74,7 +74,7 @@ export default async function PricingPage() {
         <p className="mt-10 max-w-3xl text-sm leading-relaxed text-[var(--ns-fg-dim)]">
           {p.note} {p.footnote}
         </p>
-      </main>
+      </div>
     </SiteShell>
   )
 }

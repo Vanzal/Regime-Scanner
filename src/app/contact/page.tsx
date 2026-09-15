@@ -20,7 +20,7 @@ export default async function ContactPage() {
 
   return (
     <SiteShell dict={dict} locale={locale}>
-      <main className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         <div>
           <h1 className="font-display text-3xl tracking-tight sm:text-4xl">{c.title}</h1>
           <p className="mt-4 max-w-prose text-base leading-relaxed text-[var(--ns-fg-muted)]">{c.subtitle}</p>
@@ -57,7 +57,7 @@ export default async function ContactPage() {
           <p className="mt-8 text-sm text-[var(--ns-fg-dim)]">{f.data_location}</p>
         </div>
         <ContactForm dict={dict} />
-      </main>
+      </div>
     </SiteShell>
   )
 }

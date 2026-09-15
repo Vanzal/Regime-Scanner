@@ -1,7 +1,7 @@
 # Nexusscopes — Terms of Service
 
-**Version 1.0 — Effective [DD Month YYYY]**
-**Last updated: [DD Month YYYY]**
+**Version 1.0 — Draft for publication (effective date coming soon)**
+**Last updated: September 2026**
 
 > **Note for the operator (delete before publishing):** This document is a compliance-oriented template prepared for a Swiss-domiciled SaaS provider serving both business and consumer users in Switzerland and the EU/EEA. It is not legal advice and does not create a lawyer–client relationship. Have it reviewed by a qualified Swiss/EU lawyer before launch. All items in `[square brackets]` must be completed. See **Annex C — Operator checklist** at the end.
 
@@ -12,14 +12,14 @@
 Nexusscopes ("**Nexusscopes**", "**we**", "**us**", "**our**") is operated by:
 
 - **Provider:** Noah Baumann, sole proprietor, trading as Nexusscopes
-- **Registered address:** [street, postal code, city], Switzerland
-- **Commercial register / UID (if registered):** [CHE-###.###.###]
-- **VAT number (if registered):** [CHE-###.###.### MWST]
-- **Contact e-mail:** [legal@nexusscopes.com]
-- **Support:** [support@nexusscopes.com]
-- **Website:** [https://nexusscopes.com]
+- **Registered address:** Registered address coming soon, Switzerland
+- **Commercial register / UID (if registered):** UID registration details coming soon
+- **VAT number (if registered):** VAT registration details coming soon
+- **Contact e-mail:** legal@nexusscopes.com
+- **Support:** support@nexusscopes.com
+- **Website:** https://nexusscopes.com
 
-**EU/EEA representative (data protection, Art. 27 GDPR):** [Name, address, e-mail]. Because we offer the Service to users in the EU/EEA from outside the Union, an EU representative is designated in writing as required by [Article 27 GDPR](https://gdpr-info.eu/art-27-gdpr/), unless an exemption applies.
+**EU/EEA representative (data protection, Art. 27 GDPR):** Details coming soon. Because we offer the Service to users in the EU/EEA from outside the Union, an EU representative is designated in writing as required by [Article 27 GDPR](https://gdpr-info.eu/art-27-gdpr/), unless an exemption applies.
 
 These identification details are provided to satisfy the information duties applicable to information society services and distance contracts under EU and Swiss law.
 
@@ -44,7 +44,7 @@ Clauses marked **[Consumers only]** do not apply to Business Customers, and clau
 
 ## 3. What the Service does — and what it does not do
 
-3.1 **Description.** Nexusscopes is a data-compliance discovery and assessment tool. It helps you identify, map, and monitor data-processing activities, third-party services, trackers, data flows, policy documents and related compliance signals, and produces findings, reports, and recommendations based on the information you supply and on publicly available or connected sources. A current functional description and any tier-specific limits are set out at [https://nexusscopes.com/features] and in the order confirmation.
+3.1 **Description.** Nexusscopes (NexusScope) provides regulatory readiness orientation for overlapping cyber-incident reporting regimes in Germany (NIS2UmsuCG/BSIG), Austria (NISG 2024) and Switzerland (ISG). Based on a short company profile and a passive public-footprint check, it produces regime applicability assessments, reporting clocks, gap lists, and reasoning with cited public sources. Outputs are informational orientation for internal assessment — not legal advice. A current functional description and any tier-specific limits are set out at https://nexusscopes.com and in the order confirmation.
 
 3.2 **No legal advice — critical limitation.** Nexusscopes is **software, not a law firm**. Its outputs (scores, findings, gap analyses, checklists, templates, and recommendations) are **informational only**, are generated in whole or in part automatically, and:
 - do **not** constitute legal, regulatory, audit, or certification advice;
@@ -66,7 +66,7 @@ You remain solely responsible, as controller or processor of your own data, for 
 
 4.1 You must provide accurate registration information and keep it up to date.
 
-4.2 You are responsible for safeguarding credentials and API keys and for all activity under your account. Notify us without undue delay at [security@nexusscopes.com] if you suspect unauthorised access.
+4.2 You are responsible for safeguarding credentials and API keys and for all activity under your account. Notify us without undue delay at security@nexusscopes.com if you suspect unauthorised access.
 
 4.3 [Business Customers only] You are responsible for your authorised users (employees, contractors, affiliates) and their compliance with these Terms as if their acts were your own. Seat limits per plan apply.
 
@@ -87,7 +87,7 @@ f) use the Service or its output to train competing models or to build a competi
 g) upload special categories of personal data (Art. 9 GDPR / Art. 5(c) revDSG), payment card data, or data subject to sector-specific secrecy (medical, banking, attorney-client) unless we have agreed to this in writing in advance;
 h) infringe intellectual property, publicity, or privacy rights.
 
-5.2 **Notice and action.** If you believe content accessible through the Service is illegal or infringes your rights, notify us at [abuse@nexusscopes.com] with the information required by Art. 16 of the [Digital Services Act](https://digital-strategy.ec.europa.eu/en/policies/digital-services-act) (your contact details, a substantiated explanation, the exact electronic location, and a good-faith statement). We will handle notices in a timely, diligent, non-arbitrary and objective manner, inform you of our decision, give a statement of reasons where we restrict content or an account, and tell you about available redress including out-of-court dispute settlement and judicial remedy.
+5.2 **Notice and action.** If you believe content accessible through the Service is illegal or infringes your rights, notify us at abuse@nexusscopes.com with the information required by Art. 16 of the [Digital Services Act](https://digital-strategy.ec.europa.eu/en/policies/digital-services-act) (your contact details, a substantiated explanation, the exact electronic location, and a good-faith statement). We will handle notices in a timely, diligent, non-arbitrary and objective manner, inform you of our decision, give a statement of reasons where we restrict content or an account, and tell you about available redress including out-of-court dispute settlement and judicial remedy.
 
 5.3 **Enforcement.** Where you materially breach this Section, we may warn you, restrict features, remove content, suspend, or terminate. Except where immediate action is required by law or to prevent serious harm, we will give prior notice and an opportunity to cure within a reasonable period.
 
@@ -127,19 +127,19 @@ h) infringe intellectual property, publicity, or privacy rights.
 
 8.2 **Price transparency.** For Consumers, prices are shown inclusive of all taxes and unavoidable charges, together with the total amount payable and the billing frequency, before you place the order. For Business Customers, prices may be shown excluding VAT, clearly labelled as such. The order button is labelled to make clear that the order entails an obligation to pay.
 
-8.3 **Payment.** Fees are charged in advance for each billing period through our payment provider [Stripe / provider name]. You authorise recurring charges to your payment method until you cancel.
+8.3 **Payment.** Fees are charged in advance for each billing period through our payment provider Stripe. You authorise recurring charges to your payment method until you cancel.
 
-8.4 **Automatic renewal and cancellation.** Subscriptions renew automatically for successive periods equal to the initial term unless cancelled before the end of the current period. You can cancel at any time in your account settings ([https://nexusscopes.com/account/billing]) with effect from the end of the current billing period. For annual plans, we will send a reminder of the upcoming renewal and the applicable price at least [30] days before renewal. Cancellation is possible online, without needing to contact support, and with no more steps than were required to subscribe.
+8.4 **Automatic renewal and cancellation.** Subscriptions renew automatically for successive periods equal to the initial term unless cancelled before the end of the current period. You can cancel at any time in your account settings ([https://nexusscopes.com/account/billing]) with effect from the end of the current billing period. For annual plans, we will send a reminder of the upcoming renewal and the applicable price at least 30 days before renewal. Cancellation is possible online, without needing to contact support, and with no more steps than were required to subscribe.
 
 8.5 **Taxes.** Swiss VAT and EU VAT (including OSS/MOSS treatment of B2C electronically supplied services and reverse charge for B2B) are applied as legally required. Business Customers must supply a valid VAT ID where applicable.
 
-8.6 **Price changes.** We may change prices with at least [30] days' notice by e-mail, effective from the start of the next billing period. If you do not accept the new price, you may terminate with effect from the date the change would take effect; the old price applies until then.
+8.6 **Price changes.** We may change prices with at least 30 days' notice by e-mail, effective from the start of the next billing period. If you do not accept the new price, you may terminate with effect from the date the change would take effect; the old price applies until then.
 
-8.7 **Late payment.** [Business Customers only] If payment fails, we may suspend the Service after notice and a grace period of [10] days and charge default interest at 5% p.a. under Art. 104 of the Swiss Code of Obligations. For Consumers, statutory default rules apply and we will send a reminder before any suspension.
+8.7 **Late payment.** [Business Customers only] If payment fails, we may suspend the Service after notice and a grace period of 10 days and charge default interest at 5% p.a. under Art. 104 of the Swiss Code of Obligations. For Consumers, statutory default rules apply and we will send a reminder before any suspension.
 
 8.8 **Refunds.** Except for the withdrawal right in Section 9, statutory conformity remedies in Section 11, and any refund we grant at our discretion, fees are non-refundable for the period already started. We do not charge for periods after a valid termination takes effect.
 
-8.9 **Free trials and free tiers.** Where offered, trials run for the stated period and convert into a paid subscription only if you actively confirm, or, where automatic conversion is offered, only after clear prior notice of the date and price. Free tiers may be modified or discontinued on [30] days' notice.
+8.9 **Free trials and free tiers.** Where offered, trials run for the stated period and convert into a paid subscription only if you actively confirm, or, where automatic conversion is offered, only after clear prior notice of the date and price. Free tiers may be modified or discontinued on 30 days' notice.
 
 ---
 
@@ -149,7 +149,7 @@ h) infringe intellectual property, publicity, or privacy rights.
 
 9.1 If you are a Consumer resident in the EU/EEA, you have the right to withdraw from this contract within **14 days** without giving any reason, in line with the [EU Consumer Rights Directive as applied to distance contracts](https://europa.eu/youreurope/citizens/consumers/shopping/returns/index_en.htm). The period starts on the day the contract is concluded.
 
-9.2 To exercise it, inform us by a clear statement (e-mail to [legal@nexusscopes.com] or post to the address in Section 1). You may use the model withdrawal form in **Annex A**. Sending the notice before the deadline expires is sufficient.
+9.2 To exercise it, inform us by a clear statement (e-mail to legal@nexusscopes.com or post to the address in Section 1). You may use the model withdrawal form in **Annex A**. Sending the notice before the deadline expires is sufficient.
 
 9.3 **Effects.** We will reimburse all payments received from you without undue delay and no later than 14 days from the day we are informed, using the same means of payment you used, at no cost to you.
 
@@ -169,17 +169,17 @@ h) infringe intellectual property, publicity, or privacy rights.
 
 10.3 **Applicable regimes.** We process personal data in accordance with the GDPR (Regulation (EU) 2016/679) and the revised Swiss Federal Act on Data Protection (revFADP/revDSG), in force since 1 September 2023, whose protection level the [Swiss Federal Data Protection and Information Commissioner describes as broadly aligned with the GDPR](https://www.edoeb.admin.ch/dam/en/sd-web/uZlw439wGOR9/Leitfaden%20Das%20neue%20Datenschutzgesetz%20aus%20Sicht%20des%20ED%C3%96B_20221009_EN.pdf).
 
-10.4 **Hosting and transfers.** Production data is hosted in [Switzerland / EU region — specify]. Transfers outside Switzerland and the EEA take place only to countries with an adequacy decision, or under EU Standard Contractual Clauses supplemented for Swiss law by the FDPIC-recognised Swiss addendum, together with a transfer impact assessment. A current list of sub-processors and hosting locations is at [https://nexusscopes.com/legal/subprocessors].
+10.4 **Hosting and transfers.** Production data is hosted in Switzerland and/or the EU. Exact providers and regions are published when confirmed. Transfers outside Switzerland and the EEA take place only to countries with an adequacy decision, or under EU Standard Contractual Clauses supplemented for Swiss law by the FDPIC-recognised Swiss addendum, together with a transfer impact assessment. A current list of sub-processors and hosting locations is at [https://nexusscopes.com/legal/subprocessors].
 
 10.5 **Security.** We maintain appropriate technical and organisational measures, including encryption in transit and at rest, access control, logging, backup, and vulnerability management, described at [https://nexusscopes.com/security].
 
 10.6 **Cookies and tracking.** Non-essential cookies and similar technologies are used only with your prior consent, obtained through our consent banner, and consent can be withdrawn at any time as easily as it was given.
 
-10.7 **Your rights.** Data subjects may request access, rectification, erasure, restriction, portability, and object to processing, and may lodge a complaint with a supervisory authority in the EU/EEA or with the FDPIC in Switzerland. Contact [privacy@nexusscopes.com].
+10.7 **Your rights.** Data subjects may request access, rectification, erasure, restriction, portability, and object to processing, and may lodge a complaint with a supervisory authority in the EU/EEA or with the FDPIC in Switzerland. Contact privacy@nexusscopes.com.
 
 10.8 **Data export and switching.** You can export Customer Content and generated reports in a structured, commonly used, machine-readable format at any time during the subscription, and we will assist with switching to another provider in good faith consistent with Chapter VI of the EU Data Act.
 
-10.9 **Deletion.** After termination, Customer Content remains available for export for **[30] days**, after which it is deleted from production systems and, within a further **[90] days**, from backups, unless retention is required by law.
+10.9 **Deletion.** After termination, Customer Content remains available for export for **30 days**, after which it is deleted from production systems and, within a further **90 days**, from backups, unless retention is required by law.
 
 ---
 
@@ -189,7 +189,7 @@ h) infringe intellectual property, publicity, or privacy rights.
 
 11.2 **[Business Customers only] Limited warranty.** We warrant that the Service will perform materially as described in the documentation. Your exclusive remedy for a breach of this warranty is correction within a reasonable period or, failing that, termination and a pro-rata refund of prepaid, unused fees. Except as expressly stated, and to the extent permitted by law, the Service is provided "as is" and we disclaim implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
 
-11.3 **Availability.** We target **[99.5]%** monthly availability, excluding announced maintenance, emergency maintenance, and events outside our reasonable control. Where a written Service Level Agreement applies to your plan, it governs and provides service credits as its sole remedy for missed targets.
+11.3 **Availability.** We target **99.5%** monthly availability, excluding announced maintenance, emergency maintenance, and events outside our reasonable control. Where a written Service Level Agreement applies to your plan, it governs and provides service credits as its sole remedy for missed targets.
 
 11.4 **No compliance guarantee.** For the avoidance of doubt and consistent with Section 3.2, we give no warranty that use of the Service will result in, demonstrate, or maintain compliance with any law, standard, or certification.
 
@@ -215,7 +215,7 @@ h) infringe intellectual property, publicity, or privacy rights.
 
 13.2 **Termination by you.** You may cancel at any time with effect from the end of the current billing period, or immediately where you have a statutory right to do so (including Sections 9, 11.1, and 15.3).
 
-13.3 **Termination by us.** We may terminate a free account on [30] days' notice, and a paid subscription for cause where you materially breach these Terms and fail to cure within [14] days of written notice, or immediately where the breach is incurable or where required by law. On termination for cause we will refund prepaid, unused fees unless the termination results from your breach.
+13.3 **Termination by us.** We may terminate a free account on 30 days' notice, and a paid subscription for cause where you materially breach these Terms and fail to cure within 14 days of written notice, or immediately where the breach is incurable or where required by law. On termination for cause we will refund prepaid, unused fees unless the termination results from your breach.
 
 13.4 **Suspension.** We may suspend access immediately where there is a credible security risk, suspected unlawful activity, or a legal obligation, with notice as soon as reasonably possible.
 
@@ -229,11 +229,11 @@ h) infringe intellectual property, publicity, or privacy rights.
 
 14.2 **[Consumers only] Mandatory protection preserved.** This choice of law does not deprive a Consumer of the protection afforded by mandatory provisions of the law of their country of habitual residence, in line with [Article 6 of the Rome I Regulation](https://eur-lex.europa.eu/eli/reg/2008/593/oj/eng). Where the law of your country of residence gives you stronger mandatory rights, those rights continue to apply.
 
-14.3 **Jurisdiction — Business Customers.** [Business Customers only] The exclusive place of jurisdiction is **[Zurich], Switzerland**.
+14.3 **Jurisdiction — Business Customers.** [Business Customers only] The exclusive place of jurisdiction is **Zurich, Switzerland**.
 
 14.4 **Jurisdiction — Consumers.** [Consumers only] A Consumer may bring proceedings against us in the courts of their place of residence or at our registered seat, and we may sue a Consumer only in the courts of their place of residence, in accordance with mandatory consumer jurisdiction rules (including the Lugano Convention where applicable).
 
-14.5 **Complaints and ADR.** Please contact [legal@nexusscopes.com] first; we aim to respond within [10] working days. EU Consumers may also use national alternative dispute resolution bodies; we are [not] committed to participating in ADR proceedings before a consumer arbitration body. Swiss Consumers may contact the relevant cantonal conciliation authority (Schlichtungsbehörde).
+14.5 **Complaints and ADR.** Please contact legal@nexusscopes.com first; we aim to respond within 10 working days. EU Consumers may also use national alternative dispute resolution bodies; we are not committed to participating in ADR proceedings before a consumer arbitration body. Swiss Consumers may contact the relevant cantonal conciliation authority (Schlichtungsbehörde).
 
 ---
 
@@ -241,7 +241,7 @@ h) infringe intellectual property, publicity, or privacy rights.
 
 15.1 We may amend these Terms to reflect changes in the Service, in law, or in our business.
 
-15.2 We will notify you by e-mail and in-app at least **[30] days** before changes take effect, highlighting the substance of the change.
+15.2 We will notify you by e-mail and in-app at least **30 days** before changes take effect, highlighting the substance of the change.
 
 15.3 If a change is to your material disadvantage, you may terminate free of charge with effect from the date the change takes effect; say so before that date and we will refund prepaid, unused fees. For Consumers, silence is not treated as acceptance of a materially disadvantageous change; we will obtain express consent or, failing that, the contract continues on the previous terms until the end of the current period and then ends.
 
@@ -261,9 +261,9 @@ h) infringe intellectual property, publicity, or privacy rights.
 
 16.5 **Force majeure.** Neither party is liable for failure to perform caused by events beyond its reasonable control, excluding payment obligations.
 
-16.6 **Notices.** Notices to us go to [legal@nexusscopes.com]; notices to you go to the e-mail on your account or via in-app message.
+16.6 **Notices.** Notices to us go to legal@nexusscopes.com; notices to you go to the e-mail on your account or via in-app message.
 
-16.7 **Language.** These Terms are concluded in English. Where we publish a German, French, or Italian translation and a discrepancy arises, the [English] version prevails, except where mandatory consumer law in your country requires otherwise.
+16.7 **Language.** These Terms are concluded in English. Where we publish a German, French, or Italian translation and a discrepancy arises, the English version prevails, except where mandatory consumer law in your country requires otherwise.
 
 ---
 
@@ -271,7 +271,7 @@ h) infringe intellectual property, publicity, or privacy rights.
 
 *(Complete and return this form only if you wish to withdraw from the contract.)*
 
-> To: Noah Baumann / Nexusscopes, [address], Switzerland — [legal@nexusscopes.com]
+> To: Noah Baumann / Nexusscopes, registered address coming soon, Switzerland — legal@nexusscopes.com
 >
 > I/We (*) hereby give notice that I/We (*) withdraw from my/our (*) contract for the supply of the following service:
 >

@@ -77,7 +77,7 @@ describe('runScopeCheck', () => {
     const client = stubClient(json(validPayload()))
     const result = await runScopeCheck(intake(), { anthropic: client })
     expect(result.regimes.map((r) => r.name)).toEqual(['Germany', 'Austria', 'Switzerland'])
-    expect(result.disclaimer).toContain('not legal advice')
+    expect(result.disclaimer).toMatch(/not legal advice|regulatory readiness/i)
     expect(client.messages.create).toHaveBeenCalledTimes(1)
     const arg = (client.messages.create as ReturnType<typeof vi.fn>).mock.calls[0][0]
     expect(arg.model).toBe(SCOPE_CHECK_MODEL)

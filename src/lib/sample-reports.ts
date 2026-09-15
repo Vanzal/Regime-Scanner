@@ -1,6 +1,7 @@
 import { IntakeSchema, type IntakeAnswers } from '@/lib/intake/schema'
 import { evaluateAll } from '@/lib/rules/evaluate'
 import { loadRules } from '@/lib/rules/loader'
+import type { RulesFile } from '@/lib/rules/schema'
 import type { Applicable, RegimeVerdict } from '@/lib/rules/types'
 import { buildFactsFromIntake } from '@/lib/scan/facts'
 import { loadFixtures, type FixtureScan } from '@/lib/scan/fixtures'
@@ -14,6 +15,10 @@ export interface SampleGap {
   title: string
   detail: string
   fix?: string
+  /** Human-readable evidence summary for the inline sample read path. */
+  evidence?: string
+  sourceUrl?: string
+  checkId?: string
 }
 
 export interface SampleDeadline {
@@ -33,6 +38,7 @@ export interface SampleRegime {
   reason: string
   traceSummary: string
   unclearCode?: string | null
+  sourceUrls: string[]
   deadlines: SampleDeadline[]
 }
 
@@ -71,11 +77,90 @@ const PROFILE_META: Record<
   },
 }
 
+/** English marketing overlays for fixture findings (fixtures stay German for DE demo path). */
+const GAP_EN: Record<string, { title: string; detail: string; fix?: string }> = {
+  'DMARC fehlt vollständig': {
+    title: 'DMARC record missing entirely',
+    detail:
+      'beispielwerk.de publishes no DMARC record (_dmarc). Mail can be spoofed in your name without policy checks — a common entry point for incidents that may become reportable.',
+    fix: 'Publish a DMARC TXT record at _dmarc.beispielwerk.de (start with p=none, then quarantine, then reject) and monitor rua reports.',
+  },
+  'Kein DKIM-Signaturhinweis auffindbar': {
+    title: 'No DKIM signature hint found',
+    detail:
+      'Common selectors returned no DKIM record. Without DKIM, e-mail authentication stays incomplete even when SPF is set.',
+    fix: 'Enable DKIM signing in your mail system and publish the public key as a TXT record.',
+  },
+  'HSTS (Strict-Transport-Security) fehlt': {
+    title: 'HSTS (Strict-Transport-Security) missing',
+    detail:
+      'The primary host does not force HTTPS on return visits. Downgrade attacks to cleartext remain possible.',
+    fix: 'Set Strict-Transport-Security: max-age=31536000; includeSubDomains — roll out with a short max-age first.',
+  },
+  'TLS-Zertifikat läuft in 21 Tagen ab': {
+    title: 'TLS certificate expires in 21 days',
+    detail:
+      'The server certificate is valid, but remaining lifetime is under 30 days. An expired certificate breaks encrypted channels used in reporting workflows.',
+    fix: 'Renew the certificate and automate renewal (e.g. ACME) with expiry monitoring.',
+  },
+  'Kein security.txt (RFC 9116)': {
+    title: 'No security.txt (RFC 9116)',
+    detail:
+      'No /.well-known/security.txt exists. Third parties cannot reach a defined security contact — evidence of responsible disclosure is missing.',
+    fix: 'Publish /.well-known/security.txt with Contact and Expires fields (RFC 9116).',
+  },
+  'Veraltete WordPress-Hauptversion im öffentlichen Fußabdruck': {
+    title: 'Outdated WordPress major version in public footprint',
+    detail:
+      'Meta generator and asset paths suggest WordPress 5.x (unsupported major). Not a CVE claim — an indicator of weak patch management.',
+    fix: 'Upgrade to a supported major; enable automated minor updates; remove version hints from public metadata.',
+  },
+  'DMARC nur im Monitoring-Modus (p=none)': {
+    title: 'DMARC in monitoring mode only (p=none)',
+    detail:
+      'A DMARC record exists, but p=none only reports spoofing — it does not block it. Material for an IT provider with EU customer security clauses.',
+    fix: 'Tighten DMARC stepwise: p=quarantine with pct=25, then p=reject; review rua reports.',
+  },
+  'Content-Security-Policy fehlt': {
+    title: 'Content-Security-Policy missing',
+    detail: 'Without CSP, injected scripts (XSS) via third-party widgets remain easier to land.',
+    fix: 'Introduce CSP in report-only mode, then enforce (default-src self; script-src self …).',
+  },
+  'Veraltete TLS-Versionen (1.0/1.1) werden akzeptiert': {
+    title: 'Legacy TLS versions (1.0/1.1) still accepted',
+    detail:
+      'The server still negotiates TLS 1.0/1.1. Those protocols are broken; allowing them conflicts with crypto baselines reporting regimes expect.',
+    fix: 'Restrict to TLS 1.2 minimum (prefer 1.3); disable weak cipher suites.',
+  },
+  'Verwaltungszugang öffentlich verlinkt (/wp-login.php, /admin)': {
+    title: 'Admin surfaces publicly linked (/wp-login.php, /admin)',
+    detail:
+      'The homepage links to /admin; /wp-login.php is publicly reachable. Exposed login surfaces are credential-stuffing targets. No auth attempts were made.',
+    fix: 'Put admin paths behind VPN/SSO, enforce rate limits + 2FA, remove direct homepage links.',
+  },
+  'Weder HSTS noch X-Frame-Options': {
+    title: 'Neither HSTS nor X-Frame-Options',
+    detail: 'The host does not enforce HTTPS and allows framing from third sites (clickjacking).',
+    fix: 'Set HSTS and X-Frame-Options: DENY (or CSP frame-ancestors).',
+  },
+  'Impressum unvollständig (keine Gruppenangabe)': {
+    title: 'Imprint incomplete (no group disclosure)',
+    detail:
+      'The imprint does not mention the German subsidiary. Relevant for cross-border reporting scope (DE/AT/CH) and transparency duties.',
+    fix: 'List affiliated entities in the imprint; name responsibilities per location.',
+  },
+}
+
 const REGIME_META: Record<string, { code: string; name: string; law: string }> = {
   de: { code: 'DE', name: 'Germany', law: 'NIS2UmsuCG/BSIG' },
   at: { code: 'AT', name: 'Austria', law: 'NISG 2024' },
   ch: { code: 'CH', name: 'Switzerland', law: 'ISG' },
 }
+
+const DISCLAIMER_EN =
+  'Simulated sample (synthetic demo data). NexusScope provides regulatory readiness intelligence based on referenced public sources and stated answers. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate. Timelines current as of September 2026.'
+const DISCLAIMER_DE =
+  'Simuliertes Muster (synthetische Demo-Daten). NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen und angegebener Antworten. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden. Fristen Stand September 2026.'
 
 function statusFromApplicable(value: Applicable): SampleStatus {
   if (value === 'applicable') return 'in'
@@ -84,18 +169,63 @@ function statusFromApplicable(value: Applicable): SampleStatus {
 }
 
 function firstReasonLine(md: string): string {
-  return md
-    .split('\n')
-    .map((line) => line.replace(/^#+\s*/, '').replace(/\*\*/g, '').trim())
-    .find((line) => line.length > 0) ?? md.trim()
+  return (
+    md
+      .split('\n')
+      .map((line) => line.replace(/^#+\s*/, '').replace(/\*\*/g, '').trim())
+      .find((line) => line.length > 0) ?? md.trim()
+  )
 }
 
-function toSampleRegime(verdict: RegimeVerdict): SampleRegime {
+function evidenceSummary(evidence: Record<string, unknown> | undefined): string | undefined {
+  if (!evidence) return undefined
+  const parts: string[] = []
+  for (const [key, value] of Object.entries(evidence)) {
+    if (value === null || value === undefined) {
+      parts.push(`${key}: none`)
+      continue
+    }
+    if (Array.isArray(value)) {
+      parts.push(`${key}: ${value.slice(0, 4).join(', ')}`)
+      continue
+    }
+    if (typeof value === 'object') continue
+    parts.push(`${key}: ${String(value)}`)
+  }
+  return parts.slice(0, 4).join(' · ') || undefined
+}
+
+function localizeReason(verdict: RegimeVerdict, locale: 'en' | 'de'): string {
+  const de = firstReasonLine(verdict.reasoningMd)
+  if (locale === 'de') return de
+
+  const hq = verdict.regime.toUpperCase()
+  if (verdict.applicable === 'applicable') {
+    if (verdict.regime === 'de') {
+      return 'HQ / establishment in Germany — NIS2UmsuCG/BSIG applies on the stated size and sector inputs (important-entity path).'
+    }
+    if (verdict.regime === 'at') {
+      return 'Establishment in Austria — NISG 2024 applies on the stated size and sector inputs.'
+    }
+    if (verdict.regime === 'ch') {
+      return 'Swiss establishment / listed sector path — ISG reporting duties apply on the stated inputs.'
+    }
+  }
+  if (verdict.applicable === 'not_applicable') {
+    return `No known establishment in ${hq} on the stated profile — ${
+      verdict.regime === 'de' ? 'NIS2UmsuCG/BSIG' : verdict.regime === 'at' ? 'NISG 2024' : 'ISG'
+    } does not apply directly.`
+  }
+  return `Not enough evidence for a decisive ${hq} verdict — open thresholds are shown instead of guessing.`
+}
+
+function toSampleRegime(verdict: RegimeVerdict, rules: RulesFile[], locale: 'en' | 'de'): SampleRegime {
   const meta = REGIME_META[verdict.regime] ?? {
     code: verdict.regime.toUpperCase(),
     name: verdict.regime,
     law: verdict.rulesVersionLabel,
   }
+  const file = rules.find((r) => r.regime === verdict.regime)
   return {
     code: meta.code,
     name: meta.name,
@@ -103,9 +233,10 @@ function toSampleRegime(verdict: RegimeVerdict): SampleRegime {
     status: statusFromApplicable(verdict.applicable),
     applicable: verdict.applicable,
     confidence: verdict.confidence,
-    reason: firstReasonLine(verdict.reasoningMd),
+    reason: localizeReason(verdict, locale),
     traceSummary: verdict.thresholdTrace.summary ?? firstReasonLine(verdict.reasoningMd),
     unclearCode: verdict.unclearCode ?? null,
+    sourceUrls: file?.source_urls?.slice(0, 2) ?? [],
     deadlines: verdict.deadlines.stages.map((stage) => ({
       hours: stage.hours,
       label: stage.label ?? stage.key,
@@ -119,21 +250,36 @@ function fixtureToIntake(fixture: FixtureScan): IntakeAnswers {
   return IntakeSchema.parse(fixture.intake)
 }
 
-const DISCLAIMER =
-  'Synthetic sample. Automated orientation from public sources and stated answers — not legal advice. Timelines current as of September 2026.'
+function localizeGap(
+  finding: FixtureScan['findings'][number],
+  locale: 'en' | 'de',
+): SampleGap {
+  const en = GAP_EN[finding.title]
+  const useEn = locale === 'en' && en
+  return {
+    severity: finding.severity,
+    title: useEn ? en.title : finding.title,
+    detail: useEn ? en.detail : finding.detail,
+    fix: useEn ? en.fix ?? finding.fix : finding.fix,
+    evidence: evidenceSummary(finding.evidence_json),
+    sourceUrl: finding.source_url,
+    checkId: finding.check_id,
+  }
+}
 
 export function listSampleProfileIds(): SampleProfileId[] {
   return ['mittelstand-de', 'service-at', 'ch-eu-subsidiary']
 }
 
-export function buildSampleReport(id: SampleProfileId): SampleReport {
+export function buildSampleReport(id: SampleProfileId, locale: 'en' | 'de' = 'en'): SampleReport {
   const fixtures = loadFixtures()
   const fixture = fixtures.find((f) => f.slug === id)
   if (!fixture) throw new Error(`Missing sample fixture: ${id}`)
 
   const intake = fixtureToIntake(fixture)
   const facts = buildFactsFromIntake(intake)
-  const verdicts = evaluateAll(loadRules(), facts)
+  const rules = loadRules()
+  const verdicts = evaluateAll(rules, facts)
   const meta = PROFILE_META[id]
 
   return {
@@ -144,28 +290,23 @@ export function buildSampleReport(id: SampleProfileId): SampleReport {
       legal_name: fixture.company.legal_name,
       domain: fixture.company.domain,
       country_hq: fixture.company.country_hq,
-      sector: meta.sector.en,
-      size: meta.size.en,
+      sector: meta.sector[locale],
+      size: meta.size[locale],
     },
     intake,
     regimes: ['de', 'at', 'ch']
       .map((code) => verdicts.find((v) => v.regime === code))
       .filter((v): v is RegimeVerdict => Boolean(v))
-      .map(toSampleRegime),
+      .map((v) => toSampleRegime(v, rules, locale)),
     gaps: fixture.findings
       .filter((f) => f.severity !== 'info')
-      .map((f) => ({
-        severity: f.severity,
-        title: f.title,
-        detail: f.detail,
-        fix: f.fix,
-      })),
-    disclaimer: DISCLAIMER,
+      .map((f) => localizeGap(f, locale)),
+    disclaimer: locale === 'de' ? DISCLAIMER_DE : DISCLAIMER_EN,
   }
 }
 
-export function buildAllSampleReports(): SampleReport[] {
-  return listSampleProfileIds().map(buildSampleReport)
+export function buildAllSampleReports(locale: 'en' | 'de' = 'en'): SampleReport[] {
+  return listSampleProfileIds().map((id) => buildSampleReport(id, locale))
 }
 
 export function sampleProfileCopy(id: SampleProfileId, locale: 'en' | 'de') {

@@ -14,7 +14,7 @@ export default async function CookiesPage() {
 
   return (
     <SiteShell dict={dict} locale={locale}>
-      <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <h1 className="font-display text-3xl tracking-tight sm:text-4xl">{l.cookies_title}</h1>
         <p className="mt-3 text-sm text-[var(--ns-fg-muted)]">{l.cookies_intro}</p>
         <div className="mt-10 space-y-6" data-testid="cookie-policy">
@@ -33,7 +33,7 @@ export default async function CookiesPage() {
             {c.settings_link}
           </Link>
         </p>
-      </main>
+      </div>
     </SiteShell>
   )
 }

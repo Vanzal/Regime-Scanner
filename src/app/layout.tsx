@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { IBM_Plex_Mono, Inter } from 'next/font/google'
 import { cookies } from 'next/headers'
 import { localeFromCookie } from '@/i18n'
@@ -10,6 +10,7 @@ const sans = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans-face',
+  preload: true,
 })
 
 const mono = IBM_Plex_Mono({
@@ -17,27 +18,64 @@ const mono = IBM_Plex_Mono({
   display: 'swap',
   variable: '--font-mono-face',
   weight: ['400', '500', '600'],
+  preload: true,
 })
+
+const SITE_TITLE = 'NexusScope — DACH Regulatory Readiness Intelligence'
+const SITE_DESCRIPTION =
+  'NexusScope helps DACH companies understand which regulatory reporting regimes may apply, why they apply, and what to do next.'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#0f1c2e' },
+    { media: '(prefers-color-scheme: light)', color: '#f7f9fc' },
+  ],
+}
 
 export const metadata: Metadata = {
   metadataBase: siteMetadataBase(),
   title: {
-    default: 'NexusScope – Cyber-reporting & compliance orientation for the DACH region',
-    template: '%s – NexusScope',
+    default: SITE_TITLE,
+    template: '%s — NexusScope',
   },
-  description:
-    'Which cyber-incident reporting duties apply to your company? NexusScope maps your profile against the German, Austrian and Swiss regimes (NIS2UmsuCG, NISG 2024, ISG) – with reporting deadlines and a prioritised gap list.',
+  description: SITE_DESCRIPTION,
+  applicationName: 'NexusScope',
+  keywords: [
+    'NIS2',
+    'NIS2UmsuCG',
+    'NISG',
+    'ISG',
+    'DACH',
+    'cyber reporting',
+    'regulatory readiness',
+    'compliance',
+  ],
+  authors: [{ name: 'NexusScope' }],
+  creator: 'NexusScope',
   openGraph: {
-    title: 'NexusScope – Know which reporting regimes apply before the clock starts',
-    description:
-      'Map your company against NIS2UmsuCG, NISG 2024 and the Swiss ISG. See deadlines and visible gaps in one clear report.',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     url: '/',
     siteName: 'NexusScope',
     locale: 'en_GB',
     type: 'website',
   },
+  twitter: {
+    card: 'summary',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
   alternates: {
     canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
   },
 }
 

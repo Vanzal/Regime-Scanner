@@ -5,7 +5,12 @@ export const ADMIN_COOKIE = 'rr_admin'
 const MAX_AGE_S = 60 * 60 * 8 // 8 Stunden Pilotbetrieb
 
 function secret(): string {
-  return process.env.ADMIN_SESSION_SECRET ?? process.env.ADMIN_PASSWORD ?? 'dev-insecure-secret'
+  const configured = process.env.ADMIN_SESSION_SECRET ?? process.env.ADMIN_PASSWORD
+  if (configured) return configured
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error('ADMIN_SESSION_SECRET or ADMIN_PASSWORD must be set in production')
+  }
+  return 'dev-insecure-secret'
 }
 
 export function adminConfigured(): boolean {
