@@ -71,7 +71,7 @@ export function SiteHeader({
           <ThemeToggle label={dict.site.theme.toggle} />
           <Link
             href={primaryHref}
-            className="ns-btn-primary hidden min-h-10 px-3 py-2 text-xs sm:inline-flex sm:text-sm"
+            className="ns-btn-primary max-lg:!hidden min-h-10 px-3 py-2 text-xs sm:text-sm"
           >
             {primaryLabel}
           </Link>
