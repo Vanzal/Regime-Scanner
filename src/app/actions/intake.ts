@@ -6,6 +6,7 @@ import { getStore } from '@/lib/store'
 import { scanModeForNewScan, runScan } from '@/lib/scan/pipeline'
 import { triggerScan } from '@/lib/scan/trigger'
 import { createLeadFor, sendReportEmail } from '@/lib/leads'
+import { siteUrl } from '@/lib/site-url'
 
 export interface IntakeState {
   ok: boolean
@@ -62,8 +63,7 @@ export async function submitIntake(_prev: IntakeState, fd: FormData): Promise<In
 
   triggerScan(scan.id)
 
-  const base = process.env.SITE_URL ?? ''
-  const reportUrl = `${base}/report/${lead.report_token}`
+  const reportUrl = `${siteUrl()}/report/${lead.report_token}`
 
   // E-Mail ist Zustellungs-Verbesserung, kein Gate: ohne API-Key zeigt die
   // Folgeseite den Link direkt an.

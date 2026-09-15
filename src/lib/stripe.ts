@@ -72,12 +72,7 @@ export async function ensureSubscriptionPrice(): Promise<string> {
   return price.id
 }
 
-export function siteUrl(): string {
-  const raw =
-    process.env.SITE_URL?.trim() ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
-  return raw.replace(/\/$/, '')
-}
+export { siteUrl } from './site-url'
 
 /** Checkout session tag for Dashboard comparison (API ≥ 2026-03-25.dahlia). */
 export function checkoutIntegrationId(): string {
