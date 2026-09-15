@@ -15,7 +15,7 @@ export default async function IntakePage() {
 
   return (
     <SiteShell dict={dict} locale={locale} productReady={productReady}>
-      <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+      <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
         <p className="font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-accent)]">
           {dict.app.name}
         </p>
@@ -32,7 +32,7 @@ export default async function IntakePage() {
         <div className="mt-8">
           <IntakeForm dict={dict} />
         </div>
-      </main>
+      </div>
     </SiteShell>
   )
 }

@@ -37,4 +37,4 @@ Short ease-out reveals (`ns-reveal`, <600ms). `prefers-reduced-motion` disables.
 
 ## Copy
 
-Preserve live nexusscopes.com voice. No invented customers or endorsements. Audience categories describe who the product is for — never implied customers.
+Preserve live nexusscopes.com voice. No invented customers or endorsements. Audience categories are role-based — who the product is for, never implied customers, fake logos, or endorsements.

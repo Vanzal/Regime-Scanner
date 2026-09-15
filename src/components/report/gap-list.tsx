@@ -51,7 +51,7 @@ export function GapList({ findings, dict }: { findings: ReportFinding[]; dict: D
           )}
           {f.source_url && (
             <p className="mt-2 truncate text-[11px] text-[var(--ns-fg-dim)]">
-              Quelle:{' '}
+              {t(dict, 'report.gaps.source')}:{' '}
               <a href={f.source_url} className="underline-offset-2 hover:underline" rel="noreferrer">
                 {f.source_url}
               </a>

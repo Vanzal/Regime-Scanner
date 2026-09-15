@@ -1,15 +1,15 @@
 {
   "app": {
     "name": "NexusScope",
-    "tagline": "Regulatorische Orientierung bei überlappenden DACH-Meldepflichten"
+    "tagline": "Welche Cyber-Meldepflichten gelten für Ihr Unternehmen?"
   },
   "landing": {
     "title": "Welche Meldepflichten treffen Ihr Unternehmen?",
-    "intro": "Deutschland, Österreich und die Schweiz führen jeweils eigene Meldepflichten für Cybervorfälle (NIS2UmsuCG, NISG 2024, ISG). NexusScope spiegelt Ihr Unternehmensprofil gegen alle drei Regimes, zeigt mögliche Fristen und markiert sichtbare Lücken im öffentlichen Fussabdruck — in wenigen Minuten, ohne Anmeldung.",
+    "intro": "Deutschland, Österreich und die Schweiz haben neue Cybersicherheits-Meldepflichten eingeführt (NIS2UmsuCG, NISG 2024, ISG). Wir prüfen automatisch, welche Regimes für Sie gelten, welche Schwellenwerte einschlägig sind und wo Ihre öffentlich sichtbaren Sicherheitslücken liegen – in unter drei Minuten, ohne Anmeldung.",
     "cta": "Kostenlosen Scan starten",
     "no_login": "Keine Anmeldung erforderlich",
     "three_regimes": "Drei Regimes, drei unabhängige Antworten",
-    "disclaimer_short": "NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden."
+    "disclaimer_short": "Automatisierte Prüfung des öffentlichen Fußabdrucks – keine Rechtsberatung."
   },
   "intake": {
     "title": "Acht Fragen – dann scannen wir",
@@ -139,9 +139,9 @@
     "section_trace": "5 · Herleitung (Threshold Trace)",
     "section_limits": "6 · Grenzen & Hinweise",
     "verdict": {
-      "applicable": "BESTÄTIGT",
+      "applicable": "ANWENDBAR",
       "not_applicable": "NICHT ANWENDBAR",
-      "unclear": "PRÜFUNG NÖTIG",
+      "unclear": "UNKLAR",
       "confidence": "Konfidenz",
       "manually_reviewed": "Manuell geprüft",
       "override_note": "Einordnung durch eine Fachperson überprüft und angepasst."
@@ -152,9 +152,9 @@
       "next_steps": "Empfohlene nächste Schritte",
       "disclaimer_label": "Hinweis",
       "status": {
-        "likely": "WAHRSCHEINLICH",
-        "possible": "PRÜFUNG NÖTIG",
-        "unlikely": "UNWAHRSCHEINLICH"
+        "likely": "WAHRSCHEINLICH ANWENDBAR",
+        "possible": "MÖGLICH",
+        "unlikely": "EHER NICHT ANWENDBAR"
       }
     },
     "clock": {
@@ -173,6 +173,7 @@
       "why": "Warum das Gesetz das betrifft",
       "fix": "Empfehlung",
       "check": "Prüfung",
+      "source": "Quelle",
       "severity": {
         "info": "Hinweis",
         "low": "Gering",
@@ -192,9 +193,9 @@
         "skipped": "übersprungen",
         "fired": "spricht an"
       },
-      "missing": "Fehlende Angaben, die das klären würden:",
+      "missing": "Offene Angaben, die die Einordnung blockieren:",
       "summary": "Pfad",
-      "unclear_code": "Offen weil",
+      "unclear_code": "Offenheitsgrund",
       "matched_class": "Getroffene Klasse"
     },
     "limits": {
@@ -203,16 +204,19 @@
       "scan_time": "Scan-Zeitpunkt",
       "mode_fixture": "Demo-Modus (Fixture-Daten, keine Live-Abfragen)",
       "mode_live": "Live-Scan des öffentlichen Fußabdrucks",
-      "body": "NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen und Ihrer Angaben. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden. Dieser Bericht ersetzt **keine** Anwältinnen, Wirtschaftsprüfung oder Behörden. Rechtsstand und Konfidenz sind je Regime ausgewiesen. Fehlt Evidenz, lautet der Status **Prüfung nötig** oder **Unzureichende Informationen** — mit den offenen Angaben statt einer Vermutung.",
+      "body": "Dieser Bericht wurde maschinell erstellt: automatisierte Auswertung öffentlich zugänglicher Quellen (DNS, TLS, HTTP-Header, veröffentlichte Webseiten) kombiniert mit Ihren Angaben. Er ist eine erste Orientierung und **keine Rechtsberatung**. Die vollständige Konformitätsprüfung erfordert interne Systeminformationen, die wir nicht einsehen können. Rechtsstand und Konfidenz sind je Regime ausgewiesen; auf unsicheren Rechtslagen geben wir dies ehrlich als „unklar“ wieder.",
       "source_of_law": "Rechtsquellen"
     },
-    "disclaimer_footer": "NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden.",
+    "disclaimer_footer": "Automatisierte öffentliche Einschätzung · keine Rechtsberatung · Rechtsstand im Bericht ausgewiesen",
     "confidence_bands": {
       "confirmed": "Bestätigt",
       "likely": "Wahrscheinlich",
       "needs_review": "Prüfung nötig",
       "insufficient": "Unzureichende Informationen"
     },
+    "next_action_label": "Nächster Schritt",
+    "evidence_label": "Evidenz",
+    "why_label": "Warum",
     "unclear_hints": {
       "missing_sector": "Bestätigen Sie die Branche (oder die amtliche KRITIS-/kritische-Anlagen-Ausweisung) für diese Gesellschaft.",
       "missing_size_inputs": "Geben Sie Beschäftigtenzahl und/oder Umsatz-/Bilanzbänder an, damit Grössenschwellen bewertet werden können.",
@@ -221,10 +225,7 @@
       "indirect_exposure": "Indirekte EU-Exposition (Tochter oder vertragliche Durchreichung) braucht Bestätigung für eine klare Einschätzung.",
       "entity_class_outcome": "Die getroffene Klasse lässt die Anwendbarkeit offen. Prüfen Sie die zitierten Klassenkriterien gegen Ihren Betrieb."
     },
-    "next_action_label": "Nächster Schritt",
-    "evidence_label": "Evidenz",
-    "source_label": "Quelle",
-    "why_label": "Warum"
+    "source_label": "Quelle"
   },
   "incident": {
     "title": "Incident Copilot",
@@ -232,7 +233,7 @@
     "badge": "Getrennt vom kostenlosen Scan",
     "submit": "Triage starten",
     "submitting": "Triage läuft …",
-    "disclaimer_short": "NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden.",
+    "disclaimer_short": "Automatisierte Triage anhand Ihrer Angaben und der veröffentlichten Meldeuhren – keine Rechtsberatung.",
     "fields": {
       "description": "Kurze Beschreibung des Vorfalls",
       "description_placeholder": "z. B. Ransomware-Verschlüsselung der Fileserver; Kundenportal nicht erreichbar",
@@ -294,14 +295,14 @@
         "green": "Nicht direkt anwendbar"
       },
       "verdict": {
-        "applicable": "BESTÄTIGT",
+        "applicable": "ANWENDBAR",
         "not_applicable": "NICHT ANWENDBAR",
-        "unclear": "PRÜFUNG NÖTIG"
+        "unclear": "UNKLAR"
       },
       "unclear_code": "Offenheitsgrund",
       "trigger_fired": "Trigger",
-      "limits_body": "Diese Triage nutzt Ihre Vorfallangaben und versionierte YAML-Regeln (NIS2UmsuCG, NISG, ISG). Absolute Fristen werden aus dem angegebenen Entdeckungszeitpunkt berechnet. Ohne Branchen- und Grössenangaben bleibt das Heimatregime oft **Prüfung nötig** — das ist beabsichtigt. NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden. Im Zweifel sofort Rechtsberatung und die zuständige Behörde kontaktieren.",
-      "disclaimer_footer": "NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden."
+      "limits_body": "Diese Triage wurde maschinell aus Ihrem Vorfall-Intake und den versionierten YAML-Regeln (NIS2UmsuCG, NISG, ISG) erzeugt. Absolute Fristen rechnen sich aus dem angegebenen Zeitpunkt der Kenntnisnahme. Ohne Branchen- und Größenangaben bleibt das Heimat-Regime oft **unklar** – das ist beabsichtigt. Signifikanz-Trigger (Verfügbarkeit, Personenbezug, Ausmaß) stammen aus der jeweiligen Regeldatei. Dies ist eine erste Orientierung und **keine Rechtsberatung**. Im Zweifel unverzüglich Rechtsrat und die zuständige Meldestelle einbeziehen.",
+      "disclaimer_footer": "Automatisierte Vorfall-Triage · keine Rechtsberatung · Link speichern – Zugang ist tokenbasiert"
     },
     "checklist": {
       "what": "Sachverhaltsbeschreibung (was ist passiert)",
@@ -359,16 +360,17 @@
       "menu": "Menü öffnen",
       "close": "Menü schliessen",
       "waitlist": "Auf die Warteliste",
+      "waitlist_short": "Warteliste",
       "scan": "Kostenlosen Scan starten"
     },
     "hero": {
       "badge": "NexusScope · Für Deutschland, Österreich & die Schweiz",
       "title": "Ein Vorfall. Drei Melderegimes. Wissen Sie, welche gelten – bevor die Frist läuft.",
-      "subtitle": "NexusScope spiegelt Ihr Unternehmen gegen NIS2UmsuCG/BSIG (DE), NISG 2024 (AT) und das ISG (CH). Sie erhalten unabhängige Anwendbarkeits-Einschätzungen, Meldeuhren und sichtbare Lücken im öffentlichen Fussabdruck — mit Quellen und Konfidenz je Regime.",
+      "subtitle": "Spiegeln Sie Ihr Unternehmen gegen NIS2UmsuCG, NISG 2024 und das Schweizer ISG. Sehen Sie Fristen und sichtbare Lücken in einem klaren Bericht.",
       "cta": "Auf die Warteliste",
       "cta_secondary": "Musterbericht ansehen",
       "scan_cta": "Kostenlosen Scan starten",
-      "note": "Early Access · Kostenlose Orientierung · Keine Anmeldung",
+      "note": "Auf die Warteliste → wir mailen Ihnen, wenn Ihr erster Scan öffnet. Kostenloser Early Access · Keine Anmeldung.",
       "clock_early": "Frühwarnung",
       "clock_incident": "Vorfallmeldung",
       "clock_final": "Abschlussbericht"
@@ -422,6 +424,13 @@
       "profile_at": "Österreichischer IT-Dienstleister",
       "profile_ch": "Schweizer Gesellschaft mit DE-Tochter",
       "synthetic_badge": "DEMO · SYNTHETISCH",
+      "synthetic_hint": "Demo-Fixture — kein Live-Scan einer realen Kundendomäne",
+      "read_path": "So lesen: Ergebnis → Begründung → Evidenz → Quelle → Konfidenz → Nächster Schritt. UNKLAR, wenn Evidenz fehlt.",
+      "confidence_label": "Konfidenz",
+      "source_label": "Quelle",
+      "evidence_label": "Evidenz",
+      "next_step_label": "Nächster Schritt",
+      "deadlines_note": "Uhren für das erste IN-Regime in diesem Muster. Ihr Live-Bericht listet Uhren je anwendbarem Regime.",
       "open_full": "Vollständigen Musterbericht öffnen",
       "tab_regimes": "Regime-Status",
       "tab_gaps": "Lücken",
@@ -449,6 +458,14 @@
       "disclaimer": "NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden.",
       "as_of": "Fristenstand: September 2026.",
       "col_confidence": "Konfidenz",
+      "why_action": "Warum?",
+      "hide_why": "Warum ausblenden",
+      "view_trace": "Vollständige Herleitung",
+      "view_evidence": "Evidenz anzeigen",
+      "view_source": "Quelle anzeigen",
+      "trace_label": "Schwellenpfad",
+      "next_action": "Nächster Schritt",
+      "drawer_close": "Schliessen",
       "col_next": "Nächster Schritt",
       "demo_banner": "Simuliertes Muster · synthetisches Profil · keine lebendige Rechtsfeststellung",
       "insufficient_hint": "Unzureichende Informationen — die genannten Angaben würden das klären."
@@ -485,16 +502,16 @@
     "trust": {
       "eyebrow": "Vertrauen",
       "title": "Für DACH-Unternehmen gebaut",
-      "body": "Für Deutschland, Österreich und die Schweiz. Datenhaltung für die Schweiz / EU ausgelegt. Nur öffentliche Quellen und Ihre Angaben. NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden.",
+      "body": "Orientierung für Deutschland, Österreich und die Schweiz. Ihre Daten bleiben in der Schweiz und der EU. Nur öffentliche Quellen – informativ, keine Rechtsberatung.",
       "points": [
-        "Referenzierte öffentliche Quellen je Regime",
+        "Für DACH-Unternehmen gebaut",
         "Daten bleiben in der Schweiz / EU",
-        "Unsicherheit ausgewiesen — nicht weggeraten"
+        "Nur Information – keine Rechtsberatung"
       ]
     },
     "waitlist": {
       "title": "Auf die Warteliste",
-      "subtitle": "Sichern Sie sich Early Access, wenn NexusScope startet. Hinterlassen Sie Ihre geschäftliche E-Mail – wir melden uns, sobald Ihr Unternehmen den ersten Scan starten kann.",
+      "subtitle": "Geschäftliche E-Mail hinterlassen. Wir benachrichtigen Sie, wenn Scans öffnen — danach erhalten Sie einen DE-/AT-/CH-Orientierungsbericht aus einem Zwei-Minuten-Fragebogen und einer passiven Prüfung des öffentlichen Fußabdrucks.",
       "email_label": "Geschäftliche E-Mail",
       "size_label": "Unternehmensgröße",
       "size": {
@@ -512,14 +529,18 @@
       },
       "pain_label": "Was ist aktuell Ihr größtes Compliance-Ärgernis? (optional)",
       "pain_placeholder": "z. B. Niemand weiß, welche unserer Gesellschaften in den Scope fallen …",
-      "submit": "Warteliste beitreten",
-      "submitting": "Beitritt läuft …",
-      "success": "Sie stehen auf der Liste. Wir melden uns.",
+      "submit": "Early Access sichern",
+      "submitting": "Wird gesendet …",
+      "success": "Sie stehen auf der Liste. Wir melden uns per E-Mail, wenn Early Access öffnet.",
+      "success_eyebrow": "Platz gesichert",
+      "success_next": "Was als Nächstes passiert: Wir bestätigen Ihren Platz und benachrichtigen Sie, sobald Scans für Ihre Unternehmensgröße und Ihr Land verfügbar sind.",
       "duplicate": "Diese E-Mail steht bereits auf der Warteliste.",
       "errors": {
         "required": "Bitte ausfüllen",
         "email": "Bitte eine gültige E-Mail-Adresse angeben",
-        "country": "Bitte ein Land wählen"
+        "country": "Bitte ein Land wählen",
+        "size": "Bitte eine Unternehmensgröße wählen",
+        "form": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
       },
       "privacy_note": "Ihre E-Mail verwenden wir nur, um Sie über den Early Access zu informieren. Kein Marketing ohne Einwilligung.",
       "privacy_link": "Datenschutzerklärung"
@@ -585,16 +606,16 @@
     "footer": {
       "company_name": "NexusScope",
       "legal_form": "Einzelunternehmen (Schweiz)",
+      "operator_name": "Noah Baumann",
       "address_lines": [
-        "Geschäftsadresse folgt in Kürze",
         "Schweiz"
       ],
       "email_label": "E-Mail",
-      "contact_email": "",
+      "contact_email": "hello@nexusscopes.com",
       "phone_label": "Telefon",
       "phone": "",
       "uid_label": "UID / MwSt",
-      "uid": "UID-/MwSt-Angaben folgen in Kürze",
+      "uid": "",
       "copyright": "© 2026 NexusScope. Alle Rechte vorbehalten.",
       "legal_heading": "Rechtliches",
       "impressum": "Impressum",
@@ -606,13 +627,16 @@
       "lang_label": "Sprache",
       "disclaimer": "NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden.",
       "data_location": "Daten werden in der Schweiz / EU verarbeitet.",
-      "tagline": "Regulatorische Orientierung für DACH-Meldepflichten bei Cybervorfällen.",
+      "tagline": "Regulatory readiness intelligence für Deutschland, Österreich und die Schweiz.",
       "contact_label": "Kontakt:",
       "legal_note": "NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden.",
       "pricing": "Preise",
       "contact": "Kontakt",
       "product": "Produkt",
-      "operator_person": "Noah Baumann",
+      "how": "So funktioniert es",
+      "example_report": "Beispielbericht",
+      "early_access": "Early Access",
+      "contact_heading": "Kontakt",
       "contact_form_label": "Kontaktformular"
     },
     "theme": {
@@ -637,37 +661,37 @@
     },
     "final_cta": {
       "title": "Wissen, welche Uhren gelten – vor dem nächsten Vorfall.",
-      "body": "Treten Sie der Warteliste für den Early Access bei. Wenn Scans öffnen, erhalten Sie eine DE-/AT-/CH-Orientierung aus einem kurzen Fragebogen und einer passiven Prüfung des öffentlichen Fussabdrucks — mit Quellen, Konfidenz und klar ausgewiesenen offenen Fragen.",
+      "body": "Treten Sie der Warteliste bei. Nach dem Absenden informieren wir Sie per E-Mail, wenn Scans öffnen. Sie erhalten dann eine DE-/AT-/CH-Orientierung aus einem kurzen Fragebogen und einer passiven Prüfung des öffentlichen Fussabdrucks — mit Quellen, Konfidenz und klar ausgewiesenen offenen Fragen.",
       "cta": "Auf die Warteliste"
     },
     "pricing_page": {
       "title": "Einfache Pläne für eine klare Erstorientierung",
-      "subtitle": "Die Warteliste ist offen. Bezahlte Pläne starten, wenn kostenlose Scans live gehen. Beträge werden — falls vorhanden — im Stripe Checkout bestätigt, nie auf dieser Seite erfunden.",
+      "subtitle": "Die Warteliste ist offen. Bezahlte Pläne starten, wenn kostenlose Scans live gehen. Beträge werden — falls vorhanden — nur im Stripe Checkout bestätigt, nie auf dieser Seite erfunden.",
       "coming_soon": "Demnächst",
       "waitlist_cta": "Auf die Warteliste",
       "scan_cta": "Kostenlosen Scan starten",
       "note": "NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden. Daten bleiben in der Schweiz / EU.",
-      "footnote": "Enterprise- und Agency-Onboarding umfasst AVV, benannte Kontakte und Berichte für mehrere Gesellschaften. Steuern können über Stripe Tax greifen, sobald Registrierungen aktiv sind.",
+      "footnote": "Enterprise- und Agency-Onboarding ist geplant mit AVV, benannten Kontakten und Berichten für mehrere Gesellschaften. Steuern können über Stripe Tax greifen, sobald Registrierungen aktiv sind.",
       "plans": [
         {
           "id": "free",
           "name": "Free",
           "price": "€0",
-          "cadence": "1 Bericht / Monat",
-          "blurb": "E-Mail-gebundene Orientierung für eine Domain.",
+          "cadence": "1 Bericht / Monat · geplant",
+          "blurb": "E-Mail-gebundene Orientierung für eine Domain, sobald Scans öffnen.",
           "features": [
             "Ein DE-/AT-/CH-Bericht pro Monat",
             "Passive DNS-, TLS- und Header-Prüfungen",
             "PDF-Export",
-            "Threshold-Trace mit Prüfung nötig / Unzureichende Informationen, wenn Evidenz fehlt"
+            "Threshold-Trace und UNKLAR, wenn Evidenz fehlt"
           ]
         },
         {
           "id": "pro",
           "name": "Pro",
-          "price": "Unbegrenzt",
-          "cadence": "Team-Workspace",
-          "blurb": "Für Compliance-Teams mit mehr als einem Snapshot.",
+          "price": "—",
+          "cadence": "Team-Workspace · Preis im Checkout",
+          "blurb": "Für Compliance-Teams mit mehr als einem Snapshot. Preis nur im Stripe Checkout, wenn live.",
           "features": [
             "Unbegrenzte Berichte",
             "Geteilter Team-Workspace",
@@ -679,7 +703,7 @@
           "id": "enterprise",
           "name": "Enterprise / Agency",
           "price": "Individuell",
-          "cadence": "mehrere Gesellschaften",
+          "cadence": "mehrere Gesellschaften · Kontakt",
           "blurb": "Für Konzerne, Kanzleien und Agenturen mit vielen Einheiten.",
           "features": [
             "Mapping für Gruppen und Töchter",
@@ -692,7 +716,7 @@
     },
     "contact_page": {
       "title": "Kontakt",
-      "subtitle": "Fragen zu Warteliste, Datenresidenz oder einem künftigen Scan für Ihre Gruppe — nutzen Sie das Formular. Wir antworten aus der Schweiz / EU. Die Geschäftsadresse wird hier veröffentlicht, sobald sie bestätigt ist.",
+      "subtitle": "Fragen zu Warteliste, Datenresidenz oder einem künftigen Scan für Ihre Gruppe — schreiben Sie uns. Wir antworten aus der Schweiz / EU.",
       "name_label": "Name",
       "email_label": "Geschäftliche E-Mail",
       "company_label": "Unternehmen (optional)",
@@ -756,7 +780,7 @@
       "privacy_sections": [
         {
           "h": "Was wir speichern",
-          "b": "Wartelisten-Einträge (E-Mail, Unternehmensgrösse, Land, optionale Notiz), Scan-Eingaben und erstellte Berichte."
+          "b": "Wartelisten-Einträge (E-Mail, Unternehmensgröße, Land, optionale Notiz), Scan-Eingaben und erstellte Berichte."
         },
         {
           "h": "Warum",
@@ -768,7 +792,7 @@
         },
         {
           "h": "Ihre Rechte",
-          "b": "Auskunft, Berichtigung und Löschung jederzeit über das Kontaktformular."
+          "b": "Auskunft, Berichtigung und Löschung jederzeit über die Kontakt-E-Mail."
         }
       ],
       "placeholder": "Noah Baumann",

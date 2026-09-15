@@ -16,11 +16,12 @@ export default async function ImpressumPage() {
   const l = dict.site.legal
   const f = dict.site.footer
   const email = f.contact_email?.trim() ?? ''
-  const phone = f.phone?.trim() ?? ''
+  const phone = f.phone?.trim()
+  const uid = f.uid?.trim()
 
   return (
     <SiteShell dict={dict} locale={locale}>
-      <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <h1 className="font-display text-3xl tracking-tight sm:text-4xl">{l.impressum_title}</h1>
         <p className="mt-3 text-sm text-[var(--ns-fg-muted)]">{l.impressum_intro}</p>
 
@@ -35,7 +36,7 @@ export default async function ImpressumPage() {
           </div>
           <div>
             <dt className="font-semibold">{l.representative}</dt>
-            <dd className="mt-1 text-[var(--ns-fg-muted)]">{f.operator_person || l.placeholder}</dd>
+            <dd className="mt-1 text-[var(--ns-fg-muted)]">{f.operator_name || l.placeholder}</dd>
           </div>
           <div>
             <dt className="font-semibold">{l.contact}</dt>
@@ -61,7 +62,7 @@ export default async function ImpressumPage() {
                     href="/contact"
                     className="underline decoration-[var(--ns-border-strong)] underline-offset-4 hover:text-[var(--ns-fg)]"
                   >
-                    {f.contact_form_label}
+                    {f.contact_form_label ?? f.contact}
                   </Link>
                 )}
               </p>
@@ -70,15 +71,17 @@ export default async function ImpressumPage() {
                   {f.phone_label}: {phone}
                 </p>
               ) : null}
-              <p>
-                {f.uid_label}: {f.uid}
-              </p>
+              {uid ? (
+                <p>
+                  {f.uid_label}: {uid}
+                </p>
+              ) : null}
             </dd>
           </div>
         </dl>
 
         <p className="mt-10 text-sm text-[var(--ns-fg-muted)]">{f.disclaimer}</p>
-      </main>
+      </div>
     </SiteShell>
   )
 }
