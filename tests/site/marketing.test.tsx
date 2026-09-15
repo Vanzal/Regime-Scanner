@@ -15,33 +15,35 @@ vi.mock('next-themes', () => ({
 }))
 
 describe('marketing chrome copy', () => {
-  it('preserves the live NexusScope headline and waitlist CTA', () => {
+  it('preserves the live NexusScope headline and early-access CTA', () => {
     const en = getDict('en')
     expect(en.site.hero.title).toBe(
       'One incident. Three reporting regimes. Know which ones apply — before the clock starts.',
     )
     expect(en.site.hero.subtitle).toMatch(/NIS2UmsuCG, NISG 2024 and the Swiss ISG/)
-    expect(en.site.hero.cta).toBe('Join waitlist')
+    expect(en.site.hero.cta).toBe('Get early access')
+    expect(en.site.hero.cta_secondary).toBe('See an example report')
     expect(en.site.faq.items[0].q).toMatch(/Does NIS2 \/ NISG \/ ISG apply/)
     expect(en.site.faq.items.length).toBeGreaterThanOrEqual(8)
+    expect(en.site.footer.tagline).toMatch(/Regulatory readiness intelligence/)
   })
 
-  it('header exposes waitlist CTA when product is gated', () => {
+  it('header exposes early-access CTA when product is gated', () => {
     const dict = getDict('en')
     const html = renderToStaticMarkup(<SiteHeader dict={dict} locale="en" productReady={false} />)
-    expect(html).toContain('Join waitlist')
+    expect(html).toContain('Get early access')
     expect(html).toContain('href="/#waitlist"')
-    expect(html).not.toContain('Start free scan')
+    expect(html).not.toContain('Run a readiness check')
     expect(html).toContain('Features')
     expect(html).toContain('How it works')
     expect(html).toContain('Sample report')
     expect(html).toContain('FAQ')
   })
 
-  it('header exposes free-scan CTA when product-ready', () => {
+  it('header exposes readiness-check CTA when product-ready', () => {
     const dict = getDict('en')
     const html = renderToStaticMarkup(<SiteHeader dict={dict} locale="en" productReady={true} />)
-    expect(html).toContain('Start free scan')
+    expect(html).toContain('Run a readiness check')
     expect(html).toContain('href="/intake"')
   })
 
@@ -53,6 +55,9 @@ describe('marketing chrome copy', () => {
     expect(html).toContain('NIS2UmsuCG')
     expect(html).toContain('not legal advice')
     expect(html).toContain('data-testid="sample-regime-mittelstand-de-de"')
+    expect(html).toContain('Why?')
+    expect(html).toContain('View evidence')
+    expect(html).toContain('Confidence')
   })
 
   it('footer still lists imprint, privacy, contact and Switzerland / EU', () => {
@@ -61,6 +66,10 @@ describe('marketing chrome copy', () => {
     expect(html).toContain('href="/privacy"')
     expect(html).toContain('href="/contact"')
     expect(html).toContain('href="/pricing"')
+    expect(html).toContain('href="/#how"')
+    expect(html).toContain('href="/#preview"')
+    expect(html).toContain('href="/#waitlist"')
     expect(html).toContain('Switzerland / EU')
+    expect(html).toContain('Regulatory readiness intelligence')
   })
 })

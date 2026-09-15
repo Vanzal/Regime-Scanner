@@ -340,16 +340,16 @@
       "contact": "Contact",
       "menu": "Open menu",
       "close": "Close menu",
-      "waitlist": "Join waitlist",
-      "scan": "Start free scan"
+      "waitlist": "Get early access",
+      "scan": "Run a readiness check"
     },
     "hero": {
       "badge": "NexusScope · Built for Germany, Austria & Switzerland",
       "title": "One incident. Three reporting regimes. Know which ones apply — before the clock starts.",
-      "subtitle": "Map your company against NIS2UmsuCG, NISG 2024 and the Swiss ISG. See deadlines and visible gaps in one clear report.",
-      "cta": "Join waitlist",
-      "cta_secondary": "View sample report",
-      "scan_cta": "Start free scan",
+      "subtitle": "Map your company against NIS2UmsuCG, NISG 2024 and the Swiss ISG — then see which clocks run and which public gaps show first.",
+      "cta": "Get early access",
+      "cta_secondary": "See an example report",
+      "scan_cta": "Run a readiness check",
       "note": "Early access · Free · No login",
       "clock_early": "Early warning",
       "clock_incident": "Incident report",
@@ -429,10 +429,21 @@
       "deadline2": "72 hours — incident report to the BSI",
       "deadline3": "1 month — final report to the BSI",
       "disclaimer": "This is not legal advice.",
-      "as_of": "Timelines current as of September 2026."
+      "as_of": "Timelines current as of September 2026.",
+      "col_confidence": "Confidence",
+      "why_action": "Why?",
+      "hide_why": "Hide why",
+      "view_trace": "View full reasoning",
+      "view_evidence": "View evidence",
+      "view_source": "View source",
+      "evidence_label": "Evidence",
+      "source_label": "Source",
+      "trace_label": "Threshold path",
+      "next_action": "Next action",
+      "drawer_close": "Close"
     },
     "features": {
-      "title": "What you get",
+      "title": "Why NexusScope",
       "cards": [
         {
           "title": "Know which regimes apply",
@@ -471,8 +482,8 @@
       ]
     },
     "waitlist": {
-      "title": "Join the waitlist",
-      "subtitle": "Get early access when NexusScope opens. Leave your work e-mail — we will notify you as soon as your company can run its first scan.",
+      "title": "Get early access",
+      "subtitle": "Leave your work e-mail. We will notify you as soon as your company can run its first NexusScope scan.",
       "email_label": "Work e-mail",
       "size_label": "Company size",
       "size": {
@@ -490,14 +501,18 @@
       },
       "pain_label": "What is your biggest compliance pain right now? (optional)",
       "pain_placeholder": "e.g. Nobody knows which of our entities are in scope …",
-      "submit": "Join the waitlist",
-      "submitting": "Joining …",
-      "success": "You are on the list. We will be in touch.",
+      "submit": "Get early access",
+      "submitting": "Submitting …",
+      "success": "You are on the list. We will e-mail you when early access opens.",
+      "success_eyebrow": "You're in",
+      "success_next": "What happens next: we confirm your place and notify you when scans open for your company size and country.",
       "duplicate": "This e-mail is already on the waitlist.",
       "errors": {
         "required": "Please fill in",
         "email": "Please provide a valid e-mail address",
-        "country": "Please choose a country"
+        "country": "Please choose a country",
+        "size": "Please choose a company size",
+        "form": "Something went wrong. Please try again."
       },
       "privacy_note": "We use your e-mail only to notify you about early access. No marketing without consent.",
       "privacy_link": "Privacy Policy"
@@ -585,12 +600,16 @@
       "lang_label": "Language",
       "disclaimer": "NexusScope provides informational orientation only and does not constitute legal advice.",
       "data_location": "Data is processed in Switzerland / EU.",
-      "tagline": "Cyber-reporting & compliance orientation for the DACH region.",
+      "tagline": "Regulatory readiness intelligence for Germany, Austria and Switzerland.",
       "contact_label": "Contact:",
       "legal_note": "Automated orientation — not legal advice.",
       "pricing": "Pricing",
       "contact": "Contact",
-      "product": "Product"
+      "product": "Product",
+      "how": "How it works",
+      "example_report": "Example report",
+      "early_access": "Early access",
+      "contact_heading": "Contact"
     },
     "theme": {
       "toggle": "Toggle colour theme"
@@ -600,7 +619,7 @@
       "link": "Join waitlist"
     },
     "proof": {
-      "eyebrow": "Built for DACH operators",
+      "eyebrow": "Designed for",
       "title": "Made for the people who have to answer the 24-hour question",
       "body": "Compliance officers, CISOs and managing directors at mid-market companies in Germany, Austria and Switzerland. Logos below are layout placeholders — not customer endorsements.",
       "placeholders": [
@@ -612,8 +631,8 @@
     },
     "final_cta": {
       "title": "Know which clocks apply — before the next incident.",
-      "body": "Join the waitlist for early access. When scans open, you will get one unified report for DE, AT and CH from a two-minute questionnaire and a passive public-footprint check.",
-      "cta": "Join waitlist"
+      "body": "Get early access. When scans open, you will get one unified report for DE, AT and CH from a two-minute questionnaire and a passive public-footprint check.",
+      "cta": "Get early access"
     },
     "pricing_page": {
       "title": "Simple plans for a clear first orientation",
