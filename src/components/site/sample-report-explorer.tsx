@@ -1,16 +1,21 @@
 'use client'
 
-import { useMemo, useState } from 'react'
-import type { Dictionary } from '@/i18n'
-import type { SampleProfileId, SampleReport } from '@/lib/sample-reports'
-import { SampleReportCard } from './sample-report-card'
+import dynamic from 'next/dynamic'
+import { useState, type ReactNode } from 'react'
+import type { SampleProfileId, SampleReportView } from '@/lib/sample-reports'
+import type { SampleReportCardDict } from './sample-report-card'
+
+const SampleReportCard = dynamic(() => import('./sample-report-card').then((m) => m.SampleReportCard))
 
 export function SampleReportExplorer({
   reports,
   dict,
+  initialCard,
 }: {
-  reports: SampleReport[]
-  dict: Dictionary
+  reports: SampleReportView[]
+  dict: SampleReportCardDict
+  /** Server-rendered default profile — not hydrated until the visitor switches tabs. */
+  initialCard: ReactNode
 }) {
   const [id, setId] = useState<SampleProfileId>('mittelstand-de')
   const p = dict.site.preview
@@ -19,7 +24,7 @@ export function SampleReportExplorer({
     'service-at': p.profile_at,
     'ch-eu-subsidiary': p.profile_ch,
   }
-  const current = useMemo(() => reports.find((r) => r.id === id) ?? reports[0], [id, reports])
+  const current = reports.find((r) => r.id === id) ?? reports[0]
   if (!current) return null
 
   return (
@@ -48,7 +53,7 @@ export function SampleReportExplorer({
           ))}
         </div>
       </div>
-      <SampleReportCard report={current} dict={dict} />
+      {id === 'mittelstand-de' ? initialCard : <SampleReportCard report={current} dict={dict} />}
     </div>
   )
 }

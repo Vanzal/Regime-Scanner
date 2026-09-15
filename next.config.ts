@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     '/**': ['./rules/**', './src/i18n/dictionaries/**', './content/legal/**'],
   },
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
+  },
 }
 
 export default nextConfig

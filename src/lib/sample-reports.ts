@@ -122,11 +122,22 @@ function fixtureToIntake(fixture: FixtureScan): IntakeAnswers {
 const DISCLAIMER =
   'Synthetic sample. Automated orientation from public sources and stated answers — not legal advice. Timelines current as of September 2026.'
 
+export type SampleReportView = Omit<SampleReport, 'intake'>
+
+const reportMemo = new Map<SampleProfileId, SampleReport>()
+
 export function listSampleProfileIds(): SampleProfileId[] {
   return ['mittelstand-de', 'service-at', 'ch-eu-subsidiary']
 }
 
+export function toSampleReportView(report: SampleReport): SampleReportView {
+  const { intake: _intake, ...view } = report
+  return view
+}
+
 export function buildSampleReport(id: SampleProfileId): SampleReport {
+  const cached = reportMemo.get(id)
+  if (cached) return cached
   const fixtures = loadFixtures()
   const fixture = fixtures.find((f) => f.slug === id)
   if (!fixture) throw new Error(`Missing sample fixture: ${id}`)
@@ -136,7 +147,7 @@ export function buildSampleReport(id: SampleProfileId): SampleReport {
   const verdicts = evaluateAll(loadRules(), facts)
   const meta = PROFILE_META[id]
 
-  return {
+  const report: SampleReport = {
     id,
     slug: fixture.slug,
     synthetic: true,
@@ -162,6 +173,8 @@ export function buildSampleReport(id: SampleProfileId): SampleReport {
       })),
     disclaimer: DISCLAIMER,
   }
+  reportMemo.set(id, report)
+  return report
 }
 
 export function buildAllSampleReports(): SampleReport[] {

@@ -8,17 +8,17 @@ import {
 import type { Dictionary } from '@/i18n'
 
 export function SubscribeCta({
-  dict,
+  copy,
   defaultEmail = '',
 }: {
-  dict: Dictionary
+  copy: Dictionary['site']['subscribe']
   defaultEmail?: string
 }) {
   const [state, formAction, pending] = useActionState<SubscribeState, FormData>(
     startSubscriptionCheckout,
     { ok: false },
   )
-  const s = dict.site.subscribe
+  const s = copy
   const err = state.errors?.email
     ? s.errors.email
     : state.errors?.form

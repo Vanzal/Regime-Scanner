@@ -15,9 +15,9 @@ import {
  * First-visit consent banner (Privacy Policy §8): accept all, reject all,
  * or open Cookie Settings. Reject is as prominent as accept.
  */
-export function CookieBanner({ dict }: { dict: Dictionary }) {
+export function CookieBanner({ copy }: { copy: Dictionary['site']['cookie'] }) {
   const [visible, setVisible] = useState(false)
-  const c = dict.site.cookie
+  const c = copy
 
   useEffect(() => {
     const sync = () => setVisible(!hasCookieConsentChoice())

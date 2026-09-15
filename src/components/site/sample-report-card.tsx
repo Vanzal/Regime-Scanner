@@ -1,8 +1,14 @@
-'use client'
-
-import type { SampleReport, SampleStatus } from '@/lib/sample-reports'
+import type { SampleReportView, SampleStatus } from '@/lib/sample-reports'
 import type { Dictionary } from '@/i18n'
-import { cn } from '@/lib/utils'
+
+/** Slice of i18n needed to render a sample card (avoids shipping the full dictionary to the client). */
+export type SampleReportCardDict = {
+  site: { preview: Dictionary['site']['preview'] }
+  report: {
+    gaps: { severity: Dictionary['report']['gaps']['severity'] }
+    clock: { none_applicable: string }
+  }
+}
 
 const STATUS_CLASS: Record<SampleStatus, string> = {
   in: 'ns-status-in',
@@ -10,7 +16,7 @@ const STATUS_CLASS: Record<SampleStatus, string> = {
   unclear: 'ns-status-unclear',
 }
 
-function statusLabel(dict: Dictionary, status: SampleStatus): string {
+function statusLabel(dict: SampleReportCardDict, status: SampleStatus): string {
   if (status === 'in') return dict.site.preview.status_in
   if (status === 'out') return dict.site.preview.status_out
   return dict.site.preview.status_unclear
@@ -27,8 +33,8 @@ export function SampleReportCard({
   dict,
   compact = false,
 }: {
-  report: SampleReport
-  dict: Dictionary
+  report: SampleReportView
+  dict: SampleReportCardDict
   compact?: boolean
 }) {
   const p = dict.site.preview
@@ -50,7 +56,7 @@ export function SampleReportCard({
         </span>
       </div>
 
-      <div className={cn('grid gap-0', compact ? '' : 'lg:grid-cols-3')}>
+      <div className={compact ? 'grid gap-0' : 'grid gap-0 lg:grid-cols-3'}>
         <section className="border-b border-[var(--ns-border)] p-4 sm:p-5 lg:border-b-0 lg:border-r">
           <h3 className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
             {p.tab_regimes}
@@ -63,10 +69,7 @@ export function SampleReportCard({
                     {r.name} — {r.law}
                   </span>
                   <span
-                    className={cn(
-                      'shrink-0 rounded-md border px-2 py-0.5 font-instrument text-[10px] font-bold uppercase tracking-[0.12em]',
-                      STATUS_CLASS[r.status],
-                    )}
+                    className={`shrink-0 rounded-md border px-2 py-0.5 font-instrument text-[10px] font-bold uppercase tracking-[0.12em] ${STATUS_CLASS[r.status]}`}
                   >
                     {statusLabel(dict, r.status)}
                   </span>
@@ -87,14 +90,13 @@ export function SampleReportCard({
             {gaps.map((g, i) => (
               <li key={`${g.title}-${i}`} className="text-sm leading-snug" data-testid={`sample-gap-${report.id}-${i}`}>
                 <span
-                  className={cn(
-                    'mr-2 inline-block rounded-md border px-1.5 py-0.5 font-instrument text-[10px] font-bold uppercase tracking-[0.1em]',
+                  className={`mr-2 inline-block rounded-md border px-1.5 py-0.5 font-instrument text-[10px] font-bold uppercase tracking-[0.1em] ${
                     g.severity === 'high'
                       ? 'border-[var(--ns-danger)] text-[var(--ns-danger)]'
                       : g.severity === 'med'
                         ? 'border-[var(--ns-warning)] text-[var(--ns-warning)]'
-                        : 'border-[var(--ns-border-strong)] text-[var(--ns-fg-dim)]',
-                  )}
+                        : 'border-[var(--ns-border-strong)] text-[var(--ns-fg-dim)]'
+                  }`}
                 >
                   {dict.report.gaps.severity[g.severity]}
                 </span>

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { IBM_Plex_Mono, Inter } from 'next/font/google'
 import { cookies } from 'next/headers'
 import { localeFromCookie } from '@/i18n'
-import { ThemeProvider } from '@/components/theme/theme-provider'
+import { THEME_BOOT_SCRIPT } from '@/lib/theme'
 import { siteMetadataBase } from '@/lib/site-url'
 import './globals.css'
 
@@ -10,13 +10,17 @@ const sans = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans-face',
+  preload: true,
+  adjustFontFallback: true,
 })
 
 const mono = IBM_Plex_Mono({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-mono-face',
-  weight: ['400', '500', '600'],
+  weight: ['400', '600'],
+  preload: false,
+  adjustFontFallback: true,
 })
 
 export const metadata: Metadata = {
@@ -57,7 +61,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           ['--font-instrument' as string]: 'var(--font-mono-face), "IBM Plex Mono", monospace',
         }}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
+        {children}
       </body>
     </html>
   )
