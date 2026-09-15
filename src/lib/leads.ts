@@ -40,7 +40,7 @@ export async function sendReportEmail(email: string, reportUrl: string, companyN
       method: 'POST',
       headers: { authorization: `Bearer ${apiKey}`, 'content-type': 'application/json' },
       body: JSON.stringify({
-        from: process.env.RESEND_FROM ?? 'NexusScope <berichte@nexusscope.example>',
+        from: process.env.RESEND_FROM ?? 'NexusScope <noreply@nexusscopes.com>',
         to: [email],
         subject: 'Ihr Bericht: Welche Meldepflichten gelten für Sie?',
         text,
