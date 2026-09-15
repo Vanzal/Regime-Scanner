@@ -60,8 +60,8 @@ export default async function LandingPage() {
   const dict = getDict(locale)
   const s = dict.site
   const productReady = isProductReady()
-  const sampleReports = buildAllSampleReports()
-  const heroReport = buildSampleReport('mittelstand-de')
+  const sampleReports = buildAllSampleReports(locale)
+  const heroReport = buildSampleReport('mittelstand-de', locale)
   const primaryHref = productReady ? '/intake' : '#waitlist'
   const primaryLabel = productReady ? s.hero.scan_cta : s.hero.cta
 
@@ -206,12 +206,13 @@ export default async function LandingPage() {
             <p className="font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
               {s.proof.eyebrow}
             </p>
+            <h3 className="mt-2 max-w-2xl font-display text-lg tracking-tight sm:text-xl">{s.proof.title}</h3>
             <p className="mt-2 max-w-2xl text-sm text-[var(--ns-fg-muted)]">{s.proof.body}</p>
-            <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {s.proof.placeholders.map((label) => (
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+              {s.proof.audiences.map((label) => (
                 <li
                   key={label}
-                  className="flex min-h-16 items-center justify-center rounded-md border border-dashed border-[var(--ns-border-strong)] px-3 text-center text-xs text-[var(--ns-fg-dim)]"
+                  className="border-t border-[var(--ns-border)] pt-3 text-sm font-medium leading-snug text-[var(--ns-fg)]"
                 >
                   {label}
                 </li>

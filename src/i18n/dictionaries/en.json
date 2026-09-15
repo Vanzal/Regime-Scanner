@@ -173,6 +173,7 @@
       "why": "Why the law cares",
       "fix": "Recommendation",
       "check": "Check",
+      "source": "Source",
       "severity": {
         "info": "Info",
         "low": "Low",
@@ -350,7 +351,7 @@
       "cta": "Join waitlist",
       "cta_secondary": "View sample report",
       "scan_cta": "Start free scan",
-      "note": "Early access · Free · No login",
+      "note": "Join the waitlist → we e-mail you when your first scan opens. Free early access · No login.",
       "clock_early": "Early warning",
       "clock_incident": "Incident report",
       "clock_final": "Final report"
@@ -384,19 +385,19 @@
     },
     "preview": {
       "title": "What the report looks like",
-      "subtitle": "Every NexusScope report centres on three outputs: Regime Status, Gaps, and Deadlines.",
+      "subtitle": "Every NexusScope report walks Result → Reason → Evidence → Source → Confidence → Next step — for DE, AT and CH independently.",
       "outputs": [
         {
           "label": "Regime Status",
-          "hint": "IN / OUT / UNCLEAR for DE, AT and CH — independently assessed."
+          "hint": "IN / OUT / UNCLEAR for DE, AT and CH — independently assessed, with confidence."
         },
         {
           "label": "Gaps",
-          "hint": "Prioritised findings from your public footprint, with clear next steps."
+          "hint": "Prioritised public-footprint findings with evidence, source and a concrete next step."
         },
         {
           "label": "Deadlines",
-          "hint": "The 24 h / 72 h / 30 d clocks for each applicable regime."
+          "hint": "The 24 h / 72 h / 30 d clocks for each applicable regime, with authority."
         }
       ],
       "profiles_label": "Sample profiles",
@@ -404,6 +405,13 @@
       "profile_at": "Austrian IT provider",
       "profile_ch": "Swiss entity with DE subsidiary",
       "synthetic_badge": "SYNTHETIC",
+      "synthetic_hint": "Demo fixture — not a live scan of a real customer domain",
+      "read_path": "How to read: Result → Reason → Evidence → Source → Confidence → Next step. Marked UNCLEAR when evidence is missing.",
+      "confidence_label": "Confidence",
+      "source_label": "Source",
+      "evidence_label": "Evidence",
+      "next_step_label": "Next step",
+      "deadlines_note": "Clocks shown for the first IN regime in this sample. Your live report lists clocks per applicable regime.",
       "open_full": "Open full sample",
       "tab_regimes": "Regime Status",
       "tab_gaps": "Gaps",
@@ -472,7 +480,7 @@
     },
     "waitlist": {
       "title": "Join the waitlist",
-      "subtitle": "Get early access when NexusScope opens. Leave your work e-mail — we will notify you as soon as your company can run its first scan.",
+      "subtitle": "Leave your work e-mail. We notify you when scans open — then you get one DE / AT / CH orientation report from a two-minute questionnaire and a passive public-footprint check.",
       "email_label": "Work e-mail",
       "size_label": "Company size",
       "size": {
@@ -562,18 +570,17 @@
     },
     "footer": {
       "company_name": "NexusScope",
-      "legal_form": "[Legal form — e.g. GmbH / AG]",
+      "legal_form": "Sole proprietorship (Switzerland)",
+      "operator_name": "Noah Baumann",
       "address_lines": [
-        "[Street and number]",
-        "[PLZ] [City]",
         "Switzerland"
       ],
       "email_label": "Email",
-      "contact_email": "hello@nexusscope.example",
+      "contact_email": "hello@nexusscopes.com",
       "phone_label": "Phone",
-      "phone": "[+41 XX XXX XX XX]",
+      "phone": "",
       "uid_label": "UID / VAT",
-      "uid": "[CHE-XXX.XXX.XXX]",
+      "uid": "",
       "copyright": "© 2026 NexusScope. All rights reserved.",
       "legal_heading": "Legal",
       "impressum": "Imprint",
@@ -600,36 +607,36 @@
       "link": "Join waitlist"
     },
     "proof": {
-      "eyebrow": "Built for DACH operators",
+      "eyebrow": "Designed for",
       "title": "Made for the people who have to answer the 24-hour question",
-      "body": "Compliance officers, CISOs and managing directors at mid-market companies in Germany, Austria and Switzerland. Logos below are layout placeholders — not customer endorsements.",
-      "placeholders": [
-        "DACH CISO circle (placeholder)",
-        "Mid-market manufacturing (placeholder)",
-        "IT Dienstleister (placeholder)",
-        "Swiss digital infra (placeholder)"
+      "body": "Compliance officers, CISOs and managing directors at mid-market companies in Germany, Austria and Switzerland — before counsel is engaged for a full legal opinion.",
+      "audiences": [
+        "Compliance & CISOs in DACH mid-market",
+        "Managing directors facing NIS2 / NISG / ISG questions",
+        "IT providers with EU customer security clauses",
+        "Swiss groups with DE / AT subsidiaries"
       ]
     },
     "final_cta": {
       "title": "Know which clocks apply — before the next incident.",
-      "body": "Join the waitlist for early access. When scans open, you will get one unified report for DE, AT and CH from a two-minute questionnaire and a passive public-footprint check.",
+      "body": "Join the waitlist. After you submit, we e-mail you when scans open. You then receive one unified DE / AT / CH report from a two-minute questionnaire and a passive public-footprint check.",
       "cta": "Join waitlist"
     },
     "pricing_page": {
       "title": "Simple plans for a clear first orientation",
-      "subtitle": "Waitlist is open now. Paid plans will unlock when free scans go live. Amounts, if any, are confirmed in Stripe Checkout — never invented on this page.",
+      "subtitle": "Waitlist is open now. Paid plans unlock when free scans go live. Any amounts are confirmed in Stripe Checkout — this page does not invent prices.",
       "coming_soon": "Coming soon",
       "waitlist_cta": "Join waitlist",
       "scan_cta": "Start free scan",
       "note": "Informational orientation only — not legal advice. Data stays in Switzerland / the EU.",
-      "footnote": "Enterprise and agency onboarding includes a DPA, named contacts, and multi-entity reporting. Tax may apply via Stripe Tax once registrations are active.",
+      "footnote": "Enterprise and agency onboarding is planned to include a DPA, named contacts, and multi-entity reporting. Tax may apply via Stripe Tax once registrations are active.",
       "plans": [
         {
           "id": "free",
           "name": "Free",
           "price": "€0",
-          "cadence": "1 report / month",
-          "blurb": "Email-gated orientation for one domain.",
+          "cadence": "1 report / month · planned",
+          "blurb": "Email-gated orientation for one domain when scans open.",
           "features": [
             "One unified DE / AT / CH report per month",
             "Passive DNS, TLS and header checks",
@@ -640,9 +647,9 @@
         {
           "id": "pro",
           "name": "Pro",
-          "price": "Unlimited",
-          "cadence": "team workspace",
-          "blurb": "For compliance teams running more than a single snapshot.",
+          "price": "—",
+          "cadence": "team workspace · price in Checkout",
+          "blurb": "For compliance teams running more than a single snapshot. Pricing confirmed only in Stripe when live.",
           "features": [
             "Unlimited reports",
             "Shared team workspace",
@@ -654,7 +661,7 @@
           "id": "enterprise",
           "name": "Enterprise / Agency",
           "price": "Custom",
-          "cadence": "multi-entity",
+          "cadence": "multi-entity · contact us",
           "blurb": "For groups, counsel and agencies mapping many entities.",
           "features": [
             "Multi-entity and subsidiary mapping",
@@ -718,7 +725,7 @@
       "docs_nav": "Legal",
       "language_note": "These documents are published in English.",
       "impressum_title": "Imprint",
-      "impressum_intro": "Information according to Swiss / EU / German imprint rules (placeholder).",
+      "impressum_intro": "Operator information for NexusScope (nexusscopes.com). Postal address and UID will be published here once registered; contact us by e-mail in the meantime.",
       "operator": "Operator",
       "representative": "Represented by",
       "contact": "Contact",
@@ -746,7 +753,7 @@
           "b": "Access, rectification and erasure at any time via the contact e-mail."
         }
       ],
-      "placeholder": "[To be completed before go-live.]",
+      "placeholder": "",
       "cookies_body": [
         {
           "h": "Strictly necessary",

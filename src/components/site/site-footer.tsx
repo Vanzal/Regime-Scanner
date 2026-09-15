@@ -13,12 +13,7 @@ const quietLinkClass =
 
 /**
  * Site-wide footer with Swiss / EU / DACH imprint essentials.
- *
- * PLACEHOLDERS (replace before go-live):
- * - Exact company legal name & form → footer.legal_form / impressum page
- * - Full Swiss postal address → footer.address_lines
- * - Email / phone → footer.contact_email / footer.phone
- * - UID / VAT (MwSt) number → footer.uid
+ * Omit phone / UID when empty — do not invent registration details.
  */
 export function FooterLegalNav({
   dict,
@@ -75,6 +70,8 @@ export function FooterLegalNav({
 
 export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const f = dict.site.footer
+  const phone = f.phone?.trim()
+  const uid = f.uid?.trim()
 
   return (
     <footer
@@ -90,7 +87,11 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
             </h2>
             <BrandMark />
             <p className="mt-3 text-sm text-[var(--ns-fg-muted)]">{f.tagline}</p>
-            <p className="mt-2 text-sm text-[var(--ns-fg-muted)]">{f.legal_form}</p>
+            <p className="mt-2 text-sm text-[var(--ns-fg-muted)]">
+              {f.operator_name}
+              <span className="text-[var(--ns-fg-dim)]"> · </span>
+              {f.legal_form}
+            </p>
             <address className="mt-4 not-italic text-sm leading-relaxed text-[var(--ns-fg-muted)]">
               {f.address_lines.map((line) => (
                 <span key={line} className="block">
@@ -107,18 +108,22 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
                   </a>
                 </dd>
               </div>
-              <div className="flex flex-wrap gap-x-2">
-                <dt className="text-[var(--ns-fg-dim)]">{f.phone_label}:</dt>
-                <dd>
-                  <a href={`tel:${f.phone.replace(/[^\d+]/g, '')}`} className={linkClass}>
-                    {f.phone}
-                  </a>
-                </dd>
-              </div>
-              <div className="flex flex-wrap gap-x-2">
-                <dt className="text-[var(--ns-fg-dim)]">{f.uid_label}:</dt>
-                <dd>{f.uid}</dd>
-              </div>
+              {phone ? (
+                <div className="flex flex-wrap gap-x-2">
+                  <dt className="text-[var(--ns-fg-dim)]">{f.phone_label}:</dt>
+                  <dd>
+                    <a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className={linkClass}>
+                      {phone}
+                    </a>
+                  </dd>
+                </div>
+              ) : null}
+              {uid ? (
+                <div className="flex flex-wrap gap-x-2">
+                  <dt className="text-[var(--ns-fg-dim)]">{f.uid_label}:</dt>
+                  <dd>{uid}</dd>
+                </div>
+              ) : null}
             </dl>
           </section>
 

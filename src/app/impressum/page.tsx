@@ -10,6 +10,8 @@ export default async function ImpressumPage() {
   const dict: Dictionary = getDict(locale)
   const l = dict.site.legal
   const f = dict.site.footer
+  const phone = f.phone?.trim()
+  const uid = f.uid?.trim()
 
   return (
     <SiteShell dict={dict} locale={locale}>
@@ -28,7 +30,7 @@ export default async function ImpressumPage() {
           </div>
           <div>
             <dt className="font-semibold">{l.representative}</dt>
-            <dd className="mt-1 text-[var(--ns-fg-muted)]">{l.placeholder}</dd>
+            <dd className="mt-1 text-[var(--ns-fg-muted)]">{f.operator_name}</dd>
           </div>
           <div>
             <dt className="font-semibold">{l.contact}</dt>
@@ -49,12 +51,16 @@ export default async function ImpressumPage() {
                   {f.contact_email}
                 </a>
               </p>
-              <p>
-                {f.phone_label}: {f.phone}
-              </p>
-              <p>
-                {f.uid_label}: {f.uid}
-              </p>
+              {phone ? (
+                <p>
+                  {f.phone_label}: {phone}
+                </p>
+              ) : null}
+              {uid ? (
+                <p>
+                  {f.uid_label}: {uid}
+                </p>
+              ) : null}
             </dd>
           </div>
         </dl>

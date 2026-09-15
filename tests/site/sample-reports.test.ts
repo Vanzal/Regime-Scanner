@@ -23,7 +23,17 @@ describe('sample reports (fixture mapping engine)', () => {
     expect(at?.status).toBe('out')
     expect(ch?.status).toBe('out')
     expect(de?.reason.length).toBeGreaterThan(20)
+    expect(de?.confidence).toBeGreaterThan(0)
+    expect(de?.sourceUrls.length).toBeGreaterThan(0)
     expect(de?.deadlines.some((d) => d.hours === 24)).toBe(true)
+    expect(report.gaps[0]?.sourceUrl || report.gaps[0]?.evidence).toBeTruthy()
+  })
+
+  it('English marketing sample localises gap titles', () => {
+    const en = buildSampleReport('mittelstand-de', 'en')
+    const de = buildSampleReport('mittelstand-de', 'de')
+    expect(en.gaps.some((g) => /DMARC record missing/i.test(g.title))).toBe(true)
+    expect(de.gaps.some((g) => /DMARC fehlt/i.test(g.title))).toBe(true)
   })
 
   it('Austrian IT provider is IN for Austria and OUT for Germany', () => {

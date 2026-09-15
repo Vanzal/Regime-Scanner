@@ -47,12 +47,16 @@ describe('marketing chrome copy', () => {
 
   it('sample report card shows independent IN/OUT/UNCLEAR stamps', () => {
     const dict = getDict('en')
-    const report = buildSampleReport('mittelstand-de')
+    const report = buildSampleReport('mittelstand-de', 'en')
     const html = renderToStaticMarkup(<SampleReportCard report={report} dict={dict} />)
     expect(html).toContain('SYNTHETIC')
     expect(html).toContain('NIS2UmsuCG')
     expect(html).toContain('not legal advice')
+    expect(html).toContain('Confidence')
+    expect(html).toContain('Next step')
+    expect(html).toContain('DMARC record missing')
     expect(html).toContain('data-testid="sample-regime-mittelstand-de-de"')
+    expect(html).toContain('data-testid="sample-confidence-mittelstand-de-de"')
   })
 
   it('footer still lists imprint, privacy, contact and Switzerland / EU', () => {

@@ -173,6 +173,7 @@
       "why": "Warum das Gesetz das betrifft",
       "fix": "Empfehlung",
       "check": "Prüfung",
+      "source": "Quelle",
       "severity": {
         "info": "Hinweis",
         "low": "Gering",
@@ -350,7 +351,7 @@
       "cta": "Auf die Warteliste",
       "cta_secondary": "Musterbericht ansehen",
       "scan_cta": "Kostenlosen Scan starten",
-      "note": "Early Access · Kostenlos · Keine Anmeldung",
+      "note": "Auf die Warteliste → wir mailen Ihnen, wenn Ihr erster Scan öffnet. Kostenloser Early Access · Keine Anmeldung.",
       "clock_early": "Frühwarnung",
       "clock_incident": "Vorfallmeldung",
       "clock_final": "Abschlussbericht"
@@ -384,19 +385,19 @@
     },
     "preview": {
       "title": "So sieht der Bericht aus",
-      "subtitle": "Jeder NexusScope-Bericht konzentriert sich auf drei Ausgaben: Regime-Status, Lücken und Fristen.",
+      "subtitle": "Jeder NexusScope-Bericht folgt Ergebnis → Begründung → Evidenz → Quelle → Konfidenz → Nächster Schritt — unabhängig für DE, AT und CH.",
       "outputs": [
         {
           "label": "Regime-Status",
-          "hint": "IN / OUT / UNKLAR für DE, AT und CH – unabhängig bewertet."
+          "hint": "IN / OUT / UNKLAR für DE, AT und CH – unabhängig bewertet, mit Konfidenz."
         },
         {
           "label": "Lücken",
-          "hint": "Priorisierte Befunde aus dem öffentlichen Fußabdruck, mit klaren nächsten Schritten."
+          "hint": "Priorisierte Befunde aus dem öffentlichen Fußabdruck mit Evidenz, Quelle und konkretem nächsten Schritt."
         },
         {
           "label": "Fristen",
-          "hint": "Die 24-h-/72-h-/30-d-Uhren für jedes anwendbare Regime."
+          "hint": "Die 24-h-/72-h-/30-d-Uhren für jedes anwendbare Regime, mit Meldestelle."
         }
       ],
       "profiles_label": "Musterprofile",
@@ -404,6 +405,13 @@
       "profile_at": "Österreichischer IT-Dienstleister",
       "profile_ch": "Schweizer Gesellschaft mit DE-Tochter",
       "synthetic_badge": "SYNTHETISCH",
+      "synthetic_hint": "Demo-Fixture — kein Live-Scan einer realen Kundendomäne",
+      "read_path": "So lesen: Ergebnis → Begründung → Evidenz → Quelle → Konfidenz → Nächster Schritt. UNKLAR, wenn Evidenz fehlt.",
+      "confidence_label": "Konfidenz",
+      "source_label": "Quelle",
+      "evidence_label": "Evidenz",
+      "next_step_label": "Nächster Schritt",
+      "deadlines_note": "Uhren für das erste IN-Regime in diesem Muster. Ihr Live-Bericht listet Uhren je anwendbarem Regime.",
       "open_full": "Vollständigen Musterbericht öffnen",
       "tab_regimes": "Regime-Status",
       "tab_gaps": "Lücken",
@@ -472,7 +480,7 @@
     },
     "waitlist": {
       "title": "Auf die Warteliste",
-      "subtitle": "Sichern Sie sich Early Access, wenn NexusScope startet. Hinterlassen Sie Ihre geschäftliche E-Mail – wir melden uns, sobald Ihr Unternehmen den ersten Scan starten kann.",
+      "subtitle": "Geschäftliche E-Mail hinterlassen. Wir benachrichtigen Sie, wenn Scans öffnen — danach erhalten Sie einen DE-/AT-/CH-Orientierungsbericht aus einem Zwei-Minuten-Fragebogen und einer passiven Prüfung des öffentlichen Fußabdrucks.",
       "email_label": "Geschäftliche E-Mail",
       "size_label": "Unternehmensgröße",
       "size": {
@@ -562,18 +570,17 @@
     },
     "footer": {
       "company_name": "NexusScope",
-      "legal_form": "[Rechtsform — z. B. GmbH / AG]",
+      "legal_form": "Einzelunternehmen (Schweiz)",
+      "operator_name": "Noah Baumann",
       "address_lines": [
-        "[Strasse und Hausnummer]",
-        "[PLZ] [Ort]",
         "Schweiz"
       ],
       "email_label": "E-Mail",
-      "contact_email": "hello@nexusscope.example",
+      "contact_email": "hello@nexusscopes.com",
       "phone_label": "Telefon",
-      "phone": "[+41 XX XXX XX XX]",
+      "phone": "",
       "uid_label": "UID / MwSt",
-      "uid": "[CHE-XXX.XXX.XXX]",
+      "uid": "",
       "copyright": "© 2026 NexusScope. Alle Rechte vorbehalten.",
       "legal_heading": "Rechtliches",
       "impressum": "Impressum",
@@ -600,36 +607,36 @@
       "link": "Auf die Warteliste"
     },
     "proof": {
-      "eyebrow": "Für DACH-Verantwortliche",
+      "eyebrow": "Konzipiert für",
       "title": "Für die Personen, die die 24-Stunden-Frage beantworten müssen",
-      "body": "Compliance, CISOs und Geschäftsleitung im DACH-Mittelstand. Die Logos darunter sind Layout-Platzhalter – keine Kundenempfehlungen.",
-      "placeholders": [
-        "DACH-CISO-Kreis (Platzhalter)",
-        "Mittelstand Maschinenbau (Platzhalter)",
-        "IT-Dienstleister (Platzhalter)",
-        "CH digitale Infrastruktur (Platzhalter)"
+      "body": "Compliance, CISOs und Geschäftsleitung im DACH-Mittelstand — bevor eine vollständige Rechtsberatung beauftragt wird.",
+      "audiences": [
+        "Compliance & CISOs im DACH-Mittelstand",
+        "Geschäftsleitung mit NIS2-/NISG-/ISG-Fragen",
+        "IT-Dienstleister mit EU-Kundenklauseln",
+        "Schweizer Gruppen mit DE-/AT-Töchtern"
       ]
     },
     "final_cta": {
       "title": "Wissen, welche Uhren gelten – vor dem nächsten Vorfall.",
-      "body": "Treten Sie der Warteliste für den Early Access bei. Wenn Scans öffnen, erhalten Sie einen Bericht für DE, AT und CH aus einem Zwei-Minuten-Fragebogen und einer passiven Prüfung des öffentlichen Fußabdrucks.",
+      "body": "Treten Sie der Warteliste bei. Nach dem Absenden mailen wir Ihnen, wenn Scans öffnen. Danach erhalten Sie einen DE-/AT-/CH-Bericht aus einem Zwei-Minuten-Fragebogen und einer passiven Prüfung des öffentlichen Fußabdrucks.",
       "cta": "Auf die Warteliste"
     },
     "pricing_page": {
       "title": "Einfache Pläne für eine klare Erstorientierung",
-      "subtitle": "Die Warteliste ist offen. Bezahlte Pläne starten, wenn kostenlose Scans live gehen. Beträge werden — falls vorhanden — im Stripe Checkout bestätigt, nie auf dieser Seite erfunden.",
+      "subtitle": "Die Warteliste ist offen. Bezahlte Pläne starten, wenn kostenlose Scans live gehen. Beträge werden — falls vorhanden — nur im Stripe Checkout bestätigt, nie auf dieser Seite erfunden.",
       "coming_soon": "Demnächst",
       "waitlist_cta": "Auf die Warteliste",
       "scan_cta": "Kostenlosen Scan starten",
       "note": "Nur informative Orientierung – keine Rechtsberatung. Daten bleiben in der Schweiz / EU.",
-      "footnote": "Enterprise- und Agency-Onboarding umfasst AVV, benannte Kontakte und Berichte für mehrere Gesellschaften. Steuern können über Stripe Tax greifen, sobald Registrierungen aktiv sind.",
+      "footnote": "Enterprise- und Agency-Onboarding ist geplant mit AVV, benannten Kontakten und Berichten für mehrere Gesellschaften. Steuern können über Stripe Tax greifen, sobald Registrierungen aktiv sind.",
       "plans": [
         {
           "id": "free",
           "name": "Free",
           "price": "€0",
-          "cadence": "1 Bericht / Monat",
-          "blurb": "E-Mail-gebundene Orientierung für eine Domain.",
+          "cadence": "1 Bericht / Monat · geplant",
+          "blurb": "E-Mail-gebundene Orientierung für eine Domain, sobald Scans öffnen.",
           "features": [
             "Ein DE-/AT-/CH-Bericht pro Monat",
             "Passive DNS-, TLS- und Header-Prüfungen",
@@ -640,9 +647,9 @@
         {
           "id": "pro",
           "name": "Pro",
-          "price": "Unbegrenzt",
-          "cadence": "Team-Workspace",
-          "blurb": "Für Compliance-Teams mit mehr als einem Snapshot.",
+          "price": "—",
+          "cadence": "Team-Workspace · Preis im Checkout",
+          "blurb": "Für Compliance-Teams mit mehr als einem Snapshot. Preis nur im Stripe Checkout, wenn live.",
           "features": [
             "Unbegrenzte Berichte",
             "Geteilter Team-Workspace",
@@ -654,7 +661,7 @@
           "id": "enterprise",
           "name": "Enterprise / Agency",
           "price": "Individuell",
-          "cadence": "mehrere Gesellschaften",
+          "cadence": "mehrere Gesellschaften · Kontakt",
           "blurb": "Für Konzerne, Kanzleien und Agenturen mit vielen Einheiten.",
           "features": [
             "Mapping für Gruppen und Töchter",
@@ -718,7 +725,7 @@
       "docs_nav": "Rechtliches",
       "language_note": "Diese Dokumente sind auf Englisch veröffentlicht.",
       "impressum_title": "Impressum",
-      "impressum_intro": "Angaben nach schweizerischem / EU- / deutschem Impressumsrecht (Platzhalter).",
+      "impressum_intro": "Betreiberangaben für NexusScope (nexusscopes.com). Postadresse und UID werden hier veröffentlicht, sobald eingetragen; bis dahin erreichen Sie uns per E-Mail.",
       "operator": "Betreiber",
       "representative": "Vertreten durch",
       "contact": "Kontakt",
@@ -746,7 +753,7 @@
           "b": "Auskunft, Berichtigung und Löschung jederzeit über die Kontakt-E-Mail."
         }
       ],
-      "placeholder": "[Vor dem Livegang auszufüllen.]",
+      "placeholder": "",
       "cookies_body": [
         {
           "h": "Unbedingt erforderlich",
