@@ -1,6 +1,6 @@
 'use client'
 
-import type { SampleReport, SampleStatus } from '@/lib/sample-reports'
+import type { SampleReport, SampleRegime, SampleStatus } from '@/lib/sample-reports'
 import type { Dictionary } from '@/i18n'
 import { cn } from '@/lib/utils'
 
@@ -14,6 +14,28 @@ function statusLabel(dict: Dictionary, status: SampleStatus): string {
   if (status === 'in') return dict.site.preview.status_in
   if (status === 'out') return dict.site.preview.status_out
   return dict.site.preview.status_unclear
+}
+
+function confidenceBand(dict: Dictionary, regime: SampleRegime): string {
+  const bands = dict.report.confidence_bands
+  if (regime.status === 'out') return bands.confirmed
+  if (regime.status === 'in') {
+    return regime.confidence >= 0.75 ? bands.confirmed : bands.likely
+  }
+  const code = regime.unclearCode ?? ''
+  if (code.startsWith('missing_')) return bands.insufficient
+  return bands.needs_review
+}
+
+function nextAction(dict: Dictionary, regime: SampleRegime): string | null {
+  if (regime.status === 'in') {
+    const first = regime.deadlines[0]
+    return first ? `${first.label} · ${first.authority}` : null
+  }
+  if (regime.status === 'out') return null
+  const hints = dict.report.unclear_hints as Record<string, string>
+  if (regime.unclearCode && hints[regime.unclearCode]) return hints[regime.unclearCode]
+  return dict.site.preview.insufficient_hint
 }
 
 function clockLabel(hours: number): string {
@@ -37,7 +59,8 @@ function shortReason(text: string, compact: boolean): string {
 
 /**
  * Sample report card: Result → Reason → Evidence → Source → Confidence → Next step.
- * Inline read path (release polish); responsive/a11y shell from main engineering QA.
+ * Inline read path (release polish); responsive/a11y shell from main engineering QA;
+ * DEMO labelling and confidence bands from the credibility content PR.
  */
 export function SampleReportCard({
   report,
@@ -85,9 +108,14 @@ export function SampleReportCard({
       </header>
 
       {!compact ? (
-        <p className="border-b border-[var(--ns-border)] bg-[var(--ns-bg)] px-4 py-2.5 text-xs leading-relaxed text-[var(--ns-fg-dim)] sm:px-5">
-          {p.read_path}
-        </p>
+        <>
+          <p className="border-b border-[var(--ns-border)] bg-[color-mix(in_oklch,var(--ns-warning)_8%,transparent)] px-4 py-2 text-xs text-[var(--ns-fg-muted)] sm:px-5">
+            {p.demo_banner}
+          </p>
+          <p className="border-b border-[var(--ns-border)] bg-[var(--ns-bg)] px-4 py-2.5 text-xs leading-relaxed text-[var(--ns-fg-dim)] sm:px-5">
+            {p.read_path}
+          </p>
+        </>
       ) : null}
 
       <div className={cn('grid w-full min-w-0 grid-cols-1 gap-0', compact ? '' : 'lg:grid-cols-3')}>
@@ -102,41 +130,58 @@ export function SampleReportCard({
             {p.tab_regimes}
           </h3>
           <ul className="mt-3 space-y-4">
-            {report.regimes.map((r) => (
-              <li key={r.code} data-testid={`sample-regime-${report.id}-${r.code.toLowerCase()}`}>
-                <div className="flex items-center justify-between gap-2">
-                  <span className="min-w-0 text-sm font-semibold">
-                    {r.name} — {r.law}
-                  </span>
-                  <span
-                    className={cn(
-                      'shrink-0 rounded-md border px-2 py-0.5 font-instrument text-[10px] font-bold uppercase tracking-[0.12em]',
-                      STATUS_CLASS[r.status],
-                    )}
-                  >
-                    {statusLabel(dict, r.status)}
-                  </span>
-                </div>
-                <p className="mt-1.5 text-xs leading-relaxed text-[var(--ns-fg-muted)]">
-                  {shortReason(r.reason, compact)}
-                </p>
-                <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-[var(--ns-fg-dim)]">
-                  <span data-testid={`sample-confidence-${report.id}-${r.code.toLowerCase()}`}>
-                    {p.confidence_label}: {Math.round(r.confidence * 100)}%
-                  </span>
-                  {!compact && r.sourceUrls[0] ? (
-                    <a
-                      href={r.sourceUrls[0]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline decoration-[var(--ns-border)] underline-offset-2 hover:text-[var(--ns-fg-muted)]"
+            {report.regimes.map((r) => {
+              const band = confidenceBand(dict, r)
+              const action = compact ? null : nextAction(dict, r)
+              return (
+                <li key={r.code} data-testid={`sample-regime-${report.id}-${r.code.toLowerCase()}`}>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="min-w-0 text-sm font-semibold">
+                      {r.name} — {r.law}
+                    </span>
+                    <span
+                      className={cn(
+                        'shrink-0 rounded-md border px-2 py-0.5 font-instrument text-[10px] font-bold uppercase tracking-[0.12em]',
+                        STATUS_CLASS[r.status],
+                      )}
                     >
-                      {p.source_label}: {shortHost(r.sourceUrls[0])}
-                    </a>
+                      {statusLabel(dict, r.status)}
+                    </span>
+                  </div>
+                  <p className="mt-1.5 text-xs leading-relaxed text-[var(--ns-fg-muted)]">
+                    <span className="font-medium text-[var(--ns-fg-dim)]">{dict.report.why_label}:</span>{' '}
+                    {shortReason(r.reason, compact)}
+                  </p>
+                  <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-[var(--ns-fg-dim)]">
+                    <span data-testid={`sample-confidence-${report.id}-${r.code.toLowerCase()}`}>
+                      {p.confidence_label}: {band}
+                      {r.confidence > 0 ? ` · ${Math.round(r.confidence * 100)}%` : ''}
+                    </span>
+                    {!compact && r.sourceUrls[0] ? (
+                      <a
+                        href={r.sourceUrls[0]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline decoration-[var(--ns-border)] underline-offset-2 hover:text-[var(--ns-fg-muted)]"
+                      >
+                        {p.source_label}: {shortHost(r.sourceUrls[0])}
+                      </a>
+                    ) : null}
+                  </div>
+                  {!compact && r.traceSummary ? (
+                    <p className="mt-1.5 text-xs leading-relaxed text-[var(--ns-fg-muted)]">
+                      <span className="font-medium text-[var(--ns-fg-dim)]">{dict.report.evidence_label}:</span>{' '}
+                      {r.traceSummary}
+                    </p>
                   ) : null}
-                </div>
-              </li>
-            ))}
+                  {action ? (
+                    <p className="mt-1.5 text-xs leading-relaxed text-[var(--ns-fg-muted)]">
+                      <span className="font-medium text-[var(--ns-fg-dim)]">{p.col_next}:</span> {action}
+                    </p>
+                  ) : null}
+                </li>
+              )
+            })}
           </ul>
         </section>
 

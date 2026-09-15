@@ -1,7 +1,7 @@
 # Nexusscopes — Privacy Policy
 
-**Version 1.0 — Effective [DD Month YYYY]**
-**Last updated: [DD Month YYYY]**
+**Version 1.0 — Draft for publication (effective date coming soon)**
+**Last updated: September 2026**
 
 > **Note for the operator (delete before publishing):** This notice is drafted to satisfy Art. 12–14 GDPR and Art. 19 revFADP. It is not legal advice. Complete every `[bracketed]` item — a privacy notice that lists sub-processors or retention periods you do not actually use is worse than none. See **Annex D — Operator checklist**.
 
@@ -9,7 +9,7 @@
 
 ## 1. Summary
 
-Nexusscopes is a data-compliance discovery and assessment tool. This notice explains what personal data we collect about **you** — as a visitor, account holder, or billing contact — why, on what legal basis, how long we keep it, who we share it with, and what rights you have.
+Nexusscopes (NexusScope) provides regulatory readiness orientation for DACH cyber-incident reporting regimes. This notice explains what personal data we collect about **you** — as a visitor, account holder, or billing contact — why, on what legal basis, how long we keep it, who we share it with, and what rights you have.
 
 **Separate roles matter here.** When you upload or connect your own data to be analysed, that content may contain personal data about *other* people. For that data we act on your instructions as a **processor**, not as controller, and our [Data Processing Agreement](https://nexusscopes.com/legal/dpa) governs it — not this notice. See Section 3.
 
@@ -21,12 +21,12 @@ We do **not** sell personal data, and we do **not** use customer content to trai
 
 **Controller:**
 - Noah Baumann, sole proprietor, trading as Nexusscopes
-- [street, postal code, city], Switzerland
-- [CHE-###.###.###]
-- **Privacy contact:** [privacy@nexusscopes.com]
+- Registered address coming soon, Switzerland
+- UID registration details coming soon
+- **Privacy contact:** privacy@nexusscopes.com
 
-**EU/EEA representative (Art. 27 GDPR):** [Name, address, e-mail]
-**Data protection officer:** We are not required to appoint a DPO under Art. 37 GDPR / Art. 10 revFADP. [If appointed: name and contact.]
+**EU/EEA representative (Art. 27 GDPR):** Details coming soon
+**Data protection officer:** We are not required to appoint a DPO under Art. 37 GDPR / Art. 10 revFADP. If a DPO is appointed later, contact details will be published here.
 
 We process personal data under the EU General Data Protection Regulation (GDPR) and the revised Swiss Federal Act on Data Protection (revFADP), in force since 1 September 2023.
 
@@ -51,7 +51,7 @@ If you are an employee of a business customer and want to know how *your employe
 **Data:** name, e-mail address, password hash, organisation name, role, language, profile settings, and any details you add.
 **Purpose:** creating and administering your account, authentication, providing the Service.
 **Legal basis:** performance of a contract (Art. 6(1)(b) GDPR); Art. 31(2)(a) revFADP.
-**Retention:** for the life of the account, then [90] days, then deleted or anonymised.
+**Retention:** for the life of the account, then 90 days, then deleted or anonymised.
 
 ### 4.2 Billing and transaction data
 **Data:** billing name and address, VAT ID, plan, invoices, payment status, partial card details and payment token (full card data is handled by our payment provider, never by us).
@@ -63,13 +63,13 @@ If you are an employee of a business customer and want to know how *your employe
 **Data:** IP address, device and browser type, operating system, timestamps, pages and features used, scan volumes, API calls, error traces, referrer.
 **Purpose:** operating and securing the Service, diagnosing faults, capacity planning, abuse prevention, aggregate product analytics.
 **Legal basis:** legitimate interests (Art. 6(1)(f)) in running a secure and functional service; where a cookie or similar technology is not strictly necessary, consent (Art. 6(1)(a)).
-**Retention:** security and access logs [12] months; application logs [90] days; aggregated statistics indefinitely in non-identifiable form.
+**Retention:** security and access logs 12 months; application logs 90 days; aggregated statistics indefinitely in non-identifiable form.
 
 ### 4.4 Support and communications
 **Data:** the content of your e-mails, tickets, chat messages, and any attachments or screenshots you send.
 **Purpose:** answering your requests, improving support quality, evidencing what was agreed.
 **Legal basis:** contract; legitimate interests; consent where you volunteer extra information.
-**Retention:** [3] years after the case is closed.
+**Retention:** 3 years after the case is closed.
 
 ### 4.5 Scan configuration and targets
 **Data:** domains, endpoints, repositories, connected accounts, credentials or tokens you supply, scan schedules, findings and reports.
@@ -94,7 +94,7 @@ See Section 8.
 
 ## 5. Where the data comes from
 
-Almost all of it comes directly from you. We also generate data about your use of the Service, and we receive limited data from our payment provider (payment status), from authentication providers if you sign in via [Google / Microsoft / GitHub SSO], and from security services (e.g. abuse and bot signals).
+Almost all of it comes directly from you. We also generate data about your use of the Service, and we receive limited data from our payment provider (payment status), from authentication providers if you sign in via SSO providers, if enabled, and from security services (e.g. abuse and bot signals).
 
 ---
 
@@ -104,14 +104,14 @@ We share personal data only with the categories below, and only as far as necess
 
 | Recipient category | Examples | Purpose | Location |
 |---|---|---|---|
-| Hosting and infrastructure | [provider] | Running the Service | [Switzerland / EU] |
-| Payment processing | [Stripe] | Subscriptions, invoicing | [EU / US, DPF-certified] |
-| Transactional e-mail | [provider] | Account and system e-mails | [EU] |
-| Support desk | [provider] | Handling tickets | [EU] |
-| Product analytics | [provider] | Aggregated usage insight | [EU] |
-| Error monitoring | [provider] | Diagnosing faults | [EU] |
-| AI/model providers (if used) | [provider] | AI-assisted analysis features | [EU / US] |
-| Professional advisers | Accountants, lawyers, auditors | Legal and financial obligations | [Switzerland] |
+| Hosting and infrastructure | To be published | Running the Service | Switzerland / EU |
+| Payment processing | Stripe | Subscriptions, invoicing | EU / US as applicable |
+| Transactional e-mail | To be published | Account and system e-mails | EU |
+| Support desk | To be published | Handling tickets | EU |
+| Product analytics | To be published | Aggregated usage insight | EU |
+| Error monitoring | To be published | Diagnosing faults | EU |
+| AI/model providers (if used) | To be published | AI-assisted analysis features | EU / US as applicable |
+| Professional advisers | Accountants, lawyers, auditors | Legal and financial obligations | Switzerland |
 
 The authoritative, current list is published at [https://nexusscopes.com/legal/subprocessors].
 
@@ -125,13 +125,13 @@ We may transfer data in connection with a merger, acquisition, or asset sale, su
 
 ## 7. International transfers
 
-Production data is hosted in [Switzerland / the EU]. Where a recipient sits outside Switzerland or the EEA, we rely on one of the following:
+Production data is hosted in Switzerland and/or the EU. Where a recipient sits outside Switzerland or the EEA, we rely on one of the following:
 
 - **Adequacy.** The European Commission confirmed in January 2024 that Switzerland provides an [adequate level of data protection](https://www.edoeb.admin.ch/en/15012024-eu-adequacy-decision-regarding-switzerland), so EU→CH transfers need no additional instrument. For US recipients, the [Swiss-US Data Privacy Framework](https://www.edoeb.admin.ch/en/15082024-new-swiss-us-data-privacy-framework), in effect since 15 September 2024, provides adequacy for certified companies, alongside the EU-US DPF.
 - **Standard Contractual Clauses.** The European Commission's SCCs (Implementing Decision 2021/914), with the Swiss adaptations recognised by the [FDPIC](https://www.edoeb.admin.ch/en/cross-border-transfer-of-personal-data) for transfers under Swiss law, plus a transfer impact assessment and supplementary technical measures such as encryption.
 - **Derogations** under Art. 49 GDPR / Art. 17 revFADP, only in exceptional and narrowly defined cases.
 
-You may request a copy of the relevant safeguards at [privacy@nexusscopes.com].
+You may request a copy of the relevant safeguards at privacy@nexusscopes.com.
 
 ---
 
@@ -142,7 +142,7 @@ You may request a copy of the relevant safeguards at [privacy@nexusscopes.com].
 | Strictly necessary | Session, login, load balancing, CSRF protection | No |
 | Preference | Language, UI settings | Yes |
 | Analytics | Aggregate usage measurement | Yes |
-| Marketing | Campaign attribution [if used] | Yes |
+| Marketing | Campaign attribution when enabled | Yes |
 
 Our banner lets you accept all, reject all, or choose per category, with **reject as prominent as accept**. You can change or withdraw your choice at any time via [https://nexusscopes.com/cookie-settings]. Full details, names, and lifetimes are in our [Cookie Policy](https://nexusscopes.com/cookies).
 
@@ -153,7 +153,7 @@ Our banner lets you accept all, reject all, or choose per category, with **rejec
 Retention periods are stated per category in Section 4. In summary:
 
 - **Active account:** for as long as the account exists.
-- **After termination:** Customer Content stays exportable for **[30] days**, is then deleted from production, and is purged from backups within a further **[90] days**.
+- **After termination:** Customer Content stays exportable for **30 days**, is then deleted from production, and is purged from backups within a further **90 days**.
 - **Legal minimums override deletion:** invoices and accounting records are kept **10 years**; records needed to establish, exercise, or defend legal claims are kept until the limitation period expires.
 
 When a retention period ends, we delete the data or irreversibly anonymise it.
@@ -202,7 +202,7 @@ Under the GDPR and the revFADP you may:
 - **Withdraw consent** at any time, without affecting the lawfulness of processing before withdrawal
 - **Not be subject** to a decision based solely on automated processing with legal or similarly significant effects
 
-**How to exercise them:** e-mail [privacy@nexusscopes.com] or use the in-app privacy controls. We respond **within one month** (extendable by two further months for complex requests, with notice) and free of charge, unless a request is manifestly unfounded or excessive. We may ask for information to verify your identity.
+**How to exercise them:** e-mail privacy@nexusscopes.com or use the in-app privacy controls. We respond **within one month** (extendable by two further months for complex requests, with notice) and free of charge, unless a request is manifestly unfounded or excessive. We may ask for information to verify your identity.
 
 **Complaints.** You may lodge a complaint with:
 - your local supervisory authority in the EU/EEA (a list is maintained by the European Data Protection Board), or
@@ -214,13 +214,13 @@ We would appreciate the chance to resolve the matter first.
 
 ## 13. Children
 
-The Service is not directed at children. We do not knowingly collect data from anyone under 16 (or the higher age of digital consent where applicable). If you believe a child has provided us data, contact [privacy@nexusscopes.com] and we will delete it.
+The Service is not directed at children. We do not knowingly collect data from anyone under 16 (or the higher age of digital consent where applicable). If you believe a child has provided us data, contact privacy@nexusscopes.com and we will delete it.
 
 ---
 
 ## 14. Changes to this policy
 
-We may update this notice. Material changes will be announced by e-mail and in-app at least **[30] days** before they take effect, and the version history is kept at [https://nexusscopes.com/legal/privacy-history]. Where a change requires consent, we will ask for it.
+We may update this notice. Material changes will be announced by e-mail and in-app at least **30 days** before they take effect, and the version history is kept at [https://nexusscopes.com/legal/privacy-history]. Where a change requires consent, we will ask for it.
 
 ---
 

@@ -59,7 +59,7 @@ describe('Incident triage (Rules Engine)', () => {
     const intake = IncidentIntakeSchema.parse(BASE)
     const result = runIncidentTriage(intake, 'en')
     expect(result.draft.locale).toBe('en')
-    expect(result.draft.body.toLowerCase()).toContain('not legal advice')
+    expect(result.draft.body.toLowerCase()).toMatch(/regulatory readiness|qualified counsel|not legal advice/)
     expect(result.draft.subject).toMatch(/DE/i)
     expect(result.draft.authorityName.length).toBeGreaterThan(0)
   })
@@ -67,7 +67,7 @@ describe('Incident triage (Rules Engine)', () => {
   it('erzeugt DE-Entwurf und DSGVO-Checkliste bei personenbezogenen Daten', () => {
     const intake = IncidentIntakeSchema.parse({ ...BASE, personal_data: 'yes', country_hq: 'at' })
     const result = runIncidentTriage(intake, 'de')
-    expect(result.draft.body).toContain('keine Rechtsberatung')
+    expect(result.draft.body).toMatch(/Orientierungsinformationen|Rechtsberatung/)
     expect(result.checklist.some((c) => c.id === 'gdpr_dpa')).toBe(true)
     expect(result.regimes.find((r) => r.regime === 'at')!.applicable).toBe('unclear')
     expect(result.regimes.find((r) => r.regime === 'de')!.applicable).toBe('not_applicable')

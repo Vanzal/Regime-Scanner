@@ -16,7 +16,7 @@ const headingCls =
 
 /**
  * Site-wide footer with Swiss / EU / DACH imprint essentials.
- * Omit phone / UID when empty — do not invent registration details.
+ * Omit phone / UID when empty — never invent registration details.
  */
 export function FooterLegalNav({
   dict,

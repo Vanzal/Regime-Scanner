@@ -158,9 +158,9 @@ const REGIME_META: Record<string, { code: string; name: string; law: string }> =
 }
 
 const DISCLAIMER_EN =
-  'Synthetic sample. Automated orientation from public sources and stated answers — not legal advice. Timelines current as of September 2026.'
+  'Simulated sample (synthetic demo data). NexusScope provides regulatory readiness intelligence based on referenced public sources and stated answers. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate. Timelines current as of September 2026.'
 const DISCLAIMER_DE =
-  'Synthetisches Muster. Automatisierte Orientierung aus öffentlichen Quellen und angegebenen Antworten — keine Rechtsberatung. Fristen Stand September 2026.'
+  'Simuliertes Muster (synthetische Demo-Daten). NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen und angegebener Antworten. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden. Fristen Stand September 2026.'
 
 function statusFromApplicable(value: Applicable): SampleStatus {
   if (value === 'applicable') return 'in'
