@@ -27,7 +27,7 @@ function DeadlineInstruments({ dict }: { dict: Dictionary }) {
       {clocks.map((c, i) => (
         <div
           key={c.label}
-          className="ns-clock ns-clock-lit flex flex-col justify-between p-3 sm:p-4"
+          className="ns-clock ns-clock-lit flex min-w-0 flex-col justify-between p-3 sm:p-4"
           style={{ animationDelay: `${0.2 + i * 0.1}s` }}
         >
           <span className="font-instrument text-[10px] uppercase tracking-[0.14em] opacity-70">{c.caption}</span>
@@ -93,7 +93,9 @@ export default async function LandingPage() {
               <DeadlineInstruments dict={dict} />
             </div>
           </div>
-          <HeroReportCard report={heroReport} dict={dict} />
+          <div className="min-w-0 lg:justify-self-stretch">
+            <HeroReportCard report={heroReport} dict={dict} />
+          </div>
         </div>
       </header>
 

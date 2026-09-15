@@ -34,6 +34,8 @@ describe('sample reports (fixture mapping engine)', () => {
     const de = buildSampleReport('mittelstand-de', 'de')
     expect(en.gaps.some((g) => /DMARC record missing/i.test(g.title))).toBe(true)
     expect(de.gaps.some((g) => /DMARC fehlt/i.test(g.title))).toBe(true)
+    expect(en.regimes.find((r) => r.code === 'DE')?.reason).toMatch(/Germany/i)
+    expect(de.regimes.find((r) => r.code === 'DE')?.reason).toMatch(/Hauptsitz|NIS/)
   })
 
   it('Austrian IT provider is IN for Austria and OUT for Germany', () => {

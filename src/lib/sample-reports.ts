@@ -193,7 +193,31 @@ function evidenceSummary(evidence: Record<string, unknown> | undefined): string 
   return parts.slice(0, 4).join(' · ') || undefined
 }
 
-function toSampleRegime(verdict: RegimeVerdict, rules: RulesFile[]): SampleRegime {
+function localizeReason(verdict: RegimeVerdict, locale: 'en' | 'de'): string {
+  const de = firstReasonLine(verdict.reasoningMd)
+  if (locale === 'de') return de
+
+  const hq = verdict.regime.toUpperCase()
+  if (verdict.applicable === 'applicable') {
+    if (verdict.regime === 'de') {
+      return 'HQ / establishment in Germany — NIS2UmsuCG/BSIG applies on the stated size and sector inputs (important-entity path).'
+    }
+    if (verdict.regime === 'at') {
+      return 'Establishment in Austria — NISG 2024 applies on the stated size and sector inputs.'
+    }
+    if (verdict.regime === 'ch') {
+      return 'Swiss establishment / listed sector path — ISG reporting duties apply on the stated inputs.'
+    }
+  }
+  if (verdict.applicable === 'not_applicable') {
+    return `No known establishment in ${hq} on the stated profile — ${
+      verdict.regime === 'de' ? 'NIS2UmsuCG/BSIG' : verdict.regime === 'at' ? 'NISG 2024' : 'ISG'
+    } does not apply directly.`
+  }
+  return `Not enough evidence for a decisive ${hq} verdict — open thresholds are shown instead of guessing.`
+}
+
+function toSampleRegime(verdict: RegimeVerdict, rules: RulesFile[], locale: 'en' | 'de'): SampleRegime {
   const meta = REGIME_META[verdict.regime] ?? {
     code: verdict.regime.toUpperCase(),
     name: verdict.regime,
@@ -207,7 +231,7 @@ function toSampleRegime(verdict: RegimeVerdict, rules: RulesFile[]): SampleRegim
     status: statusFromApplicable(verdict.applicable),
     applicable: verdict.applicable,
     confidence: verdict.confidence,
-    reason: firstReasonLine(verdict.reasoningMd),
+    reason: localizeReason(verdict, locale),
     traceSummary: verdict.thresholdTrace.summary ?? firstReasonLine(verdict.reasoningMd),
     unclearCode: verdict.unclearCode ?? null,
     sourceUrls: file?.source_urls?.slice(0, 2) ?? [],
@@ -270,7 +294,7 @@ export function buildSampleReport(id: SampleProfileId, locale: 'en' | 'de' = 'en
     regimes: ['de', 'at', 'ch']
       .map((code) => verdicts.find((v) => v.regime === code))
       .filter((v): v is RegimeVerdict => Boolean(v))
-      .map((v) => toSampleRegime(v, rules)),
+      .map((v) => toSampleRegime(v, rules, locale)),
     gaps: fixture.findings
       .filter((f) => f.severity !== 'info')
       .map((f) => localizeGap(f, locale)),
