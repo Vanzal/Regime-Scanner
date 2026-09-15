@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { IBM_Plex_Mono, Inter } from 'next/font/google'
 import { cookies } from 'next/headers'
+import { Analytics } from '@vercel/analytics/next'
 import { localeFromCookie } from '@/i18n'
 import { ThemeProvider } from '@/components/theme/theme-provider'
 import './globals.css'
@@ -57,6 +58,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         }}
       >
         <ThemeProvider>{children}</ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
