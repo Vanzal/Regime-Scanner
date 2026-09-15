@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, Inter } from 'next/font/google'
 import { cookies } from 'next/headers'
 import { localeFromCookie } from '@/i18n'
 import { ThemeProvider } from '@/components/theme/theme-provider'
+import { siteMetadataBase } from '@/lib/site-url'
 import './globals.css'
 
 const sans = Inter({
@@ -19,7 +20,7 @@ const mono = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL ?? 'https://nexusscopes.com'),
+  metadataBase: siteMetadataBase(),
   title: {
     default: 'NexusScope – Cyber-reporting & compliance orientation for the DACH region',
     template: '%s – NexusScope',
