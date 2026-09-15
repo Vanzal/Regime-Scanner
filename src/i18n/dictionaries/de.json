@@ -675,7 +675,7 @@
       "submit": "Nachricht senden",
       "submitting": "Wird gesendet …",
       "success": "Nachricht erhalten. Wir antworten an diese E-Mail.",
-      "privacy_note": "Nur zur Beantwortung Ihrer Anfrage. Speicherung in der Schweiz / EU. Siehe Datenschutzerklärung.",
+      "privacy_note": "Nur zur Beantwortung Ihrer Anfrage. Speicherung in der Schweiz / EU.",
       "errors": {
         "required": "Bitte ausfüllen",
         "email": "Bitte eine gültige E-Mail-Adresse angeben",

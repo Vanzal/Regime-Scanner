@@ -675,7 +675,7 @@
       "submit": "Send message",
       "submitting": "Sending …",
       "success": "Message received. We will reply to this e-mail.",
-      "privacy_note": "Used only to answer you. Stored in Switzerland / the EU. See the Privacy Policy.",
+      "privacy_note": "Used only to answer you. Stored in Switzerland / the EU.",
       "errors": {
         "required": "Please fill in",
         "email": "Please provide a valid e-mail address",

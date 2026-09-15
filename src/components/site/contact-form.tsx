@@ -67,6 +67,7 @@ export function ContactForm({ dict }: { dict: Dictionary }) {
         <Link href={LEGAL_DOCUMENTS.privacy.href} className="underline underline-offset-4">
           {dict.site.waitlist.privacy_link}
         </Link>
+        .
       </p>
     </form>
   )

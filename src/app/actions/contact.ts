@@ -1,3 +1,5 @@
+'use server'
+
 import { z } from 'zod'
 import { getStore } from '@/lib/store'
 
