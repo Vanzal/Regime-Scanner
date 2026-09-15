@@ -51,8 +51,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang={locale} className={`dark ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        <meta
+          name="description"
+          content="Which cyber-incident reporting duties apply to your company? NexusScope maps your profile against the German, Austrian and Swiss regimes (NIS2UmsuCG, NISG 2024, ISG) – with reporting deadlines and a prioritised gap list."
+        />
+      </head>
       <body
-        className="min-h-screen antialiased"
+        className={`min-h-screen antialiased ${sans.className}`}
         style={{
           fontFamily: 'var(--font-sans-face), var(--font-sans)',
           ['--font-display' as string]: 'var(--font-sans-face), Inter, sans-serif',
