@@ -98,6 +98,15 @@ export interface WaitlistEntry {
   created_at: string
 }
 
+export interface ContactMessage {
+  id: string
+  name: string
+  email: string
+  company: string | null
+  message: string
+  created_at: string
+}
+
 export interface ReportBundle {
   company: Company
   scan: Scan
@@ -136,6 +145,7 @@ export interface Store {
   listRulesVersions(): Promise<RulesVersionRow[]>
   /** Idempotent: gleiche E-Mail → duplicate=true, Eintrag bleibt unverändert. */
   joinWaitlist(input: { email: string; company_size: string; country: string; pain_note?: string | null }): Promise<{ entry: WaitlistEntry; duplicate: boolean }>
+  createContactMessage(input: { name: string; email: string; company?: string | null; message: string }): Promise<ContactMessage>
   upsertSubscription(input: UpsertSubscriptionInput): Promise<SubscriptionRecord>
   getSubscriptionByEmail(email: string): Promise<SubscriptionRecord | null>
   getSubscriptionByStripeId(stripeSubscriptionId: string): Promise<SubscriptionRecord | null>

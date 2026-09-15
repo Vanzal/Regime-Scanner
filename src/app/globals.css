@@ -1,31 +1,51 @@
 @import "tailwindcss";
 
-:root {
-  /* Refined brutalist dossier — cool stone sheet, blue ink, vermilion signal */
-  --ns-bg: oklch(0.965 0.008 95);
-  --ns-bg-elevated: oklch(0.99 0.004 95);
-  --ns-bg-ink: oklch(0.22 0.035 255);
-  --ns-bg-panel: oklch(0.94 0.01 95);
-  --ns-fg: oklch(0.22 0.035 255);
-  --ns-fg-muted: oklch(0.42 0.025 255);
-  --ns-fg-dim: oklch(0.55 0.02 255);
-  /* Deeper premium signal red — calm, not bright vermilion */
-  --ns-accent: oklch(0.38 0.12 25);
-  --ns-accent-hover: oklch(0.32 0.11 25);
-  --ns-accent-fg: oklch(0.99 0.01 95);
-  --ns-border: oklch(0.22 0.035 255 / 0.18);
-  --ns-border-strong: oklch(0.22 0.035 255 / 0.55);
-  --ns-ghost: oklch(0.22 0.035 255 / 0.12);
-  --ns-success: oklch(0.42 0.1 150);
-  --ns-warning: oklch(0.55 0.12 75);
-  --ns-danger: oklch(0.48 0.16 25);
-  --ns-radius: 2px;
+:root,
+.dark {
+  color-scheme: dark;
+  --ns-bg: oklch(0.145 0.022 250);
+  --ns-bg-elevated: oklch(0.188 0.024 250);
+  --ns-bg-ink: oklch(0.12 0.028 250);
+  --ns-bg-panel: oklch(0.165 0.023 250);
+  --ns-fg: oklch(0.97 0.008 240);
+  --ns-fg-muted: oklch(0.74 0.02 250);
+  --ns-fg-dim: oklch(0.62 0.018 250);
+  --ns-accent: oklch(0.74 0.14 163);
+  --ns-accent-hover: oklch(0.8 0.13 163);
+  --ns-accent-fg: oklch(0.16 0.03 163);
+  --ns-border: oklch(0.78 0.02 250 / 0.14);
+  --ns-border-strong: oklch(0.82 0.02 250 / 0.28);
+  --ns-ghost: oklch(0.82 0.02 250 / 0.08);
+  --ns-success: oklch(0.78 0.14 163);
+  --ns-warning: oklch(0.82 0.13 85);
+  --ns-danger: oklch(0.72 0.16 25);
+  --ns-radius: 0.5rem;
   --background: var(--ns-bg);
   --foreground: var(--ns-fg);
-  --font-display: "Archivo Black", "Arial Black", sans-serif;
-  --font-sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --font-reading: "Literata", "Georgia", serif;
-  --font-instrument: "Archivo", ui-monospace, monospace;
+  --font-display: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-reading: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-instrument: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.light {
+  color-scheme: light;
+  --ns-bg: oklch(0.985 0.006 250);
+  --ns-bg-elevated: oklch(1 0.002 250);
+  --ns-bg-ink: oklch(0.22 0.04 250);
+  --ns-bg-panel: oklch(0.965 0.01 250);
+  --ns-fg: oklch(0.22 0.035 250);
+  --ns-fg-muted: oklch(0.42 0.025 250);
+  --ns-fg-dim: oklch(0.52 0.02 250);
+  --ns-accent: oklch(0.48 0.12 163);
+  --ns-accent-hover: oklch(0.42 0.12 163);
+  --ns-accent-fg: oklch(0.99 0.01 163);
+  --ns-border: oklch(0.22 0.035 250 / 0.12);
+  --ns-border-strong: oklch(0.22 0.035 250 / 0.28);
+  --ns-ghost: oklch(0.22 0.035 250 / 0.06);
+  --ns-success: oklch(0.42 0.12 163);
+  --ns-warning: oklch(0.58 0.13 75);
+  --ns-danger: oklch(0.5 0.16 25);
 }
 
 @theme inline {
@@ -34,6 +54,14 @@
   --color-ns-muted: var(--ns-fg-muted);
   --color-ns-accent: var(--ns-accent);
   --color-ns-border: var(--ns-border);
+  --color-background: var(--ns-bg);
+  --color-foreground: var(--ns-fg);
+  --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "IBM Plex Mono Fallback", ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -55,7 +83,7 @@ body {
 
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .font-reading {
@@ -68,12 +96,15 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* Signature: instrument clock cells */
 .ns-clock {
   border: 1px solid var(--ns-border-strong);
   background: var(--ns-bg-ink);
-  color: var(--ns-accent-fg);
+  color: var(--ns-fg);
   border-radius: var(--ns-radius);
+}
+
+.light .ns-clock {
+  color: var(--ns-accent-fg);
 }
 
 .ns-clock--ghost {
@@ -93,11 +124,11 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1.25rem;
   border-radius: var(--ns-radius);
   background: var(--ns-accent);
   color: var(--ns-accent-fg);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.875rem;
   letter-spacing: 0.01em;
   transition: background-color 160ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -115,6 +146,27 @@ body {
 .ns-btn-primary:disabled {
   opacity: 0.55;
   cursor: not-allowed;
+}
+
+.ns-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--ns-radius);
+  border: 1px solid var(--ns-border-strong);
+  background: transparent;
+  color: var(--ns-fg);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: border-color 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ns-btn-secondary:hover {
+  border-color: var(--ns-accent);
+  background: color-mix(in oklch, var(--ns-accent) 8%, transparent);
 }
 
 .ns-input {
@@ -138,6 +190,30 @@ body {
 .ns-input:focus {
   border-color: var(--ns-accent);
   box-shadow: 0 0 0 3px color-mix(in oklch, var(--ns-accent) 22%, transparent);
+}
+
+.ns-card {
+  border: 1px solid var(--ns-border);
+  background: var(--ns-bg-elevated);
+  border-radius: calc(var(--ns-radius) * 1.25);
+}
+
+.ns-status-in {
+  color: var(--ns-success);
+  border-color: color-mix(in oklch, var(--ns-success) 55%, transparent);
+  background: color-mix(in oklch, var(--ns-success) 10%, transparent);
+}
+
+.ns-status-out {
+  color: var(--ns-fg-dim);
+  border-color: var(--ns-border-strong);
+  background: transparent;
+}
+
+.ns-status-unclear {
+  color: var(--ns-warning);
+  border-color: color-mix(in oklch, var(--ns-warning) 50%, transparent);
+  background: color-mix(in oklch, var(--ns-warning) 10%, transparent);
 }
 
 @keyframes ns-reveal {
@@ -181,6 +257,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .ns-reveal,
   .ns-reveal-d1,
   .ns-reveal-d2,
@@ -189,12 +269,12 @@ body {
     animation: none;
   }
 
-  .ns-btn-primary {
+  .ns-btn-primary,
+  .ns-btn-secondary {
     transition: none;
   }
 }
 
-/* Legal documents — reading measure, ruled tables, dossier headings */
 .legal-doc {
   font-family: var(--font-reading);
   font-size: 0.9375rem;
@@ -206,7 +286,7 @@ body {
   font-family: var(--font-display);
   font-size: 1.85rem;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--ns-fg);
 }
 
@@ -286,6 +366,7 @@ body {
   margin-top: 1rem;
   overflow-x: auto;
   border: 1px solid var(--ns-border-strong);
+  border-radius: var(--ns-radius);
 }
 
 .legal-doc table {
@@ -320,10 +401,10 @@ body {
   }
 }
 
-/* PDF-/Druck-Pfad: gleiche Route, keine Web-Chrome-Elemente. */
 @media print {
   body {
     background: #fff;
+    color: #111;
   }
   .no-print {
     display: none !important;

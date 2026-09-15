@@ -30,7 +30,7 @@ export default async function ScanPage({
   }
 
   return (
-    <main className="mx-auto max-w-xl px-4 py-20 sm:px-6">
+    <main className="mx-auto max-w-xl px-4 py-20 sm:px-6 text-[var(--ns-fg)]">
       <ScanStatusPanel scanId={scanId} reportToken={token} emailSent={sent} dict={dict} />
     </main>
   )

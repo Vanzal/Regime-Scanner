@@ -28,7 +28,7 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
       <div
         role="status"
         data-testid="waitlist-success"
-        className="border border-[var(--ns-border-strong)] bg-[var(--ns-bg)] px-6 py-10"
+        className="ns-card px-6 py-10"
       >
         <p className="font-display text-xl tracking-tight text-[var(--ns-fg)]">{w.success}</p>
         {state.duplicate && (

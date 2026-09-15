@@ -5,9 +5,9 @@ import type { ReportAssessment } from '@/lib/report/data'
 import type { Applicable } from '@/lib/rules/types'
 
 const BADGE_STYLE: Record<Applicable, string> = {
-  applicable: 'bg-emerald-100 text-emerald-900 ring-emerald-600/30',
-  not_applicable: 'bg-slate-100 text-slate-700 ring-slate-500/30',
-  unclear: 'bg-amber-100 text-amber-900 ring-amber-600/30',
+  applicable: 'ns-status-in',
+  not_applicable: 'ns-status-out',
+  unclear: 'ns-status-unclear',
 }
 
 export function regimeLabel(dict: Dictionary, regime: string): { code: string; name: string; lawShort: string } {
@@ -34,28 +34,28 @@ export function VerdictStrip({ assessments, dict }: { assessments: ReportAssessm
           <div
             key={a.regime}
             data-testid={`verdict-card-${a.regime}`}
-            className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
+            className="ns-card flex flex-col gap-3 p-5"
           >
             <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold text-slate-900">{label.code}</span>
+              <span className="text-sm font-semibold text-[var(--ns-fg)]">{label.code}</span>
               <span
                 data-testid={`verdict-badge-${a.regime}`}
-                className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold tracking-wide ring-1 ${BADGE_STYLE[a.effectiveApplicable]}`}
+                className={`rounded-md border px-2.5 py-0.5 text-[11px] font-bold tracking-wide ${BADGE_STYLE[a.effectiveApplicable]}`}
               >
                 {t(dict, `report.verdict.${a.effectiveApplicable}`)}
               </span>
             </div>
-            <p className="text-xs font-medium text-slate-500">
+            <p className="text-xs font-medium text-[var(--ns-fg-dim)]">
               {label.name} · {label.lawShort}
             </p>
-            <p className="text-sm leading-snug text-slate-800">{renderInlineMd(a.effectiveReasoning.split('\n')[0])}</p>
-            <div className="mt-auto flex items-center justify-between pt-2 text-xs text-slate-500">
+            <p className="text-sm leading-snug text-[var(--ns-fg)]">{renderInlineMd(a.effectiveReasoning.split('\n')[0])}</p>
+            <div className="mt-auto flex items-center justify-between pt-2 text-xs text-[var(--ns-fg-dim)]">
               <span>
                 {t(dict, 'report.verdict.confidence')}: {Math.round(a.confidence * 100)} %
               </span>
               {overridden && (
                 <span
-                  className="rounded-full bg-indigo-50 px-2 py-0.5 font-medium text-indigo-700 ring-1 ring-indigo-600/20"
+                  className="rounded-full border border-[var(--ns-accent)] px-2 py-0.5 font-medium text-[var(--ns-accent)]"
                   title={t(dict, 'report.verdict.override_note')}
                 >
                   {t(dict, 'report.verdict.manually_reviewed')}

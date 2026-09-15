@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { LangSwitch } from './lang-switch'
 import { CookieSettingsLink } from './cookie-settings-link'
+import { BrandMark } from './brand-mark'
 import { footerLegalLinks, type LegalDocId } from '@/lib/legal/catalog'
 import type { Dictionary, Locale } from '@/i18n'
 
@@ -18,8 +19,6 @@ const quietLinkClass =
  * - Full Swiss postal address → footer.address_lines
  * - Email / phone → footer.contact_email / footer.phone
  * - UID / VAT (MwSt) number → footer.uid
- *
- * Legal document paths come from `footerLegalLinks()` (Privacy, Terms, DPA).
  */
 export function FooterLegalNav({
   dict,
@@ -56,11 +55,7 @@ export function FooterLegalNav({
         </li>
         {legalLinks.map((item) => (
           <li key={item.id}>
-            <Link
-              href={item.href}
-              data-testid={`footer-legal-${item.id}`}
-              className={linkClass}
-            >
+            <Link href={item.href} data-testid={`footer-legal-${item.id}`} className={linkClass}>
               {labels[item.id]}
             </Link>
           </li>
@@ -88,24 +83,21 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
       aria-label="Site footer"
     >
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
-          {/* ── Left: company identity & contact (Impressum essentials) ── */}
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
           <section aria-labelledby="footer-company-heading">
-            <h2 id="footer-company-heading" className="font-display text-lg tracking-tight text-[var(--ns-fg)]">
+            <h2 id="footer-company-heading" className="sr-only">
               {f.company_name}
             </h2>
-            {/* Exact legal name & form — replace placeholder before go-live */}
-            <p className="mt-1 text-sm text-[var(--ns-fg-muted)]">{f.legal_form}</p>
-
-            <address className="font-reading mt-4 not-italic text-sm leading-relaxed text-[var(--ns-fg-muted)]">
-              {/* Full Swiss postal address — replace placeholders before go-live */}
+            <BrandMark />
+            <p className="mt-3 text-sm text-[var(--ns-fg-muted)]">{f.tagline}</p>
+            <p className="mt-2 text-sm text-[var(--ns-fg-muted)]">{f.legal_form}</p>
+            <address className="mt-4 not-italic text-sm leading-relaxed text-[var(--ns-fg-muted)]">
               {f.address_lines.map((line) => (
                 <span key={line} className="block">
                   {line}
                 </span>
               ))}
             </address>
-
             <dl className="mt-4 space-y-1.5 text-sm text-[var(--ns-fg-muted)]">
               <div className="flex flex-wrap gap-x-2">
                 <dt className="text-[var(--ns-fg-dim)]">{f.email_label}:</dt>
@@ -115,7 +107,6 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
                   </a>
                 </dd>
               </div>
-              {/* Optional phone — replace placeholder or remove before go-live */}
               <div className="flex flex-wrap gap-x-2">
                 <dt className="text-[var(--ns-fg-dim)]">{f.phone_label}:</dt>
                 <dd>
@@ -124,37 +115,59 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
                   </a>
                 </dd>
               </div>
-              {/* UID / VAT (CHE-…) — replace placeholder if applicable */}
               <div className="flex flex-wrap gap-x-2">
                 <dt className="text-[var(--ns-fg-dim)]">{f.uid_label}:</dt>
                 <dd>{f.uid}</dd>
               </div>
             </dl>
-
-            <p className="mt-5 font-reading text-xs leading-relaxed text-[var(--ns-fg-dim)]">{f.copyright}</p>
           </section>
 
-          {/* ── Middle: legal links (catalog + cookie controls) ── */}
+          <section>
+            <h2 className="mb-3 font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
+              {f.product}
+            </h2>
+            <ul className="flex flex-col gap-2.5 text-sm">
+              <li>
+                <Link href="/#features" className={linkClass}>
+                  {dict.site.nav.features}
+                </Link>
+              </li>
+              <li>
+                <Link href="/#preview" className={linkClass}>
+                  {dict.site.nav.preview}
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className={linkClass}>
+                  {f.pricing}
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className={linkClass}>
+                  {f.contact}
+                </Link>
+              </li>
+            </ul>
+          </section>
+
           <FooterLegalNav dict={dict} locale={locale} headingId="footer-legal-heading" />
 
-          {/* ── Right: language + disclaimer ── */}
-          <section aria-labelledby="footer-lang-heading" className="sm:col-span-2 lg:col-span-1">
+          <section aria-labelledby="footer-lang-heading">
             <h2
               id="footer-lang-heading"
               className="mb-3 font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]"
             >
               {f.lang_label}
             </h2>
-            <LangSwitch locale={locale} label={f.lang_label} variant="light" />
-            <p className="font-reading mt-6 max-w-sm text-sm leading-relaxed text-[var(--ns-fg-muted)]">
-              {f.disclaimer}
-            </p>
+            <LangSwitch locale={locale} label={f.lang_label} />
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-[var(--ns-fg-muted)]">{f.disclaimer}</p>
           </section>
         </div>
 
-        {/* ── Bottom bar ── */}
         <div className="mt-10 flex flex-col gap-3 border-t border-[var(--ns-border)] pt-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-reading text-xs text-[var(--ns-fg-dim)]">{f.data_location}</p>
+          <p className="text-xs text-[var(--ns-fg-dim)]">
+            {f.copyright} {f.data_location}
+          </p>
           <CookieSettingsLink label={f.cookie_settings} className={`text-xs ${quietLinkClass}`} />
         </div>
       </div>

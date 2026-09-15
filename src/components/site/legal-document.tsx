@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { getDict, localeFromCookie, type Locale } from '@/i18n'
-import { SiteFooter } from '@/components/site/site-footer'
-import { CookieBanner } from '@/components/site/cookie-banner'
+import { SiteShell } from '@/components/site/site-shell'
 import {
   LEGAL_DOCUMENT_ORDER,
   LEGAL_DOCUMENTS,
@@ -30,48 +29,37 @@ export async function LegalDocumentPage({ id }: { id: LegalDocId }) {
   const markdown = loadLegalMarkdown(id)
 
   return (
-    <div className="min-h-screen bg-[var(--ns-bg)] text-[var(--ns-fg)]">
-      <header className="border-b-2 border-[var(--ns-fg)]">
-        <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-          <Link href="/" className="font-display text-sm tracking-tight sm:text-base">
-            NexusScope
-          </Link>
-          <nav aria-label={dict.site.legal.docs_nav} className="flex flex-wrap justify-end gap-x-4 gap-y-1 text-xs sm:text-sm">
-            {LEGAL_DOCUMENT_ORDER.map((otherId) => {
-              const other = LEGAL_DOCUMENTS[otherId]
-              const label = other.short[locale]
-              if (otherId === id) {
-                return (
-                  <span key={otherId} aria-current="page" className="font-semibold text-[var(--ns-fg)]">
-                    {label}
-                  </span>
-                )
-              }
-              return (
-                <Link
-                  key={otherId}
-                  href={other.href}
-                  className="text-[var(--ns-fg-muted)] underline-offset-4 transition hover:text-[var(--ns-fg)] hover:underline"
-                >
-                  {label}
-                </Link>
-              )
-            })}
-          </nav>
-        </div>
-      </header>
-
+    <SiteShell dict={dict} locale={locale}>
       <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-        <p className="font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
+        <nav aria-label={dict.site.legal.docs_nav} className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+          {LEGAL_DOCUMENT_ORDER.map((otherId) => {
+            const other = LEGAL_DOCUMENTS[otherId]
+            const label = other.short[locale]
+            if (otherId === id) {
+              return (
+                <span key={otherId} aria-current="page" className="font-semibold text-[var(--ns-fg)]">
+                  {label}
+                </span>
+              )
+            }
+            return (
+              <Link
+                key={otherId}
+                href={other.href}
+                className="text-[var(--ns-fg-muted)] underline-offset-4 transition hover:text-[var(--ns-fg)] hover:underline"
+              >
+                {label}
+              </Link>
+            )
+          })}
+        </nav>
+        <p className="mt-8 font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
           {dict.site.legal.language_note}
         </p>
         <article className="legal-doc mt-6" data-testid={`legal-doc-${id}`}>
           <LegalMarkdown markdown={markdown} />
         </article>
       </main>
-
-      <SiteFooter dict={dict} locale={locale} />
-      <CookieBanner dict={dict} />
-    </div>
+    </SiteShell>
   )
 }

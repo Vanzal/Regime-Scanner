@@ -12,6 +12,7 @@ import type {
   Scan,
   Store,
   WaitlistEntry,
+  ContactMessage,
 } from './types'
 import type { SubscriptionRecord } from '@/lib/billing/types'
 
@@ -228,6 +229,21 @@ export function createSupabaseStore(): Store {
         .single()
       if (error) throw error
       return { entry: data as WaitlistEntry, duplicate: false }
+    },
+
+    async createContactMessage(input) {
+      const { data, error } = await sb
+        .from('contact_messages')
+        .insert({
+          name: input.name.trim(),
+          email: input.email.trim().toLowerCase(),
+          company: input.company?.trim() || null,
+          message: input.message.trim(),
+        })
+        .select()
+        .single()
+      if (error) throw error
+      return data as ContactMessage
     },
 
     async upsertSubscription(input) {

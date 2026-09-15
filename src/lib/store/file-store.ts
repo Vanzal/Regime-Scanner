@@ -13,6 +13,7 @@ import type {
   Scan,
   Store,
   WaitlistEntry,
+  ContactMessage,
 } from './types'
 import type { SubscriptionRecord, UpsertSubscriptionInput } from '@/lib/billing/types'
 
@@ -25,6 +26,7 @@ interface FileDb {
   rules_versions: RulesVersionRow[]
   waitlist: WaitlistEntry[]
   subscriptions: SubscriptionRecord[]
+  contact_messages: ContactMessage[]
 }
 
 const EMPTY_DB: FileDb = {
@@ -36,6 +38,7 @@ const EMPTY_DB: FileDb = {
   rules_versions: [],
   waitlist: [],
   subscriptions: [],
+  contact_messages: [],
 }
 
 function resolveDbPath(): string {
@@ -266,6 +269,21 @@ export function createFileStore(): Store {
       db.waitlist.push(entry)
       writeDb(db)
       return { entry, duplicate: false }
+    },
+
+    async createContactMessage(input) {
+      const db = readDb()
+      const entry: ContactMessage = {
+        id: randomUUID(),
+        name: input.name.trim(),
+        email: input.email.trim().toLowerCase(),
+        company: input.company?.trim() || null,
+        message: input.message.trim(),
+        created_at: now(),
+      }
+      db.contact_messages.push(entry)
+      writeDb(db)
+      return entry
     },
 
     async upsertSubscription(input: UpsertSubscriptionInput) {

@@ -22,16 +22,20 @@ export default async function ReportPage({
 
   const data = await loadReport(token)
   if (data) {
-    return <ReportView data={data} dict={dict} token={token} showChrome={print !== '1'} />
+    return (
+      <div className="min-h-screen bg-[var(--ns-bg)] text-[var(--ns-fg)]">
+        <ReportView data={data} dict={dict} token={token} showChrome={print !== '1'} />
+      </div>
+    )
   }
 
   // Token bekannt, Bericht noch nicht freigegeben (Pilotmodus)?
   const pending = await loadReportPendingState(token)
   if (pending) {
     return (
-      <main className="mx-auto max-w-xl px-6 py-24 text-center">
-        <h1 className="text-xl font-bold text-slate-900">{dict.report.pending}</h1>
-        <p className="mt-3 text-sm text-slate-600">{dict.report.pending_text}</p>
+      <main className="mx-auto max-w-xl px-6 py-24 text-center text-[var(--ns-fg)]">
+        <h1 className="text-xl font-bold">{dict.report.pending}</h1>
+        <p className="mt-3 text-sm text-[var(--ns-fg-muted)]">{dict.report.pending_text}</p>
       </main>
     )
   }

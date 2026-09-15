@@ -335,14 +335,25 @@
       "how": "How it works",
       "preview": "Sample report",
       "features": "Features",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "pricing": "Pricing",
+      "contact": "Contact",
+      "menu": "Open menu",
+      "close": "Close menu",
+      "waitlist": "Join waitlist",
+      "scan": "Start free scan"
     },
     "hero": {
       "badge": "NexusScope · Built for Germany, Austria & Switzerland",
       "title": "One incident. Three reporting regimes. Know which ones apply — before the clock starts.",
       "subtitle": "Map your company against NIS2UmsuCG, NISG 2024 and the Swiss ISG. See deadlines and visible gaps in one clear report.",
-      "cta": "Join the waitlist",
-      "note": "Early access · Free · No login"
+      "cta": "Join waitlist",
+      "cta_secondary": "View sample report",
+      "scan_cta": "Start free scan",
+      "note": "Early access · Free · No login",
+      "clock_early": "Early warning",
+      "clock_incident": "Incident report",
+      "clock_final": "Final report"
     },
     "problem": {
       "title": "DACH reporting rules are expanding — unevenly",
@@ -388,6 +399,12 @@
           "hint": "The 24 h / 72 h / 30 d clocks for each applicable regime."
         }
       ],
+      "profiles_label": "Sample profiles",
+      "profile_de": "Mid-market DE company",
+      "profile_at": "Austrian IT provider",
+      "profile_ch": "Swiss entity with DE subsidiary",
+      "synthetic_badge": "SYNTHETIC",
+      "open_full": "Open full sample",
       "tab_regimes": "Regime Status",
       "tab_gaps": "Gaps",
       "tab_deadlines": "Deadlines",
@@ -524,6 +541,22 @@
         {
           "q": "When will NexusScope be available?",
           "a": "We are onboarding the waitlist for early access now. Join the waitlist and we will let you know as soon as your company can run its first scan."
+        },
+        {
+          "q": "What does a public-footprint check include?",
+          "a": "Passive DNS, TLS and HTTP-header observations on the domain you provide. We honour robots.txt, send GET requests only, never use credentials, and never run port scans. Findings are limited to what is visible from public sources."
+        },
+        {
+          "q": "What does UNCLEAR mean?",
+          "a": "The engine did not have enough evidence to decide IN or OUT. Typical reasons: missing size inputs, sector classification that needs confirmation, or a structure (subsidiaries, designations) that the questionnaire cannot resolve. The report shows the open thresholds instead of guessing."
+        },
+        {
+          "q": "Where is my data stored?",
+          "a": "In Switzerland and the EU only. Waitlist details and reports are used to produce your orientation and to notify you about early access — not for advertising without consent."
+        },
+        {
+          "q": "Can I export a PDF?",
+          "a": "Yes. Every report has a print/PDF export for boards, auditors and counsel. Sample reports on this site are labelled SYNTHETIC and use the same layout."
         }
       ]
     },
@@ -554,7 +587,100 @@
       "data_location": "Data is processed in Switzerland / EU.",
       "tagline": "Cyber-reporting & compliance orientation for the DACH region.",
       "contact_label": "Contact:",
-      "legal_note": "Automated orientation — not legal advice."
+      "legal_note": "Automated orientation — not legal advice.",
+      "pricing": "Pricing",
+      "contact": "Contact",
+      "product": "Product"
+    },
+    "theme": {
+      "toggle": "Toggle colour theme"
+    },
+    "scan_gate": {
+      "body": "Free scans are not generally available yet. This path runs in labelled demo / fixture mode — synthetic public-footprint data, not a live legal determination. Join the waitlist for early access.",
+      "link": "Join waitlist"
+    },
+    "proof": {
+      "eyebrow": "Built for DACH operators",
+      "title": "Made for the people who have to answer the 24-hour question",
+      "body": "Compliance officers, CISOs and managing directors at mid-market companies in Germany, Austria and Switzerland. Logos below are layout placeholders — not customer endorsements.",
+      "placeholders": [
+        "DACH CISO circle (placeholder)",
+        "Mid-market manufacturing (placeholder)",
+        "IT Dienstleister (placeholder)",
+        "Swiss digital infra (placeholder)"
+      ]
+    },
+    "final_cta": {
+      "title": "Know which clocks apply — before the next incident.",
+      "body": "Join the waitlist for early access. When scans open, you will get one unified report for DE, AT and CH from a two-minute questionnaire and a passive public-footprint check.",
+      "cta": "Join waitlist"
+    },
+    "pricing_page": {
+      "title": "Simple plans for a clear first orientation",
+      "subtitle": "Waitlist is open now. Paid plans will unlock when free scans go live. Amounts, if any, are confirmed in Stripe Checkout — never invented on this page.",
+      "coming_soon": "Coming soon",
+      "waitlist_cta": "Join waitlist",
+      "scan_cta": "Start free scan",
+      "note": "Informational orientation only — not legal advice. Data stays in Switzerland / the EU.",
+      "footnote": "Enterprise and agency onboarding includes a DPA, named contacts, and multi-entity reporting. Tax may apply via Stripe Tax once registrations are active.",
+      "plans": [
+        {
+          "id": "free",
+          "name": "Free",
+          "price": "€0",
+          "cadence": "1 report / month",
+          "blurb": "Email-gated orientation for one domain.",
+          "features": [
+            "One unified DE / AT / CH report per month",
+            "Passive DNS, TLS and header checks",
+            "PDF export",
+            "Threshold trace and UNCLEAR when evidence is missing"
+          ]
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "price": "Unlimited",
+          "cadence": "team workspace",
+          "blurb": "For compliance teams running more than a single snapshot.",
+          "features": [
+            "Unlimited reports",
+            "Shared team workspace",
+            "Report archive",
+            "Priority early-access slots"
+          ]
+        },
+        {
+          "id": "enterprise",
+          "name": "Enterprise / Agency",
+          "price": "Custom",
+          "cadence": "multi-entity",
+          "blurb": "For groups, counsel and agencies mapping many entities.",
+          "features": [
+            "Multi-entity and subsidiary mapping",
+            "DPA and named security contact",
+            "Admin release controls for pilot programmes",
+            "Onboarding with your DACH legal review process"
+          ]
+        }
+      ]
+    },
+    "contact_page": {
+      "title": "Contact",
+      "subtitle": "Questions about waitlist access, data residency, or a future scan for your group — write to us. We reply from Switzerland / the EU.",
+      "name_label": "Name",
+      "email_label": "Work e-mail",
+      "company_label": "Company (optional)",
+      "message_label": "Message",
+      "submit": "Send message",
+      "submitting": "Sending …",
+      "success": "Message received. We will reply to this e-mail.",
+      "privacy_note": "Used only to answer you. Stored in Switzerland / the EU.",
+      "errors": {
+        "required": "Please fill in",
+        "email": "Please provide a valid e-mail address",
+        "message": "Please write a short message"
+      }
     },
     "cookie": {
       "banner_label": "Cookie consent",
@@ -620,7 +746,25 @@
           "b": "Access, rectification and erasure at any time via the contact e-mail."
         }
       ],
-      "placeholder": "[To be completed before go-live.]"
+      "placeholder": "[To be completed before go-live.]",
+      "cookies_body": [
+        {
+          "h": "Strictly necessary",
+          "b": "Session integrity, CSRF protection, load balancing, and storing this consent choice. These cannot be switched off."
+        },
+        {
+          "h": "Preferences",
+          "b": "Language (lang cookie) and colour theme. Used only with your consent, except where a setting is required to deliver the page you requested."
+        },
+        {
+          "h": "Analytics",
+          "b": "Aggregate usage measurement. Off until you accept this category. No advertising profiles."
+        },
+        {
+          "h": "Marketing",
+          "b": "Campaign attribution when we run outreach. Off unless you allow this category."
+        }
+      ]
     }
   }
 }
