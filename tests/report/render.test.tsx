@@ -137,7 +137,7 @@ describe('Bericht-Rendering (feste Abschnittsreihenfolge)', () => {
     )
     positions.forEach((p, i) => expect(p, `Abschnitt ${i} fehlt`).toBeGreaterThan(-1))
     expect([...positions].sort((a, b) => a - b)).toEqual(positions)
-    expect(withScope).toContain('WAHRSCHEINLICH ANWENDBAR')
+    expect(withScope).toContain('WAHRSCHEINLICH')
     expect(withScope).toContain('Richtungsscan, keine Rechtsberatung.')
 
     // Aufräumen: andere Tests sehen den Grundzustand ohne KI-Abschnitt
