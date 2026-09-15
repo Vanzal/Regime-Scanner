@@ -34,7 +34,7 @@ optional und wird automatisch genutzt, sobald beide Env-Variablen gesetzt sind.
 | --- | --- |
 | `SCAN_MODE` | `fixture` (Standard, keine Netzaufrufe) für Demo/Pilot |
 | `NEXT_PUBLIC_PRODUCT_READY` | `true` zeigt „Start free scan“ und öffnet `/intake` ohne Demo-Banner |
-| `NEXT_PUBLIC_PRICING_LIVE` | `true` behandelt `/pricing` als buchbar (Stripe); sonst Coming-soon + Waitlist |
+| `NEXT_PUBLIC_PRICING_LIVE` | `true` zeigt Stripe Checkout auf der Pro-Karte unter `/pricing`; sonst Coming-soon + Waitlist |
 | `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` | abgesetzt → Supabase statt Datei-Store |
 | `AUTO_RELEASE` | `true` (Standard) = Report sofort frei; `false` = Pilotmodus, Freigabe in `/admin` |
 | `ADMIN_PASSWORD` + `ADMIN_SESSION_SECRET` | schützt `/admin` (HMAC-Cookie) |
@@ -49,7 +49,7 @@ optional und wird automatisch genutzt, sobald beide Env-Variablen gesetzt sind.
 
 ## Stripe Early-Access-Abo
 
-Nach dem Wartelisten-Beitritt erscheint die Option **Early Access abonnieren** (Stripe Checkout, `mode: subscription`). Webhook unter `/api/stripe/webhook` schreibt in `subscriptions` (Migration `0006`). Kundenportal über die Success-Seite.
+Nach dem Wartelisten-Beitritt erscheint die Option **Early Access abonnieren** (Stripe Checkout, `mode: subscription`). Mit `NEXT_PUBLIC_PRICING_LIVE=true` startet Checkout auch von der Pro-Karte auf `/pricing`. Webhook unter `/api/stripe/webhook` schreibt in `subscriptions` (Migration `0006`). Kundenportal über die Success-Seite.
 
 Bootstrap (einmalig, Production/Preview mit Stripe-Keys):
 

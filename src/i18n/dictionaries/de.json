@@ -618,6 +618,7 @@
     "pricing_page": {
       "title": "Einfache Pläne für eine klare Erstorientierung",
       "subtitle": "Die Warteliste ist offen. Bezahlte Pläne starten, wenn kostenlose Scans live gehen. Beträge werden — falls vorhanden — im Stripe Checkout bestätigt, nie auf dieser Seite erfunden.",
+      "subtitle_live": "Pro Early Access ist über Stripe Checkout buchbar. Beträge werden dort bestätigt — nie auf dieser Seite erfunden. Free bleibt wartelistengebunden, bis Scans öffnen.",
       "coming_soon": "Demnächst",
       "waitlist_cta": "Auf die Warteliste",
       "scan_cta": "Kostenlosen Scan starten",

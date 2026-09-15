@@ -27,7 +27,7 @@ export async function POST(req: Request): Promise<Response> {
   }
 
   try {
-    await handleStripeEvent(event)
+    await handleStripeEvent(event, (id) => getStripe().subscriptions.retrieve(id))
   } catch (err) {
     console.error('[stripe] webhook handler failed', err)
     return NextResponse.json({ error: 'handler_failed' }, { status: 500 })

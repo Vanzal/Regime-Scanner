@@ -50,4 +50,13 @@ describe('product flags', () => {
     expect(isLiveScanEnabled()).toBe(false)
     expect(scanModeLabel()).toBe('fixture')
   })
+
+  it('isPricingLive follows NEXT_PUBLIC_PRICING_LIVE', () => {
+    const prev = process.env.NEXT_PUBLIC_PRICING_LIVE
+    process.env.NEXT_PUBLIC_PRICING_LIVE = 'true'
+    expect(isPricingLive()).toBe(true)
+    if (prev === undefined) delete process.env.NEXT_PUBLIC_PRICING_LIVE
+    else process.env.NEXT_PUBLIC_PRICING_LIVE = prev
+    expect(isPricingLive()).toBe(false)
+  })
 })

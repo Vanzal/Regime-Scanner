@@ -36,6 +36,7 @@ export async function startSubscriptionCheckout(
     const stripe = getStripe()
     const priceId = await ensureSubscriptionPrice()
     const base = siteUrl()
+    const cancelPath = fd.get('cancel_path') === '/pricing' ? '/pricing' : '/#waitlist'
 
     const session = await stripe.checkout.sessions.create({
       mode: 'subscription',
@@ -43,7 +44,7 @@ export async function startSubscriptionCheckout(
       customer_email: email,
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: `${base}/billing/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${base}/#waitlist`,
+      cancel_url: `${base}${cancelPath}`,
       client_reference_id: email,
       metadata: { email, app: 'nexusscope', plan: 'early_access' },
       subscription_data: {

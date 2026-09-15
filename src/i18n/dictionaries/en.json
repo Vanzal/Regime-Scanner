@@ -618,6 +618,7 @@
     "pricing_page": {
       "title": "Simple plans for a clear first orientation",
       "subtitle": "Waitlist is open now. Paid plans will unlock when free scans go live. Amounts, if any, are confirmed in Stripe Checkout — never invented on this page.",
+      "subtitle_live": "Pro Early Access is available via Stripe Checkout. Amounts are confirmed there — never invented on this page. Free stays waitlist-gated until scans open.",
       "coming_soon": "Coming soon",
       "waitlist_cta": "Join waitlist",
       "scan_cta": "Start free scan",
