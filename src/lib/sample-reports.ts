@@ -15,8 +15,10 @@ export interface SampleGap {
   title: string
   detail: string
   fix?: string
+  /** Human-readable evidence summary for the inline sample read path. */
   evidence?: string
   sourceUrl?: string
+  checkId?: string
 }
 
 export interface SampleDeadline {
@@ -261,6 +263,7 @@ function localizeGap(
     fix: useEn ? en.fix ?? finding.fix : finding.fix,
     evidence: evidenceSummary(finding.evidence_json),
     sourceUrl: finding.source_url,
+    checkId: finding.check_id,
   }
 }
 

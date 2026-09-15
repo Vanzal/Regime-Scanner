@@ -30,7 +30,7 @@ export async function LegalDocumentPage({ id }: { id: LegalDocId }) {
 
   return (
     <SiteShell dict={dict} locale={locale}>
-      <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <nav aria-label={dict.site.legal.docs_nav} className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
           {LEGAL_DOCUMENT_ORDER.map((otherId) => {
             const other = LEGAL_DOCUMENTS[otherId]
@@ -59,7 +59,7 @@ export async function LegalDocumentPage({ id }: { id: LegalDocId }) {
         <article className="legal-doc mt-6" data-testid={`legal-doc-${id}`}>
           <LegalMarkdown markdown={markdown} />
         </article>
-      </main>
+      </div>
     </SiteShell>
   )
 }

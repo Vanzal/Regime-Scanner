@@ -342,6 +342,7 @@
       "menu": "Menü öffnen",
       "close": "Menü schliessen",
       "waitlist": "Auf die Warteliste",
+      "waitlist_short": "Warteliste",
       "scan": "Kostenlosen Scan starten"
     },
     "hero": {
@@ -437,10 +438,21 @@
       "deadline2": "72 Stunden – Vorfallbericht an das BSI",
       "deadline3": "1 Monat – Abschlussbericht an das BSI",
       "disclaimer": "Dies ist keine Rechtsberatung.",
-      "as_of": "Fristenstand: September 2026."
+      "as_of": "Fristenstand: September 2026.",
+      "col_confidence": "Konfidenz",
+      "why_action": "Warum?",
+      "hide_why": "Warum ausblenden",
+      "view_trace": "Vollständige Herleitung",
+      "view_evidence": "Evidenz anzeigen",
+      "view_source": "Quelle anzeigen",
+      "evidence_label": "Evidenz",
+      "source_label": "Quelle",
+      "trace_label": "Schwellenpfad",
+      "next_action": "Nächster Schritt",
+      "drawer_close": "Schliessen"
     },
     "features": {
-      "title": "Das erhalten Sie",
+      "title": "Warum NexusScope",
       "cards": [
         {
           "title": "Wissen, welche Regimes gelten",
@@ -498,14 +510,18 @@
       },
       "pain_label": "Was ist aktuell Ihr größtes Compliance-Ärgernis? (optional)",
       "pain_placeholder": "z. B. Niemand weiß, welche unserer Gesellschaften in den Scope fallen …",
-      "submit": "Warteliste beitreten",
-      "submitting": "Beitritt läuft …",
-      "success": "Sie stehen auf der Liste. Wir melden uns.",
+      "submit": "Early Access sichern",
+      "submitting": "Wird gesendet …",
+      "success": "Sie stehen auf der Liste. Wir melden uns per E-Mail, wenn Early Access öffnet.",
+      "success_eyebrow": "Platz gesichert",
+      "success_next": "Was als Nächstes passiert: Wir bestätigen Ihren Platz und benachrichtigen Sie, sobald Scans für Ihre Unternehmensgröße und Ihr Land verfügbar sind.",
       "duplicate": "Diese E-Mail steht bereits auf der Warteliste.",
       "errors": {
         "required": "Bitte ausfüllen",
         "email": "Bitte eine gültige E-Mail-Adresse angeben",
-        "country": "Bitte ein Land wählen"
+        "country": "Bitte ein Land wählen",
+        "size": "Bitte eine Unternehmensgröße wählen",
+        "form": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
       },
       "privacy_note": "Ihre E-Mail verwenden wir nur, um Sie über den Early Access zu informieren. Kein Marketing ohne Einwilligung.",
       "privacy_link": "Datenschutzerklärung"
@@ -592,12 +608,16 @@
       "lang_label": "Sprache",
       "disclaimer": "NexusScope bietet ausschliesslich informative Orientierung und stellt keine Rechtsberatung dar.",
       "data_location": "Daten werden in der Schweiz / EU verarbeitet.",
-      "tagline": "Cyber-Reporting & Compliance-Orientierung für den DACH-Raum.",
+      "tagline": "Regulatory readiness intelligence für Deutschland, Österreich und die Schweiz.",
       "contact_label": "Kontakt:",
       "legal_note": "Automatisierte Orientierung – keine Rechtsberatung.",
       "pricing": "Preise",
       "contact": "Kontakt",
-      "product": "Produkt"
+      "product": "Produkt",
+      "how": "So funktioniert es",
+      "example_report": "Beispielbericht",
+      "early_access": "Early Access",
+      "contact_heading": "Kontakt"
     },
     "theme": {
       "toggle": "Farbmodus umschalten"

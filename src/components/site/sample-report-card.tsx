@@ -35,6 +35,10 @@ function shortReason(text: string, compact: boolean): string {
   return `${text.slice(0, 137).trimEnd()}…`
 }
 
+/**
+ * Sample report card: Result → Reason → Evidence → Source → Confidence → Next step.
+ * Inline read path (release polish); responsive/a11y shell from main engineering QA.
+ */
 export function SampleReportCard({
   report,
   dict,
@@ -48,17 +52,29 @@ export function SampleReportCard({
   const applicable = report.regimes.filter((r) => r.status === 'in')
   const deadlineSource = applicable[0] ?? report.regimes[0]
   const gaps = compact ? report.gaps.slice(0, 2) : report.gaps.slice(0, 4)
+  const testPrefix = report.id
 
   return (
-    <div className="ns-card overflow-hidden" data-testid={`sample-report-${report.id}`}>
-      <div className="flex items-start justify-between gap-3 border-b border-[var(--ns-border)] bg-[var(--ns-bg-panel)] px-4 py-3 sm:px-5">
-        <div className="min-w-0">
-          <p className="truncate font-medium text-[var(--ns-fg)]">{report.company.legal_name}</p>
-          <p className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
-            {report.company.domain}
-            <span className="mx-1.5 text-[var(--ns-border-strong)]">·</span>
-            {report.company.sector}
+    <article
+      className="ns-card w-full min-w-0 overflow-hidden"
+      data-testid={`sample-report-${report.id}`}
+      aria-label={`${report.company.legal_name} sample report`}
+    >
+      <header className="flex flex-wrap items-start justify-between gap-3 border-b border-[var(--ns-border)] bg-[var(--ns-bg-panel)] px-4 py-3.5 sm:px-5">
+        <div className="min-w-0 flex-1">
+          <p className="break-words text-base font-semibold tracking-tight text-[var(--ns-fg)]">
+            {report.company.legal_name}
           </p>
+          <p className="mt-0.5 break-all font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
+            {report.company.domain}
+            <span className="mx-2 text-[var(--ns-border-strong)]">·</span>
+            {report.company.country_hq.toUpperCase()}
+          </p>
+          {compact ? null : (
+            <p className="mt-1.5 text-xs leading-relaxed text-[var(--ns-fg-muted)]">
+              {report.company.sector} · {report.company.size}
+            </p>
+          )}
         </div>
         <span
           className="shrink-0 rounded-md border border-[var(--ns-warning)] px-2 py-1 font-instrument text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--ns-warning)]"
@@ -66,7 +82,7 @@ export function SampleReportCard({
         >
           {p.synthetic_badge}
         </span>
-      </div>
+      </header>
 
       {!compact ? (
         <p className="border-b border-[var(--ns-border)] bg-[var(--ns-bg)] px-4 py-2.5 text-xs leading-relaxed text-[var(--ns-fg-dim)] sm:px-5">
@@ -74,16 +90,22 @@ export function SampleReportCard({
         </p>
       ) : null}
 
-      <div className={cn('grid gap-0', compact ? '' : 'lg:grid-cols-3')}>
-        <section className="border-b border-[var(--ns-border)] p-4 sm:p-5 lg:border-b-0 lg:border-r">
-          <h3 className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
+      <div className={cn('grid w-full min-w-0 grid-cols-1 gap-0', compact ? '' : 'lg:grid-cols-3')}>
+        <section
+          className="border-b border-[var(--ns-border)] p-4 sm:p-5 lg:border-b-0 lg:border-r"
+          aria-labelledby={`${testPrefix}-regimes`}
+        >
+          <h3
+            id={`${testPrefix}-regimes`}
+            className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]"
+          >
             {p.tab_regimes}
           </h3>
           <ul className="mt-3 space-y-4">
             {report.regimes.map((r) => (
               <li key={r.code} data-testid={`sample-regime-${report.id}-${r.code.toLowerCase()}`}>
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-sm font-semibold">
+                  <span className="min-w-0 text-sm font-semibold">
                     {r.name} — {r.law}
                   </span>
                   <span
@@ -106,7 +128,7 @@ export function SampleReportCard({
                     <a
                       href={r.sourceUrls[0]}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="underline decoration-[var(--ns-border)] underline-offset-2 hover:text-[var(--ns-fg-muted)]"
                     >
                       {p.source_label}: {shortHost(r.sourceUrls[0])}
@@ -118,13 +140,23 @@ export function SampleReportCard({
           </ul>
         </section>
 
-        <section className="border-b border-[var(--ns-border)] p-4 sm:p-5 lg:border-b-0 lg:border-r">
-          <h3 className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
+        <section
+          className="border-b border-[var(--ns-border)] p-4 sm:p-5 lg:border-b-0 lg:border-r"
+          aria-labelledby={`${testPrefix}-gaps`}
+        >
+          <h3
+            id={`${testPrefix}-gaps`}
+            className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]"
+          >
             {p.tab_gaps}
           </h3>
           <ul className="mt-3 space-y-4">
             {gaps.map((g, i) => (
-              <li key={`${g.title}-${i}`} className="text-sm leading-snug" data-testid={`sample-gap-${report.id}-${i}`}>
+              <li
+                key={`${g.title}-${i}`}
+                className="text-sm leading-snug"
+                data-testid={`sample-gap-${report.id}-${i}`}
+              >
                 <div>
                   <span
                     className={cn(
@@ -145,7 +177,9 @@ export function SampleReportCard({
                     <span className="font-instrument text-[10px] uppercase tracking-[0.12em] text-[var(--ns-fg-dim)]">
                       {p.evidence_label}
                     </span>
-                    <span className="mt-0.5 block font-instrument text-[11px] text-[var(--ns-fg-dim)]">{g.evidence}</span>
+                    <span className="mt-0.5 block font-instrument text-[11px] text-[var(--ns-fg-dim)]">
+                      {g.evidence}
+                    </span>
                   </p>
                 ) : null}
                 {!compact && g.sourceUrl ? (
@@ -154,7 +188,7 @@ export function SampleReportCard({
                     <a
                       href={g.sourceUrl}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="underline decoration-[var(--ns-border)] underline-offset-2 hover:text-[var(--ns-fg-muted)]"
                     >
                       {shortHost(g.sourceUrl)}
@@ -172,20 +206,27 @@ export function SampleReportCard({
           </ul>
         </section>
 
-        <section className="p-4 sm:p-5">
-          <h3 className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
+        <section className="p-4 sm:p-5" aria-labelledby={`${testPrefix}-deadlines`}>
+          <h3
+            id={`${testPrefix}-deadlines`}
+            className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]"
+          >
             {p.tab_deadlines}
           </h3>
           {deadlineSource && deadlineSource.status === 'in' && deadlineSource.deadlines.length > 0 ? (
             <ul className="mt-3 space-y-3">
               {deadlineSource.deadlines.slice(0, 3).map((d, i) => (
-                <li key={d.label} className="flex items-center gap-3" data-testid={`sample-deadline-${report.id}-${i}`}>
+                <li
+                  key={d.label}
+                  className="flex min-w-0 items-center gap-3"
+                  data-testid={`sample-deadline-${report.id}-${i}`}
+                >
                   <span className="ns-clock flex h-11 w-16 shrink-0 items-center justify-center font-display text-sm">
                     {clockLabel(d.hours)}
                   </span>
-                  <div className="min-w-0">
-                    <p className="text-sm font-medium leading-snug">{d.label}</p>
-                    <p className="text-xs text-[var(--ns-fg-dim)]">
+                  <div className="min-w-0 flex-1 overflow-hidden">
+                    <p className="truncate text-sm font-medium leading-snug">{d.label}</p>
+                    <p className="truncate text-xs text-[var(--ns-fg-dim)]">
                       {d.authority}
                       {d.channel ? ` · ${d.channel}` : ''}
                     </p>
@@ -202,9 +243,9 @@ export function SampleReportCard({
         </section>
       </div>
 
-      <p className="border-t border-[var(--ns-border)] px-4 py-3 text-xs leading-relaxed text-[var(--ns-fg-dim)] sm:px-5">
+      <footer className="border-t border-[var(--ns-border)] px-4 py-3 text-xs leading-relaxed text-[var(--ns-fg-dim)] sm:px-5">
         {report.disclaimer}
-      </p>
-    </div>
+      </footer>
+    </article>
   )
 }

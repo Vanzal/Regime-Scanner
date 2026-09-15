@@ -342,6 +342,7 @@
       "menu": "Open menu",
       "close": "Close menu",
       "waitlist": "Join waitlist",
+      "waitlist_short": "Waitlist",
       "scan": "Start free scan"
     },
     "hero": {
@@ -437,10 +438,21 @@
       "deadline2": "72 hours — incident report to the BSI",
       "deadline3": "1 month — final report to the BSI",
       "disclaimer": "This is not legal advice.",
-      "as_of": "Timelines current as of September 2026."
+      "as_of": "Timelines current as of September 2026.",
+      "col_confidence": "Confidence",
+      "why_action": "Why?",
+      "hide_why": "Hide why",
+      "view_trace": "View full reasoning",
+      "view_evidence": "View evidence",
+      "view_source": "View source",
+      "evidence_label": "Evidence",
+      "source_label": "Source",
+      "trace_label": "Threshold path",
+      "next_action": "Next action",
+      "drawer_close": "Close"
     },
     "features": {
-      "title": "What you get",
+      "title": "Why NexusScope",
       "cards": [
         {
           "title": "Know which regimes apply",
@@ -498,14 +510,18 @@
       },
       "pain_label": "What is your biggest compliance pain right now? (optional)",
       "pain_placeholder": "e.g. Nobody knows which of our entities are in scope …",
-      "submit": "Join the waitlist",
-      "submitting": "Joining …",
-      "success": "You are on the list. We will be in touch.",
+      "submit": "Get early access",
+      "submitting": "Submitting …",
+      "success": "You are on the list. We will e-mail you when early access opens.",
+      "success_eyebrow": "You're in",
+      "success_next": "What happens next: we confirm your place and notify you when scans open for your company size and country.",
       "duplicate": "This e-mail is already on the waitlist.",
       "errors": {
         "required": "Please fill in",
         "email": "Please provide a valid e-mail address",
-        "country": "Please choose a country"
+        "country": "Please choose a country",
+        "size": "Please choose a company size",
+        "form": "Something went wrong. Please try again."
       },
       "privacy_note": "We use your e-mail only to notify you about early access. No marketing without consent.",
       "privacy_link": "Privacy Policy"
@@ -592,12 +608,16 @@
       "lang_label": "Language",
       "disclaimer": "NexusScope provides informational orientation only and does not constitute legal advice.",
       "data_location": "Data is processed in Switzerland / EU.",
-      "tagline": "Cyber-reporting & compliance orientation for the DACH region.",
+      "tagline": "Regulatory readiness intelligence for Germany, Austria and Switzerland.",
       "contact_label": "Contact:",
       "legal_note": "Automated orientation — not legal advice.",
       "pricing": "Pricing",
       "contact": "Contact",
-      "product": "Product"
+      "product": "Product",
+      "how": "How it works",
+      "example_report": "Example report",
+      "early_access": "Early access",
+      "contact_heading": "Contact"
     },
     "theme": {
       "toggle": "Toggle colour theme"
