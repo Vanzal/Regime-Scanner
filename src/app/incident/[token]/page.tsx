@@ -27,7 +27,7 @@ export default async function IncidentResultPage({
     <>
       {print !== '1' && (
         <div className="no-print mx-auto flex max-w-4xl items-center justify-end px-4 pt-6 sm:px-6">
-          <LangSwitch locale={locale} label="Language" variant="light" />
+          <LangSwitch locale={locale} label="Language" />
         </div>
       )}
       <IncidentTriageView record={record} dict={dict} showChrome={print !== '1'} />

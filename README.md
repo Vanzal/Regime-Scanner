@@ -33,6 +33,8 @@ optional und wird automatisch genutzt, sobald beide Env-Variablen gesetzt sind.
 | Variable | Wirkung |
 | --- | --- |
 | `SCAN_MODE` | `fixture` (Standard, keine Netzaufrufe) für Demo/Pilot |
+| `NEXT_PUBLIC_PRODUCT_READY` | `true` zeigt „Start free scan“ und öffnet `/intake` ohne Demo-Banner |
+| `NEXT_PUBLIC_PRICING_LIVE` | `true` behandelt `/pricing` als buchbar (Stripe); sonst Coming-soon + Waitlist |
 | `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` | abgesetzt → Supabase statt Datei-Store |
 | `AUTO_RELEASE` | `true` (Standard) = Report sofort frei; `false` = Pilotmodus, Freigabe in `/admin` |
 | `ADMIN_PASSWORD` + `ADMIN_SESSION_SECRET` | schützt `/admin` (HMAC-Cookie) |

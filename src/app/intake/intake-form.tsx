@@ -28,13 +28,12 @@ const SUBSIDIARY_COUNTRIES = COUNTRY_KEYS.filter(
 
 function FieldError({ msg }: { msg?: string }) {
   if (!msg) return null
-  return <p className="mt-1 text-xs font-medium text-rose-600">{msg}</p>
+  return <p className="mt-1 text-xs font-medium text-[var(--ns-danger)]">{msg}</p>
 }
 
-const labelCls = 'block text-sm font-semibold text-slate-800'
-const inputCls =
-  'mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100'
-const checkCls = 'h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-200'
+const labelCls = 'block text-sm font-semibold text-[var(--ns-fg)]'
+const inputCls = 'ns-input'
+const checkCls = 'h-4 w-4 rounded border-[var(--ns-border-strong)] text-[var(--ns-accent)]'
 
 export function IntakeForm({ dict }: { dict: Dictionary }) {
   const [state, formAction, pending] = useActionState<IntakeState, FormData>(submitIntake, { ok: false })

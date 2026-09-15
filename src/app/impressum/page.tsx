@@ -1,7 +1,6 @@
 import { cookies } from 'next/headers'
 import { getDict, localeFromCookie, type Dictionary, type Locale } from '@/i18n'
-import { SiteFooter } from '@/components/site/site-footer'
-import { CookieBanner } from '@/components/site/cookie-banner'
+import { SiteShell } from '@/components/site/site-shell'
 
 export const dynamic = 'force-dynamic'
 
@@ -13,16 +12,15 @@ export default async function ImpressumPage() {
   const f = dict.site.footer
 
   return (
-    <div className="min-h-screen bg-[var(--ns-bg)] text-[var(--ns-fg)]">
+    <SiteShell dict={dict} locale={locale}>
       <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <h1 className="font-display text-3xl tracking-tight sm:text-4xl">{l.impressum_title}</h1>
-        <p className="font-reading mt-3 text-sm text-[var(--ns-fg-muted)]">{l.impressum_intro}</p>
+        <p className="mt-3 text-sm text-[var(--ns-fg-muted)]">{l.impressum_intro}</p>
 
         <dl className="mt-10 space-y-6 text-sm leading-relaxed">
           <div>
             <dt className="font-semibold">{l.operator}</dt>
-            {/* Exact company legal name & form — replace before go-live */}
-            <dd className="font-reading mt-1 text-[var(--ns-fg-muted)]">
+            <dd className="mt-1 text-[var(--ns-fg-muted)]">
               {f.company_name}
               <br />
               {f.legal_form}
@@ -30,12 +28,11 @@ export default async function ImpressumPage() {
           </div>
           <div>
             <dt className="font-semibold">{l.representative}</dt>
-            <dd className="font-reading mt-1 text-[var(--ns-fg-muted)]">{l.placeholder}</dd>
+            <dd className="mt-1 text-[var(--ns-fg-muted)]">{l.placeholder}</dd>
           </div>
           <div>
             <dt className="font-semibold">{l.contact}</dt>
-            <dd className="font-reading mt-1 space-y-1 text-[var(--ns-fg-muted)]">
-              {/* Full Swiss postal address — replace before go-live */}
+            <dd className="mt-1 space-y-1 text-[var(--ns-fg-muted)]">
               <address className="not-italic">
                 {f.address_lines.map((line) => (
                   <span key={line} className="block">
@@ -52,11 +49,9 @@ export default async function ImpressumPage() {
                   {f.contact_email}
                 </a>
               </p>
-              {/* Optional phone — replace or remove before go-live */}
               <p>
                 {f.phone_label}: {f.phone}
               </p>
-              {/* UID / VAT — replace if applicable */}
               <p>
                 {f.uid_label}: {f.uid}
               </p>
@@ -64,10 +59,8 @@ export default async function ImpressumPage() {
           </div>
         </dl>
 
-        <p className="font-reading mt-10 text-sm text-[var(--ns-fg-muted)]">{f.disclaimer}</p>
+        <p className="mt-10 text-sm text-[var(--ns-fg-muted)]">{f.disclaimer}</p>
       </main>
-      <SiteFooter dict={dict} locale={locale} />
-      <CookieBanner dict={dict} />
-    </div>
+    </SiteShell>
   )
 }

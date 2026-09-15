@@ -335,14 +335,25 @@
       "how": "So funktioniert es",
       "preview": "Musterbericht",
       "features": "Leistungen",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "pricing": "Preise",
+      "contact": "Kontakt",
+      "menu": "Menü öffnen",
+      "close": "Menü schliessen",
+      "waitlist": "Auf die Warteliste",
+      "scan": "Kostenlosen Scan starten"
     },
     "hero": {
       "badge": "NexusScope · Für Deutschland, Österreich & die Schweiz",
       "title": "Ein Vorfall. Drei Melderegimes. Wissen Sie, welche gelten – bevor die Frist läuft.",
       "subtitle": "Spiegeln Sie Ihr Unternehmen gegen NIS2UmsuCG, NISG 2024 und das Schweizer ISG. Sehen Sie Fristen und sichtbare Lücken in einem klaren Bericht.",
       "cta": "Auf die Warteliste",
-      "note": "Early Access · Kostenlos · Keine Anmeldung"
+      "cta_secondary": "Musterbericht ansehen",
+      "scan_cta": "Kostenlosen Scan starten",
+      "note": "Early Access · Kostenlos · Keine Anmeldung",
+      "clock_early": "Frühwarnung",
+      "clock_incident": "Vorfallmeldung",
+      "clock_final": "Abschlussbericht"
     },
     "problem": {
       "title": "Die Meldepflichten im DACH-Raum wachsen – ungleich",
@@ -388,6 +399,12 @@
           "hint": "Die 24-h-/72-h-/30-d-Uhren für jedes anwendbare Regime."
         }
       ],
+      "profiles_label": "Musterprofile",
+      "profile_de": "Deutscher Mittelstand",
+      "profile_at": "Österreichischer IT-Dienstleister",
+      "profile_ch": "Schweizer Gesellschaft mit DE-Tochter",
+      "synthetic_badge": "SYNTHETISCH",
+      "open_full": "Vollständigen Musterbericht öffnen",
       "tab_regimes": "Regime-Status",
       "tab_gaps": "Lücken",
       "tab_deadlines": "Fristen",
@@ -524,6 +541,22 @@
         {
           "q": "Wann ist NexusScope verfügbar?",
           "a": "Wir nehmen die Warteliste jetzt für den Early Access auf. Treten Sie bei, und wir melden uns, sobald Ihr Unternehmen den ersten Scan starten kann."
+        },
+        {
+          "q": "Was umfasst die Prüfung des öffentlichen Fußabdrucks?",
+          "a": "Passive Beobachtungen zu DNS, TLS und HTTP-Headern der angegebenen Domain. Wir respektieren robots.txt, senden nur GET-Anfragen, verwenden keine Zugangsdaten und führen keine Port-Scans durch. Befunde beschränken sich auf öffentlich Sichtbares."
+        },
+        {
+          "q": "Was bedeutet UNKLAR?",
+          "a": "Die Engine hatte nicht genug Evidenz für IN oder OUT. Typische Gründe: fehlende Grössenangaben, eine Brancheneinordnung, die bestätigt werden muss, oder Strukturen (Töchter, Ausweisungen), die der Fragebogen nicht auflöst. Der Bericht zeigt offene Schwellen – er rät nicht."
+        },
+        {
+          "q": "Wo werden meine Daten gespeichert?",
+          "a": "Nur in der Schweiz und der EU. Wartelistenangaben und Berichte dienen Ihrer Orientierung und der Early-Access-Benachrichtigung – nicht der Werbung ohne Einwilligung."
+        },
+        {
+          "q": "Kann ich ein PDF exportieren?",
+          "a": "Ja. Jeder Bericht hat einen Druck-/PDF-Export für Geschäftsleitung, Wirtschaftsprüfung und Beratung. Musterberichte auf dieser Website sind als SYNTHETISCH gekennzeichnet und nutzen dasselbe Layout."
         }
       ]
     },
@@ -554,7 +587,100 @@
       "data_location": "Daten werden in der Schweiz / EU verarbeitet.",
       "tagline": "Cyber-Reporting & Compliance-Orientierung für den DACH-Raum.",
       "contact_label": "Kontakt:",
-      "legal_note": "Automatisierte Orientierung – keine Rechtsberatung."
+      "legal_note": "Automatisierte Orientierung – keine Rechtsberatung.",
+      "pricing": "Preise",
+      "contact": "Kontakt",
+      "product": "Produkt"
+    },
+    "theme": {
+      "toggle": "Farbmodus umschalten"
+    },
+    "scan_gate": {
+      "body": "Kostenlose Scans sind noch nicht allgemein verfügbar. Dieser Pfad läuft im gekennzeichneten Demo-/Fixture-Modus — synthetische Daten zum öffentlichen Fußabdruck, keine lebendige Rechtsfeststellung. Treten Sie der Warteliste für den Early Access bei.",
+      "link": "Auf die Warteliste"
+    },
+    "proof": {
+      "eyebrow": "Für DACH-Verantwortliche",
+      "title": "Für die Personen, die die 24-Stunden-Frage beantworten müssen",
+      "body": "Compliance, CISOs und Geschäftsleitung im DACH-Mittelstand. Die Logos darunter sind Layout-Platzhalter – keine Kundenempfehlungen.",
+      "placeholders": [
+        "DACH-CISO-Kreis (Platzhalter)",
+        "Mittelstand Maschinenbau (Platzhalter)",
+        "IT-Dienstleister (Platzhalter)",
+        "CH digitale Infrastruktur (Platzhalter)"
+      ]
+    },
+    "final_cta": {
+      "title": "Wissen, welche Uhren gelten – vor dem nächsten Vorfall.",
+      "body": "Treten Sie der Warteliste für den Early Access bei. Wenn Scans öffnen, erhalten Sie einen Bericht für DE, AT und CH aus einem Zwei-Minuten-Fragebogen und einer passiven Prüfung des öffentlichen Fußabdrucks.",
+      "cta": "Auf die Warteliste"
+    },
+    "pricing_page": {
+      "title": "Einfache Pläne für eine klare Erstorientierung",
+      "subtitle": "Die Warteliste ist offen. Bezahlte Pläne starten, wenn kostenlose Scans live gehen. Beträge werden — falls vorhanden — im Stripe Checkout bestätigt, nie auf dieser Seite erfunden.",
+      "coming_soon": "Demnächst",
+      "waitlist_cta": "Auf die Warteliste",
+      "scan_cta": "Kostenlosen Scan starten",
+      "note": "Nur informative Orientierung – keine Rechtsberatung. Daten bleiben in der Schweiz / EU.",
+      "footnote": "Enterprise- und Agency-Onboarding umfasst AVV, benannte Kontakte und Berichte für mehrere Gesellschaften. Steuern können über Stripe Tax greifen, sobald Registrierungen aktiv sind.",
+      "plans": [
+        {
+          "id": "free",
+          "name": "Free",
+          "price": "€0",
+          "cadence": "1 Bericht / Monat",
+          "blurb": "E-Mail-gebundene Orientierung für eine Domain.",
+          "features": [
+            "Ein DE-/AT-/CH-Bericht pro Monat",
+            "Passive DNS-, TLS- und Header-Prüfungen",
+            "PDF-Export",
+            "Threshold-Trace und UNKLAR, wenn Evidenz fehlt"
+          ]
+        },
+        {
+          "id": "pro",
+          "name": "Pro",
+          "price": "Unbegrenzt",
+          "cadence": "Team-Workspace",
+          "blurb": "Für Compliance-Teams mit mehr als einem Snapshot.",
+          "features": [
+            "Unbegrenzte Berichte",
+            "Geteilter Team-Workspace",
+            "Berichtsarchiv",
+            "Priorisierte Early-Access-Slots"
+          ]
+        },
+        {
+          "id": "enterprise",
+          "name": "Enterprise / Agency",
+          "price": "Individuell",
+          "cadence": "mehrere Gesellschaften",
+          "blurb": "Für Konzerne, Kanzleien und Agenturen mit vielen Einheiten.",
+          "features": [
+            "Mapping für Gruppen und Töchter",
+            "AVV und benannte Sicherheitskontakte",
+            "Admin-Freigabe für Pilotprogramme",
+            "Onboarding entlang Ihrer DACH-Rechtsprüfung"
+          ]
+        }
+      ]
+    },
+    "contact_page": {
+      "title": "Kontakt",
+      "subtitle": "Fragen zu Warteliste, Datenresidenz oder einem künftigen Scan für Ihre Gruppe — schreiben Sie uns. Wir antworten aus der Schweiz / EU.",
+      "name_label": "Name",
+      "email_label": "Geschäftliche E-Mail",
+      "company_label": "Unternehmen (optional)",
+      "message_label": "Nachricht",
+      "submit": "Nachricht senden",
+      "submitting": "Wird gesendet …",
+      "success": "Nachricht erhalten. Wir antworten an diese E-Mail.",
+      "privacy_note": "Nur zur Beantwortung Ihrer Anfrage. Speicherung in der Schweiz / EU. Siehe Datenschutzerklärung.",
+      "errors": {
+        "required": "Bitte ausfüllen",
+        "email": "Bitte eine gültige E-Mail-Adresse angeben",
+        "message": "Bitte eine kurze Nachricht schreiben"
+      }
     },
     "cookie": {
       "banner_label": "Cookie-Einwilligung",
@@ -620,7 +746,25 @@
           "b": "Auskunft, Berichtigung und Löschung jederzeit über die Kontakt-E-Mail."
         }
       ],
-      "placeholder": "[Vor dem Livegang auszufüllen.]"
+      "placeholder": "[Vor dem Livegang auszufüllen.]",
+      "cookies_body": [
+        {
+          "h": "Unbedingt erforderlich",
+          "b": "Sitzungssicherheit, CSRF-Schutz, Lastverteilung und das Speichern dieser Einwilligung. Diese Kategorie lässt sich nicht deaktivieren."
+        },
+        {
+          "h": "Präferenzen",
+          "b": "Sprache (lang-Cookie) und Farbmodus. Nur mit Einwilligung, soweit nicht für die angeforderte Seite erforderlich."
+        },
+        {
+          "h": "Analyse",
+          "b": "Aggregierte Nutzungsmessung. Aus, bis Sie diese Kategorie erlauben. Keine Werbeprofile."
+        },
+        {
+          "h": "Marketing",
+          "b": "Kampagnen-Attribution, wenn wir Outreach betreiben. Aus, solange Sie diese Kategorie nicht erlauben."
+        }
+      ]
     }
   }
 }

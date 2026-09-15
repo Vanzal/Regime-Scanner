@@ -21,15 +21,15 @@ function fmtDate(dateStr: string | null | undefined): string {
 export function Disclaimer({ data, dict }: { data: ReportData; dict: Dictionary }) {
   const versions = [...new Map(data.assessments.map((a) => [a.rules_version, a])).entries()]
   return (
-    <div className="space-y-4 rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-700">
+    <div className="ns-card space-y-4 p-5 text-sm text-[var(--ns-fg-muted)]">
       <p className="leading-relaxed">{renderInlineMd(dict.report.limits.body)}</p>
       <dl className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-2">
         <div>
-          <dt className="font-semibold text-slate-900">{t(dict, 'report.limits.scan_time')}</dt>
+          <dt className="font-semibold text-[var(--ns-fg)]">{t(dict, 'report.limits.scan_time')}</dt>
           <dd>{fmtDateTime(data.scan.finished_at ?? data.scan.created_at)}</dd>
         </div>
         <div>
-          <dt className="font-semibold text-slate-900">{t(dict, 'report.limits.mode_fixture').split(' (')[0]}</dt>
+          <dt className="font-semibold text-[var(--ns-fg)]">{t(dict, 'report.limits.mode_fixture').split(' (')[0]}</dt>
           <dd>
             {data.scan.mode === 'fixture'
               ? t(dict, 'report.limits.mode_fixture')
@@ -39,7 +39,7 @@ export function Disclaimer({ data, dict }: { data: ReportData; dict: Dictionary 
       </dl>
       {versions.length > 0 && (
         <div>
-          <h4 className="text-xs font-semibold text-slate-900">{t(dict, 'report.limits.rules_version')}</h4>
+          <h4 className="text-xs font-semibold text-[var(--ns-fg)]">{t(dict, 'report.limits.rules_version')}</h4>
           <ul className="mt-1 space-y-1 text-xs">
             {versions.map(([version, a]) => {
               const sources = data.rulesSources[a.regime] ?? []
@@ -50,12 +50,12 @@ export function Disclaimer({ data, dict }: { data: ReportData; dict: Dictionary 
                   {sources.length > 0 && (
                     <>
                       {' · '}
-                      <span className="text-slate-500">
+                      <span className="text-[var(--ns-fg-dim)]">
                         {t(dict, 'report.limits.source_of_law')}:{' '}
                         {sources.map((s, i) => (
                           <span key={s}>
                             {i > 0 && ', '}
-                            <a href={s} className="text-indigo-600 underline-offset-2 hover:underline" rel="noreferrer">
+                            <a href={s} className="text-[var(--ns-accent)] underline-offset-2 hover:underline" rel="noreferrer">
                               [{i + 1}]
                             </a>
                           </span>

@@ -14,7 +14,7 @@ export default async function IncidentPage() {
     <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
       <div className="no-print mb-6 flex items-center justify-between gap-3">
         <p className="text-xs font-bold uppercase tracking-widest text-indigo-600">{dict.app.name}</p>
-        <LangSwitch locale={locale} label="Language" variant="light" />
+          <LangSwitch locale={locale} label="Language" />
       </div>
       <p className="inline-flex rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600 ring-1 ring-slate-300/60">
         {dict.incident.badge}

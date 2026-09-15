@@ -1,58 +1,40 @@
 # Design
 
-<!-- impeccable:design-schema 1 -->
-
 ## World
 
-Refined brutalist compliance dossier. Cool stone paper sheet, deep blue ink, one deep premium red signal accent. Hard rules and sharp corners (≤2px). Hierarchy by weight, measure, and ruled lists — not cards, glass, or glow.
+Trustworthy DACH compliance product. Deep navy / charcoal surfaces, one emerald accent for status and primary action, amber for UNCLEAR. Linear + Stripe + security-tool restraint — not a brutalist dossier, not a generic AI SaaS gradient.
 
 ## Mode
 
-Persuade (landing `/`)
+Persuade (landing `/`). Dark mode default with an explicit light toggle (`next-themes`, class strategy).
 
 ## Typography
 
 | Role | Face | Notes |
 | --- | --- | --- |
-| Display | Archivo Black | Wordmark, section titles, clock digits |
-| UI / sans | Archivo | Nav, labels, controls |
-| Reading | Literata | Body, FAQ answers, form privacy note |
-| Instrument | Archivo tabular | STEP labels, status stamps, uppercase meta |
+| Display / UI | Inter | Wordmark, titles, body |
+| Instrument | IBM Plex Mono | STEP labels, status stamps, clocks, meta |
 
-Scale roughly major third (~1.25) from 14px body.
+## Color
 
-## Color (OKLCH)
+CSS tokens `--ns-*` in `src/app/globals.css`. Dark is the `:root` / `.dark` set; `.light` inverts to high-contrast paper.
 
-| Token | Value | Role |
-| --- | --- | --- |
-| `--ns-bg` | `oklch(0.965 0.008 95)` | Sheet ground |
-| `--ns-bg-elevated` | `oklch(0.99 0.004 95)` | Raised panels |
-| `--ns-bg-panel` | `oklch(0.94 0.01 95)` | Alternating bands |
-| `--ns-fg` / `--ns-bg-ink` | `oklch(0.22 0.035 255)` | Ink |
-| `--ns-accent` | `oklch(0.38 0.12 25)` | Primary CTA only (deep premium red) |
-| Semantic | success / warning / danger | Status stamps with border (not fill pills) |
+- Accent / IN: emerald
+- UNCLEAR: amber
+- High severity: restrained rose
+- No multi-accent rainbow, no glassmorphism, no glowing CTA shadows
 
 ## Components
 
-- Primary button: deep premium red fill, 2px radius, no glow shadow
-- Inputs: strong ink border, accent focus ring
-- Sample report: ink frame, inverted selected tab, dashed border for UNCLEAR
-- Clocks: lit ink cells vs dashed ghost cell
-
-## Signature move
-
-Reporting clocks as instrument blocks (24h / 72h / 30d); absence drawn as a ghost cell.
+- Sticky header: logo, Features, How it works, Sample report, Pricing, FAQ, waitlist CTA (scan CTA when `NEXT_PUBLIC_PRODUCT_READY`)
+- Primary button: emerald fill, 8px radius
+- Sample report: live-looking card with independent DE / AT / CH stamps, labelled SYNTHETIC
+- Clocks: 24 h / 72 h / 30 d instrument cells
 
 ## Motion
 
-Short ease-out reveals on hero (`ns-reveal`, <600ms). `prefers-reduced-motion` disables. No bounce, no ambient glow breathe.
+Short ease-out reveals (`ns-reveal`, <600ms). `prefers-reduced-motion` disables.
 
-## Anti-patterns refused
+## Copy
 
-Dark cyan SaaS template; Fraunces / Plus Jakarta; hero eyebrow pill; side accent bars; equal feature cards; decorative map/glow SVG; glassmorphism; blob radii; glowing CTA shadows.
-
-## Surfaces
-
-- Landing: `.impeccable/surfaces/src-app-page-tsx.md`
-- Legal pages: contrast-only token swap to share footer (full redesign deferred)
-- Intake / report / admin: not in this pass
+Preserve live nexusscopes.com voice. No invented customers. Social-proof logos are labelled placeholders.
