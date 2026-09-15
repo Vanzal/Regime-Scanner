@@ -1,8 +1,13 @@
+import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { getDict, localeFromCookie, type Dictionary, type Locale } from '@/i18n'
 import { SiteShell } from '@/components/site/site-shell'
 
 export const dynamic = 'force-dynamic'
+
+function looksLikeEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+}
 
 export default async function ImpressumPage() {
   const cookieStore = await cookies()
@@ -10,6 +15,8 @@ export default async function ImpressumPage() {
   const dict: Dictionary = getDict(locale)
   const l = dict.site.legal
   const f = dict.site.footer
+  const email = f.contact_email?.trim() ?? ''
+  const phone = f.phone?.trim() ?? ''
 
   return (
     <SiteShell dict={dict} locale={locale}>
@@ -28,7 +35,7 @@ export default async function ImpressumPage() {
           </div>
           <div>
             <dt className="font-semibold">{l.representative}</dt>
-            <dd className="mt-1 text-[var(--ns-fg-muted)]">{l.placeholder}</dd>
+            <dd className="mt-1 text-[var(--ns-fg-muted)]">{f.operator_person || l.placeholder}</dd>
           </div>
           <div>
             <dt className="font-semibold">{l.contact}</dt>
@@ -42,16 +49,27 @@ export default async function ImpressumPage() {
               </address>
               <p>
                 {f.email_label}:{' '}
-                <a
-                  href={`mailto:${f.contact_email}`}
-                  className="underline decoration-[var(--ns-border-strong)] underline-offset-4 hover:text-[var(--ns-fg)]"
-                >
-                  {f.contact_email}
-                </a>
+                {looksLikeEmail(email) ? (
+                  <a
+                    href={`mailto:${email}`}
+                    className="underline decoration-[var(--ns-border-strong)] underline-offset-4 hover:text-[var(--ns-fg)]"
+                  >
+                    {email}
+                  </a>
+                ) : (
+                  <Link
+                    href="/contact"
+                    className="underline decoration-[var(--ns-border-strong)] underline-offset-4 hover:text-[var(--ns-fg)]"
+                  >
+                    {f.contact_form_label}
+                  </Link>
+                )}
               </p>
-              <p>
-                {f.phone_label}: {f.phone}
-              </p>
+              {phone ? (
+                <p>
+                  {f.phone_label}: {phone}
+                </p>
+              ) : null}
               <p>
                 {f.uid_label}: {f.uid}
               </p>

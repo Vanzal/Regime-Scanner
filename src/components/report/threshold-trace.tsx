@@ -32,21 +32,36 @@ export function ThresholdTraceBlock({ assessments, dict }: { assessments: Report
                 </p>
               )}
               {(trace.unclear_code || trace.matched_class_id) && (
-                <p className="mb-3 text-[11px] text-slate-600">
-                  {trace.unclear_code && (
-                    <>
-                      <span className="font-semibold">{t(dict, 'report.trace.unclear_code')}:</span>{' '}
-                      <span className="font-mono text-amber-800">{trace.unclear_code}</span>
-                    </>
-                  )}
-                  {trace.unclear_code && trace.matched_class_id ? ' · ' : null}
-                  {trace.matched_class_id && (
-                    <>
-                      <span className="font-semibold">{t(dict, 'report.trace.matched_class')}:</span>{' '}
-                      <span className="font-mono">{trace.matched_class_id}</span>
-                    </>
-                  )}
-                </p>
+                <div className="mb-3 space-y-1 text-[11px] text-slate-600">
+                  <p>
+                    {trace.unclear_code && (
+                      <>
+                        <span className="font-semibold">{t(dict, 'report.trace.unclear_code')}:</span>{' '}
+                        <span className="font-mono text-amber-800">{trace.unclear_code}</span>
+                      </>
+                    )}
+                    {trace.unclear_code && trace.matched_class_id ? ' · ' : null}
+                    {trace.matched_class_id && (
+                      <>
+                        <span className="font-semibold">{t(dict, 'report.trace.matched_class')}:</span>{' '}
+                        <span className="font-mono">{trace.matched_class_id}</span>
+                      </>
+                    )}
+                  </p>
+                  {trace.unclear_code &&
+                  dict.report.unclear_hints?.[
+                    trace.unclear_code as keyof typeof dict.report.unclear_hints
+                  ] ? (
+                    <p className="rounded-lg bg-amber-50 px-3 py-2 text-amber-900">
+                      <span className="font-semibold">{t(dict, 'report.next_action_label')}:</span>{' '}
+                      {
+                        dict.report.unclear_hints[
+                          trace.unclear_code as keyof typeof dict.report.unclear_hints
+                        ]
+                      }
+                    </p>
+                  ) : null}
+                </div>
               )}
               <table className="w-full text-left text-xs">
                 <thead>

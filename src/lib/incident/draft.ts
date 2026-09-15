@@ -76,7 +76,7 @@ export function buildDraftNotification(
       ``,
       `Weitere Angaben und eine Folgemeldung folgen, sobald die Sachlage geklärt ist.`,
       ``,
-      `Hinweis: Dies ist ein automatisch erzeugter Entwurfstext und keine Rechtsberatung.`,
+      `Hinweis: Automatisch erzeugter Entwurf. NexusScope liefert regulatorische Orientierungsinformationen für die interne Einschätzung; wo angemessen mit qualifizierter Rechtsberatung prüfen.`,
       ``,
       `Mit freundlichen Grüßen`,
     ]
@@ -104,7 +104,7 @@ export function buildDraftNotification(
     ``,
     `Further details and a follow-up notification will follow once the facts are clarified.`,
     ``,
-    `Note: This is an automatically generated draft and not legal advice.`,
+    `Note: Automatically generated draft. NexusScope provides regulatory readiness intelligence for internal assessment; review with qualified counsel where appropriate.`,
     ``,
     `Yours sincerely`,
   ]

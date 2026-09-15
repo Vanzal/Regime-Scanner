@@ -1,15 +1,15 @@
 {
   "app": {
     "name": "NexusScope",
-    "tagline": "Which cyber-incident reporting regimes apply to your company?"
+    "tagline": "Regulatory readiness for overlapping DACH cyber-reporting regimes"
   },
   "landing": {
     "title": "Which reporting duties apply to your company?",
-    "intro": "Germany, Austria and Switzerland have introduced new cyber-incident reporting regimes (NIS2UmsuCG, NISG 2024, ISG). We automatically assess which regimes apply to you, which thresholds are relevant, and where your public-facing security gaps are – in under three minutes, no login required.",
+    "intro": "Germany, Austria and Switzerland each run their own cyber-incident reporting regimes (NIS2UmsuCG, NISG 2024, ISG). NexusScope maps your company profile against all three, shows which clocks may apply, and flags visible gaps in your public footprint — in a few minutes, without a login.",
     "cta": "Start the free scan",
     "no_login": "No login required",
     "three_regimes": "Three regimes, three independent answers",
-    "disclaimer_short": "Automated public-footprint assessment – not legal advice."
+    "disclaimer_short": "NexusScope provides regulatory readiness intelligence based on referenced public sources. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate."
   },
   "intake": {
     "title": "Eight questions – then we scan",
@@ -139,9 +139,9 @@
     "section_trace": "5 · Reasoning (threshold trace)",
     "section_limits": "6 · Limits & notes",
     "verdict": {
-      "applicable": "APPLICABLE",
+      "applicable": "CONFIRMED",
       "not_applicable": "NOT APPLICABLE",
-      "unclear": "UNCLEAR",
+      "unclear": "NEEDS REVIEW",
       "confidence": "Confidence",
       "manually_reviewed": "Manually reviewed",
       "override_note": "Assessment reviewed and adjusted by a specialist."
@@ -152,9 +152,9 @@
       "next_steps": "Recommended next steps",
       "disclaimer_label": "Note",
       "status": {
-        "likely": "LIKELY APPLICABLE",
-        "possible": "POSSIBLE",
-        "unlikely": "UNLIKELY APPLICABLE"
+        "likely": "LIKELY",
+        "possible": "NEEDS REVIEW",
+        "unlikely": "UNLIKELY"
       }
     },
     "clock": {
@@ -192,9 +192,9 @@
         "skipped": "skipped",
         "fired": "triggered"
       },
-      "missing": "Open inputs blocking a decisive assessment:",
+      "missing": "Missing information that would resolve this:",
       "summary": "Path",
-      "unclear_code": "Unclear reason",
+      "unclear_code": "Why open",
       "matched_class": "Matched class"
     },
     "limits": {
@@ -203,10 +203,28 @@
       "scan_time": "Scan timestamp",
       "mode_fixture": "Demo mode (fixture data, no live requests)",
       "mode_live": "Live scan of the public footprint",
-      "body": "This report was generated automatically: an automated evaluation of publicly available sources (DNS, TLS, HTTP headers, published web pages) combined with your answers. It is a first orientation and **not legal advice**. A full compliance assessment requires internal system information that we cannot see. Legal standing and confidence are shown per regime; uncertain legal situations are honestly reported as “unclear”.",
+      "body": "NexusScope provides regulatory readiness intelligence based on referenced public sources and your answers. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate. This report does **not** replace lawyers, auditors, or regulators. Legal standing and confidence are shown per regime. Where evidence is incomplete, the status is **Needs review** or **Insufficient information** — with the open inputs listed instead of a guess.",
       "source_of_law": "Sources of law"
     },
-    "disclaimer_footer": "Automated public assessment · not legal advice · legal standing shown in report"
+    "disclaimer_footer": "NexusScope provides regulatory readiness intelligence based on referenced public sources. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate.",
+    "confidence_bands": {
+      "confirmed": "Confirmed",
+      "likely": "Likely",
+      "needs_review": "Needs review",
+      "insufficient": "Insufficient information"
+    },
+    "unclear_hints": {
+      "missing_sector": "Confirm the sector (or official critical-infrastructure designation) that applies to this entity.",
+      "missing_size_inputs": "Provide employee count and/or revenue / balance-sheet bands so size thresholds can be evaluated.",
+      "higher_class_undetermined": "A higher entity class may apply; confirm sector-specific classification criteria with counsel.",
+      "classification_open": "Entity-class criteria are not fully resolved from the stated profile. Confirm sector lists and size inputs.",
+      "indirect_exposure": "Indirect EU exposure (subsidiary or contractual flow-down) needs confirmation before a decisive read.",
+      "entity_class_outcome": "The matched class leaves applicability open. Review the cited class criteria against your operations."
+    },
+    "next_action_label": "Next action",
+    "evidence_label": "Evidence",
+    "source_label": "Source",
+    "why_label": "Why"
   },
   "incident": {
     "title": "Incident Copilot",
@@ -214,7 +232,7 @@
     "badge": "Separate from the free scan",
     "submit": "Run triage",
     "submitting": "Running triage …",
-    "disclaimer_short": "Automated triage based on your answers and the published reporting clocks – not legal advice.",
+    "disclaimer_short": "NexusScope provides regulatory readiness intelligence based on referenced public sources. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate.",
     "fields": {
       "description": "Short description of what happened",
       "description_placeholder": "e.g. Ransomware encryption of file servers; customer portal unavailable",
@@ -276,14 +294,14 @@
         "green": "Not directly applicable"
       },
       "verdict": {
-        "applicable": "APPLICABLE",
+        "applicable": "CONFIRMED",
         "not_applicable": "NOT APPLICABLE",
-        "unclear": "UNCLEAR"
+        "unclear": "NEEDS REVIEW"
       },
       "unclear_code": "Unclear reason",
       "trigger_fired": "Trigger",
-      "limits_body": "This triage was generated automatically from your incident intake and the versioned YAML rules (NIS2UmsuCG, NISG, ISG). Absolute deadlines are calculated from the stated time of discovery. Without sector and size data the home regime often remains **unclear** – that is intentional. Significance triggers (availability, personal data, scale) come from each rules file. This is a first orientation and **not legal advice**. When in doubt, contact counsel and the competent authority immediately.",
-      "disclaimer_footer": "Automated incident triage · not legal advice · save this link – access is token-based"
+      "limits_body": "This triage uses your incident intake and versioned YAML rules (NIS2UmsuCG, NISG, ISG). Absolute deadlines are calculated from the stated time of discovery. Without sector and size data the home regime often remains **Needs review** — that is intentional. NexusScope provides regulatory readiness intelligence based on referenced public sources. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate. When in doubt, contact counsel and the competent authority immediately.",
+      "disclaimer_footer": "NexusScope provides regulatory readiness intelligence based on referenced public sources. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate."
     },
     "checklist": {
       "what": "Factual description of the incident (what happened)",
@@ -346,11 +364,11 @@
     "hero": {
       "badge": "NexusScope · Built for Germany, Austria & Switzerland",
       "title": "One incident. Three reporting regimes. Know which ones apply — before the clock starts.",
-      "subtitle": "Map your company against NIS2UmsuCG, NISG 2024 and the Swiss ISG. See deadlines and visible gaps in one clear report.",
+      "subtitle": "NexusScope maps your company against Germany’s NIS2UmsuCG/BSIG, Austria’s NISG 2024 and Switzerland’s ISG. You get independent applicability reads, reporting clocks, and visible public-footprint gaps — with sources and confidence stated for each regime.",
       "cta": "Join waitlist",
       "cta_secondary": "View sample report",
       "scan_cta": "Start free scan",
-      "note": "Early access · Free · No login",
+      "note": "Early access · Free orientation · No login required",
       "clock_early": "Early warning",
       "clock_incident": "Incident report",
       "clock_final": "Final report"
@@ -374,36 +392,36 @@
         },
         {
           "title": "We analyse",
-          "body": "NexusScope maps your profile against all three regimes and checks your public footprint (DNS, TLS, web headers) for visible gaps."
+          "body": "NexusScope evaluates your profile against all three regimes and checks your public footprint (DNS, TLS, web headers, published pages) for visible gaps — GET-only, robots.txt-respecting."
         },
         {
           "title": "You get one unified report",
-          "body": "Per-regime status, reporting deadlines, a prioritised gap list and the reasoning behind every conclusion — in plain language."
+          "body": "Per-regime applicability, reporting deadlines, a prioritised gap list, and the reasoning behind each conclusion — including what is Confirmed, Likely, Needs review, or Insufficient information."
         }
       ]
     },
     "preview": {
       "title": "What the report looks like",
-      "subtitle": "Every NexusScope report centres on three outputs: Regime Status, Gaps, and Deadlines.",
+      "subtitle": "Each sample walks Regulation → Applicability → Why → Evidence → Source → Confidence → Next action. Profiles are synthetic demo data, clearly labelled — not live determinations.",
       "outputs": [
         {
-          "label": "Regime Status",
-          "hint": "IN / OUT / UNCLEAR for DE, AT and CH — independently assessed."
+          "label": "Applicability",
+          "hint": "Confirmed / Likely / Needs review / Insufficient information — independently for DE, AT and CH."
         },
         {
-          "label": "Gaps",
-          "hint": "Prioritised findings from your public footprint, with clear next steps."
+          "label": "Why & evidence",
+          "hint": "Threshold reasoning from your stated profile plus findings from the public footprint."
         },
         {
-          "label": "Deadlines",
-          "hint": "The 24 h / 72 h / 30 d clocks for each applicable regime."
+          "label": "Deadlines & next action",
+          "hint": "Reporting clocks when a regime applies, plus what would resolve open questions."
         }
       ],
       "profiles_label": "Sample profiles",
       "profile_de": "Mid-market DE company",
       "profile_at": "Austrian IT provider",
       "profile_ch": "Swiss entity with DE subsidiary",
-      "synthetic_badge": "SYNTHETIC",
+      "synthetic_badge": "DEMO · SYNTHETIC",
       "open_full": "Open full sample",
       "tab_regimes": "Regime Status",
       "tab_gaps": "Gaps",
@@ -417,8 +435,8 @@
       "regime_at_reason": "Thresholds met, but sector classification needs confirmation.",
       "regime_ch": "Switzerland — ISG",
       "regime_ch_reason": "No Swiss establishment and no listed critical sector.",
-      "status_in": "IN",
-      "status_unclear": "UNCLEAR",
+      "status_in": "CONFIRMED",
+      "status_unclear": "NEEDS REVIEW",
       "status_out": "OUT",
       "gaps_intro": "Prioritised findings from the public footprint:",
       "gap1": "No SPF record on the primary domain — e-mail spoofing is trivial.",
@@ -428,15 +446,19 @@
       "deadline1": "24 hours — early warning to the BSI",
       "deadline2": "72 hours — incident report to the BSI",
       "deadline3": "1 month — final report to the BSI",
-      "disclaimer": "This is not legal advice.",
-      "as_of": "Timelines current as of September 2026."
+      "disclaimer": "NexusScope provides regulatory readiness intelligence based on referenced public sources. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate.",
+      "as_of": "Timelines current as of September 2026.",
+      "col_confidence": "Confidence",
+      "col_next": "Next action",
+      "demo_banner": "Simulated sample · synthetic profile · not a live legal determination",
+      "insufficient_hint": "Insufficient information — listed inputs would resolve this."
     },
     "features": {
       "title": "What you get",
       "cards": [
         {
           "title": "Know which regimes apply",
-          "body": "Independent IN / OUT / UNCLEAR verdicts for DE, AT and CH — in one place."
+          "body": "Independent Confirmed / Likely / Needs review / Insufficient reads for DE, AT and CH — in one place."
         },
         {
           "title": "See the clocks that matter",
@@ -448,7 +470,7 @@
         },
         {
           "title": "Show your reasoning",
-          "body": "Every conclusion cites thresholds and sources — ready for management and counsel."
+          "body": "Every conclusion cites thresholds and public sources, with confidence and open inputs when evidence is thin."
         },
         {
           "title": "Share a clean PDF",
@@ -463,11 +485,11 @@
     "trust": {
       "eyebrow": "Trust",
       "title": "Built for DACH companies",
-      "body": "Orientation for Germany, Austria and Switzerland. Your data stays in Switzerland and the EU. Public sources only — informational, not legal advice.",
+      "body": "Built for Germany, Austria and Switzerland. Data handling designed for Switzerland / the EU. Public sources and your answers only. NexusScope provides regulatory readiness intelligence based on referenced public sources. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate.",
       "points": [
-        "Built for DACH companies",
+        "Referenced public sources per regime",
         "Data stays in Switzerland / EU",
-        "Informational only — not legal advice"
+        "Uncertainty stated — not guessed away"
       ]
     },
     "waitlist": {
@@ -528,52 +550,51 @@
       "items": [
         {
           "q": "Does NIS2 / NISG / ISG apply to my company?",
-          "a": "It depends on sector, size and structure — the thresholds differ between Germany, Austria and Switzerland. NexusScope checks your profile against each regime and tells you where you stand, including what remains unclear."
+          "a": "It depends on sector, size and structure — thresholds differ across Germany, Austria and Switzerland. NexusScope checks your profile against each regime and states Confirmed, Likely, Needs review, or Insufficient information, including what remains open."
         },
         {
           "q": "Is this legal advice?",
-          "a": "No. NexusScope is an automated orientation based on public sources and your answers. It shows reasoning and confidence levels and clearly marks uncertainty. For binding decisions, consult legal counsel."
+          "a": "NexusScope provides regulatory readiness intelligence based on referenced public sources. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate. NexusScope does not replace lawyers, auditors, or regulators."
         },
         {
           "q": "What happens with my data?",
-          "a": "Your data is stored in Switzerland and the EU, used only for your report and to notify you about early access. We scan only public sources, honour robots.txt and never access protected systems."
+          "a": "Your data is stored in Switzerland and the EU, used to produce your report and to notify you about early access. Scans use public sources only, honour robots.txt, and never access protected systems."
         },
         {
           "q": "When will NexusScope be available?",
-          "a": "We are onboarding the waitlist for early access now. Join the waitlist and we will let you know as soon as your company can run its first scan."
+          "a": "Waitlist onboarding for early access is open now. Join and we will notify you when your company can run its first scan."
         },
         {
           "q": "What does a public-footprint check include?",
-          "a": "Passive DNS, TLS and HTTP-header observations on the domain you provide. We honour robots.txt, send GET requests only, never use credentials, and never run port scans. Findings are limited to what is visible from public sources."
+          "a": "Passive DNS, TLS and HTTP-header observations on the domain you provide, plus published pages where reachable. GET requests only, no credentials, no port scans. Findings are limited to what is visible from public sources."
         },
         {
-          "q": "What does UNCLEAR mean?",
-          "a": "The engine did not have enough evidence to decide IN or OUT. Typical reasons: missing size inputs, sector classification that needs confirmation, or a structure (subsidiaries, designations) that the questionnaire cannot resolve. The report shows the open thresholds instead of guessing."
+          "q": "What do Confirmed, Likely, Needs review and Insufficient information mean?",
+          "a": "Confirmed: the stated profile meets (or clearly misses) the cited thresholds. Likely: strong signals, but a nuance remains. Needs review: evidence points both ways or a classification step is unfinished. Insufficient information: required inputs are missing — the report lists what would resolve it instead of guessing."
         },
         {
           "q": "Where is my data stored?",
-          "a": "In Switzerland and the EU only. Waitlist details and reports are used to produce your orientation and to notify you about early access — not for advertising without consent."
+          "a": "In Switzerland and the EU only. Waitlist details and reports support your orientation and early-access notification — not advertising without consent."
         },
         {
           "q": "Can I export a PDF?",
-          "a": "Yes. Every report has a print/PDF export for boards, auditors and counsel. Sample reports on this site are labelled SYNTHETIC and use the same layout."
+          "a": "Yes. Every report supports print/PDF export for boards, auditors and counsel. Sample reports on this site are labelled synthetic demo data and use the same layout."
         }
       ]
     },
     "footer": {
       "company_name": "NexusScope",
-      "legal_form": "[Legal form — e.g. GmbH / AG]",
+      "legal_form": "Sole proprietorship (Switzerland)",
       "address_lines": [
-        "[Street and number]",
-        "[PLZ] [City]",
+        "Registered address coming soon",
         "Switzerland"
       ],
       "email_label": "Email",
-      "contact_email": "hello@nexusscope.example",
+      "contact_email": "",
       "phone_label": "Phone",
-      "phone": "[+41 XX XXX XX XX]",
+      "phone": "",
       "uid_label": "UID / VAT",
-      "uid": "[CHE-XXX.XXX.XXX]",
+      "uid": "UID / VAT registration coming soon",
       "copyright": "© 2026 NexusScope. All rights reserved.",
       "legal_heading": "Legal",
       "impressum": "Imprint",
@@ -583,14 +604,16 @@
       "cookies": "Cookie Policy",
       "cookie_settings": "Cookie Settings",
       "lang_label": "Language",
-      "disclaimer": "NexusScope provides informational orientation only and does not constitute legal advice.",
+      "disclaimer": "NexusScope provides regulatory readiness intelligence based on referenced public sources. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate.",
       "data_location": "Data is processed in Switzerland / EU.",
-      "tagline": "Cyber-reporting & compliance orientation for the DACH region.",
+      "tagline": "Regulatory readiness for DACH cyber-incident reporting regimes.",
       "contact_label": "Contact:",
-      "legal_note": "Automated orientation — not legal advice.",
+      "legal_note": "NexusScope provides regulatory readiness intelligence based on referenced public sources. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate.",
       "pricing": "Pricing",
       "contact": "Contact",
-      "product": "Product"
+      "product": "Product",
+      "operator_person": "Noah Baumann",
+      "contact_form_label": "Contact form"
     },
     "theme": {
       "toggle": "Toggle colour theme"
@@ -600,19 +623,21 @@
       "link": "Join waitlist"
     },
     "proof": {
-      "eyebrow": "Built for DACH operators",
-      "title": "Made for the people who have to answer the 24-hour question",
-      "body": "Compliance officers, CISOs and managing directors at mid-market companies in Germany, Austria and Switzerland. Logos below are layout placeholders — not customer endorsements.",
-      "placeholders": [
-        "DACH CISO circle (placeholder)",
-        "Mid-market manufacturing (placeholder)",
-        "IT Dienstleister (placeholder)",
-        "Swiss digital infra (placeholder)"
+      "eyebrow": "Who it is for",
+      "title": "Designed for DACH organizations navigating overlapping cybersecurity regulations",
+      "body": "Built for the roles that must decide whether a reporting duty applies — before the 24-hour clock starts. The categories below describe intended users. They are not customers, partners, or endorsements.",
+      "audiences": [
+        "CISOs",
+        "Security teams",
+        "Compliance teams",
+        "IT leadership",
+        "Managing directors",
+        "Mid-market organizations"
       ]
     },
     "final_cta": {
       "title": "Know which clocks apply — before the next incident.",
-      "body": "Join the waitlist for early access. When scans open, you will get one unified report for DE, AT and CH from a two-minute questionnaire and a passive public-footprint check.",
+      "body": "Join the waitlist for early access. When scans open, you receive one DE / AT / CH orientation from a short questionnaire and a passive public-footprint check — with sources, confidence, and open questions stated clearly.",
       "cta": "Join waitlist"
     },
     "pricing_page": {
@@ -621,7 +646,7 @@
       "coming_soon": "Coming soon",
       "waitlist_cta": "Join waitlist",
       "scan_cta": "Start free scan",
-      "note": "Informational orientation only — not legal advice. Data stays in Switzerland / the EU.",
+      "note": "NexusScope provides regulatory readiness intelligence based on referenced public sources. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate. Data stays in Switzerland / the EU.",
       "footnote": "Enterprise and agency onboarding includes a DPA, named contacts, and multi-entity reporting. Tax may apply via Stripe Tax once registrations are active.",
       "plans": [
         {
@@ -634,7 +659,7 @@
             "One unified DE / AT / CH report per month",
             "Passive DNS, TLS and header checks",
             "PDF export",
-            "Threshold trace and UNCLEAR when evidence is missing"
+            "Threshold trace with Needs review / Insufficient information when evidence is missing"
           ]
         },
         {
@@ -667,7 +692,7 @@
     },
     "contact_page": {
       "title": "Contact",
-      "subtitle": "Questions about waitlist access, data residency, or a future scan for your group — write to us. We reply from Switzerland / the EU.",
+      "subtitle": "Questions about waitlist access, data residency, or a future scan for your group — use the form below. We reply from Switzerland / the EU. Company postal details will be published here once confirmed.",
       "name_label": "Name",
       "email_label": "Work e-mail",
       "company_label": "Company (optional)",
@@ -718,7 +743,7 @@
       "docs_nav": "Legal",
       "language_note": "These documents are published in English.",
       "impressum_title": "Imprint",
-      "impressum_intro": "Information according to Swiss / EU / German imprint rules (placeholder).",
+      "impressum_intro": "Statutory provider information for NexusScope. Details marked as coming soon will be published once confirmed — we do not invent registration numbers, addresses, or phone numbers.",
       "operator": "Operator",
       "representative": "Represented by",
       "contact": "Contact",
@@ -743,10 +768,10 @@
         },
         {
           "h": "Your rights",
-          "b": "Access, rectification and erasure at any time via the contact e-mail."
+          "b": "Access, rectification and erasure at any time via the contact form."
         }
       ],
-      "placeholder": "[To be completed before go-live.]",
+      "placeholder": "Noah Baumann",
       "cookies_body": [
         {
           "h": "Strictly necessary",

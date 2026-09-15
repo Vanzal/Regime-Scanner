@@ -120,7 +120,7 @@ function fixtureToIntake(fixture: FixtureScan): IntakeAnswers {
 }
 
 const DISCLAIMER =
-  'Synthetic sample. Automated orientation from public sources and stated answers — not legal advice. Timelines current as of September 2026.'
+  'Simulated sample (synthetic demo data). NexusScope provides regulatory readiness intelligence based on referenced public sources and stated answers. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate. Timelines current as of September 2026.'
 
 export function listSampleProfileIds(): SampleProfileId[] {
   return ['mittelstand-de', 'service-at', 'ch-eu-subsidiary']

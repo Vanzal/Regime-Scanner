@@ -9,7 +9,7 @@ describe('sample reports (fixture mapping engine)', () => {
     for (const report of reports) {
       expect(report.synthetic).toBe(true)
       expect(report.regimes.map((r) => r.code)).toEqual(['DE', 'AT', 'CH'])
-      expect(report.disclaimer).toMatch(/not legal advice/i)
+      expect(report.disclaimer).toMatch(/regulatory readiness intelligence|not legal advice/i)
       expect(report.gaps.length).toBeGreaterThan(0)
     }
   })

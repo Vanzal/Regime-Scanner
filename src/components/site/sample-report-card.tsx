@@ -1,6 +1,6 @@
 'use client'
 
-import type { SampleReport, SampleStatus } from '@/lib/sample-reports'
+import type { SampleReport, SampleRegime, SampleStatus } from '@/lib/sample-reports'
 import type { Dictionary } from '@/i18n'
 import { cn } from '@/lib/utils'
 
@@ -14,6 +14,28 @@ function statusLabel(dict: Dictionary, status: SampleStatus): string {
   if (status === 'in') return dict.site.preview.status_in
   if (status === 'out') return dict.site.preview.status_out
   return dict.site.preview.status_unclear
+}
+
+function confidenceBand(dict: Dictionary, regime: SampleRegime): string {
+  const bands = dict.report.confidence_bands
+  if (regime.status === 'out') return bands.confirmed
+  if (regime.status === 'in') {
+    return regime.confidence >= 0.75 ? bands.confirmed : bands.likely
+  }
+  const code = regime.unclearCode ?? ''
+  if (code.startsWith('missing_')) return bands.insufficient
+  return bands.needs_review
+}
+
+function nextAction(dict: Dictionary, regime: SampleRegime): string | null {
+  if (regime.status === 'in') {
+    const first = regime.deadlines[0]
+    return first ? `${first.label} · ${first.authority}` : null
+  }
+  if (regime.status === 'out') return null
+  const hints = dict.report.unclear_hints as Record<string, string>
+  if (regime.unclearCode && hints[regime.unclearCode]) return hints[regime.unclearCode]
+  return dict.site.preview.insufficient_hint
 }
 
 function clockLabel(hours: number): string {
@@ -38,44 +60,77 @@ export function SampleReportCard({
 
   return (
     <div className="ns-card overflow-hidden" data-testid={`sample-report-${report.id}`}>
-      <div className="flex items-center justify-between gap-3 border-b border-[var(--ns-border)] bg-[var(--ns-bg-panel)] px-4 py-3 sm:px-5">
+      <div className="flex flex-col gap-2 border-b border-[var(--ns-border)] bg-[var(--ns-bg-panel)] px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
         <div className="min-w-0">
           <p className="truncate font-medium text-[var(--ns-fg)]">{report.company.legal_name}</p>
           <p className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
             {report.company.domain}
           </p>
         </div>
-        <span className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
-          {p.synthetic_badge}
-        </span>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
+            {p.synthetic_badge}
+          </span>
+        </div>
       </div>
+
+      {!compact ? (
+        <p className="border-b border-[var(--ns-border)] bg-[color-mix(in_oklch,var(--ns-warning)_8%,transparent)] px-4 py-2 text-xs text-[var(--ns-fg-muted)] sm:px-5">
+          {p.demo_banner}
+        </p>
+      ) : null}
 
       <div className={cn('grid gap-0', compact ? '' : 'lg:grid-cols-3')}>
         <section className="border-b border-[var(--ns-border)] p-4 sm:p-5 lg:border-b-0 lg:border-r">
           <h3 className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
             {p.tab_regimes}
           </h3>
-          <ul className="mt-3 space-y-3">
-            {report.regimes.map((r) => (
-              <li key={r.code} data-testid={`sample-regime-${report.id}-${r.code.toLowerCase()}`}>
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-sm font-semibold">
-                    {r.name} — {r.law}
-                  </span>
-                  <span
-                    className={cn(
-                      'shrink-0 rounded-md border px-2 py-0.5 font-instrument text-[10px] font-bold uppercase tracking-[0.12em]',
-                      STATUS_CLASS[r.status],
-                    )}
-                  >
-                    {statusLabel(dict, r.status)}
-                  </span>
-                </div>
-                {compact ? null : (
-                  <p className="mt-1 text-xs leading-relaxed text-[var(--ns-fg-muted)]">{r.reason}</p>
-                )}
-              </li>
-            ))}
+          <ul className="mt-3 space-y-4">
+            {report.regimes.map((r) => {
+              const band = confidenceBand(dict, r)
+              const action = compact ? null : nextAction(dict, r)
+              return (
+                <li key={r.code} data-testid={`sample-regime-${report.id}-${r.code.toLowerCase()}`}>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-sm font-semibold">
+                      {r.name} — {r.law}
+                    </span>
+                    <span
+                      className={cn(
+                        'shrink-0 rounded-md border px-2 py-0.5 font-instrument text-[10px] font-bold uppercase tracking-[0.12em]',
+                        STATUS_CLASS[r.status],
+                      )}
+                    >
+                      {statusLabel(dict, r.status)}
+                    </span>
+                  </div>
+                  {compact ? null : (
+                    <div className="mt-1.5 space-y-1 text-xs leading-relaxed text-[var(--ns-fg-muted)]">
+                      <p>
+                        <span className="font-medium text-[var(--ns-fg-dim)]">{dict.report.why_label}:</span>{' '}
+                        {r.reason}
+                      </p>
+                      <p>
+                        <span className="font-medium text-[var(--ns-fg-dim)]">{p.col_confidence}:</span>{' '}
+                        {band}
+                        {r.confidence > 0 ? ` · ${Math.round(r.confidence * 100)}%` : ''}
+                      </p>
+                      {r.traceSummary ? (
+                        <p>
+                          <span className="font-medium text-[var(--ns-fg-dim)]">{dict.report.evidence_label}:</span>{' '}
+                          {r.traceSummary}
+                        </p>
+                      ) : null}
+                      {action ? (
+                        <p>
+                          <span className="font-medium text-[var(--ns-fg-dim)]">{p.col_next}:</span> {action}
+                        </p>
+                      ) : null}
+                    </div>
+                  )}
+                </li>
+              )
+            })}
           </ul>
         </section>
 
@@ -99,6 +154,12 @@ export function SampleReportCard({
                   {dict.report.gaps.severity[g.severity]}
                 </span>
                 {g.title}
+                {!compact && g.fix ? (
+                  <p className="mt-1 text-xs text-[var(--ns-fg-muted)]">
+                    <span className="font-medium text-[var(--ns-fg-dim)]">{dict.report.next_action_label}:</span>{' '}
+                    {g.fix}
+                  </p>
+                ) : null}
               </li>
             ))}
           </ul>

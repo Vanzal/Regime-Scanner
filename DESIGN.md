@@ -37,4 +37,4 @@ Short ease-out reveals (`ns-reveal`, <600ms). `prefers-reduced-motion` disables.
 
 ## Copy
 
-Preserve live nexusscopes.com voice. No invented customers. Social-proof logos are labelled placeholders.
+Preserve live nexusscopes.com voice. No invented customers or endorsements. Audience categories describe who the product is for — never implied customers.

@@ -20,10 +20,16 @@ describe('marketing chrome copy', () => {
     expect(en.site.hero.title).toBe(
       'One incident. Three reporting regimes. Know which ones apply — before the clock starts.',
     )
-    expect(en.site.hero.subtitle).toMatch(/NIS2UmsuCG, NISG 2024 and the Swiss ISG/)
+    expect(en.site.hero.subtitle).toMatch(/NIS2UmsuCG\/BSIG/)
     expect(en.site.hero.cta).toBe('Join waitlist')
     expect(en.site.faq.items[0].q).toMatch(/Does NIS2 \/ NISG \/ ISG apply/)
     expect(en.site.faq.items.length).toBeGreaterThanOrEqual(8)
+    expect(en.site.proof.title).toMatch(/Designed for DACH organizations/)
+    expect(en.site.proof.audiences).toContain('CISOs')
+    expect(en.site.proof).not.toHaveProperty('placeholders')
+    expect(en.site.footer.disclaimer).toMatch(/regulatory readiness intelligence/)
+    expect(en.site.footer.contact_email).toBe('')
+    expect(en.site.footer.operator_person).toBe('Noah Baumann')
   })
 
   it('header exposes waitlist CTA when product is gated', () => {
@@ -49,10 +55,13 @@ describe('marketing chrome copy', () => {
     const dict = getDict('en')
     const report = buildSampleReport('mittelstand-de')
     const html = renderToStaticMarkup(<SampleReportCard report={report} dict={dict} />)
-    expect(html).toContain('SYNTHETIC')
+    expect(html).toContain('DEMO')
     expect(html).toContain('NIS2UmsuCG')
-    expect(html).toContain('not legal advice')
+    expect(html).toMatch(/regulatory readiness intelligence|not legal advice/i)
     expect(html).toContain('data-testid="sample-regime-mittelstand-de-de"')
+    expect(html).toContain('CONFIRMED')
+    expect(html).toContain('Why:')
+    expect(html).toContain('Confidence:')
   })
 
   it('footer still lists imprint, privacy, contact and Switzerland / EU', () => {

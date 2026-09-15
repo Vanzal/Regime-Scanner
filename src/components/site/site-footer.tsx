@@ -11,14 +11,17 @@ const linkClass =
 const quietLinkClass =
   'text-[var(--ns-fg-dim)] underline decoration-[var(--ns-border)] underline-offset-4 transition hover:text-[var(--ns-fg-muted)]'
 
+function looksLikeEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+}
+
+function looksLikePhone(value: string): boolean {
+  return /\d{6,}/.test(value.replace(/\s/g, ''))
+}
+
 /**
  * Site-wide footer with Swiss / EU / DACH imprint essentials.
- *
- * PLACEHOLDERS (replace before go-live):
- * - Exact company legal name & form → footer.legal_form / impressum page
- * - Full Swiss postal address → footer.address_lines
- * - Email / phone → footer.contact_email / footer.phone
- * - UID / VAT (MwSt) number → footer.uid
+ * Missing registration details are shown as “coming soon” — never invented.
  */
 export function FooterLegalNav({
   dict,
@@ -75,6 +78,8 @@ export function FooterLegalNav({
 
 export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const f = dict.site.footer
+  const email = f.contact_email?.trim() ?? ''
+  const phone = f.phone?.trim() ?? ''
 
   return (
     <footer
@@ -91,6 +96,9 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
             <BrandMark />
             <p className="mt-3 text-sm text-[var(--ns-fg-muted)]">{f.tagline}</p>
             <p className="mt-2 text-sm text-[var(--ns-fg-muted)]">{f.legal_form}</p>
+            {f.operator_person ? (
+              <p className="mt-1 text-sm text-[var(--ns-fg-muted)]">{f.operator_person}</p>
+            ) : null}
             <address className="mt-4 not-italic text-sm leading-relaxed text-[var(--ns-fg-muted)]">
               {f.address_lines.map((line) => (
                 <span key={line} className="block">
@@ -102,19 +110,31 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
               <div className="flex flex-wrap gap-x-2">
                 <dt className="text-[var(--ns-fg-dim)]">{f.email_label}:</dt>
                 <dd>
-                  <a href={`mailto:${f.contact_email}`} className={linkClass}>
-                    {f.contact_email}
-                  </a>
+                  {looksLikeEmail(email) ? (
+                    <a href={`mailto:${email}`} className={linkClass}>
+                      {email}
+                    </a>
+                  ) : (
+                    <Link href="/contact" className={linkClass}>
+                      {f.contact_form_label}
+                    </Link>
+                  )}
                 </dd>
               </div>
-              <div className="flex flex-wrap gap-x-2">
-                <dt className="text-[var(--ns-fg-dim)]">{f.phone_label}:</dt>
-                <dd>
-                  <a href={`tel:${f.phone.replace(/[^\d+]/g, '')}`} className={linkClass}>
-                    {f.phone}
-                  </a>
-                </dd>
-              </div>
+              {phone ? (
+                <div className="flex flex-wrap gap-x-2">
+                  <dt className="text-[var(--ns-fg-dim)]">{f.phone_label}:</dt>
+                  <dd>
+                    {looksLikePhone(phone) ? (
+                      <a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className={linkClass}>
+                        {phone}
+                      </a>
+                    ) : (
+                      phone
+                    )}
+                  </dd>
+                </div>
+              ) : null}
               <div className="flex flex-wrap gap-x-2">
                 <dt className="text-[var(--ns-fg-dim)]">{f.uid_label}:</dt>
                 <dd>{f.uid}</dd>
