@@ -17,6 +17,7 @@ export function LangSwitch({
   const setLocale = (next: 'de' | 'en') => {
     if (next === locale) return
     document.cookie = `lang=${next}; path=/; max-age=31536000; samesite=lax`
+    document.documentElement.lang = next
     startTransition(() => router.refresh())
   }
 

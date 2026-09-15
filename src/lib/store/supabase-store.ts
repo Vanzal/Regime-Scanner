@@ -16,15 +16,29 @@ import type {
 } from './types'
 import type { SubscriptionRecord } from '@/lib/billing/types'
 
+/** Valid HTTP(S) project URL + service-role key, or null (use the file store). */
+export function resolveSupabaseCredentials(): { url: string; key: string } | null {
+  const url = process.env.SUPABASE_URL?.trim()
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
+  if (!url || !key || url === '[SENSITIVE]' || key === '[SENSITIVE]') return null
+  try {
+    const parsed = new URL(url)
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return null
+    if (!parsed.hostname) return null
+  } catch {
+    return null
+  }
+  return { url, key }
+}
+
 function getClient(): SupabaseClient {
-  const url = process.env.SUPABASE_URL
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!url || !key) {
+  const creds = resolveSupabaseCredentials()
+  if (!creds) {
     throw new Error('SUPABASE_URL und SUPABASE_SERVICE_ROLE_KEY sind für den Supabase-Store erforderlich')
   }
   // Service-Rolle: alle Schreibvorgänge laufen serverseitig; RLS (0002_rls.sql)
   // verweigert anon/authenticated jeden Direktzugriff.
-  return createClient(url, key, { auth: { persistSession: false } })
+  return createClient(creds.url, creds.key, { auth: { persistSession: false } })
 }
 
 /** Produktions-Backend: Postgres mit RLS; Abruf nur über get_report(token). */

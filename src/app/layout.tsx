@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { IBM_Plex_Mono, Inter } from 'next/font/google'
-import { cookies } from 'next/headers'
-import { localeFromCookie } from '@/i18n'
+import { HtmlLang } from '@/components/site/html-lang'
 import { THEME_BOOT_SCRIPT } from '@/lib/theme'
 import { siteMetadataBase } from '@/lib/site-url'
 import './globals.css'
@@ -81,12 +80,9 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const cookieStore = await cookies()
-  const locale = localeFromCookie(cookieStore.get('lang')?.value)
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={locale} className={`dark ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`dark ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
         <meta
           name="description"
@@ -104,6 +100,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         }}
       >
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
+        <HtmlLang />
         {children}
       </body>
     </html>

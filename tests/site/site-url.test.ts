@@ -3,14 +3,17 @@ import { siteMetadataBase, siteUrl } from '@/lib/site-url'
 
 const KEYS = ['SITE_URL', 'VERCEL_URL', 'NODE_ENV'] as const
 
+function setEnv(key: (typeof KEYS)[number], value: string | undefined) {
+  const env = process.env as Record<string, string | undefined>
+  if (value === undefined) delete env[key]
+  else env[key] = value
+}
+
 describe('siteUrl', () => {
   const previous: Record<string, string | undefined> = {}
 
   afterEach(() => {
-    for (const key of KEYS) {
-      if (previous[key] === undefined) delete process.env[key]
-      else process.env[key] = previous[key]
-    }
+    for (const key of KEYS) setEnv(key, previous[key])
   })
 
   function snapshotEnv() {
@@ -21,7 +24,7 @@ describe('siteUrl', () => {
     snapshotEnv()
     process.env.SITE_URL = ''
     delete process.env.VERCEL_URL
-    process.env.NODE_ENV = 'production'
+    setEnv('NODE_ENV', 'production')
     const origin = siteUrl()
     expect(origin).toBe('https://nexusscopes.com')
     expect(() => new URL(origin)).not.toThrow()
@@ -32,7 +35,7 @@ describe('siteUrl', () => {
     snapshotEnv()
     process.env.SITE_URL = '   '
     delete process.env.VERCEL_URL
-    process.env.NODE_ENV = 'production'
+    setEnv('NODE_ENV', 'production')
     expect(siteUrl()).toBe('https://nexusscopes.com')
   })
 
@@ -53,7 +56,7 @@ describe('siteUrl', () => {
     snapshotEnv()
     process.env.SITE_URL = '::::'
     delete process.env.VERCEL_URL
-    process.env.NODE_ENV = 'production'
+    setEnv('NODE_ENV', 'production')
     expect(siteUrl()).toBe('https://nexusscopes.com')
     expect(() => siteMetadataBase()).not.toThrow()
   })
