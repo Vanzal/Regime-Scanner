@@ -1,20 +1,17 @@
 import { createFileStore } from './file-store'
-import { createSupabaseStore } from './supabase-store'
+import { createSupabaseStore, resolveSupabaseCredentials } from './supabase-store'
 import type { Store } from './types'
 
 let instance: Store | null = null
 
 /**
- * Backend-Auswahl: mit Supabase-Zugangsdaten → Supabase (Produktion),
- * sonst lokaler Datei-Store (.data/db.json) – Demo ohne Supabase-Projekt.
+ * Backend-Auswahl: mit gültiger Supabase-URL + Service-Role → Supabase,
+ * sonst lokaler Datei-Store (.data/db.json) – inkl. leerer/ungültiger
+ * Vercel-Env-Zeilen, die sonst `new URL('')` beim createClient werfen.
  */
 export function getStore(): Store {
   if (instance) return instance
-  if (process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
-    instance = createSupabaseStore()
-  } else {
-    instance = createFileStore()
-  }
+  instance = resolveSupabaseCredentials() ? createSupabaseStore() : createFileStore()
   return instance
 }
 
