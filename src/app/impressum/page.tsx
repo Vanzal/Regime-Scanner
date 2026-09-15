@@ -13,7 +13,7 @@ export default async function ImpressumPage() {
 
   return (
     <SiteShell dict={dict} locale={locale}>
-      <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <h1 className="font-display text-3xl tracking-tight sm:text-4xl">{l.impressum_title}</h1>
         <p className="mt-3 text-sm text-[var(--ns-fg-muted)]">{l.impressum_intro}</p>
 
@@ -60,7 +60,7 @@ export default async function ImpressumPage() {
         </dl>
 
         <p className="mt-10 text-sm text-[var(--ns-fg-muted)]">{f.disclaimer}</p>
-      </main>
+      </div>
     </SiteShell>
   )
 }

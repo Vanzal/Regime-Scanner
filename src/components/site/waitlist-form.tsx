@@ -18,6 +18,9 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
   const w = dict.site.waitlist
   const errors = state.errors ?? {}
   const formErrorId = useId()
+  const emailErrId = useId()
+  const countryErrId = useId()
+  const sizeErrId = useId()
   const errFor = (key: string): string | undefined => {
     if (!errors[key]) return undefined
     if (key === 'email') return w.errors.email
@@ -68,11 +71,11 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
           inputMode="email"
           className={cn('ns-input', errFor('email') && 'ns-input-error')}
           aria-invalid={Boolean(errFor('email'))}
-          aria-describedby={errFor('email') ? 'wl_email_err' : undefined}
+          aria-describedby={errFor('email') ? emailErrId : undefined}
           disabled={pending}
         />
         {errFor('email') && (
-          <p id="wl_email_err" role="alert" className="mt-1.5 text-xs font-medium text-[var(--ns-danger)]">
+          <p id={emailErrId} role="alert" className="mt-1.5 text-xs font-medium text-[var(--ns-danger)]">
             {errFor('email')}
           </p>
         )}
@@ -88,7 +91,7 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
             defaultValue=""
             className={cn('ns-input', errFor('company_size') && 'ns-input-error')}
             aria-invalid={Boolean(errFor('company_size'))}
-            aria-describedby={errFor('company_size') ? 'wl_size_err' : undefined}
+            aria-describedby={errFor('company_size') ? sizeErrId : undefined}
             disabled={pending}
           >
             <option value="" disabled>
@@ -101,7 +104,7 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
             ))}
           </select>
           {errFor('company_size') && (
-            <p id="wl_size_err" role="alert" className="mt-1.5 text-xs font-medium text-[var(--ns-danger)]">
+            <p id={sizeErrId} role="alert" className="mt-1.5 text-xs font-medium text-[var(--ns-danger)]">
               {errFor('company_size')}
             </p>
           )}
@@ -115,7 +118,7 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
             defaultValue=""
             className={cn('ns-input', errFor('country') && 'ns-input-error')}
             aria-invalid={Boolean(errFor('country'))}
-            aria-describedby={errFor('country') ? 'wl_country_err' : undefined}
+            aria-describedby={errFor('country') ? countryErrId : undefined}
             disabled={pending}
           >
             <option value="" disabled>
@@ -128,7 +131,7 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
             ))}
           </select>
           {errFor('country') && (
-            <p id="wl_country_err" role="alert" className="mt-1.5 text-xs font-medium text-[var(--ns-danger)]">
+            <p id={countryErrId} role="alert" className="mt-1.5 text-xs font-medium text-[var(--ns-danger)]">
               {errFor('country')}
             </p>
           )}

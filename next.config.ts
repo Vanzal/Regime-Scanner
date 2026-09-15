@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     '/**': ['./rules/**', './src/i18n/dictionaries/**', './content/legal/**'],
   },
+  poweredByHeader: false,
+  compress: true,
 }
 
 export default nextConfig

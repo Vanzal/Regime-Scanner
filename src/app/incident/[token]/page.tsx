@@ -24,13 +24,13 @@ export default async function IncidentResultPage({
   if (!record) notFound()
 
   return (
-    <>
+    <div className="min-h-screen bg-[#f8fafc] text-slate-900">
       {print !== '1' && (
         <div className="no-print mx-auto flex max-w-4xl items-center justify-end px-4 pt-6 sm:px-6">
           <LangSwitch locale={locale} label="Language" />
         </div>
       )}
       <IncidentTriageView record={record} dict={dict} showChrome={print !== '1'} />
-    </>
+    </div>
   )
 }

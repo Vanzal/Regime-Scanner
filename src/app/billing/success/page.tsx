@@ -41,7 +41,7 @@ export default async function BillingSuccessPage({
 
   return (
     <SiteShell dict={dict} locale={locale}>
-      <main className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
         <p className="font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
           {s.success_eyebrow}
         </p>
@@ -70,7 +70,7 @@ export default async function BillingSuccessPage({
           )}
         </div>
         <p className="font-reading mt-8 text-xs text-[var(--ns-fg-dim)]">{s.success_note}</p>
-      </main>
+      </div>
     </SiteShell>
   )
 }

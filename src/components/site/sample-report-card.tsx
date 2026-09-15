@@ -291,11 +291,11 @@ export function SampleReportCard({
         aria-label={`${report.company.legal_name} sample report`}
       >
         <header className="flex flex-wrap items-start justify-between gap-3 border-b border-[var(--ns-border)] bg-[var(--ns-bg-panel)] px-4 py-3.5 sm:px-5">
-          <div className="min-w-0">
-            <p className="truncate text-base font-semibold tracking-tight text-[var(--ns-fg)]">
+          <div className="min-w-0 flex-1">
+            <p className="break-words text-base font-semibold tracking-tight text-[var(--ns-fg)]">
               {report.company.legal_name}
             </p>
-            <p className="mt-0.5 font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
+            <p className="mt-0.5 break-all font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
               {report.company.domain}
               <span className="mx-2 text-[var(--ns-border-strong)]">·</span>
               {report.company.country_hq.toUpperCase()}
