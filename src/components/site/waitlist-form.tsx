@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState } from 'react'
+import { useActionState, useId } from 'react'
 import Link from 'next/link'
 import { joinWaitlist, type WaitlistState } from '@/app/actions/waitlist'
 import { SubscribeCta } from '@/components/site/subscribe-cta'
@@ -16,6 +16,8 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
   const [state, formAction, pending] = useActionState<WaitlistState, FormData>(joinWaitlist, { ok: false })
   const w = dict.site.waitlist
   const errors = state.errors ?? {}
+  const emailErrId = useId()
+  const countryErrId = useId()
   const errFor = (key: string): string | undefined => {
     if (!errors[key]) return undefined
     if (key === 'email') return w.errors.email
@@ -25,11 +27,7 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
 
   if (state.done) {
     return (
-      <div
-        role="status"
-        data-testid="waitlist-success"
-        className="ns-card px-6 py-10"
-      >
+      <div role="status" data-testid="waitlist-success" className="ns-card px-6 py-10">
         <p className="font-display text-xl tracking-tight text-[var(--ns-fg)]">{w.success}</p>
         {state.duplicate && (
           <p className="font-reading mt-2 text-sm text-[var(--ns-fg-muted)]">{w.duplicate}</p>
@@ -39,10 +37,15 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
     )
   }
 
+  const emailError = errFor('email')
+  const countryError = errFor('country')
+
   return (
-    <form action={formAction} className="space-y-5">
+    <form action={formAction} className="space-y-5" noValidate={false}>
       <div>
-        <label className={labelCls} htmlFor="wl_email">{w.email_label}</label>
+        <label className={labelCls} htmlFor="wl_email">
+          {w.email_label}
+        </label>
         <input
           id="wl_email"
           name="email"
@@ -50,39 +53,66 @@ export function WaitlistForm({ dict }: { dict: Dictionary }) {
           required
           autoComplete="email"
           className="ns-input"
-          aria-invalid={Boolean(errFor('email'))}
+          aria-invalid={Boolean(emailError)}
+          aria-describedby={emailError ? emailErrId : undefined}
         />
-        {errFor('email') && (
-          <p className="mt-1 text-xs font-medium text-[var(--ns-danger)]">{errFor('email')}</p>
+        {emailError && (
+          <p id={emailErrId} className="mt-1 text-xs font-medium text-[var(--ns-danger)]" role="alert">
+            {emailError}
+          </p>
         )}
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label className={labelCls} htmlFor="wl_size">{w.size_label}</label>
+          <label className={labelCls} htmlFor="wl_size">
+            {w.size_label}
+          </label>
           <select id="wl_size" name="company_size" required defaultValue="" className="ns-input">
-            <option value="" disabled>–</option>
+            <option value="" disabled>
+              –
+            </option>
             {SIZE_KEYS.map((s) => (
-              <option key={s} value={s}>{w.size[s]}</option>
+              <option key={s} value={s}>
+                {w.size[s]}
+              </option>
             ))}
           </select>
         </div>
         <div>
-          <label className={labelCls} htmlFor="wl_country">{w.country_label}</label>
-          <select id="wl_country" name="country" required defaultValue="" className="ns-input">
-            <option value="" disabled>–</option>
+          <label className={labelCls} htmlFor="wl_country">
+            {w.country_label}
+          </label>
+          <select
+            id="wl_country"
+            name="country"
+            required
+            defaultValue=""
+            className="ns-input"
+            aria-invalid={Boolean(countryError)}
+            aria-describedby={countryError ? countryErrId : undefined}
+          >
+            <option value="" disabled>
+              –
+            </option>
             {COUNTRY_KEYS.map((c) => (
-              <option key={c} value={c}>{w.country[c]}</option>
+              <option key={c} value={c}>
+                {w.country[c]}
+              </option>
             ))}
           </select>
-          {errFor('country') && (
-            <p className="mt-1 text-xs font-medium text-[var(--ns-danger)]">{errFor('country')}</p>
+          {countryError && (
+            <p id={countryErrId} className="mt-1 text-xs font-medium text-[var(--ns-danger)]" role="alert">
+              {countryError}
+            </p>
           )}
         </div>
       </div>
 
       <div>
-        <label className={labelCls} htmlFor="wl_pain">{w.pain_label}</label>
+        <label className={labelCls} htmlFor="wl_pain">
+          {w.pain_label}
+        </label>
         <textarea
           id="wl_pain"
           name="pain_note"

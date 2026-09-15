@@ -233,9 +233,13 @@ export default async function LandingPage() {
                 className="group border-b border-[var(--ns-border)] py-4"
                 data-testid={`faq-item-${i + 1}`}
               >
-                <summary className="cursor-pointer list-none text-sm font-semibold tracking-tight marker:hidden sm:text-base">
-                  <span className="mr-3 inline-block w-4 font-instrument text-[var(--ns-accent)] group-open:hidden">+</span>
-                  <span className="mr-3 hidden w-4 font-instrument text-[var(--ns-accent)] group-open:inline">–</span>
+                <summary className="cursor-pointer text-sm font-semibold tracking-tight sm:text-base">
+                  <span className="mr-3 inline-block w-4 font-instrument text-[var(--ns-accent)] group-open:hidden" aria-hidden>
+                    +
+                  </span>
+                  <span className="mr-3 hidden w-4 font-instrument text-[var(--ns-accent)] group-open:inline" aria-hidden>
+                    –
+                  </span>
                   {item.q}
                 </summary>
                 <p className="mt-3 pl-7 text-sm leading-relaxed text-[var(--ns-fg-muted)]">{item.a}</p>

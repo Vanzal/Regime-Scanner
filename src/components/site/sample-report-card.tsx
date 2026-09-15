@@ -38,14 +38,14 @@ export function SampleReportCard({
 
   return (
     <div className="ns-card overflow-hidden" data-testid={`sample-report-${report.id}`}>
-      <div className="flex items-center justify-between gap-3 border-b border-[var(--ns-border)] bg-[var(--ns-bg-panel)] px-4 py-3 sm:px-5">
-        <div className="min-w-0">
-          <p className="truncate font-medium text-[var(--ns-fg)]">{report.company.legal_name}</p>
-          <p className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
+      <div className="flex flex-wrap items-start justify-between gap-3 border-b border-[var(--ns-border)] bg-[var(--ns-bg-panel)] px-4 py-3 sm:px-5">
+        <div className="min-w-0 flex-1">
+          <p className="break-words font-medium text-[var(--ns-fg)]">{report.company.legal_name}</p>
+          <p className="break-all font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
             {report.company.domain}
           </p>
         </div>
-        <span className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
+        <span className="shrink-0 font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
           {p.synthetic_badge}
         </span>
       </div>
@@ -58,8 +58,8 @@ export function SampleReportCard({
           <ul className="mt-3 space-y-3">
             {report.regimes.map((r) => (
               <li key={r.code} data-testid={`sample-regime-${report.id}-${r.code.toLowerCase()}`}>
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-sm font-semibold">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className="min-w-0 break-words text-sm font-semibold">
                     {r.name} — {r.law}
                   </span>
                   <span

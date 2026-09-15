@@ -15,10 +15,17 @@ export function SiteShell({
   children: React.ReactNode
   productReady?: boolean
 }) {
+  const skipLabel = locale === 'de' ? 'Zum Inhalt springen' : 'Skip to content'
+
   return (
     <div className="min-h-screen bg-[var(--ns-bg)] text-[var(--ns-fg)]">
+      <a href="#main-content" className="ns-skip-link">
+        {skipLabel}
+      </a>
       <SiteHeader dict={dict} locale={locale} productReady={productReady} />
-      {children}
+      <main id="main-content" tabIndex={-1} className="outline-none">
+        {children}
+      </main>
       <SiteFooter dict={dict} locale={locale} />
       <CookieBanner dict={dict} />
     </div>

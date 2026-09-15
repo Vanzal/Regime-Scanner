@@ -14,7 +14,7 @@ export default async function CookieSettingsPage() {
 
   return (
     <SiteShell dict={dict} locale={locale}>
-      <main className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-16">
+      <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-16">
         <p className="text-sm">
           <Link
             href="/cookies"
@@ -27,7 +27,7 @@ export default async function CookieSettingsPage() {
         <div className="mt-8">
           <CookieSettingsPanel dict={dict} />
         </div>
-      </main>
+      </div>
     </SiteShell>
   )
 }
