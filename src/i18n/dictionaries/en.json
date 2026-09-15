@@ -341,6 +341,7 @@
       "menu": "Open menu",
       "close": "Close menu",
       "waitlist": "Get early access",
+      "waitlist_short": "Early access",
       "scan": "Run a readiness check"
     },
     "hero": {

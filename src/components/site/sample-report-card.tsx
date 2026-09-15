@@ -286,7 +286,7 @@ export function SampleReportCard({
   return (
     <>
       <article
-        className="ns-card overflow-hidden"
+        className="ns-card w-full min-w-0 overflow-hidden"
         data-testid={`sample-report-${report.id}`}
         aria-label={`${report.company.legal_name} sample report`}
       >
@@ -311,7 +311,7 @@ export function SampleReportCard({
           </span>
         </header>
 
-        <div className={cn('grid gap-0', compact ? '' : 'lg:grid-cols-3')}>
+        <div className={cn('grid w-full min-w-0 grid-cols-1 gap-0', compact ? '' : 'lg:grid-cols-3')}>
           <section className="border-b border-[var(--ns-border)] p-4 sm:p-5 lg:border-b-0 lg:border-r" aria-labelledby={`${testPrefix}-regimes`}>
             <h3 id={`${testPrefix}-regimes`} className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
               {p.tab_regimes}
@@ -356,12 +356,12 @@ export function SampleReportCard({
             {deadlineSource && deadlineSource.status === 'in' && deadlineSource.deadlines.length > 0 ? (
               <ul className="mt-4 space-y-3">
                 {deadlineSource.deadlines.slice(0, 3).map((d, i) => (
-                  <li key={d.label} className="flex items-center gap-3" data-testid={`sample-deadline-${report.id}-${i}`}>
+                  <li key={d.label} className="flex min-w-0 items-center gap-3" data-testid={`sample-deadline-${report.id}-${i}`}>
                     <span className="ns-clock flex h-11 w-16 shrink-0 items-center justify-center font-display text-sm">
                       {clockLabel(d.hours)}
                     </span>
-                    <div className="min-w-0">
-                      <p className="text-sm font-medium leading-snug">{d.label}</p>
+                    <div className="min-w-0 flex-1 overflow-hidden">
+                      <p className="truncate text-sm font-medium leading-snug">{d.label}</p>
                       <p className="truncate text-xs text-[var(--ns-fg-dim)]">
                         {d.authority}
                         {d.channel ? ` · ${d.channel}` : ''}

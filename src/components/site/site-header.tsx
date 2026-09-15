@@ -32,11 +32,12 @@ export function SiteHeader({
 
   const primaryHref = productReady ? '/intake' : '/#waitlist'
   const primaryLabel = productReady ? n.scan : n.waitlist
+  const primaryLabelShort = productReady ? n.scan : n.waitlist_short
 
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--ns-border)] bg-[color-mix(in_oklch,var(--ns-bg)_88%,transparent)] backdrop-blur-md">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:gap-4 sm:px-6" aria-label="Primary">
-        <BrandMark />
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-6" aria-label="Primary">
+        <BrandMark className="min-w-0 shrink" />
         <div className="hidden items-center gap-6 text-sm font-medium text-[var(--ns-fg-muted)] lg:flex">
           {links.map((link) => (
             <Link
@@ -48,17 +49,22 @@ export function SiteHeader({
             </Link>
           ))}
         </div>
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <div className="hidden sm:block">
             <LangSwitch locale={locale} label={dict.site.footer.lang_label} />
           </div>
           <ThemeToggle label={dict.site.theme.toggle} />
-          <Link href={primaryHref} className="ns-btn-primary !min-h-9 px-3 py-2 text-xs sm:text-sm">
-            {primaryLabel}
+          <Link
+            href={primaryHref}
+            className="ns-btn-primary !min-h-9 px-2.5 py-2 text-[11px] leading-tight sm:px-3 sm:text-sm"
+            aria-label={primaryLabel}
+          >
+            <span className="sm:hidden">{primaryLabelShort}</span>
+            <span className="hidden sm:inline">{primaryLabel}</span>
           </Link>
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-[var(--ns-radius)] border border-[var(--ns-border)] text-[var(--ns-fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ns-accent)] lg:hidden"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--ns-radius)] border border-[var(--ns-border)] text-[var(--ns-fg)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ns-accent)] lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? n.close : n.menu}
