@@ -16,9 +16,9 @@ export function SiteShell({
   productReady?: boolean
 }) {
   return (
-    <div className="min-h-screen bg-[var(--ns-bg)] text-[var(--ns-fg)]">
+    <div className="min-h-screen overflow-x-clip bg-[var(--ns-bg)] text-[var(--ns-fg)]">
       <SiteHeader dict={dict} locale={locale} productReady={productReady} />
-      {children}
+      <main>{children}</main>
       <SiteFooter dict={dict} locale={locale} />
       <CookieBanner dict={dict} />
     </div>

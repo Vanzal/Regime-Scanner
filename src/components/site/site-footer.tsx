@@ -6,10 +6,13 @@ import { footerLegalLinks, type LegalDocId } from '@/lib/legal/catalog'
 import type { Dictionary, Locale } from '@/i18n'
 
 const linkClass =
-  'text-[var(--ns-fg-muted)] underline decoration-[var(--ns-border)] underline-offset-4 transition hover:text-[var(--ns-fg)] hover:decoration-[var(--ns-fg-muted)]'
+  'text-[var(--ns-fg-muted)] underline decoration-[var(--ns-border)] underline-offset-4 transition hover:text-[var(--ns-fg)] hover:decoration-[var(--ns-fg-muted)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ns-accent)]'
 
 const quietLinkClass =
-  'text-[var(--ns-fg-dim)] underline decoration-[var(--ns-border)] underline-offset-4 transition hover:text-[var(--ns-fg-muted)]'
+  'text-[var(--ns-fg-dim)] underline decoration-[var(--ns-border)] underline-offset-4 transition hover:text-[var(--ns-fg-muted)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ns-accent)]'
+
+const headingCls =
+  'mb-3 font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]'
 
 /**
  * Site-wide footer with Swiss / EU / DACH imprint essentials.
@@ -40,19 +43,11 @@ export function FooterLegalNav({
   return (
     <nav aria-labelledby={headingId} aria-label={headingId ? undefined : dict.site.legal.docs_nav}>
       {headingId ? (
-        <h2
-          id={headingId}
-          className="mb-3 font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]"
-        >
+        <h2 id={headingId} className={headingCls}>
           {f.legal_heading}
         </h2>
       ) : null}
       <ul className="flex flex-col gap-2.5 text-sm">
-        <li>
-          <Link href="/impressum" className={linkClass}>
-            {f.impressum}
-          </Link>
-        </li>
         {legalLinks.map((item) => (
           <li key={item.id}>
             <Link href={item.href} data-testid={`footer-legal-${item.id}`} className={linkClass}>
@@ -60,6 +55,11 @@ export function FooterLegalNav({
             </Link>
           </li>
         ))}
+        <li>
+          <Link href="/impressum" className={linkClass}>
+            {f.impressum}
+          </Link>
+        </li>
         <li>
           <Link href="/cookies" className={linkClass}>
             {f.cookies}
@@ -78,63 +78,39 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
 
   return (
     <footer
-      className="border-t border-[var(--ns-border)] bg-[var(--ns-bg)]"
+      className="border-t border-[var(--ns-border)] bg-[var(--ns-bg-panel)]"
       data-testid="site-footer"
       aria-label="Site footer"
     >
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
-          <section aria-labelledby="footer-company-heading">
+          <section aria-labelledby="footer-company-heading" className="min-w-0 sm:col-span-2 lg:col-span-1">
             <h2 id="footer-company-heading" className="sr-only">
               {f.company_name}
             </h2>
             <BrandMark />
-            <p className="mt-3 text-sm text-[var(--ns-fg-muted)]">{f.tagline}</p>
-            <p className="mt-2 text-sm text-[var(--ns-fg-muted)]">{f.legal_form}</p>
-            <address className="mt-4 not-italic text-sm leading-relaxed text-[var(--ns-fg-muted)]">
-              {f.address_lines.map((line) => (
-                <span key={line} className="block">
-                  {line}
-                </span>
-              ))}
-            </address>
-            <dl className="mt-4 space-y-1.5 text-sm text-[var(--ns-fg-muted)]">
-              <div className="flex flex-wrap gap-x-2">
-                <dt className="text-[var(--ns-fg-dim)]">{f.email_label}:</dt>
-                <dd>
-                  <a href={`mailto:${f.contact_email}`} className={linkClass}>
-                    {f.contact_email}
-                  </a>
-                </dd>
-              </div>
-              <div className="flex flex-wrap gap-x-2">
-                <dt className="text-[var(--ns-fg-dim)]">{f.phone_label}:</dt>
-                <dd>
-                  <a href={`tel:${f.phone.replace(/[^\d+]/g, '')}`} className={linkClass}>
-                    {f.phone}
-                  </a>
-                </dd>
-              </div>
-              <div className="flex flex-wrap gap-x-2">
-                <dt className="text-[var(--ns-fg-dim)]">{f.uid_label}:</dt>
-                <dd>{f.uid}</dd>
-              </div>
-            </dl>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-[var(--ns-fg-muted)]">{f.tagline}</p>
+            <p className="mt-3 text-xs leading-relaxed text-[var(--ns-fg-dim)]">{f.disclaimer}</p>
           </section>
 
-          <section>
-            <h2 className="mb-3 font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
+          <section aria-labelledby="footer-product-heading">
+            <h2 id="footer-product-heading" className={headingCls}>
               {f.product}
             </h2>
             <ul className="flex flex-col gap-2.5 text-sm">
               <li>
-                <Link href="/#features" className={linkClass}>
-                  {dict.site.nav.features}
+                <Link href="/#how" className={linkClass}>
+                  {f.how}
                 </Link>
               </li>
               <li>
                 <Link href="/#preview" className={linkClass}>
-                  {dict.site.nav.preview}
+                  {f.example_report}
+                </Link>
+              </li>
+              <li>
+                <Link href="/#waitlist" className={linkClass}>
+                  {f.early_access}
                 </Link>
               </li>
               <li>
@@ -142,25 +118,49 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
                   {f.pricing}
                 </Link>
               </li>
-              <li>
-                <Link href="/contact" className={linkClass}>
-                  {f.contact}
-                </Link>
-              </li>
             </ul>
           </section>
 
           <FooterLegalNav dict={dict} locale={locale} headingId="footer-legal-heading" />
 
-          <section aria-labelledby="footer-lang-heading">
-            <h2
-              id="footer-lang-heading"
-              className="mb-3 font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]"
-            >
-              {f.lang_label}
+          <section aria-labelledby="footer-contact-heading">
+            <h2 id="footer-contact-heading" className={headingCls}>
+              {f.contact_heading}
             </h2>
-            <LangSwitch locale={locale} label={f.lang_label} />
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-[var(--ns-fg-muted)]">{f.disclaimer}</p>
+            <ul className="flex flex-col gap-2.5 text-sm text-[var(--ns-fg-muted)]">
+              <li>
+                <Link href="/contact" className={linkClass}>
+                  {f.contact}
+                </Link>
+              </li>
+              <li>
+                <a href={`mailto:${f.contact_email}`} className={linkClass}>
+                  {f.contact_email}
+                </a>
+              </li>
+              <li className="pt-2">
+                <p className="font-instrument text-[11px] uppercase tracking-[0.16em] text-[var(--ns-fg-dim)]">
+                  {f.lang_label}
+                </p>
+                <div className="mt-2">
+                  <LangSwitch locale={locale} label={f.lang_label} />
+                </div>
+              </li>
+            </ul>
+            <address className="mt-5 not-italic text-xs leading-relaxed text-[var(--ns-fg-dim)]">
+              <span className="block">{f.legal_form}</span>
+              {f.address_lines.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+              <span className="mt-1 block">
+                {f.uid_label}: {f.uid}
+              </span>
+              <span className="block">
+                {f.phone_label}: {f.phone}
+              </span>
+            </address>
           </section>
         </div>
 
