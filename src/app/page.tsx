@@ -27,7 +27,7 @@ function DeadlineInstruments({ dict }: { dict: Dictionary }) {
       {clocks.map((c, i) => (
         <div
           key={c.label}
-          className="ns-clock ns-clock-lit flex flex-col justify-between p-3 sm:p-4"
+          className="ns-clock ns-clock-lit flex min-w-0 flex-col justify-between p-3 sm:p-4"
           style={{ animationDelay: `${0.2 + i * 0.1}s` }}
         >
           <span className="font-instrument text-[10px] uppercase tracking-[0.14em] opacity-70">{c.caption}</span>
@@ -60,8 +60,8 @@ export default async function LandingPage() {
   const dict = getDict(locale)
   const s = dict.site
   const productReady = isProductReady()
-  const sampleReports = buildAllSampleReports()
-  const heroReport = buildSampleReport('mittelstand-de')
+  const sampleReports = buildAllSampleReports(locale)
+  const heroReport = buildSampleReport('mittelstand-de', locale)
   const primaryHref = productReady ? '/intake' : '#waitlist'
   const primaryLabel = productReady ? s.hero.scan_cta : s.hero.cta
 
@@ -94,7 +94,7 @@ export default async function LandingPage() {
               <DeadlineInstruments dict={dict} />
             </div>
           </div>
-          <div className="min-w-0">
+          <div className="min-w-0 lg:justify-self-stretch">
             <HeroReportCard report={heroReport} dict={dict} />
           </div>
         </div>
@@ -185,11 +185,11 @@ export default async function LandingPage() {
             {s.proof.title}
           </h2>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--ns-fg-muted)]">{s.proof.body}</p>
-          <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {s.proof.placeholders.map((label) => (
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            {s.proof.audiences.map((label) => (
               <li
                 key={label}
-                className="flex min-h-16 items-center justify-center rounded-[var(--ns-radius)] border border-dashed border-[var(--ns-border-strong)] px-3 text-center text-xs text-[var(--ns-fg-dim)]"
+                className="border-t border-[var(--ns-border)] pt-3 text-sm font-medium leading-snug text-[var(--ns-fg)]"
               >
                 {label}
               </li>
