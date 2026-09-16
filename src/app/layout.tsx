@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { IBM_Plex_Mono, Inter } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import { HtmlLang } from '@/components/site/html-lang'
 import { THEME_BOOT_SCRIPT } from '@/lib/theme'
 import { siteMetadataBase } from '@/lib/site-url'
@@ -102,6 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
         <HtmlLang />
         {children}
+        <Analytics />
       </body>
     </html>
   )
