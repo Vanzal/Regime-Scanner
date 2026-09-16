@@ -1,7 +1,7 @@
-# Nexusscopes — Privacy Policy
+# NexusScope — Privacy Policy
 
-**Version 1.0 — Draft for publication (effective date coming soon)**
-**Last updated: September 2026**
+**Version 1.0 — Effective 16 September 2026**
+**Last updated: 16 September 2026**
 
 > **Note for the operator (delete before publishing):** This notice is drafted to satisfy Art. 12–14 GDPR and Art. 19 revFADP. It is not legal advice. Complete every `[bracketed]` item — a privacy notice that lists sub-processors or retention periods you do not actually use is worse than none. See **Annex D — Operator checklist**.
 
@@ -9,9 +9,9 @@
 
 ## 1. Summary
 
-Nexusscopes (NexusScope) provides regulatory readiness orientation for DACH cyber-incident reporting regimes. This notice explains what personal data we collect about **you** — as a visitor, account holder, or billing contact — why, on what legal basis, how long we keep it, who we share it with, and what rights you have.
+NexusScope provides regulatory readiness orientation for DACH cyber-incident reporting regimes. This notice explains what personal data we collect about **you** — as a visitor, account holder, or billing contact — why, on what legal basis, how long we keep it, who we share it with, and what rights you have.
 
-**Separate roles matter here.** When you upload or connect your own data to be analysed, that content may contain personal data about *other* people. For that data we act on your instructions as a **processor**, not as controller, and our [Data Processing Agreement](https://nexusscopes.com/legal/dpa) governs it — not this notice. See Section 3.
+**Separate roles matter here.** When you upload or connect your own data to be analysed, that content may contain personal data about *other* people. For that data we act on your instructions as a **processor**, not as controller, and our [Data Processing Agreement](https://nexusscopes.com/dpa) governs it — not this notice. See Section 3.
 
 We do **not** sell personal data, and we do **not** use customer content to train general-purpose AI models.
 
@@ -20,7 +20,7 @@ We do **not** sell personal data, and we do **not** use customer content to trai
 ## 2. Who is responsible
 
 **Controller:**
-- Noah Baumann, sole proprietor, trading as Nexusscopes
+- Noah Baumann, sole proprietor, trading as NexusScope
 - Registered address coming soon, Switzerland
 - UID registration details coming soon
 - **Privacy contact:** privacy@nexusscopes.com
@@ -38,10 +38,10 @@ We process personal data under the EU General Data Protection Regulation (GDPR) 
 |---|---|---|
 | **What data** | Your account, billing, support, and usage data | Personal data inside the content you upload, connect, or scan |
 | **Who decides purposes** | We do | You do |
-| **Governed by** | This Privacy Policy | The [DPA](https://nexusscopes.com/legal/dpa) |
+| **Governed by** | This Privacy Policy | The [DPA](https://nexusscopes.com/dpa) |
 | **Who answers data subject requests** | We do | You do; we assist you |
 
-If you are an employee of a business customer and want to know how *your employer* uses Nexusscopes on your data, contact your employer — they are the controller for that processing.
+If you are an employee of a business customer and want to know how *your employer* uses NexusScope on your data, contact your employer — they are the controller for that processing.
 
 ---
 

@@ -44,3 +44,11 @@ export function MoonIcon({ className }: { className?: string }) {
     </svg>
   )
 }
+
+export function CheckIcon({ className }: { className?: string }) {
+  return (
+    <svg {...svg} className={className}>
+      <path d="M5 12.5l4.2 4.2L19 7" />
+    </svg>
+  )
+}

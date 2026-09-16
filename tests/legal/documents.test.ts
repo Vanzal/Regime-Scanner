@@ -12,14 +12,14 @@ describe('legal catalog (footer contract)', () => {
   it('exposes canonical paths the documents themselves use', () => {
     expect(LEGAL_DOCUMENTS.privacy.href).toBe('/privacy')
     expect(LEGAL_DOCUMENTS.terms.href).toBe('/legal/terms')
-    expect(LEGAL_DOCUMENTS.dpa.href).toBe('/legal/dpa')
+    expect(LEGAL_DOCUMENTS.dpa.href).toBe('/dpa')
   })
 
   it('footerLegalLinks is locale-aware and stable for a later footer redesign', () => {
     expect(footerLegalLinks('en')).toEqual([
       { id: 'privacy', href: '/privacy', label: 'Privacy' },
       { id: 'terms', href: '/legal/terms', label: 'Terms' },
-      { id: 'dpa', href: '/legal/dpa', label: 'DPA' },
+      { id: 'dpa', href: '/dpa', label: 'DPA' },
     ])
     expect(footerLegalLinks('de').map((l) => l.label)).toEqual(['Datenschutz', 'AGB', 'AVV'])
     expect(LEGAL_DOCUMENT_ORDER).toEqual(['privacy', 'terms', 'dpa'])
@@ -30,6 +30,8 @@ describe('legal catalog (footer contract)', () => {
     expect(legalDocByHref('/legal/privacy')?.id).toBe('privacy')
     expect(legalDocByHref('/terms')?.id).toBe('terms')
     expect(legalDocByHref('/legal/terms')?.id).toBe('terms')
+    expect(legalDocByHref('/dpa')?.id).toBe('dpa')
+    expect(legalDocByHref('/legal/dpa')?.id).toBe('dpa')
   })
 })
 
@@ -61,9 +63,9 @@ describe('legal markdown publishing prep', () => {
 
   it('rewrites nexusscopes.com paths to site-relative links and leaves the bare site URL', () => {
     const md =
-      'See the [DPA](https://nexusscopes.com/legal/dpa), [https://nexusscopes.com/privacy], and [https://nexusscopes.com].'
+      'See the [DPA](https://nexusscopes.com/dpa), [https://nexusscopes.com/privacy], and [https://nexusscopes.com].'
     expect(rewriteSiteUrls(md)).toBe(
-      'See the [DPA](/legal/dpa), [/privacy](/privacy), and [https://nexusscopes.com].',
+      'See the [DPA](/dpa), [/privacy](/privacy), and [https://nexusscopes.com].',
     )
   })
 })
@@ -84,7 +86,10 @@ describe('published legal documents', () => {
     expect(text).toMatch(/We are processor/)
     expect(text).toMatch(/right to be forgotten/i)
     expect(parseMarkdown(md).some((b) => b.type === 'table')).toBe(true)
-    expect(md).toContain('](/legal/dpa)')
+    expect(md).toContain('](/dpa)')
+    expect(md).toMatch(/Effective 16 September 2026/)
+    expect(md).not.toMatch(/Draft for publication/i)
+    expect(md.replace(/nexusscopes\.com/gi, '')).not.toMatch(/Nexusscopes|Nexussopes/)
   })
 
   it('terms cover withdrawal, no-legal-advice, and incorporated documents', () => {
@@ -97,7 +102,8 @@ describe('published legal documents', () => {
     expect(text).toMatch(/Annex B/)
     expect(text).not.toMatch(/Annex C/)
     expect(md).toContain('](/privacy)')
-    expect(md).toContain('](/legal/dpa)')
+    expect(md).toContain('](/dpa)')
+    expect(md.replace(/nexusscopes\.com/gi, '')).not.toMatch(/Nexusscopes|Nexussopes/)
   })
 
   it('dpa covers Art. 28 processing details and keeps operative annexes', () => {
@@ -113,6 +119,9 @@ describe('published legal documents', () => {
     expect(parseMarkdown(md).filter((b) => b.type === 'table').length).toBeGreaterThan(0)
     expect(md).toContain('](/legal/terms)')
     expect(md).toContain('](/privacy)')
+    expect(md).toMatch(/Effective 16 September 2026/)
+    expect(md).not.toMatch(/Draft for publication/i)
+    expect(md.replace(/nexusscopes\.com/gi, '')).not.toMatch(/Nexusscopes|Nexussopes/)
   })
 
   it('parser turns GFM tables and emphasis into structured blocks', () => {

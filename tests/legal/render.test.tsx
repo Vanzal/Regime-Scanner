@@ -12,7 +12,7 @@ describe('legal pages render', () => {
     expect(html).toContain('href="/impressum"')
     expect(html).toContain('href="/privacy"')
     expect(html).toContain('href="/legal/terms"')
-    expect(html).toContain('href="/legal/dpa"')
+    expect(html).toContain('href="/dpa"')
     expect(html).toContain('data-testid="footer-legal-privacy"')
     expect(html).toContain('data-testid="footer-legal-terms"')
     expect(html).toContain('data-testid="footer-legal-dpa"')
@@ -22,8 +22,11 @@ describe('legal pages render', () => {
     const html = renderToString(<LegalMarkdown markdown={loadLegalMarkdown('privacy')} />)
     expect(html).toContain('<h1>')
     expect(html).toContain('<table>')
-    expect(html).toContain('href="/legal/dpa"')
+    expect(html).toContain('href="/dpa"')
     expect(html).not.toContain('Operator checklist')
+    expect(html).toContain('NexusScope')
+    expect(html).not.toContain('Nexusscopes')
+    expect(html).not.toContain('Draft for publication')
   })
 
   it('terms markdown renders the model withdrawal form', () => {
