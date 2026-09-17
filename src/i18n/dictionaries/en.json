@@ -606,7 +606,7 @@
     "footer": {
       "company_name": "NexusScope",
       "legal_form": "Sole proprietorship (Switzerland)",
-      "operator_name": "Noah Baumann",
+      "operator_name": "",
       "address_lines": [
         "Switzerland"
       ],
@@ -810,7 +810,7 @@
           "b": "Access, rectification and erasure at any time via the contact e-mail."
         }
       ],
-      "placeholder": "Noah Baumann",
+      "placeholder": "The operator of NexusScope",
       "cookies_body": [
         {
           "h": "Strictly necessary",
