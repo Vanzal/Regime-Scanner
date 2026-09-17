@@ -13,7 +13,7 @@ This Data Processing Agreement ("**DPA**") is entered into between:
 
 **(1) Customer** — the entity or individual identified in the NexusScope account and order confirmation, acting as **Controller** (or, where the Customer is itself a processor for a third party, as processor engaging NexusScope as sub-processor); and
 
-**(2) Noah Baumann**, sole proprietor trading as **NexusScope**, Registered address coming soon, Switzerland, acting as **Processor**.
+**(2) The operator of NexusScope**, a sole proprietorship registered in Switzerland, acting as **Processor**.
 
 Each a "**Party**", together the "**Parties**".
 

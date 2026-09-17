@@ -106,6 +106,18 @@ describe('published legal documents', () => {
     expect(md.replace(/nexusscopes\.com/gi, '')).not.toMatch(/Nexusscopes|Nexussopes/)
   })
 
+  it.each(docs)('$id does not name a personal operator', ({ markdown }) => {
+    expect(markdown).not.toMatch(/\bNoah\b/)
+    expect(markdown).not.toMatch(/Baumann/)
+  })
+
+  it('dpa parties name the operator, not a person', () => {
+    const text = blocksText(parseMarkdown(loadLegalMarkdown('dpa')))
+    expect(text).toMatch(
+      /\(2\) The operator of NexusScope, a sole proprietorship registered in Switzerland, acting as Processor/,
+    )
+  })
+
   it('dpa covers Art. 28 processing details and keeps operative annexes', () => {
     const md = loadLegalMarkdown('dpa')
     const text = blocksText(parseMarkdown(md))

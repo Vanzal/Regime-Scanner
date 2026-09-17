@@ -11,7 +11,7 @@
 
 NexusScope ("**NexusScope**", "**we**", "**us**", "**our**") is operated by:
 
-- **Provider:** Noah Baumann, sole proprietor, trading as NexusScope
+- **Provider:** The operator of NexusScope, a sole proprietorship registered in Switzerland
 - **Registered address:** Registered address coming soon, Switzerland
 - **Commercial register / UID (if registered):** UID registration details coming soon
 - **VAT number (if registered):** VAT registration details coming soon
@@ -271,7 +271,7 @@ h) infringe intellectual property, publicity, or privacy rights.
 
 *(Complete and return this form only if you wish to withdraw from the contract.)*
 
-> To: Noah Baumann / NexusScope, registered address coming soon, Switzerland — legal@nexusscopes.com
+> To: The operator of NexusScope, registered address coming soon, Switzerland — legal@nexusscopes.com
 >
 > I/We (*) hereby give notice that I/We (*) withdraw from my/our (*) contract for the supply of the following service:
 >

@@ -20,7 +20,7 @@ We do **not** sell personal data, and we do **not** use customer content to trai
 ## 2. Who is responsible
 
 **Controller:**
-- Noah Baumann, sole proprietor, trading as NexusScope
+- The operator of NexusScope, a sole proprietorship registered in Switzerland
 - Registered address coming soon, Switzerland
 - UID registration details coming soon
 - **Privacy contact:** privacy@nexusscopes.com
