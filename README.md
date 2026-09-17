@@ -101,10 +101,11 @@ Production canonical is **`https://nexusscopes.com`** (non-www). `metadataBase`,
 robots.txt (`Host` + `Sitemap`) and the sitemap `<loc>` values always use this origin — never
 a `*.vercel.app` preview URL.
 
-`www.nexusscopes.com` is 301-redirected to the apex in `src/middleware.ts` and `next.config.ts`.
-That only runs if **www is attached as a domain on the Vercel project** (or the DNS/CDN in
-front). In the Vercel dashboard: add `www.nexusscopes.com`, then set `nexusscopes.com` as the
-primary domain so Vercel also redirects www → non-www at the edge.
+`www.nexusscopes.com` is permanently redirected (HTTP 308) to the apex in
+`src/middleware.ts` and `next.config.ts`. That only runs if **www is attached as a
+domain on the Vercel project** (or the DNS/CDN in front). In the Vercel dashboard:
+add `www.nexusscopes.com`, then set `nexusscopes.com` as the primary domain so
+Vercel also redirects www → non-www at the edge.
 
 For production, set `SITE_URL=https://nexusscopes.com` (runtime links such as Stripe return
 URLs). Leave it unset on preview deployments so callbacks stay on the preview host.

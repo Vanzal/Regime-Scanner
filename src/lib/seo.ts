@@ -34,7 +34,7 @@ function absoluteTitle(title: Metadata['title']): string {
 /** Path-specific SEO fields that child pages must set so they do not inherit the homepage canonical. */
 export function publicPageMeta(path: string, extra: Metadata = {}): Metadata {
   const url = canonicalUrl(path)
-  const { openGraph, twitter, other, alternates, title, description, ...rest } = extra
+  const { openGraph, twitter, alternates, title, description, ...rest } = extra
   const pageTitle = absoluteTitle(title)
   const pageDescription = typeof description === 'string' ? description : SITE_DESCRIPTION
   const ogImage = {
@@ -71,7 +71,6 @@ export function publicPageMeta(path: string, extra: Metadata = {}): Metadata {
       ...twitter,
     },
     other: {
-      ...other,
       'twitter:url': url,
     },
   }
