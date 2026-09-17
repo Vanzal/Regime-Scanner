@@ -10,17 +10,15 @@ import {
 } from '@/lib/legal/catalog'
 import { loadLegalMarkdown } from '@/lib/legal/load'
 import { LegalMarkdown } from '@/lib/legal/render'
+import { publicPageMeta } from '@/lib/seo'
 import './legal.css'
 
 export function legalMetadata(id: LegalDocId): Metadata {
   const doc = LEGAL_DOCUMENTS[id]
-  return {
+  return publicPageMeta(doc.href, {
     title: `${doc.title.en} – NexusScope`,
     description: doc.description.en,
-    alternates: {
-      canonical: doc.href,
-    },
-  }
+  })
 }
 
 export async function LegalDocumentPage({ id }: { id: LegalDocId }) {

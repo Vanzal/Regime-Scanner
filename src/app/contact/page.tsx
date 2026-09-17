@@ -3,13 +3,14 @@ import type { Metadata } from 'next'
 import { getDict, localeFromCookie, type Locale } from '@/i18n'
 import { SiteShell } from '@/components/site/site-shell'
 import { ContactForm } from '@/components/site/contact-form'
+import { publicPageMeta } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicPageMeta('/contact', {
   title: 'Contact',
   description: 'Contact NexusScope about waitlist access, data residency, or a future scan for your DACH organisation.',
-}
+})
 
 export default async function ContactPage() {
   const cookieStore = await cookies()

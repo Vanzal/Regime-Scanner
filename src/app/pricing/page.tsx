@@ -4,14 +4,15 @@ import { getDict, localeFromCookie, type Locale } from '@/i18n'
 import { isPricingLive, isProductReady } from '@/lib/flags'
 import { SiteShell } from '@/components/site/site-shell'
 import { PricingPlans } from '@/components/site/pricing-plans'
+import { publicPageMeta } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = publicPageMeta('/pricing', {
   title: 'Pricing',
   description:
     'NexusScope plans: Free (€0, 1 report / month), Pro (€99 / month or €990 / year), Enterprise / Agency from €299 / month. Waitlist is open now.',
-}
+})
 
 export default async function PricingPage() {
   const cookieStore = await cookies()

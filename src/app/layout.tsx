@@ -2,8 +2,10 @@ import type { Metadata, Viewport } from 'next'
 import { IBM_Plex_Mono, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { HtmlLang } from '@/components/site/html-lang'
+import { JsonLd } from '@/components/site/json-ld'
 import { THEME_BOOT_SCRIPT } from '@/lib/theme'
-import { siteMetadataBase } from '@/lib/site-url'
+import { CANONICAL_ORIGIN, siteMetadataBase } from '@/lib/site-url'
+import { OG_IMAGE_ALT, OG_IMAGE_SIZE, SITE_DESCRIPTION, SITE_TITLE, pathAlternates } from '@/lib/seo'
 import './globals.css'
 
 const sans = Inter({
@@ -22,10 +24,6 @@ const mono = IBM_Plex_Mono({
   preload: false,
   adjustFontFallback: true,
 })
-
-const SITE_TITLE = 'NexusScope — DACH Regulatory Readiness Intelligence'
-const SITE_DESCRIPTION =
-  'NexusScope helps DACH companies understand which regulatory reporting regimes may apply, why they apply, and what to do next.'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -59,18 +57,36 @@ export const metadata: Metadata = {
   openGraph: {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    url: '/',
+    url: CANONICAL_ORIGIN,
     siteName: 'NexusScope',
     locale: 'en_GB',
+    alternateLocale: ['de_DE'],
     type: 'website',
+    images: [
+      {
+        url: '/opengraph-image',
+        width: OG_IMAGE_SIZE.width,
+        height: OG_IMAGE_SIZE.height,
+        alt: OG_IMAGE_ALT,
+      },
+    ],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: '/opengraph-image',
+        width: OG_IMAGE_SIZE.width,
+        height: OG_IMAGE_SIZE.height,
+        alt: OG_IMAGE_ALT,
+      },
+    ],
   },
-  alternates: {
-    canonical: '/',
+  alternates: pathAlternates('/'),
+  other: {
+    'twitter:url': CANONICAL_ORIGIN,
   },
   robots: {
     index: true,
@@ -84,12 +100,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`dark ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
-      <head>
-        <meta
-          name="description"
-          content="Which cyber-incident reporting duties apply to your company? NexusScope maps your profile against the German, Austrian and Swiss regimes (NIS2UmsuCG, NISG 2024, ISG) – with reporting deadlines and a prioritised gap list."
-        />
-      </head>
       <body
         className={`min-h-screen antialiased ${sans.className}`}
         style={{
@@ -100,6 +110,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           ['--font-instrument' as string]: 'var(--font-mono-face), "IBM Plex Mono", monospace',
         }}
       >
+        <JsonLd />
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
         <HtmlLang />
         {children}
