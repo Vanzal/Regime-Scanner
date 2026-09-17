@@ -1,7 +1,7 @@
-# Nexusscopes — Terms of Service
+# NexusScope — Terms of Service
 
-**Version 1.0 — Draft for publication (effective date coming soon)**
-**Last updated: September 2026**
+**Version 1.0 — Effective 16 September 2026**
+**Last updated: 16 September 2026**
 
 > **Note for the operator (delete before publishing):** This document is a compliance-oriented template prepared for a Swiss-domiciled SaaS provider serving both business and consumer users in Switzerland and the EU/EEA. It is not legal advice and does not create a lawyer–client relationship. Have it reviewed by a qualified Swiss/EU lawyer before launch. All items in `[square brackets]` must be completed. See **Annex C — Operator checklist** at the end.
 
@@ -9,9 +9,9 @@
 
 ## 1. Who we are and how to reach us
 
-Nexusscopes ("**Nexusscopes**", "**we**", "**us**", "**our**") is operated by:
+NexusScope ("**NexusScope**", "**we**", "**us**", "**our**") is operated by:
 
-- **Provider:** Noah Baumann, sole proprietor, trading as Nexusscopes
+- **Provider:** Noah Baumann, sole proprietor, trading as NexusScope
 - **Registered address:** Registered address coming soon, Switzerland
 - **Commercial register / UID (if registered):** UID registration details coming soon
 - **VAT number (if registered):** VAT registration details coming soon
@@ -27,7 +27,7 @@ These identification details are provided to satisfy the information duties appl
 
 ## 2. Scope and acceptance
 
-2.1 These Terms of Service ("**Terms**") govern your access to and use of the Nexusscopes web application, APIs, documentation, and related services (together, the "**Service**").
+2.1 These Terms of Service ("**Terms**") govern your access to and use of the NexusScope web application, APIs, documentation, and related services (together, the "**Service**").
 
 2.2 By creating an account, clicking "I accept", or otherwise using the Service, you enter into a binding contract with us on these Terms. If you do not accept them, you must not use the Service.
 
@@ -44,9 +44,9 @@ Clauses marked **[Consumers only]** do not apply to Business Customers, and clau
 
 ## 3. What the Service does — and what it does not do
 
-3.1 **Description.** Nexusscopes (NexusScope) provides regulatory readiness orientation for overlapping cyber-incident reporting regimes in Germany (NIS2UmsuCG/BSIG), Austria (NISG 2024) and Switzerland (ISG). Based on a short company profile and a passive public-footprint check, it produces regime applicability assessments, reporting clocks, gap lists, and reasoning with cited public sources. Outputs are informational orientation for internal assessment — not legal advice. A current functional description and any tier-specific limits are set out at https://nexusscopes.com and in the order confirmation.
+3.1 **Description.** NexusScope provides regulatory readiness orientation for overlapping cyber-incident reporting regimes in Germany (NIS2UmsuCG/BSIG), Austria (NISG 2024) and Switzerland (ISG). Based on a short company profile and a passive public-footprint check, it produces regime applicability assessments, reporting clocks, gap lists, and reasoning with cited public sources. Outputs are informational orientation for internal assessment — not legal advice. A current functional description and any tier-specific limits are set out at https://nexusscopes.com and in the order confirmation.
 
-3.2 **No legal advice — critical limitation.** Nexusscopes is **software, not a law firm**. Its outputs (scores, findings, gap analyses, checklists, templates, and recommendations) are **informational only**, are generated in whole or in part automatically, and:
+3.2 **No legal advice — critical limitation.** NexusScope is **software, not a law firm**. Its outputs (scores, findings, gap analyses, checklists, templates, and recommendations) are **informational only**, are generated in whole or in part automatically, and:
 - do **not** constitute legal, regulatory, audit, or certification advice;
 - do **not** guarantee compliance with the GDPR, the Swiss FADP/revDSG, the ePrivacy rules, the AI Act, the NIS2 Directive, the DSA, the Data Act, or any other legal requirement;
 - are **not** a substitute for review by a qualified lawyer, data protection officer, or auditor;
@@ -165,7 +165,7 @@ h) infringe intellectual property, publicity, or privacy rights.
 - Where we process personal data about you as a visitor, account holder, or billing contact, we act as **controller**. Our Privacy Policy at [https://nexusscopes.com/privacy] explains what we collect, the legal bases, retention, recipients, international transfers, and your rights.
 - Where we process personal data contained in Customer Content on your behalf, we act as **processor** (Art. 28 GDPR) or as commissioned processor (Art. 9 revDSG), and you act as controller.
 
-10.2 **Data Processing Agreement.** The DPA at [https://nexusscopes.com/legal/dpa] is incorporated into these Terms by reference and applies automatically where we act as processor. It sets out subject matter, duration, nature and purpose of processing, categories of data and data subjects, confidentiality, security measures (Art. 32 GDPR), sub-processor rules with prior notice and objection rights, assistance with data subject requests and DPIAs, breach notification without undue delay, and deletion or return at the end of the contract.
+10.2 **Data Processing Agreement.** The DPA at [https://nexusscopes.com/dpa] is incorporated into these Terms by reference and applies automatically where we act as processor. It sets out subject matter, duration, nature and purpose of processing, categories of data and data subjects, confidentiality, security measures (Art. 32 GDPR), sub-processor rules with prior notice and objection rights, assistance with data subject requests and DPIAs, breach notification without undue delay, and deletion or return at the end of the contract.
 
 10.3 **Applicable regimes.** We process personal data in accordance with the GDPR (Regulation (EU) 2016/679) and the revised Swiss Federal Act on Data Protection (revFADP/revDSG), in force since 1 September 2023, whose protection level the [Swiss Federal Data Protection and Information Commissioner describes as broadly aligned with the GDPR](https://www.edoeb.admin.ch/dam/en/sd-web/uZlw439wGOR9/Leitfaden%20Das%20neue%20Datenschutzgesetz%20aus%20Sicht%20des%20ED%C3%96B_20221009_EN.pdf).
 
@@ -271,7 +271,7 @@ h) infringe intellectual property, publicity, or privacy rights.
 
 *(Complete and return this form only if you wish to withdraw from the contract.)*
 
-> To: Noah Baumann / Nexusscopes, registered address coming soon, Switzerland — legal@nexusscopes.com
+> To: Noah Baumann / NexusScope, registered address coming soon, Switzerland — legal@nexusscopes.com
 >
 > I/We (*) hereby give notice that I/We (*) withdraw from my/our (*) contract for the supply of the following service:
 >
@@ -290,7 +290,7 @@ h) infringe intellectual property, publicity, or privacy rights.
 | Document | Location | Applies to |
 |---|---|---|
 | Privacy Policy | [https://nexusscopes.com/privacy] | All users |
-| Data Processing Agreement (Art. 28 GDPR / Art. 9 revDSG) | [https://nexusscopes.com/legal/dpa] | Customers uploading personal data |
+| Data Processing Agreement (Art. 28 GDPR / Art. 9 revDSG) | [https://nexusscopes.com/dpa] | Customers uploading personal data |
 | Sub-processor list | [https://nexusscopes.com/legal/subprocessors] | All customers |
 | Security overview | [https://nexusscopes.com/security] | All customers |
 | Acceptable Use / scanning authorisation policy | [https://nexusscopes.com/legal/aup] | All users |
@@ -313,6 +313,6 @@ h) infringe intellectual property, publicity, or privacy rights.
 8. **Record versioning:** keep dated copies of every ToS version and log which version each user accepted.
 9. **Swiss specifics:** Switzerland has no general statutory withdrawal right for online contracts ([suissedroit](https://suissedroit.ch/en/droit-des-contrats/consumer-protection-in-switzerland)), so Section 9.5 is a voluntary commitment — keep it or delete it deliberately, but do not leave it ambiguous. Art. 8 UWG polices unfair terms against consumers.
 10. **EU Data Act (Chapter VI)** switching duties apply to cloud/SaaS providers, with switching charges reduced from 12 January 2027 and prohibited from 12 September 2027 ([Addleshaw Goddard](https://www.addleshawgoddard.com/en/insights/insights-briefings/2025/data-protection/eu-data-act-gamechanger-saas-contracts/)) — Section 10.8 anticipates this; revisit before those dates.
-11. **AI Act:** if Nexusscopes' AI features grow into anything beyond a general-purpose assistive tool, reassess transparency and classification obligations.
+11. **AI Act:** if NexusScope's AI features grow into anything beyond a general-purpose assistive tool, reassess transparency and classification obligations.
 12. **Sole proprietorship risk:** as an individual sole proprietor you carry unlimited personal liability. Given the nature of a compliance-assessment product, discuss with an advisor whether to incorporate a GmbH and take professional indemnity / tech E&O insurance before scaling.
 13. **Have a Swiss/EU-qualified lawyer review the final text.** This template is a strong starting point, not a substitute for that review.

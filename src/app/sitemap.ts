@@ -10,6 +10,7 @@ const PUBLIC_PATHS = [
   '/cookies',
   '/cookie-settings',
   '/privacy',
+  '/dpa',
   '/terms',
   '/legal/privacy',
   '/legal/terms',

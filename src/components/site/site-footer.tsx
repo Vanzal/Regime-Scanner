@@ -108,6 +108,11 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
             </h2>
             <ul className="flex flex-col gap-2.5 text-sm">
               <li>
+                <Link href="/#features" className={linkClass}>
+                  {dict.site.nav.features}
+                </Link>
+              </li>
+              <li>
                 <Link href="/#how" className={linkClass}>
                   {f.how}
                 </Link>

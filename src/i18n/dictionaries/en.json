@@ -666,34 +666,44 @@
     },
     "pricing_page": {
       "title": "Simple plans for a clear first orientation",
-      "subtitle": "Waitlist is open now. Paid plans unlock when free scans go live. Any amounts are confirmed in Stripe Checkout — this page does not invent prices.",
-      "subtitle_live": "Pro Early Access is available via Stripe Checkout. Amounts are confirmed there — this page does not invent prices. Free stays waitlist-gated until scans open.",
-      "coming_soon": "Coming soon",
+      "subtitle": "Waitlist is open now. Published amounts are a guide — final amounts are confirmed in Stripe Checkout when you subscribe.",
+      "subtitle_live": "Pro is available via Stripe Checkout. Final amounts are confirmed there. Free stays waitlist-gated until scans open.",
       "waitlist_cta": "Join waitlist",
       "scan_cta": "Start free scan",
+      "contact_cta": "Contact us",
+      "get_pro_cta": "Get Pro",
       "note": "NexusScope provides regulatory readiness intelligence based on referenced public sources. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate. Data stays in Switzerland / the EU.",
-      "footnote": "Enterprise and agency onboarding is planned to include a DPA, named contacts, and multi-entity reporting. Tax may apply via Stripe Tax once registrations are active.",
+      "footnote": "Final amounts are confirmed in Stripe Checkout. Tax may apply via Stripe Tax once registrations are active.",
       "plans": [
         {
           "id": "free",
           "name": "Free",
           "price": "€0",
-          "cadence": "1 report / month · planned",
+          "cadence": "1 report / month when scans open",
+          "annual_price": "",
+          "annual_cadence": "",
+          "annual_save": "",
+          "badge": "",
           "blurb": "Email-gated orientation for one domain when scans open.",
           "features": [
-            "One unified DE / AT / CH report per month",
+            "1 report / month (when scans open)",
             "Passive DNS, TLS and header checks",
             "PDF export",
-            "Threshold trace and UNCLEAR when evidence is missing"
+            "Threshold reasoning + UNCLEAR when evidence is missing"
           ]
         },
         {
           "id": "pro",
           "name": "Pro",
-          "price": "—",
-          "cadence": "team workspace · price in Checkout",
-          "blurb": "For compliance teams running more than a single snapshot. Pricing confirmed only in Stripe when live.",
+          "price": "€99",
+          "cadence": "per month",
+          "annual_price": "€990",
+          "annual_cadence": "per year",
+          "annual_save": "Save €198 — 2 months free",
+          "badge": "Most popular",
+          "blurb": "For compliance teams running more than a single snapshot.",
           "features": [
+            "Everything in Free",
             "Unlimited reports",
             "Shared team workspace",
             "Report archive",
@@ -704,13 +714,17 @@
           "id": "enterprise",
           "name": "Enterprise / Agency",
           "price": "Custom",
-          "cadence": "multi-entity · contact us",
+          "cadence": "From €299 / month · or contact us",
+          "annual_price": "",
+          "annual_cadence": "",
+          "annual_save": "",
+          "badge": "",
           "blurb": "For groups, counsel and agencies mapping many entities.",
           "features": [
             "Multi-entity and subsidiary mapping",
             "DPA and named security contact",
-            "Admin release controls for pilot programmes",
-            "Onboarding with your DACH legal review process"
+            "Admin release controls",
+            "Onboarding with DACH legal review process"
           ]
         }
       ]

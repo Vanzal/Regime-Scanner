@@ -666,34 +666,44 @@
     },
     "pricing_page": {
       "title": "Einfache Pläne für eine klare Erstorientierung",
-      "subtitle": "Die Warteliste ist offen. Bezahlte Pläne starten, wenn kostenlose Scans live gehen. Beträge werden — falls vorhanden — nur im Stripe Checkout bestätigt, nie auf dieser Seite erfunden.",
-      "subtitle_live": "Pro Early Access ist über Stripe Checkout buchbar. Beträge werden nur dort bestätigt — nie auf dieser Seite erfunden. Free bleibt wartelistengebunden, bis Scans öffnen.",
-      "coming_soon": "Demnächst",
+      "subtitle": "Die Warteliste ist offen. Veröffentlichte Beträge sind Richtwerte — finale Beträge bestätigen Sie im Stripe Checkout, wenn Sie abonnieren.",
+      "subtitle_live": "Pro ist über Stripe Checkout buchbar. Finale Beträge werden nur dort bestätigt. Free bleibt wartelistengebunden, bis Scans öffnen.",
       "waitlist_cta": "Auf die Warteliste",
       "scan_cta": "Kostenlosen Scan starten",
+      "contact_cta": "Kontakt",
+      "get_pro_cta": "Pro holen",
       "note": "NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden. Daten bleiben in der Schweiz / EU.",
-      "footnote": "Enterprise- und Agency-Onboarding ist geplant mit AVV, benannten Kontakten und Berichten für mehrere Gesellschaften. Steuern können über Stripe Tax greifen, sobald Registrierungen aktiv sind.",
+      "footnote": "Finale Beträge werden im Stripe Checkout bestätigt. Steuern können über Stripe Tax greifen, sobald Registrierungen aktiv sind.",
       "plans": [
         {
           "id": "free",
           "name": "Free",
           "price": "€0",
-          "cadence": "1 Bericht / Monat · geplant",
+          "cadence": "1 Bericht / Monat, sobald Scans öffnen",
+          "annual_price": "",
+          "annual_cadence": "",
+          "annual_save": "",
+          "badge": "",
           "blurb": "E-Mail-gebundene Orientierung für eine Domain, sobald Scans öffnen.",
           "features": [
-            "Ein DE-/AT-/CH-Bericht pro Monat",
+            "1 Bericht / Monat (sobald Scans öffnen)",
             "Passive DNS-, TLS- und Header-Prüfungen",
             "PDF-Export",
-            "Threshold-Trace und UNKLAR, wenn Evidenz fehlt"
+            "Threshold-Begründung + UNKLAR, wenn Evidenz fehlt"
           ]
         },
         {
           "id": "pro",
           "name": "Pro",
-          "price": "—",
-          "cadence": "Team-Workspace · Preis im Checkout",
-          "blurb": "Für Compliance-Teams mit mehr als einem Snapshot. Preis nur im Stripe Checkout, wenn live.",
+          "price": "€99",
+          "cadence": "pro Monat",
+          "annual_price": "€990",
+          "annual_cadence": "pro Jahr",
+          "annual_save": "€198 sparen — 2 Monate gratis",
+          "badge": "Am beliebtesten",
+          "blurb": "Für Compliance-Teams mit mehr als einem Snapshot.",
           "features": [
+            "Alles aus Free",
             "Unbegrenzte Berichte",
             "Geteilter Team-Workspace",
             "Berichtsarchiv",
@@ -704,12 +714,16 @@
           "id": "enterprise",
           "name": "Enterprise / Agency",
           "price": "Individuell",
-          "cadence": "mehrere Gesellschaften · Kontakt",
+          "cadence": "Ab €299 / Monat · oder Kontakt",
+          "annual_price": "",
+          "annual_cadence": "",
+          "annual_save": "",
+          "badge": "",
           "blurb": "Für Konzerne, Kanzleien und Agenturen mit vielen Einheiten.",
           "features": [
             "Mapping für Gruppen und Töchter",
             "AVV und benannte Sicherheitskontakte",
-            "Admin-Freigabe für Pilotprogramme",
+            "Admin-Freigabe",
             "Onboarding entlang Ihrer DACH-Rechtsprüfung"
           ]
         }

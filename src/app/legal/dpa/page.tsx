@@ -1,9 +1,6 @@
-import { legalMetadata, LegalDocumentPage } from '@/components/site/legal-document'
+import { permanentRedirect } from 'next/navigation'
+import { LEGAL_DOCUMENTS } from '@/lib/legal/catalog'
 
-export const dynamic = 'force-dynamic'
-
-export const metadata = legalMetadata('dpa')
-
-export default function DpaPage() {
-  return <LegalDocumentPage id="dpa" />
+export default function LegalDpaAlias() {
+  permanentRedirect(LEGAL_DOCUMENTS.dpa.href)
 }

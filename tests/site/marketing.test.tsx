@@ -40,6 +40,8 @@ describe('marketing chrome copy', () => {
     expect(html).toContain('How it works')
     expect(html).toContain('Sample report')
     expect(html).toContain('FAQ')
+    expect(html).toContain('Pricing')
+    expect(html).toContain('href="/pricing"')
   })
 
   it('header exposes free-scan CTA when product-ready', () => {
@@ -72,9 +74,11 @@ describe('marketing chrome copy', () => {
     expect(html).toContain('href="/privacy"')
     expect(html).toContain('href="/contact"')
     expect(html).toContain('href="/pricing"')
+    expect(html).toContain('href="/#features"')
     expect(html).toContain('href="/#how"')
     expect(html).toContain('href="/#preview"')
     expect(html).toContain('href="/#waitlist"')
+    expect(html).toContain('href="/dpa"')
     expect(html).toContain('Switzerland / EU')
     expect(html).toContain('Regulatory readiness intelligence')
     expect(html).toContain('Noah Baumann')

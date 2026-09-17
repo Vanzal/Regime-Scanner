@@ -1,6 +1,7 @@
-# Nexusscopes — Data Processing Agreement (DPA)
+# NexusScope — Data Processing Agreement (DPA)
 
-**Version 1.0 — Draft for publication (effective date coming soon)**
+**Version 1.0 — Effective 16 September 2026**
+**Last updated: 16 September 2026**
 
 > **Note for the operator (delete before publishing):** This DPA is drafted to meet Art. 28(3) GDPR and Art. 9 revFADP. It is not legal advice. Complete every `[bracketed]` item and make sure Annex II reflects the security measures you actually operate — an overstated security annex is a contractual warranty you will be held to. See **Annex V — Operator checklist**.
 
@@ -10,9 +11,9 @@
 
 This Data Processing Agreement ("**DPA**") is entered into between:
 
-**(1) Customer** — the entity or individual identified in the Nexusscopes account and order confirmation, acting as **Controller** (or, where the Customer is itself a processor for a third party, as processor engaging Nexusscopes as sub-processor); and
+**(1) Customer** — the entity or individual identified in the NexusScope account and order confirmation, acting as **Controller** (or, where the Customer is itself a processor for a third party, as processor engaging NexusScope as sub-processor); and
 
-**(2) Noah Baumann**, sole proprietor trading as **Nexusscopes**, Registered address coming soon, Switzerland, acting as **Processor**.
+**(2) Noah Baumann**, sole proprietor trading as **NexusScope**, Registered address coming soon, Switzerland, acting as **Processor**.
 
 Each a "**Party**", together the "**Parties**".
 
@@ -20,11 +21,11 @@ Each a "**Party**", together the "**Parties**".
 
 ## 1. Structure and precedence
 
-1.1 This DPA forms part of and is incorporated by reference into the Nexusscopes [Terms of Service](https://nexusscopes.com/legal/terms) (the "**Agreement**"). It applies automatically and without signature whenever Nexusscopes processes Personal Data on the Customer's behalf. A countersigned copy is available on request at legal@nexusscopes.com.
+1.1 This DPA forms part of and is incorporated by reference into the NexusScope [Terms of Service](https://nexusscopes.com/legal/terms) (the "**Agreement**"). It applies automatically and without signature whenever NexusScope processes Personal Data on the Customer's behalf. A countersigned copy is available on request at legal@nexusscopes.com.
 
 1.2 In case of conflict, the order of precedence is: (i) the Standard Contractual Clauses in Annex IV where they apply, (ii) this DPA, (iii) the Agreement, (iv) any other document.
 
-1.3 This DPA does not apply to data for which Nexusscopes is itself controller (account, billing, support, and telemetry data) — that is governed by the [Privacy Policy](https://nexusscopes.com/privacy).
+1.3 This DPA does not apply to data for which NexusScope is itself controller (account, billing, support, and telemetry data) — that is governed by the [Privacy Policy](https://nexusscopes.com/privacy).
 
 ---
 
@@ -34,9 +35,9 @@ Each a "**Party**", together the "**Parties**".
 
 **"Controller", "Processor", "Personal Data", "Processing", "Data Subject", "Personal Data Breach", "Supervisory Authority"** have the meanings given in the GDPR; under the revFADP, "Processor" corresponds to *Auftragsbearbeiter* and "Personal Data Breach" to a breach of data security under Art. 24 revFADP.
 
-**"Customer Personal Data"** means Personal Data contained in Customer Content that Nexusscopes processes on the Customer's behalf under the Agreement.
+**"Customer Personal Data"** means Personal Data contained in Customer Content that NexusScope processes on the Customer's behalf under the Agreement.
 
-**"Sub-processor"** means any third party engaged by Nexusscopes to process Customer Personal Data.
+**"Sub-processor"** means any third party engaged by NexusScope to process Customer Personal Data.
 
 **"SCCs"** means the Standard Contractual Clauses annexed to Commission Implementing Decision (EU) 2021/914, including the Swiss adaptations recognised by the Federal Data Protection and Information Commissioner.
 
@@ -44,11 +45,11 @@ Each a "**Party**", together the "**Parties**".
 
 ## 3. Roles and scope
 
-3.1 The Customer is the Controller and Nexusscopes is the Processor in respect of Customer Personal Data. Where the Customer acts as a processor for a third-party controller, Nexusscopes acts as sub-processor and the Customer warrants it has the authority to engage Nexusscopes on these terms.
+3.1 The Customer is the Controller and NexusScope is the Processor in respect of Customer Personal Data. Where the Customer acts as a processor for a third-party controller, NexusScope acts as sub-processor and the Customer warrants it has the authority to engage NexusScope on these terms.
 
 3.2 The details required by Art. 28(3) GDPR — subject matter, duration, nature and purpose of processing, types of Personal Data, and categories of Data Subjects — are set out in **Annex I**.
 
-3.3 The Customer determines the purposes and means of processing. Nexusscopes has no independent right to use Customer Personal Data.
+3.3 The Customer determines the purposes and means of processing. NexusScope has no independent right to use Customer Personal Data.
 
 ---
 
@@ -59,18 +60,18 @@ Each a "**Party**", together the "**Parties**".
 a) it has a valid legal basis for the processing it instructs, and has provided all required information to Data Subjects;
 b) its instructions comply with Applicable Data Protection Law;
 c) it holds documented authorisation over every domain, system, repository, or account it submits as a scan target;
-d) it will not upload special categories of Personal Data (Art. 9 GDPR / Art. 5(c) revFADP), criminal conviction data, payment card data, or data subject to professional secrecy, unless Nexusscopes has agreed in writing in advance and appropriate additional measures are documented in Annex II;
+d) it will not upload special categories of Personal Data (Art. 9 GDPR / Art. 5(c) revFADP), criminal conviction data, payment card data, or data subject to professional secrecy, unless NexusScope has agreed in writing in advance and appropriate additional measures are documented in Annex II;
 e) it has assessed the Service as suitable for the intended processing, taking into account its security measures.
 
 4.2 The Customer is responsible for the accuracy, quality, and legality of Customer Personal Data and the means by which it acquired it.
 
 ---
 
-## 5. Nexusscopes' processing obligations
+## 5. NexusScope's processing obligations
 
-Nexusscopes shall:
+NexusScope shall:
 
-5.1 **Process only on documented instructions.** Process Customer Personal Data solely on the Customer's documented instructions, including the Agreement, the configuration of the Service, and any further written instruction, and for the purposes set out in Annex I — including as regards transfers to a third country — unless required to do otherwise by Union, Member State, or Swiss law. In that case, Nexusscopes will inform the Customer of the legal requirement before processing, unless that law prohibits such information on important grounds of public interest.
+5.1 **Process only on documented instructions.** Process Customer Personal Data solely on the Customer's documented instructions, including the Agreement, the configuration of the Service, and any further written instruction, and for the purposes set out in Annex I — including as regards transfers to a third country — unless required to do otherwise by Union, Member State, or Swiss law. In that case, NexusScope will inform the Customer of the legal requirement before processing, unless that law prohibits such information on important grounds of public interest.
 
 5.2 **Flag unlawful instructions.** Immediately inform the Customer if, in its opinion, an instruction infringes Applicable Data Protection Law, and may suspend performance of that instruction until it is confirmed, amended, or withdrawn.
 
@@ -82,45 +83,45 @@ Nexusscopes shall:
 
 5.6 **No further use.** Not use Customer Personal Data for its own purposes, not disclose it to third parties except as permitted here, not sell it, and **not use it to train or fine-tune AI or machine-learning models**, unless the Customer opts in to a feature that expressly and separately provides for this.
 
-5.7 **Aggregation.** Nexusscopes may create aggregated, irreversibly anonymised statistics that cannot be attributed to the Customer or any Data Subject. Once anonymised, such data is no longer Personal Data and falls outside this DPA.
+5.7 **Aggregation.** NexusScope may create aggregated, irreversibly anonymised statistics that cannot be attributed to the Customer or any Data Subject. Once anonymised, such data is no longer Personal Data and falls outside this DPA.
 
 ---
 
 ## 6. Sub-processors
 
-6.1 The Customer grants Nexusscopes **general written authorisation** to engage Sub-processors, subject to this Section.
+6.1 The Customer grants NexusScope **general written authorisation** to engage Sub-processors, subject to this Section.
 
 6.2 The Sub-processors authorised at the effective date are listed at [https://nexusscopes.com/legal/subprocessors] and summarised in **Annex III**.
 
-6.3 **Change notice.** Nexusscopes will notify the Customer of any intended addition or replacement of a Sub-processor at least **30 days** in advance, by e-mail to the Customer's notification address and/or via the subscription mechanism on the sub-processor page. Customers should subscribe to that mechanism; failure to do so does not extend the objection period.
+6.3 **Change notice.** NexusScope will notify the Customer of any intended addition or replacement of a Sub-processor at least **30 days** in advance, by e-mail to the Customer's notification address and/or via the subscription mechanism on the sub-processor page. Customers should subscribe to that mechanism; failure to do so does not extend the objection period.
 
 6.4 **Objection.** The Customer may object on reasonable, documented data-protection grounds within **30 days** of notice. The Parties will work in good faith to resolve the objection — for example by offering an alternative configuration or region. If no resolution is found within **30 days**, the Customer may terminate the affected part of the Service without penalty and receive a pro-rata refund of prepaid, unused fees.
 
-6.5 **Flow-down and liability.** Nexusscopes will impose on each Sub-processor, by written contract, data protection obligations materially no less protective than those in this DPA, and **remains fully liable to the Customer** for the Sub-processor's performance of its obligations.
+6.5 **Flow-down and liability.** NexusScope will impose on each Sub-processor, by written contract, data protection obligations materially no less protective than those in this DPA, and **remains fully liable to the Customer** for the Sub-processor's performance of its obligations.
 
 ---
 
 ## 7. Assistance to the Customer
 
-7.1 **Data Subject requests.** Taking into account the nature of the processing, Nexusscopes will assist the Customer by appropriate technical and organisational measures, insofar as possible, to fulfil the Customer's obligation to respond to requests for the exercise of Data Subject rights under Chapter III GDPR and Art. 25 ff. revFADP. The Service includes self-service access, export, and deletion functions that will usually be sufficient.
+7.1 **Data Subject requests.** Taking into account the nature of the processing, NexusScope will assist the Customer by appropriate technical and organisational measures, insofar as possible, to fulfil the Customer's obligation to respond to requests for the exercise of Data Subject rights under Chapter III GDPR and Art. 25 ff. revFADP. The Service includes self-service access, export, and deletion functions that will usually be sufficient.
 
-7.2 **Redirection.** If Nexusscopes receives a request directly from a Data Subject relating to Customer Personal Data, it will not respond substantively, will refer the Data Subject to the Customer, and will inform the Customer **without undue delay**.
+7.2 **Redirection.** If NexusScope receives a request directly from a Data Subject relating to Customer Personal Data, it will not respond substantively, will refer the Data Subject to the Customer, and will inform the Customer **without undue delay**.
 
-7.3 **DPIAs and prior consultation.** Nexusscopes will provide reasonable assistance with data protection impact assessments (Art. 35 GDPR / Art. 22 revFADP) and prior consultation with a Supervisory Authority (Art. 36 GDPR), taking into account the nature of processing and the information available to it.
+7.3 **DPIAs and prior consultation.** NexusScope will provide reasonable assistance with data protection impact assessments (Art. 35 GDPR / Art. 22 revFADP) and prior consultation with a Supervisory Authority (Art. 36 GDPR), taking into account the nature of processing and the information available to it.
 
-7.4 **Charges.** Assistance is provided free of charge where it is routine or covered by the Service's built-in functionality. For extensive or repeated assistance beyond that, Nexusscopes may charge reasonable documented costs at a reasonable hourly rate notified in advance.
+7.4 **Charges.** Assistance is provided free of charge where it is routine or covered by the Service's built-in functionality. For extensive or repeated assistance beyond that, NexusScope may charge reasonable documented costs at a reasonable hourly rate notified in advance.
 
 ---
 
 ## 8. Personal Data Breach
 
-8.1 Nexusscopes will notify the Customer **without undue delay and in any event within 48 hours** of becoming aware of a Personal Data Breach affecting Customer Personal Data.
+8.1 NexusScope will notify the Customer **without undue delay and in any event within 48 hours** of becoming aware of a Personal Data Breach affecting Customer Personal Data.
 
 8.2 The notification will describe, to the extent known: the nature of the breach, the categories and approximate number of Data Subjects and records concerned, the likely consequences, the measures taken or proposed to address it and mitigate adverse effects, and a contact point for further information. Where information is not available at once, it will be provided in phases without further undue delay.
 
-8.3 Nexusscopes will assist the Customer in meeting its own notification duties to Supervisory Authorities (Art. 33 GDPR — 72 hours; Art. 24 revFADP — as soon as possible to the FDPIC) and to Data Subjects (Art. 34 GDPR).
+8.3 NexusScope will assist the Customer in meeting its own notification duties to Supervisory Authorities (Art. 33 GDPR — 72 hours; Art. 24 revFADP — as soon as possible to the FDPIC) and to Data Subjects (Art. 34 GDPR).
 
-8.4 Nexusscopes will not notify any third party of a breach on the Customer's behalf without the Customer's prior written consent, unless legally required.
+8.4 NexusScope will not notify any third party of a breach on the Customer's behalf without the Customer's prior written consent, unless legally required.
 
 8.5 Notification or assistance is not an admission of fault or liability.
 
@@ -128,39 +129,39 @@ Nexusscopes shall:
 
 ## 9. Audits and evidence of compliance
 
-9.1 Nexusscopes will make available to the Customer all information necessary to demonstrate compliance with Art. 28 GDPR.
+9.1 NexusScope will make available to the Customer all information necessary to demonstrate compliance with Art. 28 GDPR.
 
-9.2 **Primary route.** The Customer's audit right is satisfied in the first instance by Nexusscopes providing, on request and no more than **once per year**: the current security overview, the sub-processor list, a completed security questionnaire, and any third-party audit report or certification then held (if any; none claimed unless listed).
+9.2 **Primary route.** The Customer's audit right is satisfied in the first instance by NexusScope providing, on request and no more than **once per year**: the current security overview, the sub-processor list, a completed security questionnaire, and any third-party audit report or certification then held (if any; none claimed unless listed).
 
 9.3 **On-site audit.** Where the above is genuinely insufficient, or following a Personal Data Breach, or where a Supervisory Authority requires it, the Customer or a mandated independent auditor may conduct an audit, subject to: **30 days'** prior written notice, a mutually agreed scope and date, normal business hours, a signed confidentiality undertaking, no access to other customers' data or to systems that would compromise it, and no more than **once per year** except for cause.
 
-9.4 The Customer bears its own audit costs and Nexusscopes' reasonable documented costs for on-site audits, except where the audit reveals a material breach of this DPA by Nexusscopes.
+9.4 The Customer bears its own audit costs and NexusScope's reasonable documented costs for on-site audits, except where the audit reveals a material breach of this DPA by NexusScope.
 
-9.5 The auditor must not be a competitor of Nexusscopes.
+9.5 The auditor must not be a competitor of NexusScope.
 
 ---
 
 ## 10. International transfers
 
-10.1 Nexusscopes will not transfer Customer Personal Data outside Switzerland or the EEA except in accordance with this Section.
+10.1 NexusScope will not transfer Customer Personal Data outside Switzerland or the EEA except in accordance with this Section.
 
 10.2 Transfers are made only where: (a) the destination benefits from an adequacy decision — including the European Commission's confirmation of Swiss adequacy and, for certified US recipients, the EU-US and Swiss-US Data Privacy Frameworks; (b) the **SCCs** in Annex IV apply, with the Swiss adaptations recognised by the FDPIC; or (c) another valid transfer mechanism under Art. 46 GDPR / Art. 16–17 revFADP is in place.
 
 10.3 Where the SCCs apply, they are incorporated by reference as set out in **Annex IV**, with **Module Two (Controller to Processor)** applying where the Customer is a controller and **Module Three (Processor to Processor)** where the Customer is itself a processor.
 
-10.4 Nexusscopes carries out and documents transfer impact assessments and applies supplementary measures, including encryption in transit and at rest and a policy of challenging disproportionate government access requests.
+10.4 NexusScope carries out and documents transfer impact assessments and applies supplementary measures, including encryption in transit and at rest and a policy of challenging disproportionate government access requests.
 
-10.5 **Government access.** Nexusscopes will notify the Customer of any legally binding request from a public authority for disclosure of Customer Personal Data unless prohibited, will challenge requests it considers unlawful or excessive, and will disclose only the minimum required.
+10.5 **Government access.** NexusScope will notify the Customer of any legally binding request from a public authority for disclosure of Customer Personal Data unless prohibited, will challenge requests it considers unlawful or excessive, and will disclose only the minimum required.
 
 ---
 
 ## 11. Deletion and return
 
-11.1 On termination or expiry of the Agreement, and at the Customer's choice, Nexusscopes will **delete or return** all Customer Personal Data and delete existing copies, unless Union, Member State, or Swiss law requires storage.
+11.1 On termination or expiry of the Agreement, and at the Customer's choice, NexusScope will **delete or return** all Customer Personal Data and delete existing copies, unless Union, Member State, or Swiss law requires storage.
 
 11.2 In practice: Customer Content remains available for self-service export for **30 days** after termination; it is then deleted from production systems; and it is purged from backups within a further **90 days** in line with backup rotation. Data retained under a legal obligation is isolated, access-restricted, and processed only for the purpose of that obligation.
 
-11.3 On request, Nexusscopes will confirm deletion in writing.
+11.3 On request, NexusScope will confirm deletion in writing.
 
 ---
 
@@ -186,7 +187,7 @@ Nexusscopes shall:
 
 # Annex I — Details of processing (Art. 28(3) GDPR)
 
-**Subject matter:** provision of the Nexusscopes data-compliance discovery and assessment service.
+**Subject matter:** provision of the NexusScope data-compliance discovery and assessment service.
 
 **Duration:** the term of the Agreement, plus the deletion periods in Section 11.
 

@@ -20,7 +20,7 @@ export type LegalDocumentMeta = {
  * redesign) to consume via `footerLegalLinks()`.
  *
  * Paths follow the documents themselves: Privacy at `/privacy`, Terms at
- * `/legal/terms`, DPA at `/legal/dpa`.
+ * `/legal/terms`, DPA at `/dpa`.
  */
 export const LEGAL_DOCUMENTS: Record<LegalDocId, LegalDocumentMeta> = {
   privacy: {
@@ -49,8 +49,8 @@ export const LEGAL_DOCUMENTS: Record<LegalDocId, LegalDocumentMeta> = {
   },
   dpa: {
     id: 'dpa',
-    href: '/legal/dpa',
-    aliases: [],
+    href: '/dpa',
+    aliases: ['/legal/dpa'],
     file: 'dpa.md',
     title: { en: 'Data Processing Agreement', de: 'Auftragsverarbeitungsvertrag' },
     short: { en: 'DPA', de: 'AVV' },
