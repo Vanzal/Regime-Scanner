@@ -1,9 +1,16 @@
 import Link from 'next/link'
 import { cookies } from 'next/headers'
+import type { Metadata } from 'next'
 import { getDict, localeFromCookie, type Dictionary, type Locale } from '@/i18n'
 import { SiteShell } from '@/components/site/site-shell'
+import { publicPageMeta } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = publicPageMeta('/impressum', {
+  title: 'Impressum',
+  description: 'Legal disclosure for NexusScope, the DACH regulatory readiness service.',
+})
 
 function looksLikeEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)

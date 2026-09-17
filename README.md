@@ -95,6 +95,20 @@ Alle Checks sind passiv und unit-geprüft: robots.txt respektiert, ≥750 ms Abs
 - **Vercel**: Scan-Runner auch als `POST /api/scan-run` (Secret-Header, idempotent) exponiert;
   PDF ggf. über Print-Fallback (`/report/{token}?print=1`).
 
+### Canonical domain (SEO)
+
+Production canonical is **`https://nexusscopes.com`** (non-www). `metadataBase`, Open Graph,
+robots.txt (`Host` + `Sitemap`) and the sitemap `<loc>` values always use this origin — never
+a `*.vercel.app` preview URL.
+
+`www.nexusscopes.com` is 301-redirected to the apex in `src/middleware.ts` and `next.config.ts`.
+That only runs if **www is attached as a domain on the Vercel project** (or the DNS/CDN in
+front). In the Vercel dashboard: add `www.nexusscopes.com`, then set `nexusscopes.com` as the
+primary domain so Vercel also redirects www → non-www at the edge.
+
+For production, set `SITE_URL=https://nexusscopes.com` (runtime links such as Stripe return
+URLs). Leave it unset on preview deployments so callbacks stay on the preview host.
+
 ## Entwicklung
 
 ```bash

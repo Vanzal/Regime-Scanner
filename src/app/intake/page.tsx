@@ -1,11 +1,19 @@
 import { cookies } from 'next/headers'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getDict, localeFromCookie, t, type Locale } from '@/i18n'
 import { isProductReady } from '@/lib/flags'
 import { IntakeForm } from './intake-form'
 import { SiteShell } from '@/components/site/site-shell'
+import { publicPageMeta } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = publicPageMeta('/intake', {
+  title: 'Start a scan',
+  description:
+    'Answer eight questions about your organisation. NexusScope maps your profile against NIS2UmsuCG, NISG 2024 and ISG.',
+})
 
 export default async function IntakePage() {
   const cookieStore = await cookies()

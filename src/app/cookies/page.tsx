@@ -1,9 +1,16 @@
 import { cookies } from 'next/headers'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getDict, localeFromCookie, type Dictionary, type Locale } from '@/i18n'
 import { SiteShell } from '@/components/site/site-shell'
+import { publicPageMeta } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = publicPageMeta('/cookies', {
+  title: 'Cookies',
+  description: 'How NexusScope uses cookies, including the language and theme preferences stored on your device.',
+})
 
 export default async function CookiesPage() {
   const cookieStore = await cookies()

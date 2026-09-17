@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
-import { siteUrl } from '@/lib/site-url'
+import { canonicalSiteUrl } from '@/lib/site-url'
 
+/** Canonical public URLs only (aliases 301 to these paths). */
 const PUBLIC_PATHS = [
   '/',
   '/pricing',
@@ -11,15 +12,11 @@ const PUBLIC_PATHS = [
   '/cookie-settings',
   '/privacy',
   '/dpa',
-  '/terms',
-  '/legal/privacy',
   '/legal/terms',
-  '/legal/dpa',
-  '/datenschutz',
 ] as const
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = siteUrl()
+  const base = canonicalSiteUrl()
   const now = new Date()
   return PUBLIC_PATHS.map((path) => ({
     url: path === '/' ? base : `${base}${path}`,
