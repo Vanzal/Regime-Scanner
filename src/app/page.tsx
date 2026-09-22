@@ -9,6 +9,7 @@ import { SampleReportExplorer } from '@/components/site/sample-report-explorer'
 import { HeroReportCard } from '@/components/site/hero-report-card'
 import { SampleReportCard, type SampleReportCardDict } from '@/components/site/sample-report-card'
 import { SiteShell } from '@/components/site/site-shell'
+import { cn } from '@/lib/utils'
 
 export const dynamic = 'force-dynamic'
 
@@ -38,11 +39,24 @@ function DeadlineInstruments({ dict }: { dict: Dictionary }) {
     { label: '30 d', caption: dict.site.hero.clock_final },
   ]
   return (
-    <aside aria-label="Reporting clocks" className="grid grid-cols-3 gap-2 sm:gap-3">
-      {clocks.map((c) => (
-        <div key={c.label} className="ns-clock flex min-w-0 flex-col justify-between p-3 sm:p-4">
+    <aside
+      aria-label="Reporting clocks"
+      className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_minmax(0,1fr)] gap-2 sm:gap-3"
+    >
+      {clocks.map((c, i) => (
+        <div
+          key={c.label}
+          className={cn('ns-clock flex min-w-0 flex-col justify-between p-3 sm:p-4', i === 0 && 'sm:p-5')}
+        >
           <span className="font-instrument text-[10px] uppercase tracking-[0.14em] opacity-70">{c.caption}</span>
-          <span className="mt-4 font-display text-lg leading-none sm:mt-5 sm:text-2xl">{c.label}</span>
+          <span
+            className={cn(
+              'mt-4 font-display leading-none sm:mt-5',
+              i === 0 ? 'text-xl sm:text-3xl' : 'text-lg sm:text-2xl',
+            )}
+          >
+            {c.label}
+          </span>
         </div>
       ))}
     </aside>
@@ -117,11 +131,14 @@ export default async function LandingPage() {
       <section id="how" className="border-b border-[var(--ns-border)] bg-[var(--ns-bg-panel)]">
         <div className={SECTION}>
           <h2 className={H2}>{s.how.title}</h2>
-          <ol className="mt-8 grid gap-4 sm:mt-10 md:grid-cols-3">
+          <ol className="mt-8 grid gap-4 sm:mt-10 md:grid-cols-2">
             {s.how.steps.map((step, i) => (
               <li
                 key={step.title}
-                className="ns-card p-5 sm:p-6"
+                className={cn(
+                  'ns-card p-5 sm:p-6',
+                  i === s.how.steps.length - 1 && 'md:col-span-2 md:p-8',
+                )}
                 data-testid={`how-step-${i + 1}`}
               >
                 <span className="font-instrument text-sm font-semibold text-[var(--ns-accent)]">
@@ -142,21 +159,37 @@ export default async function LandingPage() {
             <h2 className={H2}>{s.preview.title}</h2>
             <p className="mt-3 text-base text-[var(--ns-fg-muted)] sm:text-lg">{s.preview.subtitle}</p>
           </div>
-          <ul className="mt-8 grid gap-px overflow-hidden rounded-[var(--ns-radius)] border border-[var(--ns-border)] bg-[var(--ns-border)] sm:grid-cols-3">
-            {s.preview.outputs.map((output, i) => (
-              <li
-                key={output.label}
-                className="bg-[var(--ns-bg-elevated)] px-4 py-4 sm:px-5"
-                data-testid={`preview-output-${i + 1}`}
+          <div className="mt-8">
+            {s.preview.outputs[0] ? (
+              <div
+                className="ns-card p-5 sm:p-7"
+                data-testid="preview-output-1"
               >
                 <p className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
-                  {String(i + 1).padStart(2, '0')}
+                  01
                 </p>
-                <p className="mt-2 text-sm font-semibold tracking-tight sm:text-base">{output.label}</p>
-                <p className="mt-1.5 text-sm leading-relaxed text-[var(--ns-fg-muted)]">{output.hint}</p>
-              </li>
-            ))}
-          </ul>
+                <p className="mt-2 text-base font-semibold tracking-tight sm:text-lg">{s.preview.outputs[0].label}</p>
+                <p className="mt-1.5 max-w-prose text-sm leading-relaxed text-[var(--ns-fg-muted)] sm:text-base">
+                  {s.preview.outputs[0].hint}
+                </p>
+              </div>
+            ) : null}
+            <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+              {s.preview.outputs.slice(1).map((output, i) => (
+                <li
+                  key={output.label}
+                  className="border-t border-[var(--ns-border)] px-1 pt-4"
+                  data-testid={`preview-output-${i + 2}`}
+                >
+                  <p className="font-instrument text-[11px] uppercase tracking-[0.14em] text-[var(--ns-fg-dim)]">
+                    {String(i + 2).padStart(2, '0')}
+                  </p>
+                  <p className="mt-2 text-sm font-semibold tracking-tight">{output.label}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-[var(--ns-fg-muted)]">{output.hint}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
           <div className="mt-8 min-w-0">
             <SampleReportExplorer
               reports={sampleReports}
@@ -182,11 +215,23 @@ export default async function LandingPage() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {s.features.cards.map((card, i) => {
               const Icon = FEATURE_ICONS[i] ?? ShieldCheck
+              const primary = i === 0
               return (
-                <div key={card.title} className="ns-card p-5" data-testid={`feature-${i + 1}`}>
+                <div
+                  key={card.title}
+                  className={cn('ns-card p-5', primary && 'sm:col-span-2 sm:p-7 lg:col-span-3')}
+                  data-testid={`feature-${i + 1}`}
+                >
                   <Icon className="h-5 w-5 text-[var(--ns-accent)]" aria-hidden />
-                  <h3 className="mt-4 text-base font-semibold tracking-tight">{card.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--ns-fg-muted)]">{card.body}</p>
+                  <h3
+                    className={cn(
+                      'mt-4 font-semibold tracking-tight',
+                      primary ? 'text-lg sm:text-xl' : 'text-base',
+                    )}
+                  >
+                    {card.title}
+                  </h3>
+                  <p className="mt-2 max-w-prose text-sm leading-relaxed text-[var(--ns-fg-muted)]">{card.body}</p>
                 </div>
               )
             })}

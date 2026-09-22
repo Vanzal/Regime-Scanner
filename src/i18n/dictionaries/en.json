@@ -365,8 +365,8 @@
     },
     "hero": {
       "badge": "NexusScope · Built for Germany, Austria & Switzerland",
-      "title": "One incident. Three reporting regimes. Know which ones apply — before the clock starts.",
-      "subtitle": "NexusScope maps your company against Germany’s NIS2UmsuCG/BSIG, Austria’s NISG 2024 and Switzerland’s ISG. You get independent applicability reads, reporting clocks, and visible public-footprint gaps — with sources and confidence stated for each regime.",
+      "title": "One incident. Three reporting regimes. Know which ones apply. Before the clock starts.",
+      "subtitle": "NexusScope maps your company against Germany’s NIS2UmsuCG/BSIG, Austria’s NISG 2024 and Switzerland’s ISG. You get independent applicability reads, reporting clocks, and visible public-footprint gaps, with sources and confidence stated for each regime.",
       "cta": "Join waitlist",
       "cta_secondary": "View sample report",
       "scan_cta": "Start free scan",
@@ -376,13 +376,13 @@
       "clock_final": "Final report"
     },
     "problem": {
-      "title": "DACH reporting rules are expanding — unevenly",
-      "lead": "Germany's NIS2UmsuCG, Austria's NISG 2024 and Switzerland's ISG each set their own thresholds, sectors and clocks. One incident can trigger different duties — or none.",
+      "title": "DACH reporting rules are expanding, unevenly.",
+      "lead": "Germany's NIS2UmsuCG, Austria's NISG 2024 and Switzerland's ISG each set their own thresholds, sectors and clocks. One incident can trigger different duties, or none.",
       "emphasis": "Most companies only discover which rules apply after the 24-hour reporting window has already started.",
       "points": [
         "Three regimes, three thresholds, three timelines",
         "Thresholds mix headcount, revenue and sector lists",
-        "Orientation after an incident is too late — the clock has already started"
+        "Orientation after an incident is too late. The clock has already started."
       ]
     },
     "how": {
@@ -390,25 +390,25 @@
       "steps": [
         {
           "title": "Tell us about your company",
-          "body": "Your domain and a short questionnaire — sector, size, locations, EU customers. About two minutes."
+          "body": "Your domain and a short questionnaire. Sector, size, locations, EU customers. About two minutes."
         },
         {
           "title": "We analyse",
-          "body": "NexusScope evaluates your profile against all three regimes and checks your public footprint (DNS, TLS, web headers, published pages) for visible gaps — GET-only, robots.txt-respecting."
+          "body": "NexusScope evaluates your profile against all three regimes and checks your public footprint (DNS, TLS, web headers, published pages) for visible gaps. GET-only, robots.txt-respecting."
         },
         {
           "title": "You get one unified report",
-          "body": "Per-regime applicability, reporting deadlines, a prioritised gap list, and the reasoning behind each conclusion — including what is Confirmed, Likely, Needs review, or Insufficient information."
+          "body": "Per-regime applicability, reporting deadlines, a prioritised gap list, and the reasoning behind each conclusion. Including what is Confirmed, Likely, Needs review, or Insufficient information."
         }
       ]
     },
     "preview": {
       "title": "What the report looks like",
-      "subtitle": "Each sample walks Regulation → Applicability → Why → Evidence → Source → Confidence → Next action. Profiles are synthetic demo data, clearly labelled — not live determinations.",
+      "subtitle": "Each sample walks Regulation → Applicability → Why → Evidence → Source → Confidence → Next action. Profiles are synthetic demo data, clearly labelled. Not live determinations.",
       "outputs": [
         {
           "label": "Applicability",
-          "hint": "Confirmed / Likely / Needs review / Insufficient information — independently for DE, AT and CH."
+          "hint": "Confirmed / Likely / Needs review / Insufficient information, independently for DE, AT and CH."
         },
         {
           "label": "Why & evidence",
@@ -424,7 +424,7 @@
       "profile_at": "Austrian IT provider",
       "profile_ch": "Swiss entity with DE subsidiary",
       "synthetic_badge": "DEMO · SYNTHETIC",
-      "synthetic_hint": "Demo fixture — not a live scan of a real customer domain",
+      "synthetic_hint": "Demo fixture. Not a live scan of a real customer domain.",
       "read_path": "How to read: Result → Reason → Evidence → Source → Confidence → Next step. Marked UNCLEAR when evidence is missing.",
       "confidence_label": "Confidence",
       "source_label": "Source",
@@ -438,23 +438,23 @@
       "col_regime": "Regime",
       "col_status": "Status",
       "col_reason": "Why",
-      "regime_de": "Germany — NIS2UmsuCG/BSIG",
+      "regime_de": "Germany, NIS2UmsuCG/BSIG",
       "regime_de_reason": "250+ employees and €50m+ revenue place you in scope of the essential-entity thresholds.",
-      "regime_at": "Austria — NISG 2024",
+      "regime_at": "Austria, NISG 2024",
       "regime_at_reason": "Thresholds met, but sector classification needs confirmation.",
-      "regime_ch": "Switzerland — ISG",
+      "regime_ch": "Switzerland, ISG",
       "regime_ch_reason": "No Swiss establishment and no listed critical sector.",
       "status_in": "CONFIRMED",
       "status_unclear": "NEEDS REVIEW",
       "status_out": "OUT",
       "gaps_intro": "Prioritised findings from the public footprint:",
-      "gap1": "No SPF record on the primary domain — e-mail spoofing is trivial.",
+      "gap1": "No SPF record on the primary domain. E-mail spoofing is trivial.",
       "gap2": "Outdated TLS configuration on the mail gateway.",
       "gap3": "No published vulnerability-disclosure contact.",
       "deadlines_intro": "Deadlines after a significant incident (sample: Germany applicable):",
-      "deadline1": "24 hours — early warning to the BSI",
-      "deadline2": "72 hours — incident report to the BSI",
-      "deadline3": "1 month — final report to the BSI",
+      "deadline1": "24 hours, early warning to the BSI",
+      "deadline2": "72 hours, incident report to the BSI",
+      "deadline3": "1 month, final report to the BSI",
       "disclaimer": "NexusScope provides regulatory readiness intelligence based on referenced public sources. Results are intended to support internal assessment and should be reviewed by qualified legal or compliance professionals where appropriate.",
       "as_of": "Timelines current as of September 2026.",
       "col_confidence": "Confidence",
@@ -468,14 +468,14 @@
       "drawer_close": "Close",
       "col_next": "Next action",
       "demo_banner": "Simulated sample · synthetic profile · not a live legal determination",
-      "insufficient_hint": "Insufficient information — listed inputs would resolve this."
+      "insufficient_hint": "Insufficient information. Listed inputs would resolve this."
     },
     "features": {
       "title": "What you get",
       "cards": [
         {
           "title": "Know which regimes apply",
-          "body": "Independent Confirmed / Likely / Needs review / Insufficient reads for DE, AT and CH — in one place."
+          "body": "Independent Confirmed / Likely / Needs review / Insufficient reads for DE, AT and CH, in one place."
         },
         {
           "title": "See the clocks that matter",
@@ -483,7 +483,7 @@
         },
         {
           "title": "Close visible gaps first",
-          "body": "Prioritised findings from passive DNS, TLS and web checks — public sources only."
+          "body": "Prioritised findings from passive DNS, TLS and web checks. Public sources only."
         },
         {
           "title": "Show your reasoning",
@@ -502,16 +502,16 @@
     "trust": {
       "eyebrow": "Trust",
       "title": "Built for DACH companies",
-      "body": "Orientation for Germany, Austria and Switzerland. Your data stays in Switzerland and the EU. Public sources only — informational, not legal advice.",
+      "body": "Orientation for Germany, Austria and Switzerland. Your data stays in Switzerland and the EU. Public sources only. Informational, not legal advice.",
       "points": [
         "Built for DACH companies",
         "Data stays in Switzerland / EU",
-        "Informational only — not legal advice"
+        "Informational only, not legal advice"
       ]
     },
     "waitlist": {
       "title": "Join the waitlist",
-      "subtitle": "Leave your work e-mail. We notify you when scans open — then you get one DE / AT / CH orientation report from a two-minute questionnaire and a passive public-footprint check.",
+      "subtitle": "Leave your work e-mail. We notify you when scans open. Then you get one DE / AT / CH orientation report from a two-minute questionnaire and a passive public-footprint check.",
       "email_label": "Work e-mail",
       "size_label": "Company size",
       "size": {
@@ -571,7 +571,7 @@
       "items": [
         {
           "q": "Does NIS2 / NISG / ISG apply to my company?",
-          "a": "It depends on sector, size and structure — thresholds differ across Germany, Austria and Switzerland. NexusScope checks your profile against each regime and states Confirmed, Likely, Needs review, or Insufficient information, including what remains open."
+          "a": "It depends on sector, size and structure. Thresholds differ across Germany, Austria and Switzerland. NexusScope checks your profile against each regime and states Confirmed, Likely, Needs review, or Insufficient information, including what remains open."
         },
         {
           "q": "Is this legal advice?",
@@ -591,15 +591,15 @@
         },
         {
           "q": "What do Confirmed, Likely, Needs review and Insufficient information mean?",
-          "a": "Confirmed: the stated profile meets (or clearly misses) the cited thresholds. Likely: strong signals, but a nuance remains. Needs review: evidence points both ways or a classification step is unfinished. Insufficient information: required inputs are missing — the report lists what would resolve it instead of guessing."
+          "a": "Confirmed: the stated profile meets (or clearly misses) the cited thresholds. Likely: strong signals, but a nuance remains. Needs review: evidence points both ways or a classification step is unfinished. Insufficient information: required inputs are missing. The report lists what would resolve it instead of guessing."
         },
         {
           "q": "Where is my data stored?",
-          "a": "In Switzerland and the EU only. Waitlist details and reports support your orientation and early-access notification — not advertising without consent."
+          "a": "In Switzerland and the EU only. Waitlist details and reports support your orientation and early-access notification, not advertising without consent."
         },
         {
           "q": "Can I export a PDF?",
-          "a": "Yes. Every report supports print/PDF export for boards, auditors and counsel. Sample reports on this site are labelled synthetic demo data and use the same layout."
+          "a": "Yes. Every report supports print/PDF export for boards, auditors and counsel. Sample reports on this site are synthetic demo data and use the same layout."
         }
       ]
     },
@@ -649,7 +649,7 @@
     "proof": {
       "eyebrow": "Who it is for",
       "title": "Designed for DACH organizations navigating overlapping cybersecurity regulations",
-      "body": "Built for the roles that must decide whether a reporting duty applies — before the 24-hour clock starts. The categories below describe intended users. They are not customers, partners, or endorsements.",
+      "body": "Built for the roles that must decide whether a reporting duty applies. Before the 24-hour clock starts. The categories below describe intended users. They are not customers, partners, or endorsements.",
       "audiences": [
         "CISOs",
         "Security teams",
@@ -660,8 +660,8 @@
       ]
     },
     "final_cta": {
-      "title": "Know which clocks apply — before the next incident.",
-      "body": "Join the waitlist. After you submit, we e-mail you when scans open. You then receive one DE / AT / CH orientation from a short questionnaire and a passive public-footprint check — with sources, confidence, and open questions stated clearly.",
+      "title": "Know which clocks apply. Before the next incident.",
+      "body": "Join the waitlist. After you submit, we e-mail you when scans open. You then receive one DE / AT / CH orientation from a short questionnaire and a passive public-footprint check, with sources, confidence, and open questions stated clearly.",
       "cta": "Join waitlist"
     },
     "pricing_page": {

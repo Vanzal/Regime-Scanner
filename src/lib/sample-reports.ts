@@ -82,7 +82,7 @@ const GAP_EN: Record<string, { title: string; detail: string; fix?: string }> = 
   'DMARC fehlt vollständig': {
     title: 'DMARC record missing entirely',
     detail:
-      'beispielwerk.de publishes no DMARC record (_dmarc). Mail can be spoofed in your name without policy checks — a common entry point for incidents that may become reportable.',
+      'beispielwerk.de publishes no DMARC record (_dmarc). Mail can be spoofed in your name without policy checks. A common entry point for incidents that may become reportable.',
     fix: 'Publish a DMARC TXT record at _dmarc.beispielwerk.de (start with p=none, then quarantine, then reject) and monitor rua reports.',
   },
   'Kein DKIM-Signaturhinweis auffindbar': {
@@ -95,7 +95,7 @@ const GAP_EN: Record<string, { title: string; detail: string; fix?: string }> = 
     title: 'HSTS (Strict-Transport-Security) missing',
     detail:
       'The primary host does not force HTTPS on return visits. Downgrade attacks to cleartext remain possible.',
-    fix: 'Set Strict-Transport-Security: max-age=31536000; includeSubDomains — roll out with a short max-age first.',
+    fix: 'Set Strict-Transport-Security: max-age=31536000; includeSubDomains. Roll out with a short max-age first.',
   },
   'TLS-Zertifikat läuft in 21 Tagen ab': {
     title: 'TLS certificate expires in 21 days',
@@ -106,19 +106,19 @@ const GAP_EN: Record<string, { title: string; detail: string; fix?: string }> = 
   'Kein security.txt (RFC 9116)': {
     title: 'No security.txt (RFC 9116)',
     detail:
-      'No /.well-known/security.txt exists. Third parties cannot reach a defined security contact — evidence of responsible disclosure is missing.',
+      'No /.well-known/security.txt exists. Third parties cannot reach a defined security contact. Evidence of responsible disclosure is missing.',
     fix: 'Publish /.well-known/security.txt with Contact and Expires fields (RFC 9116).',
   },
   'Veraltete WordPress-Hauptversion im öffentlichen Fußabdruck': {
     title: 'Outdated WordPress major version in public footprint',
     detail:
-      'Meta generator and asset paths suggest WordPress 5.x (unsupported major). Not a CVE claim — an indicator of weak patch management.',
+      'Meta generator and asset paths suggest WordPress 5.x (unsupported major). Not a CVE claim. An indicator of weak patch management.',
     fix: 'Upgrade to a supported major; enable automated minor updates; remove version hints from public metadata.',
   },
   'DMARC nur im Monitoring-Modus (p=none)': {
     title: 'DMARC in monitoring mode only (p=none)',
     detail:
-      'A DMARC record exists, but p=none only reports spoofing — it does not block it. Material for an IT provider with EU customer security clauses.',
+      'A DMARC record exists, but p=none only reports spoofing. It does not block it. Material for an IT provider with EU customer security clauses.',
     fix: 'Tighten DMARC stepwise: p=quarantine with pct=25, then p=reject; review rua reports.',
   },
   'Content-Security-Policy fehlt': {
@@ -202,21 +202,21 @@ function localizeReason(verdict: RegimeVerdict, locale: 'en' | 'de'): string {
   const hq = verdict.regime.toUpperCase()
   if (verdict.applicable === 'applicable') {
     if (verdict.regime === 'de') {
-      return 'HQ / establishment in Germany — NIS2UmsuCG/BSIG applies on the stated size and sector inputs (important-entity path).'
+      return 'HQ / establishment in Germany. NIS2UmsuCG/BSIG applies on the stated size and sector inputs (important-entity path).'
     }
     if (verdict.regime === 'at') {
-      return 'Establishment in Austria — NISG 2024 applies on the stated size and sector inputs.'
+      return 'Establishment in Austria. NISG 2024 applies on the stated size and sector inputs.'
     }
     if (verdict.regime === 'ch') {
-      return 'Swiss establishment / listed sector path — ISG reporting duties apply on the stated inputs.'
+      return 'Swiss establishment / listed sector path. ISG reporting duties apply on the stated inputs.'
     }
   }
   if (verdict.applicable === 'not_applicable') {
-    return `No known establishment in ${hq} on the stated profile — ${
+    return `No known establishment in ${hq} on the stated profile. ${
       verdict.regime === 'de' ? 'NIS2UmsuCG/BSIG' : verdict.regime === 'at' ? 'NISG 2024' : 'ISG'
     } does not apply directly.`
   }
-  return `Not enough evidence for a decisive ${hq} verdict — open thresholds are shown instead of guessing.`
+  return `Not enough evidence for a decisive ${hq} verdict. Open thresholds are shown instead of guessing.`
 }
 
 function toSampleRegime(verdict: RegimeVerdict, rules: RulesFile[], locale: 'en' | 'de'): SampleRegime {

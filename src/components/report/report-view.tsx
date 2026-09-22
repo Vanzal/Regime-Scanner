@@ -50,12 +50,7 @@ export function ReportView({
           {t(dict, 'report.title')} {data.company.legal_name}
         </h1>
         <p className="mt-1 text-sm text-[var(--ns-fg-dim)]">
-          {data.company.domain} · {dict.scan.status_done}{' '}
-          {data.scan.mode === 'fixture' && (
-            <span className="ml-1 rounded-full border border-[var(--ns-warning)] px-2 py-0.5 text-[11px] font-semibold text-[var(--ns-warning)]">
-              Demo
-            </span>
-          )}
+          {data.company.domain} · {dict.scan.status_done}
         </p>
       </header>
 
