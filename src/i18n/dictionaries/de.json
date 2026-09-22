@@ -606,7 +606,7 @@
     "footer": {
       "company_name": "NexusScope",
       "legal_form": "Einzelunternehmen (Schweiz)",
-      "operator_name": "Noah Baumann",
+      "operator_name": "",
       "address_lines": [
         "Schweiz"
       ],
@@ -810,7 +810,7 @@
           "b": "Auskunft, Berichtigung und Löschung jederzeit über die Kontakt-E-Mail."
         }
       ],
-      "placeholder": "Noah Baumann",
+      "placeholder": "Der Betreiber von NexusScope",
       "cookies_body": [
         {
           "h": "Unbedingt erforderlich",

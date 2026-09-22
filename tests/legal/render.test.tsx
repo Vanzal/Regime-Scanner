@@ -27,12 +27,18 @@ describe('legal pages render', () => {
     expect(html).toContain('NexusScope')
     expect(html).not.toContain('Nexusscopes')
     expect(html).not.toContain('Draft for publication')
+    expect(html).not.toContain('Noah')
+    expect(html).not.toContain('Baumann')
+    expect(html).toContain('The operator of NexusScope')
   })
 
   it('terms markdown renders the model withdrawal form', () => {
     const html = renderToString(<LegalMarkdown markdown={loadLegalMarkdown('terms')} />)
     expect(html).toContain('withdraw from the contract')
     expect(html).toContain('<blockquote')
+    expect(html).not.toContain('Noah')
+    expect(html).not.toContain('Baumann')
+    expect(html).toContain('The operator of NexusScope')
   })
 
   it('dpa markdown renders Annex III sub-processor table', () => {
@@ -40,5 +46,8 @@ describe('legal pages render', () => {
     expect(html).toContain('Authorised Sub-processors')
     expect(html).toContain('<th')
     expect(html).toContain('Transfer mechanism')
+    expect(html).not.toContain('Noah')
+    expect(html).not.toContain('Baumann')
+    expect(html).toContain('The operator of NexusScope')
   })
 })

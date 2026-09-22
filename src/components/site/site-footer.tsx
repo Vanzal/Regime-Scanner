@@ -88,8 +88,12 @@ export function SiteFooter({ dict, locale }: { dict: Dictionary; locale: Locale 
             <BrandMark />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-[var(--ns-fg-muted)]">{f.tagline}</p>
             <p className="mt-2 text-sm text-[var(--ns-fg-muted)]">
-              {f.operator_name}
-              <span className="text-[var(--ns-fg-dim)]"> · </span>
+              {f.operator_name.trim() ? (
+                <>
+                  {f.operator_name}
+                  <span className="text-[var(--ns-fg-dim)]"> · </span>
+                </>
+              ) : null}
               {f.legal_form}
             </p>
             <address className="mt-3 not-italic text-sm leading-relaxed text-[var(--ns-fg-muted)]">
