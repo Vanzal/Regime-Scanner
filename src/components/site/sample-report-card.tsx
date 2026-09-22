@@ -68,9 +68,88 @@ function shortReason(text: string, compact: boolean): string {
   return `${text.slice(0, 137).trimEnd()}…`
 }
 
+function pickPrimaryRegime(regimes: SampleRegime[]): SampleRegime | undefined {
+  return regimes.find((r) => r.status === 'in') ?? regimes.find((r) => r.status === 'unclear') ?? regimes[0]
+}
+
+function StatusBadge({
+  dict,
+  status,
+  prominent = false,
+}: {
+  dict: SampleReportCardDict
+  status: SampleStatus
+  prominent?: boolean
+}) {
+  return (
+    <span
+      className={cn(
+        'shrink-0 rounded-md border font-instrument font-bold uppercase tracking-[0.12em]',
+        prominent ? 'px-2.5 py-1 text-xs sm:text-sm' : 'px-2 py-0.5 text-[10px]',
+        STATUS_CLASS[status],
+      )}
+    >
+      {statusLabel(dict, status)}
+    </span>
+  )
+}
+
+function RegimeMeta({
+  dict,
+  reportId,
+  regime,
+  compact,
+  prominent,
+}: {
+  dict: SampleReportCardDict
+  reportId: string
+  regime: SampleRegime
+  compact: boolean
+  prominent: boolean
+}) {
+  const p = dict.site.preview
+  const band = confidenceBand(dict, regime)
+  const action = compact ? null : nextAction(dict, regime)
+  return (
+    <>
+      <p className={cn('leading-relaxed text-[var(--ns-fg-muted)]', prominent ? 'mt-3 text-sm' : 'mt-1.5 text-xs')}>
+        <span className="font-medium text-[var(--ns-fg-dim)]">{dict.report.why_label}:</span>{' '}
+        {shortReason(regime.reason, compact)}
+      </p>
+      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-[var(--ns-fg-dim)]">
+        <span data-testid={`sample-confidence-${reportId}-${regime.code.toLowerCase()}`}>
+          {p.confidence_label}: {band}
+          {regime.confidence > 0 ? ` · ${Math.round(regime.confidence * 100)}%` : ''}
+        </span>
+        {!compact && regime.sourceUrls[0] ? (
+          <a
+            href={regime.sourceUrls[0]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-[var(--ns-border)] underline-offset-2 hover:text-[var(--ns-fg-muted)]"
+          >
+            {p.source_label}: {shortHost(regime.sourceUrls[0])}
+          </a>
+        ) : null}
+      </div>
+      {!compact && regime.traceSummary ? (
+        <p className="mt-1.5 text-xs leading-relaxed text-[var(--ns-fg-muted)]">
+          <span className="font-medium text-[var(--ns-fg-dim)]">{dict.report.evidence_label}:</span>{' '}
+          {regime.traceSummary}
+        </p>
+      ) : null}
+      {action ? (
+        <p className="mt-1.5 text-xs leading-relaxed text-[var(--ns-fg-muted)]">
+          <span className="font-medium text-[var(--ns-fg-dim)]">{p.col_next}:</span> {action}
+        </p>
+      ) : null}
+    </>
+  )
+}
+
 /**
  * Sample report card: Result → Reason → Evidence → Source → Confidence → Next step.
- * Server component — explorer loads a client copy only after the visitor switches tabs.
+ * Server component. Explorer loads a client copy only after the visitor switches tabs.
  */
 export function SampleReportCard({
   report,
@@ -83,7 +162,9 @@ export function SampleReportCard({
 }) {
   const p = dict.site.preview
   const applicable = report.regimes.filter((r) => r.status === 'in')
-  const deadlineSource = applicable[0] ?? report.regimes[0]
+  const primary = pickPrimaryRegime(report.regimes)
+  const supporting = report.regimes.filter((r) => r.code !== primary?.code)
+  const deadlineSource = applicable[0] ?? primary ?? report.regimes[0]
   const gaps = compact ? report.gaps.slice(0, 2) : report.gaps.slice(0, 4)
   const testPrefix = report.id
 
@@ -109,17 +190,11 @@ export function SampleReportCard({
             </p>
           )}
         </div>
-        <span
-          className="shrink-0 rounded-md border border-[var(--ns-warning)] px-2 py-1 font-instrument text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--ns-warning)]"
-          title={p.synthetic_hint}
-        >
-          {p.synthetic_badge}
-        </span>
       </header>
 
       {!compact ? (
         <>
-          <p className="border-b border-[var(--ns-border)] bg-[color-mix(in_oklch,var(--ns-warning)_8%,transparent)] px-4 py-2 text-xs text-[var(--ns-fg-muted)] sm:px-5">
+          <p className="border-b border-[var(--ns-border)] bg-[var(--ns-bg)] px-4 py-2 text-xs text-[var(--ns-fg-muted)] sm:px-5">
             {p.demo_banner}
           </p>
           <p className="border-b border-[var(--ns-border)] bg-[var(--ns-bg)] px-4 py-2.5 text-xs leading-relaxed text-[var(--ns-fg-dim)] sm:px-5">
@@ -128,10 +203,11 @@ export function SampleReportCard({
         </>
       ) : null}
 
-      <div className={cn('grid w-full min-w-0 grid-cols-1 gap-0', compact ? '' : 'lg:grid-cols-3')}>
+      {primary ? (
         <section
-          className="border-b border-[var(--ns-border)] p-4 sm:p-5 lg:border-b-0 lg:border-r"
+          className="border-b border-[var(--ns-border)] bg-[var(--ns-bg-panel)] p-4 sm:p-6"
           aria-labelledby={`${testPrefix}-regimes`}
+          data-testid={`sample-regime-primary-${report.id}`}
         >
           <h3
             id={`${testPrefix}-regimes`}
@@ -139,62 +215,51 @@ export function SampleReportCard({
           >
             {p.tab_regimes}
           </h3>
-          <ul className="mt-3 space-y-4">
-            {report.regimes.map((r) => {
-              const band = confidenceBand(dict, r)
-              const action = compact ? null : nextAction(dict, r)
-              return (
-                <li key={r.code} data-testid={`sample-regime-${report.id}-${r.code.toLowerCase()}`}>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="min-w-0 text-sm font-semibold">
-                      {r.name} — {r.law}
-                    </span>
-                    <span
-                      className={cn(
-                        'shrink-0 rounded-md border px-2 py-0.5 font-instrument text-[10px] font-bold uppercase tracking-[0.12em]',
-                        STATUS_CLASS[r.status],
-                      )}
-                    >
-                      {statusLabel(dict, r.status)}
-                    </span>
-                  </div>
-                  <p className="mt-1.5 text-xs leading-relaxed text-[var(--ns-fg-muted)]">
-                    <span className="font-medium text-[var(--ns-fg-dim)]">{dict.report.why_label}:</span>{' '}
-                    {shortReason(r.reason, compact)}
-                  </p>
-                  <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-[var(--ns-fg-dim)]">
-                    <span data-testid={`sample-confidence-${report.id}-${r.code.toLowerCase()}`}>
-                      {p.confidence_label}: {band}
-                      {r.confidence > 0 ? ` · ${Math.round(r.confidence * 100)}%` : ''}
-                    </span>
-                    {!compact && r.sourceUrls[0] ? (
-                      <a
-                        href={r.sourceUrls[0]}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline decoration-[var(--ns-border)] underline-offset-2 hover:text-[var(--ns-fg-muted)]"
-                      >
-                        {p.source_label}: {shortHost(r.sourceUrls[0])}
-                      </a>
-                    ) : null}
-                  </div>
-                  {!compact && r.traceSummary ? (
-                    <p className="mt-1.5 text-xs leading-relaxed text-[var(--ns-fg-muted)]">
-                      <span className="font-medium text-[var(--ns-fg-dim)]">{dict.report.evidence_label}:</span>{' '}
-                      {r.traceSummary}
-                    </p>
-                  ) : null}
-                  {action ? (
-                    <p className="mt-1.5 text-xs leading-relaxed text-[var(--ns-fg-muted)]">
-                      <span className="font-medium text-[var(--ns-fg-dim)]">{p.col_next}:</span> {action}
-                    </p>
-                  ) : null}
-                </li>
-              )
-            })}
-          </ul>
+          <div
+            className="mt-3"
+            data-testid={`sample-regime-${report.id}-${primary.code.toLowerCase()}`}
+          >
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-base font-semibold tracking-tight sm:text-lg">
+                  {primary.name}, {primary.law}
+                </p>
+              </div>
+              <StatusBadge dict={dict} status={primary.status} prominent />
+            </div>
+            <RegimeMeta dict={dict} reportId={report.id} regime={primary} compact={compact} prominent />
+          </div>
         </section>
+      ) : null}
 
+      {supporting.length > 0 ? (
+        <ul className="border-b border-[var(--ns-border)]">
+          {supporting.map((r) => (
+            <li
+              key={r.code}
+              className="flex flex-col gap-1 border-t border-[var(--ns-border)] px-4 py-3 first:border-t-0 sm:px-5"
+              data-testid={`sample-regime-${report.id}-${r.code.toLowerCase()}`}
+            >
+              <div className="flex items-center justify-between gap-2">
+                <span className="min-w-0 text-sm font-medium">
+                  {r.name}, {r.law}
+                </span>
+                <StatusBadge dict={dict} status={r.status} />
+              </div>
+              {compact ? null : (
+                <RegimeMeta dict={dict} reportId={report.id} regime={r} compact={false} prominent={false} />
+              )}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      <div
+        className={cn(
+          'grid w-full min-w-0 grid-cols-1 gap-0',
+          compact ? '' : 'lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.85fr)]',
+        )}
+      >
         <section
           className="border-b border-[var(--ns-border)] p-4 sm:p-5 lg:border-b-0 lg:border-r"
           aria-labelledby={`${testPrefix}-gaps`}
@@ -270,13 +335,18 @@ export function SampleReportCard({
           </h3>
           {deadlineSource && deadlineSource.status === 'in' && deadlineSource.deadlines.length > 0 ? (
             <ul className="mt-3 space-y-3">
-              {deadlineSource.deadlines.slice(0, 3).map((d, i) => (
+              {deadlineSource.deadlines.slice(0, compact ? 2 : 3).map((d, i) => (
                 <li
                   key={d.label}
                   className="flex min-w-0 items-center gap-3"
                   data-testid={`sample-deadline-${report.id}-${i}`}
                 >
-                  <span className="ns-clock flex h-11 w-16 shrink-0 items-center justify-center font-display text-sm">
+                  <span
+                    className={cn(
+                      'ns-clock flex shrink-0 items-center justify-center font-display',
+                      i === 0 ? 'h-12 w-[4.5rem] text-base' : 'h-11 w-16 text-sm',
+                    )}
+                  >
                     {clockLabel(d.hours)}
                   </span>
                   <div className="min-w-0 flex-1 overflow-hidden">

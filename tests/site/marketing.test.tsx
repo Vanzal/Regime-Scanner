@@ -14,7 +14,7 @@ describe('marketing chrome copy', () => {
   it('preserves the live NexusScope headline and waitlist CTA', () => {
     const en = getDict('en')
     expect(en.site.hero.title).toBe(
-      'One incident. Three reporting regimes. Know which ones apply — before the clock starts.',
+      'One incident. Three reporting regimes. Know which ones apply. Before the clock starts.',
     )
     expect(en.site.hero.subtitle).toMatch(/NIS2UmsuCG\/BSIG/)
     expect(en.site.hero.cta).toBe('Join waitlist')
@@ -55,7 +55,8 @@ describe('marketing chrome copy', () => {
     const dict = getDict('en')
     const report = buildSampleReport('mittelstand-de', 'en')
     const html = renderToStaticMarkup(<SampleReportCard report={report} dict={dict} />)
-    expect(html).toContain('DEMO')
+    expect(html).not.toContain('DEMO · SYNTHETIC')
+    expect(html).not.toContain('DEMO · SYNTHETISCH')
     expect(html).toContain('NIS2UmsuCG')
     expect(html).toMatch(/regulatory readiness intelligence|not legal advice/i)
     expect(html).toContain('Confidence')
@@ -66,6 +67,50 @@ describe('marketing chrome copy', () => {
     expect(html).toContain('DMARC record missing')
     expect(html).toContain('data-testid="sample-regime-mittelstand-de-de"')
     expect(html).toContain('data-testid="sample-confidence-mittelstand-de-de"')
+    expect(html).toContain('data-testid="sample-regime-primary-mittelstand-de"')
+    expect(html).toContain('data-testid="sample-regime-mittelstand-de-at"')
+    expect(html).toContain('data-testid="sample-regime-mittelstand-de-ch"')
+    expect(html).toContain('OUT')
+  })
+
+  it('keeps EN and DE landing copy aligned without dash separators', () => {
+    const en = getDict('en')
+    const de = getDict('de')
+    expect(de.site.hero.title).toBe(
+      'Ein Vorfall. Drei Melderegimes. Wissen Sie, welche gelten. Bevor die Frist läuft.',
+    )
+    expect(de.site.hero.cta_secondary).toBe('Musterbericht ansehen')
+    const slices = [en, de].map((dict) =>
+      JSON.stringify({
+        hero: dict.site.hero,
+        problem: dict.site.problem,
+        how: dict.site.how,
+        preview: {
+          ...dict.site.preview,
+          synthetic_badge: undefined,
+        },
+        features: dict.site.features,
+        trust: dict.site.trust,
+        waitlist: dict.site.waitlist,
+        faq: dict.site.faq,
+        proof: dict.site.proof,
+        final_cta: dict.site.final_cta,
+      }),
+    )
+    for (const blob of slices) {
+      expect(blob).not.toMatch(/ — /)
+      expect(blob).not.toMatch(/ – /)
+    }
+  })
+
+  it('compact hero sample emphasises live status stamps, not demo badges', () => {
+    const dict = getDict('en')
+    const report = buildSampleReport('mittelstand-de', 'en')
+    const html = renderToStaticMarkup(<SampleReportCard report={report} dict={dict} compact />)
+    expect(html).not.toContain('DEMO · SYNTHETIC')
+    expect(html).toContain('CONFIRMED')
+    expect(html).toContain('OUT')
+    expect(html).toContain('data-testid="sample-regime-primary-mittelstand-de"')
   })
 
   it('footer still lists imprint, privacy, contact and Switzerland / EU', () => {

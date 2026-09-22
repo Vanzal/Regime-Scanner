@@ -365,8 +365,8 @@
     },
     "hero": {
       "badge": "NexusScope · Für Deutschland, Österreich & die Schweiz",
-      "title": "Ein Vorfall. Drei Melderegimes. Wissen Sie, welche gelten – bevor die Frist läuft.",
-      "subtitle": "NexusScope spiegelt Ihr Unternehmen gegen NIS2UmsuCG/BSIG (DE), NISG 2024 (AT) und das ISG (CH). Sie erhalten unabhängige Anwendbarkeits-Einschätzungen, Meldeuhren und sichtbare Lücken im öffentlichen Fussabdruck — mit Quellen und Konfidenz je Regime.",
+      "title": "Ein Vorfall. Drei Melderegimes. Wissen Sie, welche gelten. Bevor die Frist läuft.",
+      "subtitle": "NexusScope spiegelt Ihr Unternehmen gegen NIS2UmsuCG/BSIG (DE), NISG 2024 (AT) und das ISG (CH). Sie erhalten unabhängige Anwendbarkeits-Einschätzungen, Meldeuhren und sichtbare Lücken im öffentlichen Fussabdruck, mit Quellen und Konfidenz je Regime.",
       "cta": "Auf die Warteliste",
       "cta_secondary": "Musterbericht ansehen",
       "scan_cta": "Kostenlosen Scan starten",
@@ -376,13 +376,13 @@
       "clock_final": "Abschlussbericht"
     },
     "problem": {
-      "title": "Die Meldepflichten im DACH-Raum wachsen – ungleich",
-      "lead": "Deutschlands NIS2UmsuCG, Österreichs NISG 2024 und das Schweizer ISG setzen jeweils eigene Schwellenwerte, Branchenlisten und Fristen. Ein Vorfall kann unterschiedliche Pflichten auslösen – oder gar keine.",
-      "emphasis": "Die meisten Unternehmen erfahren erst nach dem Vorfall, welche Regeln gelten – wenn die 24-Stunden-Frist bereits läuft.",
+      "title": "Die Meldepflichten im DACH-Raum wachsen, ungleich.",
+      "lead": "Deutschlands NIS2UmsuCG, Österreichs NISG 2024 und das Schweizer ISG setzen jeweils eigene Schwellenwerte, Branchenlisten und Fristen. Ein Vorfall kann unterschiedliche Pflichten auslösen, oder gar keine.",
+      "emphasis": "Die meisten Unternehmen erfahren erst nach dem Vorfall, welche Regeln gelten, wenn die 24-Stunden-Frist bereits läuft.",
       "points": [
         "Drei Regimes, drei Schwellenwerte, drei Fristen",
         "Schwellenwerte mischen Beschäftigte, Umsatz und Branchenlisten",
-        "Orientierung nach dem Vorfall kommt zu spät – die Frist läuft bereits"
+        "Orientierung nach dem Vorfall kommt zu spät. Die Frist läuft bereits."
       ]
     },
     "how": {
@@ -390,25 +390,25 @@
       "steps": [
         {
           "title": "Sagen Sie uns, wer Sie sind",
-          "body": "Ihre Domain und ein kurzer Fragebogen – Branche, Grösse, Standorte, EU-Kunden. Etwa zwei Minuten."
+          "body": "Ihre Domain und ein kurzer Fragebogen. Branche, Grösse, Standorte, EU-Kunden. Etwa zwei Minuten."
         },
         {
           "title": "Wir analysieren",
-          "body": "NexusScope bewertet Ihr Profil gegen alle drei Regimes und prüft Ihren öffentlichen Fussabdruck (DNS, TLS, Web-Header, veröffentlichte Seiten) auf sichtbare Lücken — nur GET, robots.txt-respektierend."
+          "body": "NexusScope bewertet Ihr Profil gegen alle drei Regimes und prüft Ihren öffentlichen Fussabdruck (DNS, TLS, Web-Header, veröffentlichte Seiten) auf sichtbare Lücken. Nur GET, robots.txt-respektierend."
         },
         {
           "title": "Sie erhalten einen Bericht",
-          "body": "Anwendbarkeit je Regime, Meldefristen, eine priorisierte Lückenliste und die Begründung hinter jedem Ergebnis — inkl. Bestätigt, Wahrscheinlich, Prüfung nötig oder Unzureichende Informationen."
+          "body": "Anwendbarkeit je Regime, Meldefristen, eine priorisierte Lückenliste und die Begründung hinter jedem Ergebnis. Inkl. Bestätigt, Wahrscheinlich, Prüfung nötig oder Unzureichende Informationen."
         }
       ]
     },
     "preview": {
       "title": "So sieht der Bericht aus",
-      "subtitle": "Jedes Muster folgt Regulation → Anwendbarkeit → Warum → Evidenz → Quelle → Konfidenz → Nächster Schritt. Profile sind synthetische Demodaten, klar gekennzeichnet — keine lebendige Rechtsfeststellung.",
+      "subtitle": "Jedes Muster folgt Regulation → Anwendbarkeit → Warum → Evidenz → Quelle → Konfidenz → Nächster Schritt. Profile sind synthetische Demodaten, klar gekennzeichnet. Keine lebendige Rechtsfeststellung.",
       "outputs": [
         {
           "label": "Anwendbarkeit",
-          "hint": "Bestätigt / Wahrscheinlich / Prüfung nötig / Unzureichende Informationen — unabhängig für DE, AT und CH."
+          "hint": "Bestätigt / Wahrscheinlich / Prüfung nötig / Unzureichende Informationen, unabhängig für DE, AT und CH."
         },
         {
           "label": "Warum & Evidenz",
@@ -424,7 +424,7 @@
       "profile_at": "Österreichischer IT-Dienstleister",
       "profile_ch": "Schweizer Gesellschaft mit DE-Tochter",
       "synthetic_badge": "DEMO · SYNTHETISCH",
-      "synthetic_hint": "Demo-Fixture — kein Live-Scan einer realen Kundendomäne",
+      "synthetic_hint": "Demo-Fixture. Kein Live-Scan einer realen Kundendomäne.",
       "read_path": "So lesen: Ergebnis → Begründung → Evidenz → Quelle → Konfidenz → Nächster Schritt. UNKLAR, wenn Evidenz fehlt.",
       "confidence_label": "Konfidenz",
       "source_label": "Quelle",
@@ -438,23 +438,23 @@
       "col_regime": "Regime",
       "col_status": "Status",
       "col_reason": "Warum",
-      "regime_de": "Deutschland — NIS2UmsuCG/BSIG",
-      "regime_de_reason": "Über 250 Beschäftigte und über 50 Mio € Umsatz – Sie liegen über den Schwellenwerten für wesentliche Einrichtungen.",
-      "regime_at": "Österreich — NISG 2024",
+      "regime_de": "Deutschland, NIS2UmsuCG/BSIG",
+      "regime_de_reason": "Über 250 Beschäftigte und über 50 Mio € Umsatz. Sie liegen über den Schwellenwerten für wesentliche Einrichtungen.",
+      "regime_at": "Österreich, NISG 2024",
       "regime_at_reason": "Schwellenwerte erfüllt; die Brancheneinordnung ist noch zu bestätigen.",
-      "regime_ch": "Schweiz — ISG",
+      "regime_ch": "Schweiz, ISG",
       "regime_ch_reason": "Keine Schweizer Niederlassung und keine gelistete kritische Branche.",
       "status_in": "BESTÄTIGT",
       "status_unclear": "PRÜFUNG NÖTIG",
       "status_out": "OUT",
       "gaps_intro": "Priorisierte Befunde aus dem öffentlichen Fußabdruck:",
-      "gap1": "Kein SPF-Eintrag für die Hauptdomain – E-Mail-Spoofing ist trivial möglich.",
+      "gap1": "Kein SPF-Eintrag für die Hauptdomain. E-Mail-Spoofing ist trivial möglich.",
       "gap2": "Veraltete TLS-Konfiguration am Mail-Gateway.",
       "gap3": "Kein publizierter Kontakt für Schwachstellenmeldungen.",
       "deadlines_intro": "Fristen nach einem erheblichen Vorfall (Beispiel: Deutschland anwendbar):",
-      "deadline1": "24 Stunden – Frühwarnung an das BSI",
-      "deadline2": "72 Stunden – Vorfallbericht an das BSI",
-      "deadline3": "1 Monat – Abschlussbericht an das BSI",
+      "deadline1": "24 Stunden, Frühwarnung an das BSI",
+      "deadline2": "72 Stunden, Vorfallbericht an das BSI",
+      "deadline3": "1 Monat, Abschlussbericht an das BSI",
       "disclaimer": "NexusScope liefert regulatorische Orientierungsinformationen auf Grundlage referenzierter öffentlicher Quellen. Die Ergebnisse sollen die interne Einschätzung unterstützen und wo angemessen von qualifizierten Rechts- oder Compliance-Fachleuten geprüft werden.",
       "as_of": "Fristenstand: September 2026.",
       "col_confidence": "Konfidenz",
@@ -468,14 +468,14 @@
       "drawer_close": "Schliessen",
       "col_next": "Nächster Schritt",
       "demo_banner": "Simuliertes Muster · synthetisches Profil · keine lebendige Rechtsfeststellung",
-      "insufficient_hint": "Unzureichende Informationen — die genannten Angaben würden das klären."
+      "insufficient_hint": "Unzureichende Informationen. Die genannten Angaben würden das klären."
     },
     "features": {
       "title": "Das erhalten Sie",
       "cards": [
         {
           "title": "Wissen, welche Regimes gelten",
-          "body": "Unabhängige Bestätigt-/Wahrscheinlich-/Prüfung-nötig-/Unzureichend-Einschätzungen für DE, AT und CH — an einem Ort."
+          "body": "Unabhängige Bestätigt-/Wahrscheinlich-/Prüfung-nötig-/Unzureichend-Einschätzungen für DE, AT und CH, an einem Ort."
         },
         {
           "title": "Die relevanten Fristen sehen",
@@ -483,7 +483,7 @@
         },
         {
           "title": "Sichtbare Lücken zuerst schließen",
-          "body": "Priorisierte Befunde aus passiven DNS-, TLS- und Web-Prüfungen – nur öffentliche Quellen."
+          "body": "Priorisierte Befunde aus passiven DNS-, TLS- und Web-Prüfungen. Nur öffentliche Quellen."
         },
         {
           "title": "Herleitung nachvollziehbar machen",
@@ -502,16 +502,16 @@
     "trust": {
       "eyebrow": "Vertrauen",
       "title": "Für DACH-Unternehmen gebaut",
-      "body": "Orientierung für Deutschland, Österreich und die Schweiz. Ihre Daten bleiben in der Schweiz und der EU. Nur öffentliche Quellen – informativ, keine Rechtsberatung.",
+      "body": "Orientierung für Deutschland, Österreich und die Schweiz. Ihre Daten bleiben in der Schweiz und der EU. Nur öffentliche Quellen. Informativ, keine Rechtsberatung.",
       "points": [
         "Für DACH-Unternehmen gebaut",
         "Daten bleiben in der Schweiz / EU",
-        "Nur Information – keine Rechtsberatung"
+        "Nur Information, keine Rechtsberatung"
       ]
     },
     "waitlist": {
       "title": "Auf die Warteliste",
-      "subtitle": "Geschäftliche E-Mail hinterlassen. Wir benachrichtigen Sie, wenn Scans öffnen — danach erhalten Sie einen DE-/AT-/CH-Orientierungsbericht aus einem Zwei-Minuten-Fragebogen und einer passiven Prüfung des öffentlichen Fußabdrucks.",
+      "subtitle": "Geschäftliche E-Mail hinterlassen. Wir benachrichtigen Sie, wenn Scans öffnen. Danach erhalten Sie einen DE-/AT-/CH-Orientierungsbericht aus einem Zwei-Minuten-Fragebogen und einer passiven Prüfung des öffentlichen Fußabdrucks.",
       "email_label": "Geschäftliche E-Mail",
       "size_label": "Unternehmensgröße",
       "size": {
@@ -571,7 +571,7 @@
       "items": [
         {
           "q": "Gilt NIS2 / NISG / ISG für mein Unternehmen?",
-          "a": "Das hängt von Branche, Grösse und Struktur ab — die Schwellenwerte unterscheiden sich zwischen Deutschland, Österreich und der Schweiz. NexusScope spiegelt Ihr Profil gegen jedes Regime und weist Bestätigt, Wahrscheinlich, Prüfung nötig oder Unzureichende Informationen aus — inklusive dem, was offen bleibt."
+          "a": "Das hängt von Branche, Grösse und Struktur ab. Die Schwellenwerte unterscheiden sich zwischen Deutschland, Österreich und der Schweiz. NexusScope spiegelt Ihr Profil gegen jedes Regime und weist Bestätigt, Wahrscheinlich, Prüfung nötig oder Unzureichende Informationen aus, inklusive dem, was offen bleibt."
         },
         {
           "q": "Ist das eine Rechtsberatung?",
@@ -591,15 +591,15 @@
         },
         {
           "q": "Was bedeuten Bestätigt, Wahrscheinlich, Prüfung nötig und Unzureichende Informationen?",
-          "a": "Bestätigt: Das Profil erfüllt (oder verfehlt klar) die zitierten Schwellen. Wahrscheinlich: starke Signale, aber eine Nuance bleibt. Prüfung nötig: Evidenz spricht in beide Richtungen oder ein Klassifikationsschritt ist unvollständig. Unzureichende Informationen: erforderliche Angaben fehlen — der Bericht listet, was das klären würde, statt zu raten."
+          "a": "Bestätigt: Das Profil erfüllt (oder verfehlt klar) die zitierten Schwellen. Wahrscheinlich: starke Signale, aber eine Nuance bleibt. Prüfung nötig: Evidenz spricht in beide Richtungen oder ein Klassifikationsschritt ist unvollständig. Unzureichende Informationen: erforderliche Angaben fehlen. Der Bericht listet, was das klären würde, statt zu raten."
         },
         {
           "q": "Wo werden meine Daten gespeichert?",
-          "a": "Nur in der Schweiz und der EU. Wartelistenangaben und Berichte dienen Ihrer Orientierung und der Early-Access-Benachrichtigung — nicht der Werbung ohne Einwilligung."
+          "a": "Nur in der Schweiz und der EU. Wartelistenangaben und Berichte dienen Ihrer Orientierung und der Early-Access-Benachrichtigung, nicht der Werbung ohne Einwilligung."
         },
         {
           "q": "Kann ich ein PDF exportieren?",
-          "a": "Ja. Jeder Bericht unterstützt Druck/PDF-Export für Geschäftsleitung, Wirtschaftsprüfung und Beratung. Musterberichte auf dieser Website sind als synthetische Demodaten gekennzeichnet und nutzen dasselbe Layout."
+          "a": "Ja. Jeder Bericht unterstützt Druck/PDF-Export für Geschäftsleitung, Wirtschaftsprüfung und Beratung. Musterberichte auf dieser Website sind synthetische Demodaten und nutzen dasselbe Layout."
         }
       ]
     },
@@ -649,7 +649,7 @@
     "proof": {
       "eyebrow": "Für wen",
       "title": "Konzipiert für DACH-Organisationen mit überlappenden Cybersicherheits-Regulierungen",
-      "body": "Für die Rollen, die entscheiden müssen, ob eine Meldepflicht greift — bevor die 24-Stunden-Frist läuft. Die Kategorien unten beschreiben die Zielgruppe. Es sind keine Kunden, Partner oder Empfehlungen.",
+      "body": "Für die Rollen, die entscheiden müssen, ob eine Meldepflicht greift. Bevor die 24-Stunden-Frist läuft. Die Kategorien unten beschreiben die Zielgruppe. Es sind keine Kunden, Partner oder Empfehlungen.",
       "audiences": [
         "CISOs",
         "Security-Teams",
@@ -660,8 +660,8 @@
       ]
     },
     "final_cta": {
-      "title": "Wissen, welche Uhren gelten – vor dem nächsten Vorfall.",
-      "body": "Treten Sie der Warteliste bei. Nach dem Absenden informieren wir Sie per E-Mail, wenn Scans öffnen. Sie erhalten dann eine DE-/AT-/CH-Orientierung aus einem kurzen Fragebogen und einer passiven Prüfung des öffentlichen Fussabdrucks — mit Quellen, Konfidenz und klar ausgewiesenen offenen Fragen.",
+      "title": "Wissen, welche Uhren gelten. Vor dem nächsten Vorfall.",
+      "body": "Treten Sie der Warteliste bei. Nach dem Absenden informieren wir Sie per E-Mail, wenn Scans öffnen. Sie erhalten dann eine DE-/AT-/CH-Orientierung aus einem kurzen Fragebogen und einer passiven Prüfung des öffentlichen Fussabdrucks, mit Quellen, Konfidenz und klar ausgewiesenen offenen Fragen.",
       "cta": "Auf die Warteliste"
     },
     "pricing_page": {

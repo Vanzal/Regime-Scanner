@@ -28,7 +28,7 @@
       "severity": "high",
       "title": "DMARC fehlt vollständig",
       "detail": "Die Domain beispielwerk.de veröffentlicht keinen DMARC-Eintrag (_dmarc). E-Mails im Namen Ihrer Domain können ohne Prüfung gefälscht (Spoofing/Phishing) werden – ein klassischer Einstiegspunkt für Vorfälle, die meldepflichtig werden können.",
-      "fix": "DMARC-TXT-Record unter _dmarc.beispielwerk.de anlegen, z. B. „v=DMARC1; p=quarantine; rua=mailto:dmarc@beispielwerk.de“ – schrittweise von p=none über p=quarantine zu p=reject.",
+      "fix": "DMARC-TXT-Record unter _dmarc.beispielwerk.de anlegen, z. B. „v=DMARC1; p=quarantine; rua=mailto:dmarc@beispielwerk.de“. Schrittweise von p=none über p=quarantine zu p=reject.",
       "control_refs": ["email_auth"],
       "evidence_json": { "dmarc_record": null, "spf_record": "v=spf1 include:spf.protection.outlook.com -all" },
       "source_url": "https://dns.google/resolve?name=_dmarc.beispielwerk.de&type=TXT"
