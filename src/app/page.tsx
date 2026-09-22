@@ -39,10 +39,7 @@ function DeadlineInstruments({ dict }: { dict: Dictionary }) {
     { label: '30 d', caption: dict.site.hero.clock_final },
   ]
   return (
-    <aside
-      aria-label="Reporting clocks"
-      className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_minmax(0,1fr)] gap-2 sm:gap-3"
-    >
+    <aside aria-label="Reporting clocks" className="grid grid-cols-3 gap-2 sm:gap-3">
       {clocks.map((c, i) => (
         <div
           key={c.label}
