@@ -642,6 +642,13 @@
     "theme": {
       "toggle": "Toggle colour theme"
     },
+    "gate": {
+      "title": "Private preview",
+      "body": "This site is password-protected while NexusScope is in private preview.",
+      "placeholder": "Password",
+      "submit": "Enter site",
+      "error": "Incorrect password."
+    },
     "scan_gate": {
       "body": "Free scans are not generally available yet. This path runs in labelled demo / fixture mode — synthetic public-footprint data, not a live legal determination. Join the waitlist for early access.",
       "link": "Join waitlist"
