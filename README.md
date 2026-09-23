@@ -38,6 +38,7 @@ optional und wird automatisch genutzt, sobald beide Env-Variablen gesetzt sind.
 | `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` | abgesetzt → Supabase statt Datei-Store |
 | `AUTO_RELEASE` | `true` (Standard) = Report sofort frei; `false` = Pilotmodus, Freigabe in `/admin` |
 | `ADMIN_PASSWORD` + `ADMIN_SESSION_SECRET` | schützt `/admin` (HMAC-Cookie) |
+| `SITE_PASSWORD` + `SITE_SESSION_SECRET` | schützt die ganze Website (`/enter`, HMAC-Cookie). Ungesetzt = offen. Stripe `/api/stripe/webhook` bleibt erreichbar |
 | `SCAN_RUNNER_SECRET` | Header-Geheimnis für den Hintergrund-Scan-Runner |
 | `RESEND_API_KEY` | optional: Berichts-Link per E-Mail (sonst Anzeige on-screen) |
 | `BROWSER_DRIVER_ENABLED` | standardmäßig aus – Scan bleibt passiv/leichtgewichtig |

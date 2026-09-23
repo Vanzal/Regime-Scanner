@@ -7,9 +7,14 @@ const PRODUCTION = 'https://nexusscopes.com'
 
 describe('robots.txt', () => {
   it('pins host and sitemap to the production domain and keeps private disallows', () => {
-    const previous = { SITE_URL: process.env.SITE_URL, VERCEL_URL: process.env.VERCEL_URL }
+    const previous = {
+      SITE_URL: process.env.SITE_URL,
+      VERCEL_URL: process.env.VERCEL_URL,
+      SITE_PASSWORD: process.env.SITE_PASSWORD,
+    }
     process.env.VERCEL_URL = 'regime-scanner-abc.vercel.app'
     process.env.SITE_URL = ''
+    delete process.env.SITE_PASSWORD
     try {
       const doc = robots()
       expect(doc.host).toBe(PRODUCTION)
@@ -24,22 +29,55 @@ describe('robots.txt', () => {
       }
     }
   })
+
+  it('disallows all crawlers when the site password is set', () => {
+    const previous = process.env.SITE_PASSWORD
+    process.env.SITE_PASSWORD = 'preview-secret'
+    try {
+      const doc = robots()
+      expect(doc.host).toBe(PRODUCTION)
+      expect(doc.sitemap).toBeUndefined()
+      const rules = Array.isArray(doc.rules) ? doc.rules[0] : doc.rules
+      expect(rules?.disallow).toBe('/')
+    } finally {
+      if (previous === undefined) delete process.env.SITE_PASSWORD
+      else process.env.SITE_PASSWORD = previous
+    }
+  })
 })
 
 describe('sitemap', () => {
   it('emits production loc URLs for public pages', () => {
-    const entries = sitemap()
-    const urls = entries.map((e) => e.url)
-    expect(urls.every((url) => url.startsWith(PRODUCTION))).toBe(true)
-    expect(urls.some((url) => url.includes('vercel.app'))).toBe(false)
-    expect(urls).toEqual(
-      expect.arrayContaining([
-        PRODUCTION,
-        `${PRODUCTION}/pricing`,
-        `${PRODUCTION}/contact`,
-        `${PRODUCTION}/intake`,
-      ]),
-    )
+    const previous = process.env.SITE_PASSWORD
+    delete process.env.SITE_PASSWORD
+    try {
+      const entries = sitemap()
+      const urls = entries.map((e) => e.url)
+      expect(urls.every((url) => url.startsWith(PRODUCTION))).toBe(true)
+      expect(urls.some((url) => url.includes('vercel.app'))).toBe(false)
+      expect(urls).toEqual(
+        expect.arrayContaining([
+          PRODUCTION,
+          `${PRODUCTION}/pricing`,
+          `${PRODUCTION}/contact`,
+          `${PRODUCTION}/intake`,
+        ]),
+      )
+    } finally {
+      if (previous === undefined) delete process.env.SITE_PASSWORD
+      else process.env.SITE_PASSWORD = previous
+    }
+  })
+
+  it('emits no URLs when the site password is set', () => {
+    const previous = process.env.SITE_PASSWORD
+    process.env.SITE_PASSWORD = 'preview-secret'
+    try {
+      expect(sitemap()).toEqual([])
+    } finally {
+      if (previous === undefined) delete process.env.SITE_PASSWORD
+      else process.env.SITE_PASSWORD = previous
+    }
   })
 })
 

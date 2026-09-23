@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { isSiteGateEnabled } from '@/lib/site-gate'
 import { canonicalSiteUrl } from '@/lib/site-url'
 
 /** Canonical public URLs only (aliases 301 to these paths). */
@@ -16,6 +17,7 @@ const PUBLIC_PATHS = [
 ] as const
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  if (isSiteGateEnabled()) return []
   const base = canonicalSiteUrl()
   const now = new Date()
   return PUBLIC_PATHS.map((path) => ({

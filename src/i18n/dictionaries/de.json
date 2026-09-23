@@ -642,6 +642,13 @@
     "theme": {
       "toggle": "Farbmodus umschalten"
     },
+    "gate": {
+      "title": "Geschützte Vorschau",
+      "body": "Diese Website ist passwortgeschützt, solange NexusScope im privaten Preview ist.",
+      "placeholder": "Passwort",
+      "submit": "Zur Website",
+      "error": "Falsches Passwort."
+    },
     "scan_gate": {
       "body": "Kostenlose Scans sind noch nicht allgemein verfügbar. Dieser Pfad läuft im gekennzeichneten Demo-/Fixture-Modus — synthetische Daten zum öffentlichen Fußabdruck, keine lebendige Rechtsfeststellung. Treten Sie der Warteliste für den Early Access bei.",
       "link": "Auf die Warteliste"
